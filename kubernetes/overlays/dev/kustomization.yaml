@@ -1,0 +1,8 @@
+bases:
+  - ../../base
+  - ../../ciim
+  - ../../api
+commonAnnotations:
+  environment: dev
+patchesStrategicMerge:
+  - ciim-tagged.yml

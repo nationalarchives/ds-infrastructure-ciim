@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ciim-tna
+  namespace: etna
+spec:
+  template:
+    spec:
+      containers:
+        - name: ciim
+          image: 881629303229.dkr.ecr.eu-west-1.amazonaws.com/ciim-tna:latest

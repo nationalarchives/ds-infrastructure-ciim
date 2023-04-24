@@ -1,0 +1,11 @@
+bases:
+  - ../../base
+  - ../../ciim
+  - ../../unmanaged-internal-es
+  - ../../unmanaged-public-es
+  - ../../api
+commonAnnotations:
+  environment: dev
+  support: angus.young@k-int.com
+patchesStrategicMerge:
+  - ciim-tagged.yml

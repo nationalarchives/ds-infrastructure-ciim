@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ciim-db-service
+  namespace: etna
+  labels:
+    app: ciim-db-service
+spec:
+  externalName: ciim-test-db.crddqglgg7xp.eu-west-2.rds.amazonaws.com
+  selector:
+    app: ciim-db-service
+  type: ExternalName
+status:
+  loadBalancer: {}

@@ -1,0 +1,177 @@
+{
+	"dynamic_templates": [
+		{
+			"wildcard_string": {
+				"match": "*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		}
+	],
+	"properties": {
+		"@admin": {
+			"properties": {
+				"id": {
+					"type": "keyword"
+				},
+				"created": {
+					"type": "date"
+				},
+				"modified": {
+					"type": "date"
+				},
+				"uid": {
+					"type": "keyword"
+				},
+				"uuid": {
+					"type": "keyword"
+				}
+			}
+		},
+		"deleted": {
+			"type": "boolean"
+		},
+		"error": {
+			"properties": {
+				"date": {
+					"type": "date"
+				},
+				"id": {
+					"type": "keyword"
+				},
+				"value": {
+					"type": "keyword"
+				}
+			}
+		},
+		"id": {
+			"type": "keyword"
+		},
+		"class": {
+			"type": "keyword"
+		},
+		"date": {
+			"type": "date"
+		},
+		"exception": {
+			"type": "keyword"
+		},
+		"identifier": {
+			"properties": {
+				"type": {
+					"type": "keyword"
+				},
+				"value": {
+					"type": "keyword"
+				}
+			}
+		},
+		"information": {
+			"properties": {
+				"date": {
+					"type": "date"
+				},
+				"id": {
+					"type": "keyword"
+				},
+				"value": {
+					"type": "keyword"
+				}
+			}
+		},
+		"item": {
+			"type": "keyword"
+		},
+		"job_id": {
+			"type": "keyword"
+		},
+		"key": {
+			"type": "keyword"
+		},
+		"operation": {
+			"type": "keyword"
+		},
+		"primary": {
+			"type": "boolean"
+		},
+		"processed": {
+			"type": "date"
+		},
+		"process": {
+			"type": "keyword"
+		},
+		"level": {
+			"type": "keyword"
+		},
+		"message": {
+			"type": "keyword"
+		},
+		"stages": {
+			"properties": {
+				"result": {
+					"type": "keyword"
+				},
+				"stage": {
+					"type": "keyword"
+				},
+				"status": {
+					"type": "keyword"
+				},
+				"time": {
+					"type": "date"
+				}
+			}
+		},
+		"status": {
+			"type": "keyword"
+		},
+		"status_message": {
+			"type": "keyword"
+		},
+		"summary": {
+			"properties": {
+				"title": {
+					"type": "keyword"
+				}
+			}
+		},
+		"primary_id": {
+			"type": "keyword"
+		},
+		"@datatype": {
+			"properties": {
+				"base": {
+					"type": "keyword"
+				},
+				"actual": {
+					"type": "keyword"
+				},
+				"group": {
+					"properties": {
+						"value": {
+							"type": "keyword"
+						}
+					}
+				}
+			}
+		},
+		"visibility": {
+			"type": "keyword"
+		},
+		"warning": {
+			"properties": {
+				"date": {
+					"type": "date"
+				},
+				"id": {
+					"type": "keyword"
+				},
+				"value": {
+					"type": "keyword"
+				}
+			}
+		}
+	}
+}

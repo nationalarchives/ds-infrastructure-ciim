@@ -1,0 +1,4 @@
+namespace: etna
+resources:
+  - ebs-storageclass.yml
+  - rbac.yml

@@ -1,0 +1,12 @@
+namespace: etna
+resources:
+  - public-es.yml
+configMapGenerator:
+  - name: dictionaries
+    files:
+      - ./synonym.txt
+# This is necessary because kustomize assumes it is also creating the pod, which it isn't in this case as
+# it is being created by the elasticsearch operator. If nameSuffixHash is used, the pod won't be able to
+# locate the config map
+generatorOptions:
+  disableNameSuffixHash: true
