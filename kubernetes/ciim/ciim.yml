@@ -51,7 +51,7 @@ spec:
               mountPath: /ciim/ciim-media
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:latest
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
           imagePullPolicy: Always
           ports:
             - name: api-port
