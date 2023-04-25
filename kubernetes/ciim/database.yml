@@ -6,7 +6,7 @@ metadata:
   labels:
     app: ciim-db-service
 spec:
-  externalName: ciim-test-db.crddqglgg7xp.eu-west-2.rds.amazonaws.com
+  externalName: ciim-test-eks-subnets-db.crddqglgg7xp.eu-west-2.rds.amazonaws.com
   selector:
     app: ciim-db-service
   type: ExternalName

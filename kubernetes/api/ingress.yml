@@ -17,10 +17,3 @@ spec:
                 name: data-api-service
                 port:
                   name: api-port
-          - path: /api/v1/media
-            pathType: Prefix
-            backend:
-              service:
-                name: media-api-service
-                port:
-                  name: api-port

@@ -1,3 +1,4 @@
 resources:
   - namespace.yml
   - priority-class.yml
+  - auth.yml

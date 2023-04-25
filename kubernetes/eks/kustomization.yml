@@ -1,4 +1,4 @@
 namespace: etna
 resources:
-  - ebs-storageclass.yml
-  - rbac.yml
+  - consumer.yaml
+  - cors.yaml

@@ -7,4 +7,3 @@ metadata:
 username: etna
 credentials:
   - etna-apikey
-  - platformsh-apikey
