@@ -12,6 +12,8 @@ configMapGenerator:
       - ./properties/app_ctx_project_processing.properties
       - ./properties/app_ctx_project_rsync.properties
       - ./properties/app_ctx_project_tuning.properties
+      - ./properties/app_ctx_persisted.properties
+      - ./properties/app_ctx_transient.properties
       - ./properties/deployment.properties
       - ./properties/GenericAdminEsMapping6plus.json
       - ./properties/GenericEsMapping6plus.json
