@@ -20,5 +20,7 @@ spec:
           - path: /search
             pathType: Prefix
             backend:
-              serviceName: ciim-internal-es-default
-              servicePort: 80
+              service:
+                name: ciim-internal-es-default
+                port:
+                  number: 9200
