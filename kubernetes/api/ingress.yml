@@ -22,5 +22,4 @@ spec:
             backend:
               service:
                 name: ciim-internal-es-default
-                port:
-                  name: 9200
+                port: 9200
