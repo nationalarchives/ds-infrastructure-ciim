@@ -17,3 +17,10 @@ spec:
                 name: data-api-service
                 port:
                   name: api-port
+          - path: /search
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-internal-es-default
+                port:
+                  name: 9200
