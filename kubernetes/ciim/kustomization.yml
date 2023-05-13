@@ -18,7 +18,7 @@ configMapGenerator:
       - ./properties/GenericAdminEsMapping6plus.json
       - ./properties/GenericEsMapping6plus.json
       - ./properties/GenericIndexConfig6plus.json
-      - ./properties/image.properties
-      - ./properties/media.properties
-      - ./properties/video.properties
-      - ./properties/zoom.properties
+      - ./properties/persisted_default_mpd_image.properties
+      - ./properties/persisted_default_mpd_media.properties
+      - ./properties/persisted_default_mpd_video.properties
+      - ./properties/persisted_default_mpd_zoom.properties
