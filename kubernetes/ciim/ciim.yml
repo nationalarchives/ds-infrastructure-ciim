@@ -37,7 +37,7 @@ spec:
             name: ciim-config
       initContainers:
         - name: set-ciim-permissions
-          image: registry.hub.docker.com/library/busybox:latest
+          image: registry.hub.docker.com/library/busybox:1.36.0
           imagePullPolicy: IfNotPresent
           command: [ 'sh', '-c', 'chmod -R 777 /ciim' ]
           volumeMounts:
