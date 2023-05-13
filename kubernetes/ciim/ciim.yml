@@ -159,6 +159,19 @@ spec:
       storage: 100Gi
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-persistence-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: ciim-service
