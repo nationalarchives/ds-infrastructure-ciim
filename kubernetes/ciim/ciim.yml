@@ -59,15 +59,15 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: ciim-logging-data
-              mountPath: /ciim/tomcat/logs
+              mountPath: usr/local/ciim/tomcat/logs
             - name: ciim-batch-data
-              mountPath: /ciim/ciim-batches
+              mountPath: usr/local/ciim/ciim-batches
             - name: ciim-config
-              mountPath: /ciim/ciim-config
+              mountPath: usr/local/ciim/ciim-config
             - name: ciim-temp-data
-              mountPath: /ciim/ciim-temp
+              mountPath: usr/local/ciim/ciim-temp
             - name: ciim-media-data
-              mountPath: /ciim/ciim-media
+              mountPath: usr/local/ciim/ciim-media
           envFrom:
             - secretRef:
                 name: ciim-mysql-creds
@@ -83,7 +83,7 @@ spec:
                 name: public-es-pass
           env:
             - name: ciim.properties.path
-              value: /ciim/ciim-config
+              value: usr/local/ciim/ciim-config
             - name: ciim.deployment.environment
               value: dev
             - name: JAVA_OPTS
