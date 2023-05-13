@@ -49,8 +49,6 @@ spec:
               mountPath: /ciim/ciim-temp
             - name: ciim-media-data
               mountPath: /ciim/ciim-media
-            - name: ciim-persistence-data
-              mountPath: /ciim/ciim-persistence
       containers:
         - name: ciim
           image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
@@ -70,8 +68,6 @@ spec:
               mountPath: /ciim/ciim-temp
             - name: ciim-media-data
               mountPath: /ciim/ciim-media
-            - name: ciim-persistence-data
-              mountPath: /ciim/ciim-persistence
           envFrom:
             - secretRef:
                 name: ciim-mysql-creds
@@ -157,19 +153,6 @@ spec:
   resources:
     requests:
       storage: 100Gi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ciim-persistence-data-pvc
-  namespace: etna
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-
 ---
 apiVersion: v1
 kind: Service
