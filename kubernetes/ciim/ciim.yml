@@ -42,13 +42,13 @@ spec:
           command: [ 'sh', '-c', 'chmod -R 777 /ciim' ]
           volumeMounts:
             - name: ciim-logging-data
-              mountPath: /ciim/tomcat/logs
+              mountPath: usr/local/ciim/tomcat/logs
             - name: ciim-batch-data
-              mountPath: /ciim/ciim-batches
+              mountPath: usr/local/ciim/ciim-batches
             - name: ciim-temp-data
-              mountPath: /ciim/ciim-temp
+              mountPath: usr/local/ciim/ciim-temp
             - name: ciim-media-data
-              mountPath: /ciim/ciim-media
+              mountPath: usr/local/ciim/ciim-media
       containers:
         - name: ciim
           image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
