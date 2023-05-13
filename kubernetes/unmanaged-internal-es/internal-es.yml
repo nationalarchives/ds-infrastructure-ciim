@@ -28,6 +28,10 @@ spec:
                 storage: 200Gi
       podTemplate:
         spec:
+          volumes:
+            - name: dictionaries
+              configMap:
+                name: dictionaries
           containers:
             - name: elasticsearch
               env:
@@ -37,6 +41,9 @@ spec:
                 requests:
                   memory: 6Gi
                   cpu: 2
+          volumeMounts:
+            - name: dictionaries
+              mountPath: /usr/share/elasticsearch/config/dictionaries
           # For production workloads, it is strongly recommended to increase the kernel setting
           # vm.max_map_count to 262144 and leave node.store.allow_mmap unset.
           initContainers:
