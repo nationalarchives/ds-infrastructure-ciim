@@ -39,16 +39,16 @@ spec:
         - name: set-ciim-permissions
           image: registry.hub.docker.com/library/busybox:latest
           imagePullPolicy: IfNotPresent
-          command: [ 'sh', '-c', 'chmod -R 777 usr/local/ciim' ]
+          command: [ 'sh', '-c', 'chmod -R 777 /ciim' ]
           volumeMounts:
             - name: ciim-logging-data
-              mountPath: usr/local/ciim/tomcat/logs
+              mountPath: /ciim/tomcat/logs
             - name: ciim-batch-data
-              mountPath: usr/local/ciim/ciim-batches
+              mountPath: /ciim/ciim-batches
             - name: ciim-temp-data
-              mountPath: usr/local/ciim/ciim-temp
+              mountPath: /ciim/ciim-temp
             - name: ciim-media-data
-              mountPath: usr/local/ciim/ciim-media
+              mountPath: /ciim/ciim-media
       containers:
         - name: ciim
           image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
@@ -59,15 +59,15 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: ciim-logging-data
-              mountPath: usr/local/ciim/tomcat/logs
+              mountPath: /ciim/tomcat/logs
             - name: ciim-batch-data
-              mountPath: usr/local/ciim/ciim-batches
+              mountPath: /ciim/ciim-batches
             - name: ciim-config
-              mountPath: usr/local/ciim/ciim-config
+              mountPath: /ciim/ciim-config
             - name: ciim-temp-data
-              mountPath: usr/local/ciim/ciim-temp
+              mountPath: /ciim/ciim-temp
             - name: ciim-media-data
-              mountPath: usr/local/ciim/ciim-media
+              mountPath: /ciim/ciim-media
           envFrom:
             - secretRef:
                 name: ciim-mysql-creds
@@ -83,7 +83,7 @@ spec:
                 name: public-es-pass
           env:
             - name: ciim.properties.path
-              value: usr/local/ciim/ciim-config
+              value: /ciim/ciim-config
             - name: ciim.deployment.environment
               value: dev
             - name: JAVA_OPTS
