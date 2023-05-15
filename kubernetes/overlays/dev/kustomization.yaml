@@ -4,7 +4,6 @@ bases:
   - ../../api
   - ../../eks
   - ../../unmanaged-internal-es
-  - ../../unmanaged-public-es
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
