@@ -1,6 +1,6 @@
 namespace: etna
 resources:
-  - rosetta.yml
+  - ciim-ui.yml
 configMapGenerator:
   - name: ui-config
     files:

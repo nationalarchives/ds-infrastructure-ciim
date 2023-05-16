@@ -1,0 +1,48 @@
+server:
+  port: 4923
+
+logging:
+  pattern:
+    level: "%5p %X{CorrelationId}"
+  level:
+    root: warn
+    org.elasticsearch.client: error
+    com.k_int.rosetta: info
+    com.k_int.rosetta.web.api.iiif: debug
+    com.k_int.rosetta.web.iiif.presentation.v3: debug
+    com.k_int.rosetta.provider.elastic: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+
+springdoc:
+  api-docs:
+    path: /spec
+
+rosetta:
+  provider:
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        domainConverter: es-converter
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: 2575T63o2BARFNOUlp5T28Ih
+          path_config:
+            paths:
+              classification: name.value.keyword
+              technique: creation.method
+              material: material.value.keyword
+              datatype: "@datatype.base"
+
+  domain:
+    converters:
+      - name: es-converter
+        type: elastic-default
