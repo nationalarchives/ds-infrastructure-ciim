@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: rosetta-tna
-  revisionHistoryLimit: 5
+  revisionHistoryLimit: 1
   replicas: 1
   progressDeadlineSeconds: 600
   strategy:
