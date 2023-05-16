@@ -12,6 +12,7 @@ spec:
         paths:
           - path: /api/v1/data
             pathType: Prefix
+            stripPath: true
             backend:
               service:
                 name: rosetta-service
