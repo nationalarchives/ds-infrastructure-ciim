@@ -3,6 +3,7 @@ bases:
   - ../../ciim
   - ../../eks
   - ../../unmanaged-internal-es
+  - ../../unmanaged-public-es
   - ../../rosetta
 commonAnnotations:
   environment: dev

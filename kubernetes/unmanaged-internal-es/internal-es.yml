@@ -4,7 +4,7 @@ metadata:
   name: ciim-internal
   namespace: etna
 spec:
-  version: 7.10.1
+  version: 7.17.6
   # DeleteOnScaledownOnly keeps the PersistentVolumeClaims when deleting the Elasticsearch cluster.
   # If you recreate a deleted cluster with the same name and node sets as before, the existing
   # PersistentVolumeClaims will be adopted by the new cluster.

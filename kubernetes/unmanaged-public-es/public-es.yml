@@ -4,7 +4,7 @@ metadata:
   name: ciim-public
   namespace: etna
 spec:
-  version: 7.10.1
+  version: 7.17.6
   # DeleteOnScaledownOnly keeps the PersistentVolumeClaims when deleting the Elasticsearch cluster.
   # If you recreate a deleted cluster with the same name and node sets as before, the existing
   # PersistentVolumeClaims will be adopted by the new cluster.
@@ -29,9 +29,9 @@ spec:
       podTemplate:
         spec:
           volumes:
-            - name: dictionaries
+            - name: esdictionaries
               configMap:
-                name: dictionaries
+                name: esdictionaries
           containers:
             - name: elasticsearch
               env:
@@ -44,7 +44,7 @@ spec:
                 limits:
                   memory: 6Gi
               volumeMounts:
-                - name: dictionaries
+                - name: esdictionaries
                   mountPath: /usr/share/elasticsearch/config/dictionaries
           # For production workloads, it is strongly recommended to increase the kernel setting
           # vm.max_map_count to 262144 and leave node.store.allow_mmap unset.
