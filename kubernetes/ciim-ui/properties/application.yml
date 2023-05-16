@@ -1,0 +1,35 @@
+es:
+  version: 7x
+  clusters:
+    - code: internal
+      label: Internal Admin
+      description: The main search index containing all data in the internal data model
+      active: true
+      cluster: ciim-internal
+      node: ciim-internal-client
+      host: ciim-public-es-http.etna
+      port: 9200
+      pingTimeout: 10s
+      protocol: http
+      pathPrefix:
+      username: elastic
+      password: password
+      mediaBase: http://localhost/mediaLib
+      indices:
+        - ciim
+        - management
+        - unavailable
+dataSource:
+  url: jdbc:mysql://ciim-internal-db/ciim_mgmt?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf8&maxReconnects=10&initialTimeout=10
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  driverClassName: com.mysql.cj.jdbc.Driver
+  username: ciim
+  password: xxxx
+  dbCreate: update
+template:
+  create:
+    default: true
+ws:
+  allowedOrigin: "*"
+  broadcastUrlForCore: ws://ciim-management:18080/ciim/stomp
+  broadcastUrlForWeb: ws://localhost:48181/ciim/stomp

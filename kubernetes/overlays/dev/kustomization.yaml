@@ -4,6 +4,7 @@ bases:
   - ../../api
   - ../../eks
   - ../../unmanaged-internal-es
+  - ../../rosetta
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
