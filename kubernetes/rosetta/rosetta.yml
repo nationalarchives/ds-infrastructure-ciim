@@ -29,7 +29,7 @@ spec:
           command: [ 'sh', '-c', 'chmod -R 777 /rosetta' ]
       containers:
         - name: rosetta
-          image: public.ecr.aws/v3w7q3a1/rosetta:tna
+          image: public.ecr.aws/v3w7q3a1/tna-data-api:latest
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
