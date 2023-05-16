@@ -21,7 +21,7 @@ management:
 
 springdoc:
   api-docs:
-    path: /api/v1/data/spec
+    path: /api/v1/spec
 
 rosetta:
   provider:
