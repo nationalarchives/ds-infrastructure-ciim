@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: ciim-tna
-  revisionHistoryLimit: 5
+  revisionHistoryLimit: 2
   # CIIM cannot be replicated, this should NEVER be greater than 1
   replicas: 1
   progressDeadlineSeconds: 600
