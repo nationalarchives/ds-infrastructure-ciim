@@ -33,6 +33,10 @@
 			"snowball_stem_en_filter": {
 				"type": "snowball",
 				"language": "English"
+			},
+			"synonym": {
+				"type": "synonym",
+				"synonyms_path": "dictionaries/synonym.txt"
 			}
 		},
 		"normalizer": {
