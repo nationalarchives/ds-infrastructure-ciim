@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ui-tna
+  name: rosetta-tna
   namespace: etna
 spec:
   selector:
     matchLabels:
-      app: ui-tna
+      app: rosetta-tna
   revisionHistoryLimit: 5
   replicas: 1
   progressDeadlineSeconds: 600
@@ -15,27 +15,32 @@ spec:
   template:
     metadata:
       labels:
-        app: ui-tna
+        app: rosetta-tna
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: ui-config
+        - name: rosetta-config
           configMap:
-            name: ciim-config
+            name: rosetta-config
+      initContainers:
+        - name: set-rosetta-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          imagePullPolicy: IfNotPresent
+          command: [ 'sh', '-c', 'chmod -R 777 /rosetta' ]
       containers:
-        - name: ui
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
+        - name: rosetta
+          image: public.ecr.aws/v3w7q3a1/rosetta:tna
           imagePullPolicy: Always
           ports:
-            - name: ui-port
-              containerPort: 18080
+            - name: rosetta-port
+              containerPort: 4923
               protocol: TCP
           volumeMounts:
-            - name: ui-config
-              mountPath: /ciim/ciim-config
+            - name: ciim-config
+              mountPath: /rosetta/config
           env:
-            - name: external.services.core.url
-              value: http://ciim-service.etna:8080/tna/api
+            - name: JAVA_OPTS
+              value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
           resources:
             requests:
               memory: 4Gi
@@ -43,14 +48,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ui-service
+  name: rosetta-service
   namespace: etna
 spec:
   type: ClusterIP
   selector:
-    app: ui-tna
+    app: rosetta-tna
   ports:
     - protocol: TCP
-      port: 18080
-      targetPort: 18080
-      name: ui-port
+      port: 4923
+      targetPort: 4923
+      name: rosetta-port

@@ -1,13 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rosetta-tna
+  name: ciim-tna
   namespace: etna
 spec:
   selector:
     matchLabels:
-      app: rosetta-tna
+      app: ciim-tna
   revisionHistoryLimit: 5
+  # CIIM cannot be replicated, this should NEVER be greater than 1
   replicas: 1
   progressDeadlineSeconds: 600
   strategy:
@@ -15,47 +16,174 @@ spec:
   template:
     metadata:
       labels:
-        app: rosetta-tna
+        app: ciim-tna
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: rosetta-config
+        - name: ciim-logging-data
+          persistentVolumeClaim:
+            claimName: ciim-logging-data-pvc
+        - name: ciim-batch-data
+          persistentVolumeClaim:
+            claimName: ciim-batch-data-pvc
+        - name: ciim-temp-data
+          persistentVolumeClaim:
+            claimName: ciim-temp-data-pvc
+        - name: ciim-media-data
+          persistentVolumeClaim:
+            claimName: ciim-media-data-pvc
+        - name: ciim-persistence-data
+          persistentVolumeClaim:
+            claimName: ciim-persistence-data-pvc
+        - name: ciim-config
           configMap:
-            name: rosetta-config
+            name: ciim-config
       initContainers:
-        - name: set-rosetta-permissions
+        - name: set-ciim-permissions
           image: registry.hub.docker.com/library/busybox:latest
           imagePullPolicy: IfNotPresent
-          command: [ 'sh', '-c', 'chmod -R 777 /rosetta' ]
+          command: [ 'sh', '-c', 'chmod -R 777 /ciim' ]
+          volumeMounts:
+            - name: ciim-logging-data
+              mountPath: /ciim/tomcat/logs
+            - name: ciim-batch-data
+              mountPath: /ciim/ciim-batches
+            - name: ciim-temp-data
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data
+              mountPath: /ciim/ciim-persistence
       containers:
-        - name: rosetta
-          image: public.ecr.aws/v3w7q3a1/rosetta:tna
+        - name: ciim
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
           imagePullPolicy: Always
           ports:
-            - name: rosetta-port
-              containerPort: 4923
+            - name: api-port
+              containerPort: 8080
               protocol: TCP
           volumeMounts:
+            - name: ciim-logging-data
+              mountPath: /ciim/tomcat/logs
+            - name: ciim-batch-data
+              mountPath: /ciim/ciim-batches
             - name: ciim-config
-              mountPath: /rosetta/config
+              mountPath: /ciim/ciim-config
+            - name: ciim-temp-data
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data
+              mountPath: /ciim/ciim-persistence
+          envFrom:
+            - secretRef:
+                name: ciim-mysql-creds
+            - secretRef:
+                name: mongodb-connection-url
+            - secretRef:
+                name: wagtail-es-password
+            - secretRef:
+                name: ciim-encryption-key
+            - secretRef:
+                name: internal-es-pass
+            - secretRef:
+                name: public-es-pass
           env:
+            - name: ciim.properties.path
+              value: /ciim/ciim-config
+            - name: ciim.deployment.environment
+              value: dev
             - name: JAVA_OPTS
-              value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
+              value: "-Xms6g -Xmx6g"
+            - name: media.replica.s3.access_key
+              valueFrom:
+                secretKeyRef:
+                  name: ds-live-digital-files
+                  key: accessKey
+            - name: media.replica.s3.secret_access_key
+              valueFrom:
+                secretKeyRef:
+                  name: ds-live-digital-files
+                  key: secretAccessKey
+            - name: elasticsearch.auth.user
+              value: elastic
+            - name: publication.es.auth.username
+              value: elastic
           resources:
             requests:
               memory: 4Gi
 ---
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-batch-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 80Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-logging-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-media-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 30Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-temp-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-persistence-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
 kind: Service
 metadata:
-  name: rosetta-service
+  name: ciim-service
   namespace: etna
 spec:
   type: ClusterIP
   selector:
-    app: rosetta-tna
+    app: ciim-tna
   ports:
     - protocol: TCP
-      port: 4923
-      targetPort: 4923
-      name: rosetta-port
+      port: 8080
+      targetPort: 8080
+      name: api-port
