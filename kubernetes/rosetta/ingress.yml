@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
     konghq.com/plugins: etna-apikey-auth
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - http:
@@ -17,10 +18,10 @@ spec:
                 name: rosetta-service
                 port:
                   name: rosetta-port
-          - path: /search
+          - path: /api/v1/?(.*)/
             pathType: Prefix
             backend:
               service:
-                name: ciim-internal-es-default
+                name: rosetta-service
                 port:
-                  number: 9200
+                  name: rosetta-port
