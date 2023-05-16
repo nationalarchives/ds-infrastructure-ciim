@@ -36,7 +36,7 @@ spec:
               containerPort: 4923
               protocol: TCP
           volumeMounts:
-            - name: ciim-config
+            - name: rosetta-config
               mountPath: /rosetta/config
           env:
             - name: JAVA_OPTS
