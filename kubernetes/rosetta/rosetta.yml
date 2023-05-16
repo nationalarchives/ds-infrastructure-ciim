@@ -26,10 +26,9 @@ spec:
         - name: set-rosetta-permissions
           image: registry.hub.docker.com/library/busybox:latest
           imagePullPolicy: IfNotPresent
-          command: [ 'sh', '-c', 'chmod -R 777 /rosetta' ]
       containers:
         - name: rosetta
-          image: public.ecr.aws/v3w7q3a1/tna-data-api:latest
+          image: public.ecr.aws/v3w7q3a1/rosetta:tna
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
