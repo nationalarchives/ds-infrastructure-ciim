@@ -1,6 +1,7 @@
 namespace: etna
 resources:
   - rosetta.yml
+  - ingress.yml
 configMapGenerator:
   - name: rosetta-config
     files:
