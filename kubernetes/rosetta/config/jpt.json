@@ -1,20 +1,21 @@
 {
   "@template": {
     "details": {
-      "iaid": "{$.identifier.[0].value}",
+      "iaid": "{$.identifier.__iaid}",
       "catalogueContext": "{$.template.details.catalogueContext.value}",
       "level": "{$.level.value}",
       "legalStatus": "{$.legal.status}",
       "description": "{$.description[0].value}",
       "primaryIdentifier": "{$.@admin.id}",
-      "summaryTitle": "{$.summary.title.value}",
+      "summaryTitle": "{$.summary.title}",
+      "type": "{$.@datatype.base}",
       "dateCreated": "{$.origination.date.value}",
-      "closureStatus": "{$.availability.closure.value}",
+      "closureStatus": "{$.availability.closure.label.value}",
       "heldBy": "{$.repository.name.value}",
-      "referenceNumber": "{$.template.details.referenceNumber.value}",
-      "formerDepartmentReference": "{$.template.details.formerDepartmentReference.value}",
+      "referenceNumber": "{$.identifier.__reference_number}",
+      "formerDepartmentReference": "{$.identifier.__former_reference_department}",
       "heldById": "{$.repository.@admin.id}",
-      "deliveryOption": "{$.delivery.condition.value}"
+      "deliveryOption": "{$.availability.delivery.condition.value}"
     }
   }
 }
