@@ -9,7 +9,11 @@
       "primaryIdentifier": "{$.@admin.id}",
       "summaryTitle": "{$.summary.title}",
       "type": "{$.@datatype.base}",
-      "dateCreated": "{$.origination.date.value}",
+      "dateCreated": {
+        "#type": "date",
+        "value": "$.origination.date.value",
+        "format": "yyyy"
+      },
       "closureStatus": "{$.availability.closure.label.value}",
       "heldBy": "{$.repository.name.value}",
       "referenceNumber": "{$.identifier.__reference_number}",
