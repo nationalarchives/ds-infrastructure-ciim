@@ -9,17 +9,14 @@
       "primaryIdentifier": "{$.@admin.id}",
       "summaryTitle": "{$.summary.title}",
       "type": "{$.@datatype.base}",
-      "dateCreated": {
-        "#type": "date",
-        "value": "$.origination.date.value",
-        "format": "yyyy"
-      },
+      "dateCreated":"$.origination.date.value",
       "closureStatus": {
         "#type": "scope",
         "scope": "$.availability",
         "value": {
           "closureCode": "$.closure.code",
           "closureStatus": "$.closure.label.value",
+          "closureStatus": "$.closure.label",
           "closureStats": {
             "#type": "scope",
             "scope": "$.closure",
