@@ -35,7 +35,7 @@ rosetta:
         type: jpt
         properties:
           mutable: true
-          file: ./config/jpt.json
+          file: /config/jpt.json
           input: source
           output: detail
   provider:
