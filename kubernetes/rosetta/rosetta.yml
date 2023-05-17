@@ -22,9 +22,6 @@ spec:
         - name: rosetta-config
           configMap:
             name: rosetta-config
-        - name: plugin-rosetta
-          configMap:
-            name: plugin-rosetta
       initContainers:
         - name: set-rosetta-permissions
           image: registry.hub.docker.com/library/busybox:latest
@@ -40,8 +37,6 @@ spec:
           volumeMounts:
             - name: rosetta-config
               mountPath: /rosetta/config
-            - name: plugin-rosetta
-              mountPath: /rosetta/plugins
           env:
             - name: JAVA_OPTS
               value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
