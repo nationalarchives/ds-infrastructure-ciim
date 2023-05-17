@@ -24,6 +24,20 @@ springdoc:
     path: /api/v1/spec
 
 rosetta:
+  cache:
+    enabled: false
+    use_cache_service: false
+  transform:
+    enabled: true
+    timeout_millis: 6000
+    glyphs:
+      - name: jpt
+        type: jpt
+        properties:
+          mutable: true
+          file: ./config/jpt.json
+          input: source
+          output: detail
   provider:
     providers:
       - name: elasticsearch

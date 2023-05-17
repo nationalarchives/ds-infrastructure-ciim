@@ -6,3 +6,4 @@ configMapGenerator:
   - name: rosetta-config
     files:
       - ./config/application.yml
+      - ./config/jpt.json

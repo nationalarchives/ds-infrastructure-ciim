@@ -1,0 +1,46 @@
+{
+  "@template": {
+    "title": {
+      "#type": "string_join",
+      "delimiter": "",
+      "values": [
+        "<span class=title_css>",
+        "$.summary.title",
+        "</span>"
+      ]
+    },
+    "description": {
+      "#type": "string_join",
+      "delimiter": "",
+      "values": [
+        "<span class=general_text_css>",
+        "$.description[0].value",
+        "</span>"
+      ]
+    },
+    "identifier": {
+      "#type": "string_join",
+      "delimiter": "",
+      "values": [
+        "<span class=identifiers_css>",
+        {
+          "#type": "string_join",
+          "delimiter": ", ",
+          "values": {
+            "#type": "for_each",
+            "values": "$.identifier",
+            "mapper": {
+              "#type": "string_join",
+              "delimiter": ": ",
+              "values": [
+                "$.type",
+                "$.value"
+              ]
+            }
+          }
+        },
+        "</span>"
+      ]
+    }
+  }
+}
