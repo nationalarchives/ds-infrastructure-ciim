@@ -37,7 +37,6 @@ rosetta:
           mutable: true
           file: ./config/jpt.json
           input: source
-          output: detail
   provider:
     providers:
       - name: elasticsearch
