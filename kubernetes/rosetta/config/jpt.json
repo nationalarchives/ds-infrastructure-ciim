@@ -1,7 +1,7 @@
 {
   "@template": {
     "details": {
-      "iaid": "{$.identifier.__iaid}",
+      "iaid": "{$.identifier.[*].__iaid}",
       "catalogueContext": "{$.template.details.catalogueContext.value}",
       "level": "{$.level.value}",
       "legalStatus": "{$.legal.status}",
@@ -14,8 +14,8 @@
       "closureStatus": "$.availability.closure.level",
       "closureStatus2": "$.availability.closure.level.value.keyword",
       "heldBy": "{$.repository.name.value}",
-      "referenceNumber": "{$.identifier.__reference_number}",
-      "formerDepartmentReference": "{$.identifier.__former_reference_department}",
+      "referenceNumber": "{$.identifier.[*].__reference_number}",
+      "formerDepartmentReference": "{$.identifier.[*].__former_reference_department}",
       "heldById": "{$.repository.@admin.id}",
       "deliveryOption": "$.availability.delivery.condition.value.keyword"
     }
