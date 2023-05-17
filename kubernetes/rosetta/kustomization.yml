@@ -10,3 +10,7 @@ configMapGenerator:
   - name: plugin-rosetta
     files:
       - ./plugins/jpt-1.0.0-SNAPSHOT.jar
+      - ./plugins/rosetta-elasticsearch-0.1.3-SNAPSHOT.jar
+      - ./plugins/rosetta-iiif-0.1.3-SNAPSHOT.jar
+      - ./plugins/rosetta-plugin-elasticsearch7x-0.1.3-SNAPSHOT.jar
+      - ./plugins/rosetta-plugin-solr-0.1.3-SNAPSHOT.jar
