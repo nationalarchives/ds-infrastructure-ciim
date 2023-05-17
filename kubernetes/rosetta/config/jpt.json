@@ -14,7 +14,13 @@
         "value": "$.origination.date.value",
         "format": "yyyy"
       },
-      "closureStatus": "{$.availability.closure.label.value}",
+      "closureStatus": {
+        "#type": "scope",
+        "scope": "$.availability",
+        "value": {
+          "closureStatus": "$.closure.label.value"
+        }
+      },
       "heldBy": "{$.repository.name.value}",
       "referenceNumber": "{$.identifier.__reference_number}",
       "formerDepartmentReference": "{$.identifier.__former_reference_department}",
