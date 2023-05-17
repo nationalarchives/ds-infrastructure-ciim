@@ -18,7 +18,17 @@
         "#type": "scope",
         "scope": "$.availability",
         "value": {
-          "closureStatus": "$.closure.label.value"
+          "closureCode": "$.closure.code",
+          "closureStatus": "$.closure.label.value",
+          "closureStats": {
+            "#type": "scope",
+            "scope": "$.closure",
+            "value": {
+              "#type": "scope",
+              "scope": "$.label",
+              "value": "$.value"
+            }
+          }
         }
       },
       "heldBy": "{$.repository.name.value}",
