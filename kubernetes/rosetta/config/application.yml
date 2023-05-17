@@ -51,10 +51,16 @@ rosetta:
           password: 2575T63o2BARFNOUlp5T28Ih
           path_config:
             paths:
-              classification: name.value.keyword
-              technique: creation.method
-              material: material.value.keyword
-              datatype: "@datatype.base"
+              topic: "topic.summary.title.keyword"
+              collection: "@hierarch.identifier.reference_number"
+              group: "@datatype.group.value"
+              level: "level.value"
+              type: "@datatype.actual"
+              country: "place.@hierarchy.name.value.keyword"
+              closure: "availability.closure.label.value.keyword"
+              catalogueSource: "source.value"
+              heldBy: "repository.name.value.keyword"
+
 
   domain:
     converters:

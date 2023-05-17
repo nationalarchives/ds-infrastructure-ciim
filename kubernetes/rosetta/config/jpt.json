@@ -1,43 +1,20 @@
 {
   "@template": {
-    "title": {
-      "#type": "string_join",
-      "values": [
-        "<span class=title_css>",
-        "$.summary.title",
-        "</span>"
-      ]
-    },
-    "description": {
-      "#type": "string_join",
-      "values": [
-        "<span class=general_text_css>",
-        "$.description[0].value",
-        "</span>"
-      ]
-    },
-    "identifier": {
-      "#type": "string_join",
-      "values": [
-        "<span class=identifiers_css>",
-        {
-          "#type": "string_join",
-          "delimiter": ", ",
-          "values": {
-            "#type": "for_each",
-            "values": "$.identifier",
-            "spec": {
-              "#type": "string_join",
-              "delimiter": ": ",
-              "values": [
-                "$.type",
-                "$.value"
-              ]
-            }
-          }
-        },
-        "</span>"
-      ]
+    "details": {
+      "iaid": "{$.identifier.[0].value}",
+      "catalogueContext": "{$.template.details.catalogueContext.value}",
+      "level": "{$.level.value}",
+      "legalStatus": "{$.legal.status}",
+      "description": "{$.description[0].value}",
+      "primaryIdentifier": "{$.@admin.id}",
+      "summaryTitle": "{$.summary.title.value}",
+      "dateCreated": "{$.origination.date.value}",
+      "closureStatus": "{$.availability.closure.value}",
+      "heldBy": "{$.repository.name.value}",
+      "referenceNumber": "{$.template.details.referenceNumber.value}",
+      "formerDepartmentReference": "{$.template.details.formerDepartmentReference.value}",
+      "heldById": "{$.repository.@admin.id}",
+      "deliveryOption": "{$.delivery.condition.value}"
     }
   }
 }
