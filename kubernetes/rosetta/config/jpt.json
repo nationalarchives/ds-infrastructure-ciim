@@ -11,7 +11,7 @@
       "type": "$.@datatype.base",
       "dateCreated":"$.origination.date.value",
       "closureCode": "$.availability.closure.code",
-      "closureStatus": "$.availability.closure.level",
+      "closureStatus": "$.availability.closure.level.value",
       "closureStatus3": "$.availability.closure.level.keyword",
       "closureStatus2": "$.availability.closure.level.value.keyword",
       "availmap":{
@@ -23,5 +23,5 @@
       "deliveryOption": "$.availability.delivery.condition.value.keyword"
     }
   },
-  "Values": {"values":  ["$._source"]}
+  "Values": {"values":  ["$.availability"]}
 }
