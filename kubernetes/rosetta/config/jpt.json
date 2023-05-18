@@ -9,14 +9,37 @@
       "primaryIdentifier": "$.@admin.id",
       "summaryTitle": "$.summary.title",
       "type": "$.@datatype.base",
-      "dateCreated":"$.origination.date.value",
+      "dateCreated": "$.origination.date.value",
       "closureCode": "$.availability.closure.code",
       "closureStatus": "$.availability.closure.level.value.keyword",
       "heldBy": "$.repository.name.value",
       "referenceNumber": "$.identifier..__reference_number",
       "formerDepartmentReference": "$.identifier..__former_reference_department",
       "heldById": "$.repository.@admin.id",
-      "deliveryOption": "$.availability.delivery.condition.value"
+      "deliveryOption": "$.availability.delivery.condition.value",
+      "identifier": {
+        "#type": "string_join",
+        "values": [
+          "<span class=identifiers_css>",
+          {
+            "#type": "string_join",
+            "delimiter": ", ",
+            "values": {
+              "#type": "for_each",
+              "values": "$.identifier",
+              "spec": {
+                "#type": "string_join",
+                "delimiter": ": ",
+                "values": [
+                  "$.type",
+                  "$.value"
+                ]
+              }
+            }
+          },
+          "</span>"
+        ]
+      }
     }
   }
 }
