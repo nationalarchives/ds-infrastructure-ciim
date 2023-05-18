@@ -23,5 +23,5 @@
       "deliveryOption": "$.availability.delivery.condition.value.keyword"
     }
   },
-  "Values": {"values":  ["$."]}
+  "Values": {"values":  ["$._source"]}
 }
