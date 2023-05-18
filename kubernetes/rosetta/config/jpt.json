@@ -22,5 +22,6 @@
       "heldById": "$.repository.@admin.id",
       "deliveryOption": "$.availability.delivery.condition.value.keyword"
     }
-  }
+  },
+  "Values": {"values":  ["$."]}
 }
