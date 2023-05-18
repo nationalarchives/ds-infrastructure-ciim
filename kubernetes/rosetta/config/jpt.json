@@ -8,6 +8,8 @@
       "description": "$.description[0].value",
       "primaryIdentifier": "$.@admin.id",
       "summaryTitle": "$.summary.title.keyword",
+      "summaryTitle": "$.summary.title.value",
+      "summaryTitle": "$.summary.title",
       "type": "$.@datatype.base",
       "dateCreated":"$.origination.date.value",
       "closureCode": "$.availability.closure.code",
@@ -20,8 +22,7 @@
       "referenceNumber": "$.identifier.[*].__reference_number",
       "formerDepartmentReference": "$.identifier.[*].__former_reference_department",
       "heldById": "$.repository.@admin.id",
-      "deliveryOption": "$.availability.delivery.condition.value.keyword"
+      "deliveryOption": "$.availability.delivery.condition.value"
     }
-  },
-  "Values": {"values":  ["$.availability"]}
+  }
 }
