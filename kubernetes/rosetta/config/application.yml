@@ -52,7 +52,7 @@ rosetta:
           path_config:
             paths:
               topic: "topic.summary.title.keyword"
-              collection: "@hierarch.identifier.reference_number"
+              collection: "@hierarch.identifier.__reference_number"
               group: "@datatype.group.value"
               level: "level.value"
               type: "@datatype.actual"
