@@ -59,6 +59,7 @@ rosetta:
               country: "place.@hierarchy.name.value.keyword"
               closure: "availability.closure.label.value.keyword"
               catalogueSource: "source.value"
+              heldBy: "repository.name.value.keyword"
   domain:
     converters:
       - name: es-converter

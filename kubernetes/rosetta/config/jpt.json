@@ -16,7 +16,30 @@
       "referenceNumber": "$.identifier..__reference_number",
       "formerDepartmentReference": "$.identifier..__former_reference_department",
       "heldById": "$.repository.@admin.id",
-      "deliveryOption": "$.availability.delivery.condition.value"
+      "deliveryOption": "$.availability.delivery.condition.value",
+      "identifier": {
+        "#type": "string_join",
+        "values": [
+          "<span class=identifiers_css>",
+          {
+            "#type": "string_join",
+            "delimiter": ", ",
+            "values": {
+              "#type": "for_each",
+              "values": "$.identifier",
+              "spec": {
+                "#type": "string_join",
+                "delimiter": ": ",
+                "values": [
+                  "$.type",
+                  "$.value"
+                ]
+              }
+            }
+          },
+          "</span>"
+        ]
+      }
     }
   }
 }
