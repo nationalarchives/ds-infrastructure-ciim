@@ -16,7 +16,7 @@ spec:
         disabled: true
   nodeSets:
     - name: default
-      count: 1
+      count: 0
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
@@ -25,7 +25,7 @@ spec:
               - ReadWriteOnce
             resources:
               requests:
-                storage: 200Gi
+                storage: 150Gi
       podTemplate:
         spec:
           volumes:
