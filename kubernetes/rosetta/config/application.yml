@@ -44,11 +44,11 @@ rosetta:
         type: elasticsearch
         domainConverter: es-converter
         properties:
-          host: ciim-public-es-http.etna
+          host: ciim-internal-es-http.etna
           port: 9200
           index: ciim
           username: elastic
-          password: B56RuPS2xu2Gvev3G0g2o245
+          password: 2575T63o2BARFNOUlp5T28Ih
           path_config:
             paths:
               topic: "topic.summary.title.keyword"
