@@ -39,7 +39,7 @@ spec:
                   value: "-Xms4g -Xmx4g -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 4Gi
+                  memory: 6Gi
                   cpu: 1
               volumeMounts:
                 - name: dictionaries

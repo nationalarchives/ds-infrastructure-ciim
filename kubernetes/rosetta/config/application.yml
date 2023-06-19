@@ -48,8 +48,8 @@ rosetta:
           port: 9400
           index: ciim
           username: elastic
-          password: 16kzJP8y9W87z3No4Vgny54I
-          date_range_format: "{from} - {to}"
+          password: 6tVhH4oGK23TU895Pfa04B8K
+          date_range_format: "{from} TO {to}"
           date_aggregations:
             - path: "origination.date.from"
               agg_name: "coveringDates"
