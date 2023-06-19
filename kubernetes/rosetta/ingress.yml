@@ -39,7 +39,7 @@ spec:
                 name: rosetta-service
                 port:
                   name: rosetta-port
-          - path: /swagger-ui/(.*)
+          - path: /swagger-ui/index.html/(.*)
             pathType: Prefix
             backend:
               service:
