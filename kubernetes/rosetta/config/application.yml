@@ -49,7 +49,7 @@ rosetta:
           index: ciim
           username: elastic
           password: 6tVhH4oGK23TU895Pfa04B8K
-          date_range_format: "{from} TO {to}"
+          date_range_format: "{from} - {to}"
           date_aggregations:
             - path: "origination.date.from"
               agg_name: "coveringDates"
