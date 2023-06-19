@@ -21,7 +21,7 @@ management:
 
 springdoc:
   api-docs:
-    path: /api/v1/spec
+    path: /spec
 
 rosetta:
   cache:
@@ -44,23 +44,73 @@ rosetta:
         type: elasticsearch
         domainConverter: es-converter
         properties:
-          host: ciim-internal-es-http.etna
-          port: 9200
+          host: host.docker.internal
+          port: 9400
           index: ciim
           username: elastic
-          password: 2575T63o2BARFNOUlp5T28Ih
+          password: 16kzJP8y9W87z3No4Vgny54I
+          date_range_format: "{from} - {to}"
+          date_aggregations:
+            - path: "origination.date.from"
+              agg_name: "coveringDates"
+              additional_path: "origination.date.to"
+              format: "yyyy"
+              date_ranges:
+                - from: "1100"
+                  to: "1199"
+                - from: "1200"
+                  to: "1299"
+                - from: "1300"
+                  to: "1399"
+                - from: "1400"
+                  to: "1499"
+                - from: "1500"
+                  to: "1599"
+                - from: "1600"
+                  to: "1699"
+                - from: "1700"
+                  to: "1799"
+                - from: "1800"
+                  to: "1899"
+                - from: "1900"
+                  to: "1924"
+                - from: "1925"
+                  to: "1949"
+                - from: "1950"
+                  to: "3000"
+            - path: "availability.access.opening.date.from"
+              agg_name: "openingFromDate"
+            - path: "availability.access.opening.date.to"
+              agg_name: "openingToDate"
+            - path: "origination.date.from"
+              agg_name: "coveringFromDate"
+            - path: "origination.date.to"
+              agg_name: "coveringToDate"
           path_config:
             paths:
               topic: "topic.summary.title.keyword"
               collection: "@hierarch.identifier.__reference_number"
               group: "@datatype.group.value"
               level: "level.value"
-              type: "@datatype.actual"
+              type: "repository.@datatype.actual"
               country: "place.@hierarchy.name.value.keyword"
               closure: "availability.closure.label.value.keyword"
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
+              webReference: "web.identifier.value.lower"
+
   domain:
     converters:
       - name: es-converter
         type: elastic-default
+
+  plugins:
+    iiif:
+      baseUrl: http://localhost/
+      externalMediaBaseUrl: http://localhost/mediaLib/
+      IIIFMediaBaseUrl: http://localhost:8182/iiif/3/
+      mediaArtifact: mid
+      identifierQueryString: identifier.value
+      manifestKey:
+        keyType: IDENTIFIER
+        identifierType: accession number

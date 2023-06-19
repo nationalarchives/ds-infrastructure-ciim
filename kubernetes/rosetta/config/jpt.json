@@ -1,45 +1,55 @@
 {
   "@template": {
     "details": {
-      "iaid": "$.identifier..__iaid",
-      "catalogueContext": "$.template.details.catalogueContext.value",
-      "level": "$.level.value",
-      "legalStatus": "$.legal.status",
-      "description": "$.description[0].value",
-      "primaryIdentifier": "$.@admin.id",
-      "summaryTitle": "$.summary.title",
-      "type": "$.@datatype.base",
+      "accessConditions": "$.availability.access.condition.value",
+      "accruals": "$.accruals.value",
+      "accumulationDates": "$.accruals.date.value",
+      "administrativeBackground": "$.origination.description.value",
+      "agentBirthLocation": "$.agent.@birth.location.name.value",
+      "agentDateOfBirth": "$.agent.@birth.date.value",
+      "agentName": "$.agent.name.value",
+      "agentServiceNumber": "$.agent.service.identifier.value",
+      "appraisalInformation": "$.appraisal.value",
+      "arrangement": "$.arrangement.value",
+      "catalogueContext": "$.@template.details.catalogueContext",
+      "closureStatus": "$.availability.closure.label.value",
+      "copiesInformation": "$.copies.value",
+      "creator": "$.@template.details.creator",
+      "custodialHistory": "$.custodial.description.value",
       "dateCreated": "$.origination.date.value",
-      "closureCode": "$.availability.closure.code",
-      "closureStatus": "$.availability.closure.level.value.keyword",
-      "heldBy": "$.repository.name.value",
-      "referenceNumber": "$.identifier..__reference_number",
-      "formerDepartmentReference": "$.identifier..__former_reference_department",
-      "heldById": "$.repository.@admin.id",
       "deliveryOption": "$.availability.delivery.condition.value",
-      "identifier": {
-        "#type": "string_join",
-        "values": [
-          "<span class=identifiers_css>",
-          {
-            "#type": "string_join",
-            "delimiter": ", ",
-            "values": {
-              "#type": "for_each",
-              "values": "$.identifier",
-              "spec": {
-                "#type": "string_join",
-                "delimiter": ": ",
-                "values": [
-                  "$.type",
-                  "$.value"
-                ]
-              }
-            }
-          },
-          "</span>"
-        ]
-      }
+      "description": "$.description[0].value",
+      "digitised": "$.@template.details.digitised",
+      "dimensions": "$.measurements.dimensions.value",
+      "formerDepartmentReference": "$.identifier[?(@.type == 'former reference department')].value",
+      "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
+      "heldBy": "$.repository.name.value",
+      "heldById": "$.repository.@admin.id",
+      "iaid": "$.identifier..__iaid",
+      "immediateSourceOfAcquisition": "$.@template.details.immediateSourceOfAcquisition",
+      "language": [
+        "$.language[*].value"
+      ],
+      "legalStatus": "$.legal.status",
+      "level": "$.level.value",
+      "locationOfOriginals": "$.@template.details.locationOfOriginals",
+      "mapDesignation": "$.@template.details.mapDesignation",
+      "mapScale": "$.@template.details.mapScale",
+      "note": "$.@template.details.note",
+      "physicalCondition": "$.condition.value",
+      "physicalDescription": "$.@template.details.physicalDescription",
+      "primaryIdentifier": "$.@admin.id",
+      "publicationNote": "$.@template.details.publicationNote",
+      "recordOpening": "$.availability.access.opening",
+      "referenceNumber": "$.identifier[?(@.type == 'reference number')].value",
+      "relatedMaterials": "$.@template.details.relatedMaterials",
+      "restrictionsOnUse": "$.availability.restrictions.value",
+      "separatedMaterials": "$.@template.details.separatedMaterials",
+      "sourceUrl": "$.@template.details.sourceUrl",
+      "summaryTitle": "$.summary.title",
+      "title": "$.title[?(@.primary == true)].value",
+      "type": "$.@datatype.base",
+      "unpublishedFindingAids": "$.@template.details.npublishedFindingAids"
     }
   }
 }
