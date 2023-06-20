@@ -6,6 +6,7 @@ metadata:
 spec:
   nodeSets:
     - count: 1
+      name: default
       podTemplate:
         spec:
           containers:
