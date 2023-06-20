@@ -1,0 +1,19 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: ciim-internal
+  namespace: etna
+spec:
+  nodeSets:
+    - name: default
+      podTemplate:
+        spec:
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: "-Xms16g -Xmx16g -Dlog4j2.formatMsgNoLookups=true"
+              resources:
+                requests:
+                  memory: 16Gi
+                  cpu: 1
