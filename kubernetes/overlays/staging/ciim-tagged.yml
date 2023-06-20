@@ -9,6 +9,9 @@ spec:
       containers:
         - name: ciim
           image: public.ecr.aws/v3w7q3a1/tna-ciim:latest
+          env:
+            - name: JAVA_OPTS
+              value: "-Xms12g -Xmx12g"
           resources:
             requests:
               memory: 12Gi
