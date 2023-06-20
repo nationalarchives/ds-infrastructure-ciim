@@ -16,5 +16,5 @@ spec:
                   value: "-Xms16g -Xmx16g -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 16Gi
                   cpu: 1
+                  memory: 16Gi
