@@ -11,4 +11,4 @@ spec:
           image: public.ecr.aws/v3w7q3a1/tna-ciim:latest
           resources:
             requests:
-              memory: 12Gi
+              memory: 24Gi
