@@ -17,3 +17,27 @@ spec:
               resources:
                 requests:
                   memory: 12Gi
+              volumeMounts:
+                - mountPath: /usr/share/elasticsearch/config/dictionaries
+                  name: dictionaries
+          initContainers:
+            - command:
+                - sh
+                - '-c'
+                - sysctl -w vm.max_map_count=262144
+              name: sysctl
+              securityContext:
+                privileged: true
+          volumes:
+            - configMap:
+                name: dictionaries
+              name: dictionaries
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 200Gi
