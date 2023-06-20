@@ -1,0 +1,9 @@
+namespace: etna
+resources:
+  - rosetta.yml
+  - ingress.yml
+configMapGenerator:
+  - name: rosetta-config
+    files:
+      - ./config/application.yml
+      - ./config/jpt.json

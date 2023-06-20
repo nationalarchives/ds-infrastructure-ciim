@@ -1,0 +1,24 @@
+namespace: etna
+resources:
+  - database.yml
+  - ciim.yml
+configMapGenerator:
+  - name: ciim-config
+    files:
+      - ./properties/app_ctx_project_custom.properties
+      - ./properties/app_ctx_project_db.properties
+      - ./properties/app_ctx_project_es.properties
+      - ./properties/app_ctx_project_media.properties
+      - ./properties/app_ctx_project_processing.properties
+      - ./properties/app_ctx_project_rsync.properties
+      - ./properties/app_ctx_project_tuning.properties
+      - ./properties/app_ctx_persisted.properties
+      - ./properties/app_ctx_transient.properties
+      - ./properties/deployment.properties
+      - ./properties/GenericAdminEsMapping6plus.json
+      - ./properties/GenericEsMapping6plus.json
+      - ./properties/GenericIndexConfig6plus.json
+      - ./properties/persisted_default_mpd_image.properties
+      - ./properties/persisted_default_mpd_media.properties
+      - ./properties/persisted_default_mpd_video.properties
+      - ./properties/persisted_default_mpd_zoom.properties

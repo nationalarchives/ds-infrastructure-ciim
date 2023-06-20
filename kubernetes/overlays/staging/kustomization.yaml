@@ -1,10 +1,10 @@
 bases:
   - ../../base
-  - ../../ciim
+  - ../../ciim-staging
   - ../../eks
   - ../../unmanaged-internal-es
   - ../../unmanaged-public-es
-  - ../../rosetta
+  - ../../rosetta-staging
   - ../../ciim-ui
 commonAnnotations:
   environment: dev
