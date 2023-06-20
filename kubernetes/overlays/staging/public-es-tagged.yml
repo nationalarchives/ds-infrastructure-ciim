@@ -19,7 +19,7 @@ spec:
                   memory: 16Gi
               volumeMounts:
                 - mountPath: /usr/share/elasticsearch/config/dictionaries
-                  name: dictionaries
+                  name: esdictionaries
           initContainers:
             - command:
                 - sh
@@ -30,8 +30,8 @@ spec:
                 privileged: true
           volumes:
             - configMap:
-                name: dictionaries
-              name: dictionaries
+                name: esdictionaries
+              name: esdictionaries
       volumeClaimTemplates:
         - metadata:
             name: elasticsearch-data
