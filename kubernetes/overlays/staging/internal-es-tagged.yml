@@ -5,7 +5,7 @@ metadata:
   namespace: etna
 spec:
   nodeSets:
-    - name: default
+    - count: 1
       podTemplate:
         spec:
           containers:
