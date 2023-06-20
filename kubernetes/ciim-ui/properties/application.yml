@@ -13,7 +13,7 @@ es:
       protocol: http
       pathPrefix:
       username: elastic
-      password: password
+      password: jh82P2Z38Om3jV5DJvk193NQ
       mediaBase: http://localhost/mediaLib
       indices:
         - ciim
