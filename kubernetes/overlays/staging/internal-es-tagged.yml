@@ -12,33 +12,8 @@ spec:
           containers:
             - env:
                 - name: ES_JAVA_OPTS
-                  value: '-Xms4g -Xmx4g -Dlog4j2.formatMsgNoLookups=true'
+                  value: '-Xms12g -Xmx12g -Dlog4j2.formatMsgNoLookups=true'
               name: elasticsearch
               resources:
                 requests:
-                  cpu: 1
-                  memory: 16Gi
-              volumeMounts:
-                - mountPath: /usr/share/elasticsearch/config/dictionaries
-                  name: dictionaries
-          initContainers:
-            - command:
-                - sh
-                - '-c'
-                - sysctl -w vm.max_map_count=262144
-              name: sysctl
-              securityContext:
-                privileged: true
-          volumes:
-            - configMap:
-                name: dictionaries
-              name: dictionaries
-      volumeClaimTemplates:
-        - metadata:
-            name: elasticsearch-data
-          spec:
-            accessModes:
-              - ReadWriteOnce
-            resources:
-              requests:
-                storage: 200Gi
+                  memory: 12Gi
