@@ -21,7 +21,7 @@ spec:
       volumes:
         - name: ui-config
           configMap:
-            name: ciim-config
+            name: ui-config
       containers:
         - name: ui
           image: public.ecr.aws/v3w7q3a1/ciim-management:7.0.7
@@ -32,7 +32,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: ui-config
-              mountPath: /ciim/ciim-config
+              mountPath: /app/config
           env:
             - name: external.services.core.url
               value: http://ciim-service.etna:8080/tna/api
