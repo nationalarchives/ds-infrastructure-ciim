@@ -20,7 +20,7 @@ es:
         - management
         - unavailable
 dataSource:
-  url: jdbc:mysql://ciim-db-service:etna//ciim_mgmt?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf8&maxReconnects=10&initialTimeout=10&allowPublicKeyRetrieval=true&useSSL=false
+  url: jdbc:mysql://ciim-db-service:etna/ciim_mgmt?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf8&maxReconnects=10&initialTimeout=10&allowPublicKeyRetrieval=true&useSSL=false
   dialect: org.hibernate.dialect.MySQL8Dialect
   driverClassName: com.mysql.cj.jdbc.Driver
   username: ciim
