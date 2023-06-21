@@ -27,6 +27,13 @@ rosetta:
   cache:
     enabled: false
     use_cache_service: false
+  profile:
+    profiles:
+      - name: default
+        glyphs:
+          policy: list
+          names:
+            - api-default
   transform:
     enabled: true
     timeout_millis: 6000
