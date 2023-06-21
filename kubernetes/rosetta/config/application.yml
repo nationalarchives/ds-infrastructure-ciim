@@ -31,7 +31,7 @@ rosetta:
     enabled: true
     timeout_millis: 6000
     glyphs:
-      - name: jpt
+      - name: api-default
         type: jpt
         properties:
           mutable: true
