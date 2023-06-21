@@ -39,7 +39,7 @@ spec:
                 name: rosetta-service
                 port:
                   name: rosetta-port
-          - path: /api/v1/data/spec
+          - path: /api/v1/spec
             pathType: Prefix
             backend:
               service:
