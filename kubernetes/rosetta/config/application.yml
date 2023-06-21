@@ -39,7 +39,7 @@ rosetta:
     timeout_millis: 6000
     glyphs:
       - name: api-default
-        type: jpt
+        type: proteus
         properties:
           mutable: true
           file: ./config/jpt.json
