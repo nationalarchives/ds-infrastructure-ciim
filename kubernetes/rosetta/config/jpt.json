@@ -4,7 +4,7 @@
       "accessConditions": "$.availability.access.condition.value",
       "accruals": "$.accruals.value",
       "accumulationDates": "$.accruals.date.value",
-      "administrativeBackground": "$.origination.description[?(@.type == administrative background)].value",
+      "administrativeBackground": "$.origination.description[?(@.type == 'administrative background')].value",
       "agentBirthLocation": "$.agent.@birth.location.name.value",
       "agentDateOfBirth": "$.agent.@birth.date.value",
       "agentName": "$.agent.name.value",
