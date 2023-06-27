@@ -26,7 +26,7 @@
       "deliveryOption": "$.availability.delivery.condition.value",
       "description": "$.description[0].value",
       "digitised": "$.@template.details.digitised",
-      "dimensions": "$.measurements.dimensions.value",
+      "dimensions": "$.measurements.dimensions[*].value",
       "formerDepartmentReference": "$.identifier[?(@.type == 'former reference (Department)')].value",
       "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
       "heldBy": "$.repository.name.value",
