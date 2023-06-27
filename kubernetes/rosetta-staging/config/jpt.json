@@ -11,7 +11,10 @@
       "agentServiceNumber": "$.agent.service.identifier.value",
       "appraisalInformation": "$.appraisal.value",
       "arrangement": "$.arrangement.value",
-      "catalogueContext": "$.@template.details.catalogueContext",
+      "catalogueContext":{
+        "#type": "as_list",
+        "values": "$.@template.details.catalogueContext"
+      },
       "closureStatus": "$.availability.closure.label.value",
       "copiesInformation": "$.copies.value",
       "creator": "$.@template.details.creator",
