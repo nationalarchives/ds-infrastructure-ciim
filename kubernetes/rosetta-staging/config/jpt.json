@@ -27,9 +27,10 @@
       "heldById": "$.repository.@admin.id",
       "iaid": "$.identifier..__iaid",
       "immediateSourceOfAcquisition": "$.@template.details.immediateSourceOfAcquisition",
-      "language": [
-        "$.language[*].value"
-      ],
+      "language": {
+        "#type": "as_list",
+        "values": "$.language[*].value"
+      },
       "legalStatus": "$.legal.status",
       "level": "$.level.value",
       "locationOfOriginals": "$.@template.details.locationOfOriginals",
