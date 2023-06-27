@@ -4,14 +4,17 @@
       "accessConditions": "$.availability.access.condition.value",
       "accruals": "$.accruals.value",
       "accumulationDates": "$.accruals.date.value",
-      "administrativeBackground": "$.origination.description[?(@.type == 'administrative background')].value",
+      "administrativeBackground": "$.origination.description.value",
       "agentBirthLocation": "$.agent.@birth.location.name.value",
       "agentDateOfBirth": "$.agent.@birth.date.value",
       "agentName": "$.agent.name.value",
       "agentServiceNumber": "$.agent.service.identifier.value",
       "appraisalInformation": "$.appraisal.value",
       "arrangement": "$.arrangement.value",
-      "catalogueContext": "$.@template.details.catalogueContext",
+      "catalogueContext":{
+        "#type": "as_list",
+        "values": "$.@template.details.catalogueContext"
+      },
       "closureStatus": "$.availability.closure.label.value",
       "copiesInformation": "$.copies.value",
       "creator": "$.@template.details.creator",
@@ -21,15 +24,16 @@
       "description": "$.description[0].value",
       "digitised": "$.@template.details.digitised",
       "dimensions": "$.measurements.dimensions.value",
-      "formerDepartmentReference": "$.identifier[?(@.type == 'former reference (Department)')].value",
+      "formerDepartmentReference": "$.identifier[?(@.type == 'former reference department')].value",
       "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
       "heldBy": "$.repository.name.value",
       "heldById": "$.repository.@admin.id",
       "iaid": "$.identifier..__iaid",
       "immediateSourceOfAcquisition": "$.@template.details.immediateSourceOfAcquisition",
-      "language": [
-        "$.language[*].value"
-      ],
+      "language": {
+        "#type": "as_list",
+        "values": "$.language[*].value"
+      },
       "legalStatus": "$.legal.status",
       "level": "$.level.value",
       "locationOfOriginals": "$.@template.details.locationOfOriginals",
