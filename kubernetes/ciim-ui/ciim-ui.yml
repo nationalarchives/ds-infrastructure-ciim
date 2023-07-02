@@ -35,7 +35,7 @@ spec:
               mountPath: /app/config
           env:
             - name: external.services.core.url
-              value: test #http://ciim-service.etna:8080/tna/api - stopping the ui spamming need to add auth
+              value: http://ciim-service.etna:8080/tna/api
           resources:
             requests:
               memory: 4Gi
