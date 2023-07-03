@@ -4,7 +4,7 @@
       "accessConditions": "$.availability.access.condition.value",
       "accruals": "$.accruals.value",
       "accumulationDates": "$.accruals.date.value",
-      "administrativeBackground": "$.origination.description.value",
+      "administrativeBackground": "$.origination.description[?(@.type == 'administrative background')].value",
       "agentBirthLocation": "$.agent.@birth.location.name.value",
       "agentDateOfBirth": "$.agent.@birth.date.value",
       "agentName": "$.agent.name.value",
@@ -17,19 +17,25 @@
       },
       "closureStatus": "$.availability.closure.label.value",
       "copiesInformation": "$.copies.value",
-      "creator": "$.@template.details.creator",
-      "custodialHistory": "$.custodial.description.value",
+      "creator": {
+        "#type": "as_list",
+        "values": "$.@template.details.creator"
+      },
+      "custodialHistory": "$.custodial[*].description.value",
       "dateCreated": "$.origination.date.value",
       "deliveryOption": "$.availability.delivery.condition.value",
       "description": "$.description[0].value",
       "digitised": "$.@template.details.digitised",
-      "dimensions": "$.measurements.dimensions.value",
-      "formerDepartmentReference": "$.identifier[?(@.type == 'former reference department')].value",
+      "dimensions": "$.measurements.dimensions[*].value",
+      "formerDepartmentReference": "$.identifier[?(@.type == 'former reference (Department)')].value",
       "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
       "heldBy": "$.repository.name.value",
       "heldById": "$.repository.@admin.id",
       "iaid": "$.identifier..__iaid",
-      "immediateSourceOfAcquisition": "$.@template.details.immediateSourceOfAcquisition",
+      "immediateSourceOfAcquisition": {
+        "#type": "as_list",
+        "values": "$.@template.details.immediateSourceOfAcquisition"
+      },
       "language": {
         "#type": "as_list",
         "values": "$.language[*].value"
@@ -46,14 +52,17 @@
       "publicationNote": "$.@template.details.publicationNote",
       "recordOpening": "$.availability.access.opening",
       "referenceNumber": "$.identifier[?(@.type == 'reference number')].value",
-      "relatedMaterials": "$.@template.details.relatedMaterials",
+      "relatedMaterials": {
+        "#type": "as_list",
+        "values":"$.@template.details.relatedMaterials"
+      },
       "restrictionsOnUse": "$.availability.restrictions.value",
       "separatedMaterials": "$.@template.details.separatedMaterials",
       "sourceUrl": "$.@template.details.sourceUrl",
       "summaryTitle": "$.summary.title",
       "title": "$.title[?(@.primary == true)].value",
       "type": "$.@datatype.base",
-      "unpublishedFindingAids": "$.@template.details.npublishedFindingAids"
+      "unpublishedFindingAids": "$.@template.details.unpublishedFindingAids"
     }
   }
 }
