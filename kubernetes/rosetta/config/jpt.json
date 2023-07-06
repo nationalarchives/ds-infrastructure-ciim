@@ -5,10 +5,22 @@
       "accruals": "$.accruals.value",
       "accumulationDates": "$.accruals.date.value",
       "administrativeBackground": "$.origination.description[?(@.type == 'administrative background')].value",
-      "agentBirthLocation": "$.agent.@birth.location.name.value",
-      "agentDateOfBirth": "$.agent.@birth.date.value",
-      "agentName": "$.agent.name.value",
-      "agentServiceNumber": "$.agent.service.identifier.value",
+      "agentBirthLocation": {
+        "#type": "as_list",
+        "values": "$.agent[0].@birth.location.name.value"
+      },
+      "agentDateOfBirth": {
+        "#type": "as_list",
+        "values": "$.agent[0].@birth.date.value"
+      },
+      "agentName": {
+        "#type": "as_list",
+        "values": "$.agent[0].name.value"
+      },
+      "agentServiceNumber": {
+        "#type": "as_list",
+        "values": "$.agent[0].service.identifier.value"
+      },
       "appraisalInformation": "$.appraisal.value",
       "arrangement": "$.arrangement.value",
       "catalogueContext":{
