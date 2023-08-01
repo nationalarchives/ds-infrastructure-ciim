@@ -100,6 +100,16 @@ spec:
                 secretKeyRef:
                   name: ds-live-digital-files
                   key: accessKey
+            - name: processors.iadata.batchUpdate.s3.accessKey
+              valueFrom:
+                secretKeyRef:
+                  name: aws-key
+                  key: aws-key
+            - name: processors.iadata.batchUpdate.s3.secretAccessKey
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: aws-secret
             - name: media.replica.s3.secret_access_key
               valueFrom:
                 secretKeyRef:

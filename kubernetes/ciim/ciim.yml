@@ -88,6 +88,8 @@ spec:
                 name: internal-es-pass
             - secretRef:
                 name: public-es-pass
+            - secretRef:
+                name: public-es-pass
           env:
             - name: ciim.properties.path
               value: /ciim/ciim-config
