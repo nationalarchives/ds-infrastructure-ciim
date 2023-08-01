@@ -32,4 +32,4 @@ template:
 ws:
   allowedOrigin: "*"
   broadcastUrlForCore: ws://ciim-management:18080/ciim/stomp
-  broadcastUrlForWeb: ws://localhost:18080/ciim/stomp
+  broadcastUrlForWeb: ws://ui-service.etna:18080/ciim/stomp
