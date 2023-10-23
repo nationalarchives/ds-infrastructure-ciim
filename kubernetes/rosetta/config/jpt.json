@@ -34,7 +34,7 @@
         "values": "$.@template.details.creator"
       },
       "custodialHistory": "$.custodial[*].description.value",
-      "dateCreated": "$.origination.date.value",
+      "dateCovering": "$.origination.date.value",
       "deliveryOption": "$.availability.delivery.condition.value",
       "description": "$.description[0].value",
       "digitised": "$.@template.details.digitised",
