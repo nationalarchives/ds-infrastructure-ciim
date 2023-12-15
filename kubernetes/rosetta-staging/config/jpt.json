@@ -69,7 +69,7 @@
       "primaryIdentifier": "$.@admin.id",
       "publicationNote": {
         "#type": "as_list",
-        "values": "$.note[(@.type == 'publication note')].value"
+        "values": "$.note[?(@.type == 'publication note')].value"
       },
       "recordOpening": "$.availability.access.opening.label.value",
       "referenceNumber": "$.identifier[?(@.type == 'reference number')].value",
@@ -85,7 +85,7 @@
       "type": "$.@datatype.base",
       "unpublishedFindingAids": {
         "#type": "as_list",
-        "values": "$.note[(@.type == 'unpublished finding aids')].value"
+        "values": "$.note[?(@.type == 'unpublished finding aids')].value"
       }
     }
   }
