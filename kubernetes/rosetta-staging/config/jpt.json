@@ -1,7 +1,7 @@
 {
   "@template": {
     "details": {
-      "accessConditions": "$.availability.access.condition.value",
+      "accessCondition": "$.availability.access.condition.value",
       "accruals": "$.accruals.value",
       "accumulationDates": "$.accruals.date.value",
       "administrativeBackground": "$.origination.description[?(@.type == 'administrative background')].value",
@@ -28,7 +28,10 @@
         "values": "$.@template.details.catalogueContext"
       },
       "closureStatus": "$.availability.closure.label.value",
-      "copiesInformation": "$.copies.value",
+      "copiesInformation": {
+        "#type": "as_list",
+        "values": "$.copies[0].value"
+      },
       "creator": {
         "#type": "as_list",
         "values": "$.@template.details.creator"
@@ -54,15 +57,21 @@
       },
       "legalStatus": "$.legal.status",
       "level": "$.level.value",
-      "locationOfOriginals": "$.@template.details.locationOfOriginals",
+      "locationOfOriginals": {
+        "#type": "as_list",
+        "values": "$.originals[*].organisation.name"
+      },
       "mapDesignation": "$.@template.details.mapDesignation",
       "mapScale": "$.@template.details.mapScale",
       "note": "$.@template.details.note",
       "physicalCondition": "$.condition.value",
       "physicalDescription": "$.@template.details.physicalDescription",
       "primaryIdentifier": "$.@admin.id",
-      "publicationNote": "$.@template.details.publicationNote",
-      "recordOpening": "$.availability.access.opening",
+      "publicationNote": {
+        "#type": "as_list",
+        "values": "$.note[?(@.type == 'publication note')].value"
+      },
+      "recordOpening": "$.availability.access.opening.label.value",
       "referenceNumber": "$.identifier[?(@.type == 'reference number')].value",
       "relatedMaterials": {
         "#type": "as_list",
@@ -74,7 +83,10 @@
       "summaryTitle": "$.summary.title",
       "title": "$.title[?(@.primary == true)].value",
       "type": "$.@datatype.base",
-      "unpublishedFindingAids": "$.@template.details.unpublishedFindingAids"
+      "unpublishedFindingAids": {
+        "#type": "as_list",
+        "values": "$.note[?(@.type == 'unpublished finding aids')].value"
+      }
     }
   }
 }
