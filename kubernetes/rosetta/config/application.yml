@@ -51,26 +51,12 @@ rosetta:
         type: elasticsearch
         domainConverter: es-converter
         properties:
-          host: http://aa83a1e6831944fa8bcf17f5ce391b73-58be9fd587cba13e.elb.eu-west-2.amazonaws.com
+          host: externales.etna
           path_prefix: es
           port: 9200
           index: ciim-160322
           username: elastic
           password: JL9L29k6SyQz2h692gTn26Xd
-          search_config:
-            search_fields:
-              - field: "_generic_all_std"
-                boost: 0
-              - field: "description.value"
-                boost: 2
-              - field: "summary.title"
-                boost: 5
-              - field: "title.value"
-                boost: 4
-              - field: "name.value"
-                boost: 3
-              - field: "summary.title.value"
-                boost: 5
           date_range_format: "{from} - {to}"
           date_aggregations:
             - path: "origination.date.from"

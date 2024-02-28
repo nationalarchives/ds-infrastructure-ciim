@@ -3,6 +3,7 @@ resources:
   - rosetta.yml
   - ingress.yml
   - es_ingress.yml
+  - es-service.yml
 configMapGenerator:
   - name: rosetta-config
     files:

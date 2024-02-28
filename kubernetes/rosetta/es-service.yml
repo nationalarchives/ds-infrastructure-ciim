@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: externales
+  namespace: etna
+spec:
+  type: ExternalName
+  externalName: aa83a1e6831944fa8bcf17f5ce391b73-58be9fd587cba13e.elb.eu-west-2.amazonaws.com
