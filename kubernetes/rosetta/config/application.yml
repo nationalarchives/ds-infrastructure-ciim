@@ -58,6 +58,8 @@ rosetta:
           password: 6tVhH4oGK23TU895Pfa04B8K
           search_config:
             search_fields:
+              - field: "_generic_all_std"
+                boost: 0
               - field: "description.value"
                 boost: 2
               - field: "summary.title"
