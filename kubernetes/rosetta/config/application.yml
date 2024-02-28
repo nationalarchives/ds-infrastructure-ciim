@@ -52,7 +52,6 @@ rosetta:
         domainConverter: es-converter
         properties:
           host: externales.etna
-          path_prefix: es
           port: 9200
           index: ciim-160322
           username: elastic
