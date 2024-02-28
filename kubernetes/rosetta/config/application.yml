@@ -56,6 +56,18 @@ rosetta:
           index: ciim
           username: elastic
           password: 6tVhH4oGK23TU895Pfa04B8K
+          search_config:
+            search_fields:
+              - field: "description.value"
+                boost: 2
+              - field: "summary.title"
+                boost: 5
+              - field: "title.value"
+                boost: 4
+              - field: "name.value"
+                boost: 3
+              - field: "summary.title.value"
+                boost: 5
           date_range_format: "{from} - {to}"
           date_aggregations:
             - path: "origination.date.from"
