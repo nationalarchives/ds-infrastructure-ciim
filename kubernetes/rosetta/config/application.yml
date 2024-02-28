@@ -51,9 +51,10 @@ rosetta:
         type: elasticsearch
         domainConverter: es-converter
         properties:
-          host: aa83a1e6831944fa8bcf17f5ce391b73-58be9fd587cba13e.elb.eu-west-2.amazonaws.com/es
+          host: aa83a1e6831944fa8bcf17f5ce391b73-58be9fd587cba13e.elb.eu-west-2.amazonaws.com
+          path_prefix: es
           port: 9200
-          index: ciim
+          index: ciim-160322
           username: elastic
           password: JL9L29k6SyQz2h692gTn26Xd
           search_config:
