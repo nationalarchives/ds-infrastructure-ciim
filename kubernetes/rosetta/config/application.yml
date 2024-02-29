@@ -134,4 +134,4 @@ rosetta:
       identifierQueryString: identifier.value
       manifestKey:
         keyType: IDENTIFIER
-        identifierType: accession number
+        identifierType: iaid
