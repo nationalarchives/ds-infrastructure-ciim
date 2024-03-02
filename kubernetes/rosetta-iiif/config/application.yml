@@ -33,7 +33,6 @@ rosetta:
             policy: list
             names:
               - api-default
-
         - name: iiif
           providers:
             policy: all
