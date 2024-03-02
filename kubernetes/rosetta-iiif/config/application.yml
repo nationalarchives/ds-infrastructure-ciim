@@ -33,20 +33,21 @@ rosetta:
             names:
               - api-default
         - name: iiif
-          providers:
-            policy: all
           glyphs:
             policy: list
             names:
               - iiif-mapping
     transform:
+      enabled: true
       timeout_millis: 30000
       glyphs:
         - name: iiif-mapping
           type: proteus
           properties:
-            file: ./config/iiif-mapping.json
+            spec: ./config/iiif-mapping.json
             mutable: true
+            input: source
+            output: detail
         - name: api-default
           type: proteus
           properties:
