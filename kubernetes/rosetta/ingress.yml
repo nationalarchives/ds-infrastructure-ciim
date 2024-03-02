@@ -57,6 +57,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: rosetta-service
+                name: rosettav2-service
                 port:
-                  name: rosetta-port
+                  name: rosettav2-port

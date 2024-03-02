@@ -1,0 +1,71 @@
+base_paths:
+  data: /rosetta/data
+  proteus: /rosetta/config/proteus
+
+rosetta:
+  cache:
+    enabled: false
+  request:
+    max_aggregations_size: 20
+
+  monitoring:
+    log_stages: false
+
+  provider:
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        domainConverter: es-converter
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: 6tVhH4oGK23TU895Pfa04B8K
+          global_timeout_millis: 1000000
+          timeout_millis: 100000
+
+    profile:
+      profiles:
+        - name: default
+          providers:
+            policy: all
+          profiles:
+            policy: all
+          glyphs:
+            policy: list
+            names:
+              - api-default
+
+        - name: iiif
+          providers:
+            policy: all
+          glyphs:
+            policy: list
+            names:
+              - iiif-mapping
+    transform:
+      timeout_millis: 30000
+      glyphs:
+        - name: iiif-mapping
+          type: proteus
+          properties:
+            spec: ./config/iiif-mapping.json
+            mutable: true
+        - name: api-default
+          type: proteus
+          properties:
+            spec: ./config/jpt.json
+            mutable: true
+
+  plugins:
+    iiif:
+      baseUrl: http://localhost/
+      externalMediaBaseUrl: http://localhost/mediaLib/
+      IIIFMediaBaseUrl: http://localhost:8182/iiif/3/
+      mediaArtifact: mid
+      profile: iiif
+      identifierQueryString: identifier.value
+      manifestKey:
+        keyType: IDENTIFIER
+        identifierType: iaid

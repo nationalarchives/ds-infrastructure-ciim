@@ -1,0 +1,8 @@
+namespace: etna
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosettav2-config
+    files:
+      - ./config/application.yml
+      - ./config/jpt.json

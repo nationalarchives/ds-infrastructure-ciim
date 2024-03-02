@@ -1,0 +1,37 @@
+{
+  "#type": "scope",
+  "scope": "$.source",
+  "value": {
+    "id": "$.@admin.id",
+    "type": "manifest",
+    "label": "$.summary.title",
+    "summary": "$.description[0].value",
+    "items": {
+      "#type": "as_list",
+      "values": {
+        "#type": "for_each",
+        "values": "$.multimedia",
+        "spec": {
+          "#type": "fallback",
+          "strategies": [
+            {
+              "type": "canvas",
+              "artifact": {
+                "name": "zoom",
+                "location": "[R]$.@processed.zoom.location",
+                "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
+                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value",
+                "info_path": {
+                  "#type": "literal",
+                  "value": "/{location}"
+                }
+
+              }
+            },
+            "test image here"
+          ]
+        }
+      }
+    }
+  }
+}
