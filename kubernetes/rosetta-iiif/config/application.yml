@@ -21,38 +21,38 @@ rosetta:
           global_timeout_millis: 1000000
           timeout_millis: 100000
 
-    profile:
-      profiles:
-        - name: default
-          providers:
-            policy: all
-          profiles:
-            policy: all
-          glyphs:
-            policy: list
-            names:
-              - api-default
-        - name: iiif
-          glyphs:
-            policy: list
-            names:
-              - iiif-mapping
-    transform:
-      enabled: true
-      timeout_millis: 30000
-      glyphs:
-        - name: iiif-mapping
-          type: proteus
-          properties:
-            spec: ./config/iiif-mapping.json
-            mutable: true
-            input: source
-            output: detail
-        - name: api-default
-          type: proteus
-          properties:
-            file: ./config/jpt.json
-            mutable: true
+  profile:
+    profiles:
+      - name: default
+        providers:
+          policy: all
+        profiles:
+          policy: all
+        glyphs:
+          policy: list
+          names:
+            - api-default
+      - name: iiif
+        glyphs:
+          policy: list
+          names:
+            - iiif-mapping
+  transform:
+    enabled: true
+    timeout_millis: 30000
+    glyphs:
+      - name: iiif-mapping
+        type: proteus
+        properties:
+          spec: ./config/iiif-mapping.json
+          mutable: true
+          input: source
+          output: detail
+      - name: api-default
+        type: proteus
+        properties:
+          file: ./config/jpt.json
+          mutable: true
 
   plugins:
     iiif:
