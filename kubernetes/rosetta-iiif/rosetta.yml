@@ -32,6 +32,8 @@ spec:
         - name: rosetta
           image: registry.gitlab.com/knowledge-integration/ciim/rosetta:2.0.1-With-Proteus
           imagePullPolicy: Always
+          imagePullSecrets:
+            - name: regcred
           ports:
             - name: rosettav2-port
               containerPort: 4923
