@@ -30,7 +30,7 @@ spec:
         - name: regcred
       containers:
         - name: rosetta
-          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:2.0.1-With-Proteus
+          image: public.ecr.aws/v3w7q3a1/rosetta:2.0.1-With-Proteus
           imagePullPolicy: Always
           imagePullSecrets:
             - name: regcred
