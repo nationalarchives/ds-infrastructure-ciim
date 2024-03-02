@@ -12,7 +12,6 @@ rosetta:
     providers:
       - name: elasticsearch
         type: elasticsearch
-        domainConverter: es-converter
         properties:
           host: ciim-public-es-http.etna
           port: 9200
