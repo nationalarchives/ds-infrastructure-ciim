@@ -5,9 +5,6 @@ base_paths:
 rosetta:
   cache:
     enabled: false
-  request:
-    max_aggregations_size: 20
-
   monitoring:
     log_stages: false
 
