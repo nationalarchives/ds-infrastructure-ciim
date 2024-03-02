@@ -34,13 +34,6 @@ rosetta:
           policy: list
           names:
             - api-default
-      - name: iiif
-        providers:
-          policy: all
-        glyphs:
-          policy: list
-          names:
-            - iiif-mapping
   transform:
     enabled: true
     timeout_millis: 6000
@@ -50,13 +43,6 @@ rosetta:
         properties:
           mutable: true
           file: ./config/jpt.json
-          input: source
-          output: detail
-      - name:  iiif-mapping
-        type: proteus
-        properties:
-          mutable: true
-          file: ./config/iiif-mapping.json
           input: source
           output: detail
   provider:
@@ -138,14 +124,3 @@ rosetta:
     converters:
       - name: es-converter
         type: elastic-default
-
-  plugins:
-    iiif:
-      baseUrl: http://localhost/
-      externalMediaBaseUrl: http://localhost/mediaLib/
-      IIIFMediaBaseUrl: http://localhost:8182/iiif/3/
-      mediaArtifact: mid
-      identifierQueryString: identifier.value
-      manifestKey:
-        keyType: IDENTIFIER
-        identifierType: iaid

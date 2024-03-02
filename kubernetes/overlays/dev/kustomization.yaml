@@ -5,6 +5,7 @@ bases:
   - ../../unmanaged-internal-es
   - ../../unmanaged-public-es
   - ../../rosetta
+  - ../../rosetta-iiif
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
