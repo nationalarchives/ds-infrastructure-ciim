@@ -30,7 +30,7 @@ spec:
         - name: regcred
       containers:
         - name: rosetta
-          image: public.ecr.aws/v3w7q3a1/rosetta:2.0.1-With-Proteus
+          image: public.ecr.aws/v3w7q3a1/rosetta:tna-iiif
           imagePullPolicy: Always
           imagePullSecrets:
             - name: regcred
