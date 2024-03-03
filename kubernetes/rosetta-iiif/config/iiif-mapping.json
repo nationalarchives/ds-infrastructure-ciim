@@ -22,6 +22,15 @@
                 "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
                 "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value"
               }
+            },
+            {
+              "type": "canvas",
+              "artifact": {
+                "name": "zoom",
+                "location": "testlocation",
+                "height": "200",
+                "width": "100"
+              }
             }
           ]
         }
