@@ -59,7 +59,3 @@ rosetta:
       IIIFMediaBaseUrl: http://localhost:8182/iiif/3/
       mediaArtifact: mid
       profile: iiif
-      identifierQueryString: identifier.value
-      manifestKey:
-        keyType: IDENTIFIER
-        identifierType: iaid
