@@ -13,12 +13,11 @@ rosetta:
       - name: elasticsearch
         type: elasticsearch
         properties:
-          host: ciim-api.ukwest.cloudapp.azure.com
-          path_prefix: es
+          host: ciim-public-es-http.etna
           port: 9200
           index: ciim
           username: elastic
-          password: 3S91rLm5T
+          password: 6tVhH4oGK23TU895Pfa04B8K
           global_timeout_millis: 1000000
           timeout_millis: 100000
 
