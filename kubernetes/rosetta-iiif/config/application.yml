@@ -46,12 +46,10 @@ rosetta:
         properties:
           spec: ./config/iiif-mapping.json
           mutable: true
-          input: source
-          output: detail
       - name: api-default
         type: proteus
         properties:
-          file: ./config/jpt.json
+          spec: ./config/jpt.json
           mutable: true
 
   plugins:
