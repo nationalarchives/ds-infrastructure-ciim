@@ -54,8 +54,8 @@ rosetta:
 
   plugins:
     iiif:
-      baseUrl: http://localhost/
+      baseUrl: http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com
       externalMediaBaseUrl: http://localhost/mediaLib/
-      IIIFMediaBaseUrl: http://localhost:8182/iiif/3/
+      IIIFMediaBaseUrl: http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/iiif/3/
       mediaArtifact: mid
       profile: iiif
