@@ -33,6 +33,8 @@ rosetta:
           names:
             - api-default
       - name: iiif
+        providers:
+          policy: all
         glyphs:
           policy: list
           names:
