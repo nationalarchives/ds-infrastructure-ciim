@@ -60,3 +60,10 @@ spec:
                 name: rosettav2-service
                 port:
                   name: rosettav2-port
+          - path: /ciim/
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-service
+                port:
+                  name: ui-port
