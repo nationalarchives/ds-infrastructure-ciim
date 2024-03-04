@@ -6,6 +6,7 @@ bases:
   - ../../unmanaged-public-es
   - ../../rosetta
   - ../../rosetta-iiif
+  - ../../ciim-ui-dev
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

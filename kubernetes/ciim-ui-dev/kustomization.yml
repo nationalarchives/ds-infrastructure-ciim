@@ -1,0 +1,7 @@
+namespace: etna
+resources:
+  - ciim-ui.yml
+configMapGenerator:
+  - name: ui-config
+    files:
+      - ./properties/application.yml
