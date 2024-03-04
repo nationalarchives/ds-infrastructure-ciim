@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:dev
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:dev-7.4.14
