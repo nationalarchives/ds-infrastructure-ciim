@@ -6,21 +6,49 @@
     "type": "manifest",
     "label": "$.summary.title",
     "summary": "$.description[0].value",
+    "#type": "as_list",
+    "values": {
+      "#type": "flatten",
+      "values": [
+        "$.multimedia",
+        {
+          "#type": "scope",
+          "scope": {
+            "#type": "es_query",
+            "query": "group.@admin.uuid:{$.@admin.uuid}"
+          },
+          "values": "$.hits.hits[*]._source"
+        }
+      ]
+    },
     "items": {
       "#type": "as_list",
       "values": {
-        "#type": "flatten",
-        "values": [
-          "$.multimedia",
-          {
-            "#type": "scope",
-            "scope": {
-              "#type": "es_query",
-              "query": "group.@admin.uuid:{$.@admin.uuid}"
+        "#type": "for_each",
+        "values": "$.multimedia",
+        "spec": {
+          "#type": "fallback",
+          "strategies": [
+            {
+              "type": "canvas",
+              "artifact": {
+                "name": "zoom",
+                "location": "[R]$.@processed.zoom.location",
+                "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
+                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value"
+              }
             },
-            "values": "$.hits.hits[*]._source"
-          }
-        ]
+            {
+              "type": "canvas",
+              "artifact": {
+                "name": "zoom",
+                "location": "testlocation",
+                "height": "200",
+                "width": "100"
+              }
+            }
+          ]
+        }
       }
     }
   }

@@ -20,15 +20,18 @@
                 "name": "zoom",
                 "location": "[R]$.@processed.zoom.location",
                 "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
-                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value",
-                "info_path": {
-                  "#type": "literal",
-                  "value": "/{location}"
-                }
-
+                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value"
               }
             },
-            "test image here"
+            {
+              "type": "canvas",
+              "artifact": {
+                "name": "zoom",
+                "location": "testlocation",
+                "height": "200",
+                "width": "100"
+              }
+            }
           ]
         }
       }
