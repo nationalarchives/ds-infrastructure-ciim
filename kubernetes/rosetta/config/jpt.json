@@ -46,6 +46,7 @@
       "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
       "heldBy": "$.repository.name.value",
       "heldById": "$.repository.@admin.id",
+      "@hierarchy": "$.@hierarchy",
       "iaid": "$.identifier..__iaid",
       "immediateSourceOfAcquisition": {
         "#type": "as_list",
