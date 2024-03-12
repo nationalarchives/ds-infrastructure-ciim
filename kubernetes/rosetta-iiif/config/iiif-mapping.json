@@ -20,18 +20,14 @@
                 "#type": "es_query",
                 "query": "group.@admin.uuid:{$.@admin.uuid}"
               },
-              "value": {
-                "#type": "scope",
-                "scope": "$.hits.hits[0]._source",
-                "value": {
+              "values": "$.hits.hits[*]._source",
+              "spec": {
+                "type": "canvas",
+                "artifact": {
                   "name": "zoom",
                   "location": "[R]$.original.location",
                   "height": "[R]$.original.measurements.dimensions[?(@.dimension == 'height')].value",
-                  "width": "[R]$.original.measurements.dimensions[?(@.dimension == 'width')].value",
-                  "info_path": {
-                    "#type": "literal",
-                    "value": "/{location}"
-                  }
+                  "width": "[R]$.original.measurements.dimensions[?(@.dimension == 'width')].value"
                 }
               }
             },
