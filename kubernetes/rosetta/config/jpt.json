@@ -92,7 +92,7 @@
             "#type": "es_query",
             "query": "group.@admin.uuid:{$}"
           },
-          "value": "$.hits.hits[*]._source"
+          "value": "$.hits.hits[1]._source.@processed.preview.location"
         }
       },
       "type": "$.@datatype.base",
