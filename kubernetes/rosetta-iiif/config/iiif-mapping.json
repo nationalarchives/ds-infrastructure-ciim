@@ -10,37 +10,34 @@
       "#type": "as_list",
       "values": {
         "#type": "for_each",
-        "values": "$.multimedia",
-        "spec": {
-          "#type": "fallback",
-          "strategies": [
+        "values": {
+          "#type": "flatten",
+          "values": [
             {
-              "#type": "scope",
-              "scope": {
-                "#type": "es_query",
-                "query": "group.@admin.uuid:{$.@admin.uuid}"
-              },
-              "values": "$.hits.hits[*]._source",
+              "#type": "for_each",
+              "values": "$.multimedia[*].@admin.uuid",
               "spec": {
-                "type": "canvas",
-                "artifact": {
-                  "name": "zoom",
-                  "location": "[R]$.original.location",
-                  "height": "[R]$.original.measurements.dimensions[?(@.dimension == 'height')].value",
-                  "width": "[R]$.original.measurements.dimensions[?(@.dimension == 'width')].value"
-                }
-              }
-            },
-            {
-              "type": "canvas",
-              "artifact": {
-                "name": "zoom",
-                "location": "testlocation",
-                "height": "200",
-                "width": "100"
+                "#type": "scope",
+                "scope": {
+                  "#type": "es_query",
+                  "query": "group.@admin.uuid:{$}"
+                },
+                "value": "$.hits.hits[*]._source"
               }
             }
           ]
+        },
+        "spec": {
+          "#type": "require_catch",
+          "value": {
+            "type": "canvas",
+            "artifact": {
+              "name": "zoom",
+              "location": "[R]$.@processed.original.location",
+              "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
+              "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value"
+            }
+          }
         }
       }
     }
