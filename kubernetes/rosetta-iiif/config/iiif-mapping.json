@@ -19,15 +19,12 @@
               "query": "group.@admin.uuid:{$.@admin.uuid}"
             },
             "values": "$.hits.hits[*]._source",
-            "value":
-            {
-              "type": "canvas",
-              "artifact": {
-                "name": "zoom",
-                "location": "testlocation",
-                "height": "200",
-                "width": "100"
-              }
+            "type": "canvas",
+            "artifact": {
+              "name": "zoom",
+              "location": "testlocation",
+              "height": "200",
+              "width": "100"
             }
           }
         ]
