@@ -42,7 +42,7 @@ rosetta:
         type: proteus
         properties:
           mutable: true
-          file: ./config/jpt.json
+          spec: ./config/jpt.json
           input: source
           output: detail
           include:
