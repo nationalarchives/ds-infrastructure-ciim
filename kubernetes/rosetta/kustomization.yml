@@ -9,3 +9,4 @@ configMapGenerator:
     files:
       - ./config/application.yml
       - ./config/jpt.json
+      - ./component_search.json
