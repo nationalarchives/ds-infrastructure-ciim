@@ -7,3 +7,4 @@ configMapGenerator:
       - ./config/application.yml
       - ./config/jpt.json
       - ./config/iiif-mapping.json
+      - ./config/component_search.json

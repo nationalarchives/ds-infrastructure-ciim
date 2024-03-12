@@ -9,31 +9,25 @@
     "items": {
       "#type": "as_list",
       "values": {
-        "#type": "for_each",
-        "values": "$.multimedia",
-        "spec": {
-          "#type": "fallback",
-          "strategies": [
-            {
-              "type": "canvas",
-              "artifact": {
-                "name": "zoom",
-                "location": "[R]$.@processed.zoom.location",
-                "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
-                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value"
-              }
+        "#type": "flatten",
+        "values": [
+          "$.multimedia",
+          {
+            "#type": "scope",
+            "scope": {
+              "#type": "es_query",
+              "query": "group.@admin.uuid:{$.@admin.uuid}"
             },
-            {
+            "values": "$.hits.hits[*]._source",
+            "value": {
               "type": "canvas",
-              "artifact": {
-                "name": "zoom",
-                "location": "testlocation",
-                "height": "200",
-                "width": "100"
-              }
+              "name": "zoom",
+              "location": "[R]$.@processed.original.location",
+              "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
+              "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value"
             }
-          ]
-        }
+          }
+        ]
       }
     }
   }

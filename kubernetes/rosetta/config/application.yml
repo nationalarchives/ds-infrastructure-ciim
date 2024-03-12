@@ -45,6 +45,8 @@ rosetta:
           file: ./config/jpt.json
           input: source
           output: detail
+          include:
+            - ./config/component_search.json
   provider:
     providers:
       - name: elasticsearch

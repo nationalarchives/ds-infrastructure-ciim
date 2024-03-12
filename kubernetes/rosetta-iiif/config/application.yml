@@ -48,6 +48,8 @@ rosetta:
         properties:
           spec: ./config/iiif-mapping.json
           mutable: true
+          include:
+            - ./config/component_search.json
       - name: api-default
         type: proteus
         properties:
