@@ -92,14 +92,15 @@
             "#type": "es_query",
             "query": "group.@admin.uuid:{$}"
           },
+          "value": "$.hits.hits[*]._source",
           "spec": {
             "#type": "fallback",
             "strategies": [
               {
-                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.hits.hits[1]._source.@processed.preview.location}"
+                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.@processed.preview.location}"
               },
               {
-                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.hits.hits[0]._source.@processed.preview.location}"
+                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.@processed.preview.location}"
               }
             ]
           }
