@@ -22,9 +22,9 @@
             "value": {
               "type": "canvas",
               "name": "zoom",
-              "location": "[R]$.@processed.original.location",
-              "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
-              "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value"
+              "location": "[R]$.original.location",
+              "height": "[R]$.original.measurements.dimensions[?(@.dimension == 'height')].value",
+              "width": "[R]$.original.measurements.dimensions[?(@.dimension == 'width')].value"
             }
           }
         ]
