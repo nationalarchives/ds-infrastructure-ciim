@@ -3,6 +3,7 @@ resources:
   - rosetta.yml
   - ingress.yml
   - es_ingress.yml
+  - cantaloupe_ingress.yml
 configMapGenerator:
   - name: rosetta-config
     files:
