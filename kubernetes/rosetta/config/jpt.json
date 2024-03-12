@@ -84,14 +84,22 @@
       "summaryTitle": "$.summary.title",
       "title": "$.title[?(@.primary == true)].value",
       "thumbnailUrl": {
-        "spec": {
           "#type": "scope",
           "scope": {
             "#type": "es_query",
             "query": "group.@admin.uuid:{$.multimedia[0].@admin.uuid}"
           },
-          "value": "$.hits.hits[*]._source"
-      }},
+          "value":{
+            "#type": "fallback",
+            "strategies": [
+              {
+                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.hits.hits[1]._source.@processed.preview.location}"
+              },
+              {
+                "value": "http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/{$.hits.hits[0]._source.@processed.preview.location}"
+              }
+            ]}
+      },
       "type": "$.@datatype.base",
       "unpublishedFindingAids": {
         "#type": "as_list",
