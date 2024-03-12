@@ -28,7 +28,7 @@ spec:
           imagePullPolicy: IfNotPresent
       containers:
         - name: rosetta
-          image: public.ecr.aws/v3w7q3a1/rosetta:tna-media-1.0.0
+          image: public.ecr.aws/v3w7q3a1/rosetta:tna-media-1.0.1
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
