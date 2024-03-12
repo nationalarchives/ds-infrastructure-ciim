@@ -18,14 +18,7 @@
               "#type": "es_query",
               "query": "group.@admin.uuid:{$.@admin.uuid}"
             },
-            "values": "$.hits.hits[*]._source",
-            "type": "canvas",
-            "artifact": {
-              "name": "zoom",
-              "location": "testlocation",
-              "height": "200",
-              "width": "100"
-            }
+            "values": "$.hits.hits[*]._source"
           }
         ]
       }
