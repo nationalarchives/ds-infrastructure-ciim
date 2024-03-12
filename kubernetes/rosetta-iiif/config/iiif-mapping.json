@@ -6,21 +6,6 @@
     "type": "manifest",
     "label": "$.summary.title",
     "summary": "$.description[0].value",
-    "#type": "as_list",
-    "values": {
-      "#type": "flatten",
-      "values": [
-        "$.multimedia",
-        {
-          "#type": "scope",
-          "scope": {
-            "#type": "es_query",
-            "query": "group.@admin.uuid:{$.@admin.uuid}"
-          },
-          "values": "$.hits.hits[*]._source"
-        }
-      ]
-    },
     "items": {
       "#type": "as_list",
       "values": {
@@ -30,12 +15,24 @@
           "#type": "fallback",
           "strategies": [
             {
-              "type": "canvas",
-              "artifact": {
-                "name": "zoom",
-                "location": "[R]$.@processed.zoom.location",
-                "height": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'height')].value",
-                "width": "[R]$.@processed.zoom.measurements.dimensions[?(@.dimension == 'width')].value"
+              "#type": "scope",
+              "scope": {
+                "#type": "es_query",
+                "query": "group.@admin.uuid:{$.@admin.uuid}"
+              },
+              "value": {
+                "#type": "scope",
+                "scope": "$.hits.hits[0]._source",
+                "value": {
+                  "name": "zoom",
+                  "location": "[R]$.original.location",
+                  "height": "[R]$.original.measurements.dimensions[?(@.dimension == 'height')].value",
+                  "width": "[R]$.original.measurements.dimensions[?(@.dimension == 'width')].value",
+                  "info_path": {
+                    "#type": "literal",
+                    "value": "/{location}"
+                  }
+                }
               }
             },
             {
