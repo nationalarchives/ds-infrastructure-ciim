@@ -91,7 +91,7 @@
             "query": "group.@admin.uuid:{$.multimedia[0].@admin.uuid}"
           },
           "value": "$.hits.hits[*]._source"
-      },
+      }},
       "type": "$.@datatype.base",
       "unpublishedFindingAids": {
         "#type": "as_list",
