@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cantaloupe-tna
+  namespace: etna
+spec:
+  selector:
+    matchLabels:
+      app: cantaloupe-tna
+  revisionHistoryLimit: 5
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: cantaloupe-tna
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: cantaloupe-config
+          configMap:
+            name: cantaloupe-config
+      containers:
+        - name: cantaloupe-tna
+          image: registry.gitlab.com/knowledge-integration/cantaloupe:latest
+          imagePullPolicy: Always
+          ports:
+            - name: cantaloupe-port
+              containerPort: 8182
+              protocol: TCP
+          volumeMounts:
+            - name: cantaloupe-config
+              mountPath: /etc/cantaloupe
+          resources:
+            requests:
+              memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cantaloupe-tna-service
+  namespace: etna
+  annotations:
+    konghq.com/path: "/iiif/3"
+spec:
+  type: ClusterIP
+  selector:
+    app: cantaloupe-tna
+  ports:
+    - protocol: TCP
+      port: 8182
+      targetPort: 8182
+      name: cantaloupe-port
