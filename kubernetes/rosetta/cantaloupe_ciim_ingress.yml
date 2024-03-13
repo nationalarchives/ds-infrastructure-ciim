@@ -11,6 +11,7 @@ spec:
   tls:
     - hosts:
         - tna.ciim.k-int.com
+      secretName: tls-secret
   rules:
     - host: tna.ciim.k-int.com
       http:
