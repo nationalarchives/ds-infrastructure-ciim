@@ -4,6 +4,8 @@ resources:
   - ingress.yml
   - es_ingress.yml
   - cantaloupe_ingress.yml
+  - cantaloupe_ciim_ingress.yml
+  - ingress_ciim.yml
 configMapGenerator:
   - name: rosetta-config
     files:
