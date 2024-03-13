@@ -8,6 +8,7 @@ bases:
   - ../../rosetta-iiif
   - ../../ciim-ui-dev
   - ../../cantaloupe
+  - ../../acme
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acme
+  namespace: etna
+spec:
+  selector:
+    matchLabels:
+      app: acme
+  template:
+    metadata:
+      name: acme
+      namespace: etna
+      labels:
+        app: acme
+    spec:
+      containers:
+        - name: acme-container
+          image: certbot/certbot
+          imagePullPolicy: Always
+          ports:
+            - name: acme-port
+              containerPort: 80
+          command:
+            - sleep
+            - infinity
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: acme-service
+  namespace: etna
+spec:
+  type: ClusterIP
+  selector:
+    app: acme
+  ports:
+    - name: acme-port
+      port: 80
+      targetPort: 80

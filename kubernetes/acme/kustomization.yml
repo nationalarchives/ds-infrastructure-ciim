@@ -1,0 +1,4 @@
+namespace: etna
+resources:
+  - acme.yml
+  - acme_ingress.yml
