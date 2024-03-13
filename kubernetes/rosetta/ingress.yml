@@ -53,6 +53,13 @@ spec:
                 name: rosetta-service
                 port:
                   name: rosetta-port
+          - path: /iiif/
+            pathType: Prefix
+            backend:
+              service:
+                name: rosettav2-service
+                port:
+                  name: rosettav2-port
           - path: /ciim/
             pathType: Prefix
             backend:
