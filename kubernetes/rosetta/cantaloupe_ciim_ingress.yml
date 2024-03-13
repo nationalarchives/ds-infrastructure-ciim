@@ -8,6 +8,9 @@ metadata:
     konghq.com/preserve-host: "false"
     kubernetes.io/ingress.class: kong
 spec:
+  tls:
+    - hosts:
+        - tna.ciim.k-int.com
   rules:
     - host: tna.ciim.k-int.com
       http:
