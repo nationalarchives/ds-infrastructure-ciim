@@ -40,19 +40,6 @@
                 "#type": "literal",
                 "value": "/{location}"
               }
-            },
-            "#type": "require_catch",
-            "value": {
-              "thumbnail": {
-                "#type": "require_catch",
-                "value": {
-                  "#type": "scope",
-                  "scope": "[R]$.@processed.preview.location",
-                  "value": {
-                    "#type": "thumbnail"
-                  }
-                }
-              }
             }
           }
         }
