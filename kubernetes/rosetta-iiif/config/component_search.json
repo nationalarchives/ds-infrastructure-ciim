@@ -1,5 +1,4 @@
 {
-  "search_url":"http://aba8bbc248c7248429b60b3fcbfde942-e6a006db0770fe4b.elb.eu-west-2.amazonaws.com/public/_search",
   "type_registry":{
     "es_query":{
       "#type":"http_request",
