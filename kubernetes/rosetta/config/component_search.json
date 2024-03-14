@@ -15,6 +15,13 @@
             "query": "{&.query}"
           }
         },
+        "sort": [
+          {
+            "@sort.keyword": {
+              "order": "asc"
+            }
+          }
+        ],
         "_source": {
           "includes": [
             "@processed"
