@@ -41,17 +41,6 @@
                 "value": "/{location}"
               }
             }
-          },
-          "value": {
-            "thumbnail": [
-              {
-                "id": "[R]$.@processed.original.location",
-                "type": "Image",
-                "format": "image/jpeg",
-                "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
-                "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value"
-              }
-            ]
           }
         }
       }
