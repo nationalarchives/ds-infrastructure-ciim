@@ -40,6 +40,16 @@
                 "#type": "literal",
                 "value": "/{location}"
               }
+            },
+            "artifact": {
+              "name": "thumbnail",
+              "location": "[R]$.@processed.original.location",
+              "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
+              "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value",
+              "info_path": {
+                "#type": "literal",
+                "value": "/{location}"
+              }
             }
           }
         }
