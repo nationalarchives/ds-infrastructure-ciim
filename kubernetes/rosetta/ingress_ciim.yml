@@ -23,3 +23,10 @@ spec:
                 name: rosettav2-service
                 port:
                   name: rosettav2-port
+          - path: /transform/
+            pathType: Prefix
+            backend:
+              service:
+                name: rosettav2-service
+                port:
+                  name: rosettav2-port
