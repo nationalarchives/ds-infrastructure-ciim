@@ -1,46 +1,5 @@
 {
   "type_registry": {
-    "thumbnail": {
-      "#type": "require_catch",
-      "value": [
-        {
-          "#type": "require_throw",
-          "value": {
-            "#type": "scope",
-            "scope": {
-              "#type": "artifact",
-              "artifact": {
-                "#type": "fallback",
-                "strategies": [
-                  {
-                    "#type": "require",
-                    "require": "$.thumbnail[?(@.value =~ /.*stitched.*/i)]",
-                    "value": "large"
-                  },
-                  {
-                    "#type": "require",
-                    "require": "[C]$.@processed.preview.measurements.dimensions[?(@.dimension == 'width')][?(@.value < {%.preview_mid_threshold})]",
-                    "value": "mid"
-                  },
-                  {
-                    "#type": "require",
-                    "require": "[C]$.@processed.preview.measurements.dimensions[?(@.dimension == 'height')][?(@.value < {%.preview_mid_threshold})]",
-                    "value": "mid"
-                  },
-                  "preview"
-                ]
-              }
-            },
-            "value": {
-              "type": "image",
-              "id": "{[R]%.base_url.media}{[R]$.location}",
-              "format": "$.format",
-              "width": "$.width",
-              "height": "$.height"
-            }
-          }
-        }
-      ]
-    }
+
   }
 }
