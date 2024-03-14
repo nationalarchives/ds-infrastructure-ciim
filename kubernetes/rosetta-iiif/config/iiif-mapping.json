@@ -40,15 +40,15 @@
                 "#type": "literal",
                 "value": "/{location}"
               }
-            }
-          },
-          "thumbnail": {
-            "#type": "require_catch",
-            "value": {
-              "#type": "scope",
-              "scope": "[R]$.processed",
+            },
+            "thumbnail": {
+              "#type": "require_catch",
               "value": {
-                "#type": "thumbnail"
+                "#type": "scope",
+                "scope": "[R]$.processed",
+                "value": {
+                  "#type": "thumbnail"
+                }
               }
             }
           }
