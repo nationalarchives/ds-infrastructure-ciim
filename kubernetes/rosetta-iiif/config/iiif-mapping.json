@@ -41,14 +41,14 @@
                 "value": "/{location}"
               }
             },
-            "artifact":{
-              "name": "thumbnail",
-              "location": "[R]$.@processed.preview.location",
-              "height": "[R]$.@processed.preview.measurements.dimensions[?(@.dimension == 'height')].value",
-              "width": "[R]$.@processed.preview.measurements.dimensions[?(@.dimension == 'width')].value",
-              "info_path": {
-                "#type": "literal",
-                "value": "/{location}"
+            "thumbnail": {
+              "#type": "require_catch",
+              "value": {
+                "#type": "scope",
+                "scope": "[R]$.@processed.preview.location",
+                "value": {
+                  "#type": "thumbnail"
+                }
               }
             }
           }
