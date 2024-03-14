@@ -40,12 +40,15 @@
                 "#type": "literal",
                 "value": "/{location}"
               }
-            },
+            }
+          },
+          "value": {
+            "type": "sparse_canvas",
             "artifact": {
               "name": "thumbnail",
-              "location": "[R]$.@processed.original.location",
-              "height": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'height')].value",
-              "width": "[R]$.@processed.original.measurements.dimensions[?(@.dimension == 'width')].value",
+              "location": "[R]$.@processed.preview.location",
+              "height": "[R]$.@processed.preview.measurements.dimensions[?(@.dimension == 'height')].value",
+              "width": "[R]$.@processed.preview.measurements.dimensions[?(@.dimension == 'width')].value",
               "info_path": {
                 "#type": "literal",
                 "value": "/{location}"
