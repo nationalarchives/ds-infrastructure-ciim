@@ -59,7 +59,7 @@ rosetta:
   plugins:
     iiif:
       baseUrl: https://tna.ciim.k-int.com/
-      externalMediaBaseUrl: http://localhost/mediaLib/
+      externalMediaBaseUrl: https://tna.ciim.k-int.com/image/iiif/3/
       IIIFMediaBaseUrl: https://tna.ciim.k-int.com/image/iiif/3/
       mediaArtifact: mid
       profile: iiif
