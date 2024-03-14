@@ -8,3 +8,4 @@ configMapGenerator:
       - ./config/jpt.json
       - ./config/iiif-mapping.json
       - ./config/component_search.json
+      - /config/iiif_include.json

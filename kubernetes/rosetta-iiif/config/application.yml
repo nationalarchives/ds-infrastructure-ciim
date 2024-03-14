@@ -50,6 +50,7 @@ rosetta:
           mutable: true
           include:
             - ./config/component_search.json
+            - ./config/iiif_include.json
       - name: api-default
         type: proteus
         properties:
