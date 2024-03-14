@@ -72,3 +72,10 @@ spec:
                 name: ui-service
                 port:
                   name: ui-port
+          - path: /proteus/transform
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-service
+                port:
+                  name: ui-port
