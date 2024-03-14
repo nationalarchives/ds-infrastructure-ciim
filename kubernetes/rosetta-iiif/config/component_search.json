@@ -21,6 +21,7 @@
               }
             }
           ],
+          "size": 500,
           "_source":{
           "includes":[
             "@processed"
