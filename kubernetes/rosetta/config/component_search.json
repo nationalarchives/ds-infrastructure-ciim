@@ -13,7 +13,19 @@
         "query":{
           "query_string":{
             "query":"{&.query}"
+          }},
+        "sort": [
+          {
+            "@sort.keyword": {
+              "order": "asc"
+            }
           }
+        ],
+        "size": 500,
+        "_source":{
+          "includes":[
+            "@processed"
+          ]
         }
       },
       "allow":200,
