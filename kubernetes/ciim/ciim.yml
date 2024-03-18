@@ -32,6 +32,9 @@ spec:
         - name: ciim-media-data
           persistentVolumeClaim:
             claimName: ciim-media-data-pvc
+        - name: ciim-zooms-data
+          persistentVolumeClaim:
+            claimName: ciim-zooms-data-pvc
         - name: ciim-persistence-data
           persistentVolumeClaim:
             claimName: ciim-persistence-data-pvc
@@ -54,6 +57,8 @@ spec:
               mountPath: /ciim/ciim-media
             - name: ciim-persistence-data
               mountPath: /ciim/ciim-persistence
+            - name: ciim-zooms-data
+              mountPath: /ciim/ciim-zooms
       containers:
         - name: ciim
           image: public.ecr.aws/v3w7q3a1/tna-ciim:dev
@@ -75,6 +80,8 @@ spec:
               mountPath: /ciim/ciim-media
             - name: ciim-persistence-data
               mountPath: /ciim/ciim-persistence
+            - name: ciim-zooms-data
+              mountPath: /ciim/ciim-zooms
           envFrom:
             - secretRef:
                 name: ciim-mysql-creds
@@ -174,6 +181,18 @@ spec:
   resources:
     requests:
       storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-zooms-data-pvc
+  namespace: etna
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 300Gi
 ---
 apiVersion: v1
 kind: Service
