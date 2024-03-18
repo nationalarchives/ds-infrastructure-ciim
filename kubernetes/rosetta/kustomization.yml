@@ -6,6 +6,7 @@ resources:
   - cantaloupe_ingress.yml
   - cantaloupe_ciim_ingress.yml
   - ingress_ciim.yml
+  - rewriteplugin.yml
 configMapGenerator:
   - name: rosetta-config
     files:

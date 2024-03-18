@@ -7,6 +7,7 @@ metadata:
     kubernetes.io/ingress.class: kong
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /api/v1/$1
+    konghq.com/plugins: request-transform-etna
 spec:
   rules:
     - http:
