@@ -79,6 +79,7 @@
         "values": "$.@template.details.relatedMaterials"
       },
       "restrictionsOnUse": "$.availability.restrictions.value",
+      "repository": "repository",
       "separatedMaterials": "$.@template.details.separatedMaterials",
       "sourceUrl": "$.@template.details.sourceUrl",
       "summaryTitle": "$.summary.title",
