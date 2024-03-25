@@ -64,7 +64,10 @@
       },
       "mapDesignation": "$.@template.details.mapDesignation",
       "mapScale": "$.@template.details.mapScale",
-      "note": "$.@template.details.note",
+      "note": {
+        "#type": "as_list",
+        "values": "$.@template.details.note"
+      },
       "physicalCondition": "$.condition.value",
       "physicalDescription": "$.@template.details.physicalDescription",
       "primaryIdentifier": "$.@admin.id",
