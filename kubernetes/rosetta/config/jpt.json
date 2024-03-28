@@ -51,13 +51,14 @@
         "values": [
           "$.@hierarchy",
           {
-            "#type": "for_each",
-            "values": "@hierarchy[*].identifier[*]",
-            "spec": {
-              "reference_number": "$.__reference_number"
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "@hierarchy[*].identifier[*]",
+              "spec": {
+                "reference_number": "$.__reference_number"
+              }
             }
-
-
           }
         ]
       },
