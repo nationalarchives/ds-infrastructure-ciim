@@ -52,7 +52,7 @@
           "$.@hierarchy",
           {
             "identifier": {
-              "reference_number": "$.@hierarchy.identifier.__reference_number"
+              "reference_number": "test"
             }
 
           }
