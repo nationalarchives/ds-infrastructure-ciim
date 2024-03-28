@@ -113,7 +113,7 @@
         "#type": "as_list",
         "values": {
           "#type": "for_each",
-          "values": "$.@repository[*]",
+          "values": "$.repository[*]",
           "spec": {
             "#type": "merge",
             "values": [
