@@ -110,32 +110,25 @@
       },
       "restrictionsOnUse": "$.availability.restrictions.value",
       "repository": {
-        "#type": "as_list",
-        "values": {
-          "#type": "for_each",
-          "values": "$.repository[*]",
-          "spec": {
-            "#type": "merge",
-            "values": [
-              "$",
-              {
-                "identifier": {
-                  "#type": "for_each",
-                  "values": "$.identifier",
-                  "spec": {
-                    "#type": "merge",
-                    "values": [
-                      "$",
-                      {
-                        "reference_number": "$.__reference_number"
-                      }
-                    ]
+        "#type": "merge",
+        "values": [
+          "$.repository",
+          {
+            "identifier": {
+              "#type": "for_each",
+              "values": "$.repository.identifier",
+              "spec": {
+                "#type": "merge",
+                "values": [
+                  "$",
+                  {
+                    "reference_number": "$.__reference_number"
                   }
-                }
+                ]
               }
-            ]
+            }
           }
-        }
+        ]
       },
       "separatedMaterials": "$.@template.details.separatedMaterials",
       "sourceUrl": "$.@template.details.sourceUrl",
