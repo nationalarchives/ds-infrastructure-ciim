@@ -47,16 +47,31 @@
       "heldBy": "$.repository.name.value",
       "heldById": "$.repository.@admin.id",
       "@hierarchy": {
-        "#type": "for_each",
-        "values": "$.@hierarchy[*].identifier[*]",
-        "spec": {
-          "#type": "merge",
-          "values":[
-            "$",
-            {
-              "reference_number": "$.__reference_number"
-            }
-          ]
+        "#type": "as_list",
+        "values": {
+          "#type": "for_each",
+          "values": "$.@hierarchy[*]",
+          "spec": {
+            "#type": "merge",
+            "values": [
+              "$",
+              {
+                "identifier": {
+                  "#type": "for_each",
+                  "values": "$.identifier",
+                  "spec": {
+                    "#type": "merge",
+                    "values": [
+                      "$",
+                      {
+                        "reference_number": "$.__reference_number"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
         }
       },
       "iaid": "$.identifier..__iaid",
