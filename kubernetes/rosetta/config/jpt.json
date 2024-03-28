@@ -54,7 +54,7 @@
           "values":[
             "$",
             {
-              "reference_number": "$.value"
+              "reference_number": "$.__reference_number"
             }
           ]
         }
