@@ -46,22 +46,7 @@
       "formerProReference": "$.identifier[?(@.type == 'former reference (PRO)')].value",
       "heldBy": "$.repository.name.value",
       "heldById": "$.repository.@admin.id",
-      "@hierarchy": {
-        "#type": "merge",
-        "values": [
-          "$.@hierarchy",
-          {
-            "#type": "as_list",
-            "values": {
-              "#type": "for_each",
-              "values": "@hierarchy[*].identifier[*]",
-              "spec": {
-                "reference_number": "$.__reference_number"
-              }
-            }
-          }
-        ]
-      },
+      "@hierarchy": "$.@hierarchy",
       "iaid": "$.identifier..__iaid",
       "immediateSourceOfAcquisition": {
         "#type": "as_list",
