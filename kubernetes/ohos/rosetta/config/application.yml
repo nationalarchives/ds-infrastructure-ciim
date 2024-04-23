@@ -41,7 +41,7 @@ rosetta:
           port: 9200
           index: ciim
           username: elastic
-          password: JlPX89V2VflMp61ID78859Zw
+          password: g19415GWedJc1Zbv4w87pw5K
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
