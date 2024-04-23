@@ -1,0 +1,6 @@
+namespace: tna-ohos
+resources:
+  - mysql-init-cm.yml
+  - mysql-cnf-cm.yml
+  - mysql.yml
+  - dbsecret.yml

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-ohos
+  namespace: tna-ohos
+spec:
+  selector:
+    matchLabels:
+      app: ui-ohos
+  revisionHistoryLimit: 5
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ui-ohos
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: ui-config
+          configMap:
+            name: ui-config
+      containers:
+        - name: ui
+          image: public.ecr.aws/v3w7q3a1/ciim-management:7.0.10
+          imagePullPolicy: Always
+          ports:
+            - name: ui-port
+              containerPort: 18080
+              protocol: TCP
+          volumeMounts:
+            - name: ui-config
+              mountPath: /app/config
+          env:
+            - name: external.services.core.url
+              value: http://ciim-service-tna.tna-ohos:8080/tna/api
+          resources:
+            requests:
+              memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui-service
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: ui-ohos
+  ports:
+    - protocol: TCP
+      port: 18080
+      targetPort: 18080
+      name: ui-port

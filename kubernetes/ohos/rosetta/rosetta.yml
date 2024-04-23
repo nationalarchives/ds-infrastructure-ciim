@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rosetta-tna-ohos
+  namespace: tna-ohos
+spec:
+  selector:
+    matchLabels:
+      app: rosetta-tna-ohos
+  revisionHistoryLimit: 1
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rosetta-tna-ohos
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: rosetta-config
+          configMap:
+            name: rosetta-config
+        - name: rosetta-data
+          persistentVolumeClaim:
+            claimName: rosetta-data-pvc
+      initContainers:
+        - name: set-rosetta-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          command: [ 'sh', '-c', 'chmod -R 777 /rosetta' ]
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: rosetta-data
+              mountPath: /rosetta/data
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: rosetta
+          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:TNA-Filters-With-Proteus-2.1.1
+          imagePullPolicy: Always
+          ports:
+            - name: rosetta-port
+              containerPort: 4923
+              protocol: TCP
+          volumeMounts:
+            - name: rosetta-config
+              mountPath: /rosetta/config
+            - name: rosetta-data
+              mountPath: /rosetta/data
+          env:
+            - name: JAVA_OPTS
+              value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
+          resources:
+            requests:
+              memory: 3Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rosetta-service
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: rosetta-tna-ohos
+  ports:
+    - protocol: TCP
+      port: 4923
+      targetPort: 4923
+      name: rosetta-port
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rosetta-data-pvc
+  namespace: tna-ohos
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

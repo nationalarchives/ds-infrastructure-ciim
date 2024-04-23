@@ -1,0 +1,5 @@
+namespace: tna-ohos
+resources:
+  - kongplugin.yml
+  - kongcontroller.yml
+  - rewriteplugin.yml

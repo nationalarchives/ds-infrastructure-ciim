@@ -1,0 +1,15 @@
+{
+  "results": {
+    "#type": "as_list",
+    "values": {
+      "#type": "flatten",
+      "values": [
+        {
+          "#type": "csv_to_json",
+          "value": "/rosetta/data/11_Serena_Wadham_Archive.csv",
+          "encoding": "windows-1252"
+        }
+      ]
+    }
+  }
+}

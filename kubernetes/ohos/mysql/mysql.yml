@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tna-ohos-db
+  namespace: tna-ohos
+spec:
+  selector:
+    matchLabels:
+      app: tna-ohos-db
+  revisionHistoryLimit: 5
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: tna-ohos-db
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: ciim-mysql-data-pvc-tna
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
+        - name: mysql-cnf
+          configMap:
+            name: mysql-cnf-config
+      containers:
+        - name: ciim-internal-db
+          image: 'docker.io/mysql:8.0.22'
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "2048Mi"
+          ports:
+            - name: mysql-default
+              containerPort: 3306
+              protocol: TCP
+          env:
+            - name: MYSQL_RANDOM_ROOT_PASSWORD
+              value: "yes"
+          envFrom:
+            - secretRef:
+                name: mysql-creds
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-cnf
+              mountPath: /etc/mysql/conf.d
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-mysql-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: tna-ohos-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+      name: mysql-default

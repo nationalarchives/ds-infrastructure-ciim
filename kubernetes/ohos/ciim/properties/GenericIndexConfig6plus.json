@@ -1,0 +1,157 @@
+{
+	"index": {
+		"mapping": {
+			"total_fields": {
+				"limit": 3500
+			}
+		},
+		"max_result_window": 10000
+	},
+	"analysis": {
+		"char_filter": {
+			"first_letter_filter": {
+				"type": "pattern_replace",
+				"pattern": "(^.{0,1})(.*)",
+				"replacement": "$1"
+			}
+		},
+		"filter": {
+			"autocomplete_filter": {
+				"type": "edge_ngram",
+				"min_gram": 2,
+				"max_gram": 15
+			},
+			"min_en_stem_filter": {
+				"type": "stemmer",
+				"name": "minimal_english"
+			}
+		},
+		"normalizer": {
+			"lower_normaliser": {
+				"type": "custom",		
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			},
+			"lower_normaliser_folding": {
+				"type": "custom",		
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			},
+			"lower_normaliser_only": {
+				"type": "custom",
+				"filter": [
+					"lowercase"
+				]
+			},
+			"first_letter_normaliser": {
+				"type": "custom",
+				"char_filter": ["first_letter_filter"],
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			}
+		},
+		"analyzer": {
+			"std_html_strip": {
+				"tokenizer": "standard",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"keyword_html_strip": {
+				"tokenizer": "keyword",
+				"char_filter": [ "html_strip"],
+				"stopwords": "_none_"
+			},
+			"keyword_html_strip_lower": {
+				"tokenizer": "keyword",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"minimal_stem_en": {
+				"tokenizer": "standard",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase",
+					"asciifolding",
+					"min_en_stem_filter"
+				],
+				"stopwords": "_none_"
+			},
+			"edge_ngram": {
+				"tokenizer": "edge_ngram",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase"
+				]
+			},
+			"lower_term": {
+				"tokenizer": "keyword",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"lower_whitespace": {
+				"tokenizer": "whitespace",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"autocomplete": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase",
+					"autocomplete_filter"
+				]
+			},
+			"autocomplete_unicode": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase",
+					"asciifolding",
+					"autocomplete_filter"
+				]
+			},
+			"standard_unicode": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"char_filter": [ "html_strip"],
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			}
+		},
+		"tokenizer": {
+			"edge_ngram": {
+				"type": "edge_ngram",
+				"min_gram": "2",
+				"max_gram": "15",
+				"token_chars": []
+			},
+			"first_letter": {
+				"pattern": "(^.{0,1})(.*)",
+				"group": 1,
+				"type": "pattern"
+			}
+		}
+	}
+}

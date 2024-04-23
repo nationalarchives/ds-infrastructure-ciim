@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tna-ohos-ingress
+  namespace: tna-ohos
+  annotations:
+    konghq.com/plugins: request-transform-ohos
+spec:
+  ingressClassName: tna-ohos
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-service
+                port:
+                  name: rosetta-port
+          - path: /tna/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-service-tna
+                port:
+                  name: api-port
+          - path: /ciim/
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-service
+                port:
+                  name: ui-port
+          - path: /ciim
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-service
+                port:
+                  name: ui-port

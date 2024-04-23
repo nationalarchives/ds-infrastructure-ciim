@@ -1,0 +1,14 @@
+bases:
+  - ../../base
+  - ../../eks
+  - ../../kong
+  - ../../rosetta
+  - ../../ingress
+  - ../../ciim
+  - ../../mysql
+  - ../../internal-es
+  - ../../public-es
+  - ../../ciim-ui
+  - ../../public-clean-es
+commonAnnotations:
+  environment: dev

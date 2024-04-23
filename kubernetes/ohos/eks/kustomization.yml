@@ -1,0 +1,5 @@
+namespace: tna-ohos
+resources:
+  - consumer.yaml
+  - cors.yaml
+  - ebs-storageclass.yml

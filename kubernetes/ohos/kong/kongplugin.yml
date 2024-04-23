@@ -1,0 +1,12 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: ip-restriction-tna
+  namespace: tna-ohos
+plugin: ip-restriction
+config:
+  allow:
+    - 62.31.135.46
+    - 185.238.221.11
+    - 85.115.53.201
+    - 82.44.209.183

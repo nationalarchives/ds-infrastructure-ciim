@@ -1,0 +1,15 @@
+namespace: tna-ohos
+resources:
+  - ciim.yml
+  - ciim-secrets.yml
+configMapGenerator:
+  - name: ciim-config
+    files:
+      - ./properties/app_ctx_persisted.properties
+      - ./properties/app_ctx_transient.properties
+      - ./properties/deployment.properties
+      - ./properties/persisted_default_mpd_image.properties
+      - ./properties/persisted_default_mpd_media.properties
+      - ./properties/persisted_default_mpd_video.properties
+      - ./properties/GenericEsMapping6plus.json
+      - ./properties/GenericIndexConfig6plus.json

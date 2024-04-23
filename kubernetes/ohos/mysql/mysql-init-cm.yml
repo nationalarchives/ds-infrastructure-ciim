@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+  namespace: tna-ohos
+data:
+  initdb.sql: |
+    CREATE DATABASE `ciim-tna-ohos` DEFAULT CHARSET utf8 DEFAULT COLLATE utf8_bin;
+    CREATE DATABASE `ciim_vault-tna-ohos` DEFAULT CHARSET utf8 DEFAULT COLLATE utf8_bin;
+    GRANT ALL ON `ciim-tna-ohos`.* to 'ciim'@'%';
+    GRANT ALL ON `ciim_vault-tna-ohos`.* to 'ciim'@'%';

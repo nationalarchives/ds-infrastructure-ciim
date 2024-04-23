@@ -6,6 +6,17 @@ bases:
   - ../../unmanaged-public-es
   - ../../rosetta-staging
   - ../../ciim-ui
+  - ../../ohos/base
+  - ../../ohos/eks
+  - ../../ohos/kong
+  - ../../ohos/rosetta
+  - ../../ohos/ingress
+  - ../../ohos/ciim
+  - ../../ohos/mysql
+  - ../../ohos/internal-es
+  - ../../ohos/public-es
+  - ../../ohos/ciim-ui
+  - ../../ohos/public-clean-es
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

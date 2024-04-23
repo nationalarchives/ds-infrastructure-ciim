@@ -1,0 +1,347 @@
+{
+  "#type": "declare",
+  "args": {
+    "id": "$['itemId']",
+    "description": "$['Description']",
+    "descriptionEn": "$['description_en']",
+    "date": "$['Date']",
+    "created": "$['created']",
+    "updated": "$['updated']",
+    "subject": "$['Subject']",
+    "title": "$['Title']",
+    "title1": "$['title_en']",
+    "shcRefNo": "$['SHC Ref No']",
+    "systemRefNo": "$['System Ref No']",
+    "identifier": "$['Identifier']",
+    "format": "$['Format']",
+    "status": "$['status']",
+    "files": "$['files']",
+    "location": "$['locations']",
+    "guid": "$['guid']",
+    "url": "$['url']",
+    "type": "$['type']",
+    "creator": "$['Creator']",
+    "rights": "$['Rights']",
+    "publisher": "$['Publisher']",
+    "level": "$['level']",
+    "column8": "$['Column8']",
+    "column21": "$['Column21']",
+    "column22": "$['Column22']",
+    "column23": "$['Column23']",
+    "column24": "$['Column24']",
+    "column26": "$['Column26']",
+    "column27": "$['Column27']",
+    "column29": "$['Column29']",
+    "briefDescription": "$['BriefDescription']",
+    "objectIdentity": "$['ObjectIdentity']",
+    "objectType": "$['ObjectType']",
+    "numberOfItems": "$['NumberOfItems']",
+    "objectName": "$['ObjectName']",
+    "briefDescription": "$['BriefDescription']",
+    "schemaCopyRight": "$['schema:copyrightNotice']",
+    "schemaCreator": "$['schema:creator']",
+    "schemaIdentifier": "$['schema:identifier']",
+    "schemaPublisher": "$['schema:publisher']",
+    "schemaUrl": "$['schema:url']",
+    "dct:identifier": "$['dct:identifier']",
+    "dct:title": "$['dct:title']",
+    "dct:provenance": "$['dct:provenance']",
+    "dct:date": "$['dct:date']",
+    "dct:rights": "$['dct:rights']",
+    "dct:format": "$['dct:format']",
+    "dct:type": "$['dct:type']",
+    "dct:spatial":"$['dct:spatial']",
+    "dct:subject": "$['dct:subject']",
+    "dct:description": "$['dct:description']",
+    "dct:publisher": "$['dct:publisher']",
+    "dct:source": "$['dct:source']",
+    "dct:isPartof": "$['dct:isPartof']",
+    "creator2": "$['creator']",
+    "owner": "$['owner']",
+    "tags": "$['tags']",
+    "titleEN": "$['title_en']",
+    "titleCY": "$['title_cy']",
+    "descriptionEN":"$['description_en']",
+    "descriptionCY":"$['description_cy']",
+    "authorId": "$['author_id']",
+    "authorName": "$['author_name']",
+    "personRole": "$['PersonRole']",
+    "personName": "$['PersonName']",
+    "placeName": "$['PlaceName']",
+    "title2": "$['title']",
+    "creationDate": "$['Date_of_creation']"
+  },
+  "value": {
+    "id": "&.id",
+    "data": {
+      "@admin": {
+        "id": "&.id",
+        "created": "&.created",
+        "updated": "&.updated"
+      },
+      "@datatype": {
+        "base": "object",
+        "actual": {
+          "#type": "fallback",
+          "strategies": [
+            "&.type",
+            "&.objectType",
+            "&.dct:type"
+          ]
+        }
+      },
+      "author": {
+        "id":{
+          "value": "&.authorId"
+        },
+        "name":{
+          "value": "&.authorName"
+        }
+      },
+      "date": {
+        "value":{
+          "#type": "fallback",
+          "strategies": [
+            "&.date",
+            "&.dct:date"
+          ]
+        }
+      },
+      "description": {
+        "#type": "as_list",
+        "values": [
+          {
+            "#type": "typed_string",
+            "primary": "true",
+            "value": {
+              "#type": "fallback",
+              "strategies": [
+                "&.description",
+                "&.dct:description"
+              ]
+            }
+          },
+          {
+            "#type": "typed_string",
+            "type": "Brief Descritpion",
+            "value": "&.briefDescription"
+          },
+          {
+            "#type": "typed_string",
+            "type": "EN",
+            "value": "&.descriptionEN"
+          },
+          {
+            "#type": "typed_string",
+            "type": "CY",
+            "value": "&.descriptionCY"
+          }
+
+        ]
+      },
+      "creator": {
+        "name": {
+          "value": {
+            "#type": "fallback",
+            "strategies": [
+              "&.creator",
+              "&.schemaCreator",
+              "&.creator2"
+            ]
+          }
+        }
+      },
+      "format": {
+        "value": {
+          "#type": "fallback",
+          "strategies": [
+            "&.format",
+            "&.dct:format"
+          ]
+        }
+      },
+      "title": {
+        "#type": "as_list",
+        "values": [
+          {
+            "#type": "typed_string",
+            "value": {
+              "#type": "fallback",
+              "strategies": [
+                "&.title",
+                "&.title2",
+                "&.dct:title"
+              ]
+            }
+          },
+          {
+            "#type": "typed_string",
+            "value": "&.titleEN",
+            "type": "EN"
+          },
+          {
+            "#type": "typed_string",
+            "value": "&.titleCY",
+            "type": "CY"
+          }
+          ]
+
+      },
+      "identifier": {
+        "#type": "as_list",
+        "values": [
+          {
+            "#type": "typed_string",
+            "type": "SHC Ref No",
+            "value": "&.shcRefNo"
+          },
+          {
+            "#type": "typed_string",
+            "type": "System Ref No",
+            "value": "&.systemRefNo"
+          },
+          {
+            "#type": "typed_string",
+            "type": "Identifier",
+            "value":{
+              "#type": "fallback",
+              "strategies": [
+                "&.identifier",
+                "&.dct:identifier"
+              ]
+            }
+          },
+          {
+            "#type": "typed_string",
+            "type": "item id",
+            "value": "&.id"
+          },
+          {
+            "#type": "typed_string",
+            "type": "guid",
+            "value": "&.guid"
+          },
+          {
+            "#type": "typed_string",
+            "type": "Object Identity",
+            "value": "&.objectIdentity"
+          },
+          {
+            "#type": "typed_string",
+            "type": "OHOS Identifier",
+            "value": "&.schemaIdentifier"
+          }
+
+        ]
+      },
+      "file": {
+        "TOMODEL": "&.files"
+      },
+      "location": {
+        "TOMODEL": "&.location"
+      },
+      "status": {
+        "value": "&.status"
+      },
+      "publisher": {
+        "name": {
+          "value": {
+            "#type": "fallback",
+            "strategies": [
+              "&.publisher",
+              "&.schemaPublisher"
+            ]
+          }
+        }
+      },
+      "person": {
+        "role": "&.personRole",
+        "name": {
+          "value": "&.personName"
+        }
+      },
+      "place": {
+        "name": {
+          "value": "&.placeName"
+        }
+      },
+      "numberOfItems": {
+        "value": "&.numberOfItems"
+      },
+      "name": {
+        "value": "&.objectName"
+      },
+      "provenance": {
+        "value": "&.dct:provenance"
+      },
+      "summary": {
+        "title":{
+          "#type": "fallback",
+          "strategies": [
+            "&.title",
+            "&.dct:title"
+          ]
+        }
+      },
+      "spatial": {
+        "value": "&.dct:spatial"
+      },
+      "subject": {
+        "term": {
+          "#type": "fallback",
+          "strategies": [
+            "&.subject",
+            "&.dct:subject"
+          ]
+        }
+      },
+      "tags": {
+        "value": "&.tags"
+      },
+      "level": {
+        "value": "&.level"
+      },
+      "rights": {
+        "value": {
+          "#type": "fallback",
+          "strategies": [
+            "&.rights",
+            "&.dct:rights"
+          ]
+        }
+      },
+      "url": {
+        "value":{
+          "#type": "fallback",
+          "strategies": [
+            "&.url",
+            "&.schemaUrl"
+          ]
+        }
+      },
+      "owner": {
+        "name": {
+          "value": "&.owner"
+        }
+      },
+      "collection": {
+        "value": "&.dct:isPartof",
+        "url": "&.dct:source"
+      },
+      "legal": {
+        "copyright": "&.schemaCopyRight"
+      },
+      "other": {
+        "column8": "&.column8",
+        "column21": "&.column21",
+        "column22": "&.column22",
+        "column23": "&.column23",
+        "column24": "&.column24",
+        "column26": "&.column26",
+        "column27": "&.column27",
+        "column29": "&.column29"
+      }
+    },
+    "source": "$"
+  }
+}

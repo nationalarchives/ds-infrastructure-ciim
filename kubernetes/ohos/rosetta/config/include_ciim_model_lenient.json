@@ -1,0 +1,102 @@
+{
+  "type_registry": {
+    "typed_string": {
+      "#type": "require_catch",
+      "value": {
+        "@privacy": "&.privacy",
+        "value": "[R]&.value",
+        "type": "&.type",
+        "primary": "&.primary"
+      }
+    },
+    "literal_link_with_name": {
+      "#type": "require_catch",
+      "value": {
+        "@entity": "literal",
+        "@privacy": "&.privacy",
+        "@link": {
+          "role": {
+            "#type": "as_list",
+            "values": {
+              "#type": "typed_string",
+              "value": "&.role"
+            }
+          }
+        },
+        "name": {
+          "#type": "as_list",
+          "values": {
+            "value": "[R]&.name"
+          }
+        }
+      }
+    },
+    "literal_link_with_summary_title": {
+      "#type": "require_catch",
+      "value": {
+        "@entity": "literal",
+        "@privacy": "&.privacy",
+        "@link": {
+          "role": {
+            "#type": "as_list",
+            "values": {
+              "#type": "typed_string",
+              "value": "&.role"
+            }
+          }
+        },
+        "summary": {
+          "title": "[R]&.summary_title"
+        }
+      }
+    },
+    "date_mono": {
+      "from": "&.value",
+      "to": "&.value",
+      "value": "&.value"
+    },
+    "include_privacy": {
+      "#type": "require",
+      "require": "$",
+      "value": {
+        "#type": "merge",
+        "values": [
+          {
+            "@privacy": "&.privacy"
+          },
+          "$"
+        ]
+      }
+    },
+    "include_entity": {
+      "#type": "require",
+      "require": "$",
+      "value": {
+        "#type": "merge",
+        "values": [
+          "$",
+          {
+            "@entity": "&.entity"
+          }
+        ]
+      }
+    },
+    "include_lifecycle": {
+      "#type": "include_entity",
+      "entity": "lifecycle"
+    },
+    "typed_string_list": {
+      "#type": "as_list",
+      "values": {
+        "#type": "for_each",
+        "values": "$",
+        "spec": {
+          "#type": "typed_string",
+          "value": "$.value",
+          "type": "$.type",
+          "privacy": "&.privacy"
+        }
+      }
+    }
+  }
+}

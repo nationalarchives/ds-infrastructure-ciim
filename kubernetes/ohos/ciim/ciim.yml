@@ -1,0 +1,216 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ciim-tna-ohos
+  namespace: tna-ohos
+spec:
+  selector:
+    matchLabels:
+      app: ciim-tna-ohos
+  revisionHistoryLimit: 2
+  # CIIM cannot be replicated, this should NEVER be greater than 1
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ciim-tna-ohos
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: ciim-logging-data
+          persistentVolumeClaim:
+            claimName: ciim-logging-data-pvc-tna
+        - name: ciim-batch-data
+          persistentVolumeClaim:
+            claimName: ciim-batch-data-pvc-tna
+        - name: ciim-temp-data
+          persistentVolumeClaim:
+            claimName: ciim-temp-data-pvc-tna
+        - name: ciim-media-data
+          persistentVolumeClaim:
+            claimName: ciim-media-data-pvc-tna
+        - name: ciim-persistence-data
+          persistentVolumeClaim:
+            claimName: ciim-persistence-data-pvc-tna
+        - name: ciim-data
+          persistentVolumeClaim:
+            claimName: ciim-data-pvc-tna
+        - name: ciim-config
+          configMap:
+            name: ciim-config
+      initContainers:
+        - name: set-ciim-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          imagePullPolicy: IfNotPresent
+          command: ['/bin/sh']
+          args:
+            - -c
+            - >-
+              chmod 777 /ciim &&
+              chmod 777 /ciim/ciim-batches &&
+              chmod 777 /ciim/ciim-media &&
+              chmod 777 /ciim/ciim-persistence &&
+              chmod 777 /ciim/ciim-temp &&
+              chmod 777 /ciim/data &&
+              chmod -R 777 /usr/local/tomcat/logs
+          volumeMounts:
+            - name: ciim-logging-data
+              mountPath: /usr/local/tomcat/logs
+            - name: ciim-batch-data
+              mountPath: /ciim/ciim-batches
+            - name: ciim-temp-data
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data
+              mountPath: /ciim/ciim-persistence
+            - name: ciim-data
+              mountPath: /ciim/data
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: ciim
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:ohos1.0.14
+          imagePullPolicy: Always
+          ports:
+            - name: api-port
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: ciim-logging-data
+              mountPath: /usr/local/tomcat/logs
+            - name: ciim-batch-data
+              mountPath: /ciim/ciim-batches
+            - name: ciim-config
+              mountPath: /ciim/ciim-config
+            - name: ciim-temp-data
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data
+              mountPath: /ciim/ciim-persistence
+            - name: ciim-data
+              mountPath: /ciim/data
+          envFrom:
+            - secretRef:
+                name: ciim-mysql-creds
+            - secretRef:
+                name: ciim-encryption-key
+            - secretRef:
+                name: internal-es-pass
+            - secretRef:
+                name: public-es-pass
+            - secretRef:
+                name: public-es-clean-pass
+          env:
+            - name: ciim.properties.path
+              value: /ciim/ciim-config
+            - name: ciim.deployment.environment
+              value: dev
+            - name: JAVA_OPTS
+              value: "-Xms2g -Xmx2g"
+            - name: elasticsearch.auth.user
+              value: elastic
+            - name: publication.es.auth.username
+              value: elastic
+            - name: publication.es.auth.clean.username
+              value: elastic
+          resources:
+            requests:
+              memory: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-batch-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 150Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-logging-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-media-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-media
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-temp-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-persistence-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-data-pvc-tna
+  namespace: tna-ohos
+spec:
+  storageClassName: ebs-sc-scalable
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ciim-service-tna
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: ciim-tna-ohos
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: api-port

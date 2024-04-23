@@ -1,0 +1,35 @@
+es:
+  version: 7x
+  clusters:
+    - code: internal
+      label: Internal Admin
+      description: The main search index containing all data in the internal data model
+      active: true
+      cluster: ciim-internal-dev
+      node: ciim-internal-tna-client
+      host: ciim-internal-tna-es-http.tna-ohos
+      port: 9200
+      pingTimeout: 10s
+      protocol: http
+      pathPrefix:
+      username: elastic
+      password: BOy0fi5715mL3XYS415eI5fr
+      mediaBase: http://a7ce4aa36e9014534b4c186de028f4bb-1ba48b34b99d2f48.elb.eu-west-2.amazonaws.com/tna/api//tna/api/secure/ui/media/
+      indices:
+        - ciim
+        - management
+        - unavailable
+dataSource:
+  url: jdbc:mysql://db-service.tna-ohos/ciim_mgmt-tna-ohos?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf8&maxReconnects=10&initialTimeout=10&allowPublicKeyRetrieval=true&useSSL=false
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  driverClassName: com.mysql.cj.jdbc.Driver
+  username: ciim
+  password: Jz22Uf8S95h9
+  dbCreate: update
+template:
+  create:
+    default: true
+ws:
+  allowedOrigin: "*"
+  broadcastUrlForCore: ws://ui-service.tna-ohos:18080/ciim/stomp
+  broadcastUrlForWeb: ws://a7ce4aa36e9014534b4c186de028f4bb-1ba48b34b99d2f48.elb.eu-west-2.amazonaws.com/ciim/stomp
