@@ -2,15 +2,6 @@
   "#type": "chain",
   "chain": [
     {
-      "#type": "merge",
-      "values": [
-        "$.results.datasets.elasticsearchEtna",
-        {
-          "stats": "$.results.stats"
-        }
-      ]
-    },
-    {
       "data": {
         "#type": "fallback",
         "strategies": [
@@ -18,8 +9,8 @@
             "#type": "as_list",
             "values": {
               "#type": "for_each",
-              "values": "$.results",
-              "spec": "$.results"
+              "values": "$.data",
+              "spec": "$.data"
             }
           },
           []
@@ -48,7 +39,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$$.results.aggregations"
+            "values": "$.aggregations"
           },
           []
         ]
