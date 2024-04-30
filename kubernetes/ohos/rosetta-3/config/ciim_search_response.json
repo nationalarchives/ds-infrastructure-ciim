@@ -214,7 +214,17 @@
           ]
         }
       },
-      "found": "$.found"
+      "found": "$.found",
+      "buckets": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.aggs"
+          },
+          []
+        ]
+      }
     }
   ]
 }
