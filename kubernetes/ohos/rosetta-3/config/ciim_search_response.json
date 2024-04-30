@@ -190,7 +190,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggregations"
+            "values": "$.results.aggregations"
           },
           []
         ]
