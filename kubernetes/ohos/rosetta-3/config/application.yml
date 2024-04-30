@@ -64,11 +64,11 @@ rosetta:
 
   profile:
     profiles:
-      - name: elasticsearch
+      - name: elasticsearchEtna
         providers:
           policy: list
           names:
-            - elasticsearch
+            - elasticsearchEtna
         transforms:
           data: &global-data-transforms
             - glyphs:
@@ -86,18 +86,6 @@ rosetta:
                 policy: list
                 names:
                   - generic-to-elastic
-          data: *global-data-transforms
-      - name: elasticsearchEtna
-        providers:
-          policy: list
-          names:
-            - elasticsearchEtna
-        transforms:
-          request:
-            - glyphs:
-                policy: list
-                names:
-                  - singularize-creation
           data: *global-data-transforms
 
 
