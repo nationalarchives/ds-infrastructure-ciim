@@ -220,7 +220,13 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$$.aggs"
+            "values": {
+              "#type": "flatten",
+              "values": [
+                "$$.aggs.datasets.elasticsearch.aggregations",
+                "$$.aggs.datasets.elasticsearchEtna.aggregations"
+              ]
+            }
           },
           []
         ]
