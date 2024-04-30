@@ -222,7 +222,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggs.datasets"
+            "values": "$.aggs"
           },
           []
         ]
