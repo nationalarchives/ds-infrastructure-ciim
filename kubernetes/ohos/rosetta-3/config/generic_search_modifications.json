@@ -9,7 +9,7 @@
         "queries": {
           "#type": "for_each",
           "values": "$.current.queries",
-          "spec": "test"
+          "spec": "(\"{$}\")"
         }
       }
     }
