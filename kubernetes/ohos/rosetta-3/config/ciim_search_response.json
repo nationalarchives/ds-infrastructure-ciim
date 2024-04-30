@@ -8,6 +8,9 @@
         "$.results.datasets.elasticsearchEtna",
         {
           "stats": "$.results.stats"
+        },
+        {
+          "aggregations": "$.aggs"
         }
       ]
     },
