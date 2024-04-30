@@ -12,16 +12,6 @@
       ]
     },
     {
-      "#type": "merge",
-      "values": [
-        "$.aggs.datasets.elasticsearch",
-        "$.aggs.datasets.elasticsearchEtna",
-        {
-          "aggregations": "$aggs.aggregations"
-        }
-      ]
-    },
-    {
       "data": {
         "#type": "fallback",
         "strategies": [
