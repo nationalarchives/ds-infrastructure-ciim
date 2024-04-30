@@ -12,6 +12,15 @@
           "stats": "$.results.stats"
         },
         {
+          "data": {
+          "#type": "merge",
+          "values": [
+            "$.results.datasets.elasticsearch",
+            "$.results.datasets.elasticsearchEtna"
+          ]
+          }
+        },
+        {
           "aggregations": {
             "#type": "merge",
             "values": [
