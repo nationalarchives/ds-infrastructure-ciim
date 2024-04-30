@@ -2,4 +2,4 @@ namespace: tna-ohos
 resources:
   - ingress.yml
   - es_ingress.yml
-  - rosetta3_ingress.yml_
+  - rosetta_3_ingress.yml
