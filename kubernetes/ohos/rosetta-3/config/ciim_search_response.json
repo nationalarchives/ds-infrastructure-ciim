@@ -13,6 +13,9 @@
         },
         {
           "stats": "$.aggs.stats"
+        },
+        {
+          "aggregaions": "$.aggs"
         }
       ]
     },
