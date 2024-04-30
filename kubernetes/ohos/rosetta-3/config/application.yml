@@ -1,0 +1,186 @@
+base_paths:
+  proteus: ./config
+
+rosetta:
+  admin:
+    enabled: true
+
+  plugins:
+    advanced_cache:
+      enabled: true
+      caches:
+        - name: fast-cache
+          expire_after_write: 5m
+          maximum_size: 100
+          use_scheduler: true
+
+        - name: slow-cache
+          expire_after_write: 1h
+          maximum_size: 100
+          use_scheduler: true
+
+        - name: eds-auth-cache
+  cache:
+    enabled: true
+    manager:
+      enabled: false
+
+  view:
+    views:
+      - name: ciim/search
+        paths:
+          - /rosetta-3/ciim/search
+        profile: elasticsearch
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
+      - name: ciim/get
+        paths:
+          - /rosetta-3/ciim/get
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/get/request
+          response:
+            policy: list
+            names:
+              - to-simple-data-response
+
+  profile:
+    profiles:
+      - name: elasticsearch
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+        transforms:
+          data: &global-data-transforms
+            - glyphs:
+                policy: list
+                names:
+                  - singularize-creation
+      - name: generic-search
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+          data: *global-data-transforms
+
+  transform:
+    timeout_millis: 60000
+    glyphs:
+      # Elastic search glyphs
+      - name: to-generic-search
+        type: to-generic-search
+        properties:
+          types:
+            - query
+
+      - name: generic-search-defaults
+        type: proteus-simple
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_defaults.json
+
+      - name: generic-search-modifications
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_modifications.json
+
+      - name: generic-to-elastic
+        type: elastic-generic-search
+        properties:
+          index: public-es
+          request_timeout: 60000
+          date_aggregations:
+            - path: "creation.date.from"
+              agg_name: "fromDate"
+            - path: "creation.date.to"
+              agg_name: "toDate"
+          path_config:
+            paths:
+              datatype: "@datatype.base"
+              property: "property.name.value.keyword"
+              place: "place.name.value.keyword"
+              collection: "parent.summary.title.keyword"
+              date: "creation.date.from"
+              title: "summary.title.keyword"
+              group: "@datatype.group.value"
+
+      - name: ciim/search/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_request.json
+
+      - name: ciim/search/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_response.json
+
+      - name: ciim/get/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_request.json
+
+      # Global data transforms
+      - name: singularize-creation
+        type: proteus
+        properties:
+          spec: ${base_paths.proteus}/singularize_creation.json
+          config:
+            accumulator: first
+
+      # System glyphs
+      - name: to-simple-data-response
+        type: to-simple-data-response
+
+      - name: aggs-count-to-doc-count
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+  provider:
+    global_timeout: 60s
+    timeout: 60s
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        properties:
+          host: ciim-public-tna-es-http.tna-ohos
+          port: 9200
+          index: ciim
+          username: elastic
+          password: g19415GWedJc1Zbv4w87pw5K
+          client_timeout: 60000
+          skip_ping: true
+
+  monitoring:
+    log_stages: false

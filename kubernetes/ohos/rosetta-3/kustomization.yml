@@ -1,0 +1,14 @@
+namespace: elnet-dev
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosetta-3-config
+    files:
+      - ./config/aggs_count_to_doc_count.json
+      - ./config/application.yml
+      - ./config/ciim_get_request.json
+      - ./config/ciim_search_request.json
+      - ./config/ciim_search_response.json
+      - ./config/generic_search_defaults.json
+      - ./config/generic_search_modifications.json
+      - ./config/singularize_creation.json

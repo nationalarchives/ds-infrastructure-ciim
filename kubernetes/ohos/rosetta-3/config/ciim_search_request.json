@@ -1,0 +1,24 @@
+{
+  "aggs": {
+    "request": {
+      "aggregations": "$.aggregations",
+      "query": "$.query",
+      "size": 0,
+      "timeout": "60s"
+    },
+    "cache": {
+      "name": "slow-cache"
+    }
+  },
+  "results": {
+    "request": {
+      "query": "$.query",
+      "from": "$.from",
+      "size": "$.size",
+      "sort": "$.sort"
+    },
+    "cache": {
+      "name": "fast-cache"
+    }
+  }
+}

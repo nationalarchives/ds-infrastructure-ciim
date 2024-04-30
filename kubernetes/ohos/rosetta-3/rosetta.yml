@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rosetta-3-ohos
+  namespace: tna-ohos
+spec:
+  selector:
+    matchLabels:
+      app: rosetta-3-ohos
+  revisionHistoryLimit: 1
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rosetta-3-ohos
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: rosetta-3-config
+          configMap:
+            name: rosetta-3-config
+      initContainers:
+        - name: set-rosetta-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: rosetta
+          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:elnet-3-9
+          imagePullPolicy: Always
+          ports:
+            - name: rosetta-port
+              containerPort: 4923
+              protocol: TCP
+          volumeMounts:
+            - name: rosetta-3-config
+              mountPath: /rosetta/config
+          env:
+            - name: JAVA_OPTS
+              value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
+          resources:
+            requests:
+              memory: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rosetta-3-service
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: rosetta-3-ohos
+  ports:
+    - protocol: TCP
+      port: 4923
+      targetPort: 4923
+      name: rosetta-port

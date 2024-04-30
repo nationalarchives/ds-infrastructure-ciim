@@ -14,7 +14,7 @@ es:
       pathPrefix:
       username: elastic
       password: u1e6w21mh2L3F571QL0LTuHa
-      mediaBase: http://a7ce4aa36e9014534b4c186de028f4bb-1ba48b34b99d2f48.elb.eu-west-2.amazonaws.com/tna/api//tna/api/secure/ui/media/
+      mediaBase: http://http://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/
       indices:
         - ciim
         - management
@@ -32,4 +32,4 @@ template:
 ws:
   allowedOrigin: "*"
   broadcastUrlForCore: ws://ui-service.tna-ohos:18080/ciim/stomp
-  broadcastUrlForWeb: ws://a7ce4aa36e9014534b4c186de028f4bb-1ba48b34b99d2f48.elb.eu-west-2.amazonaws.com/ciim/stomp
+  broadcastUrlForWeb: ws://a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com/ciim/stomp
