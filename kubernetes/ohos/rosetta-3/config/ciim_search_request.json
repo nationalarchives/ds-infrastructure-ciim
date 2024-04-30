@@ -13,16 +13,7 @@
   },
   "aggs": {
     "request": {
-      "aggregations": {
-        "#type": "as_list",
-        "values": {
-          "#type": "require",
-          "require": "$.request[?(!(@.ids))]",
-          "value": [
-            "group"
-          ]
-        }
-      },
+      "aggregations": "$.aggregations",
       "size": 0,
       "timeout": "60s"
     },
