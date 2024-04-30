@@ -13,16 +13,13 @@
               "#type": "require",
               "require": "$.request[?(!(@.ids))]",
               "value": [
-                "m_type",
-                "provider",
-                "r_type",
-                "r_type_actual",
-                "c_maker",
-                "agent",
-                "subject",
-                "category",
-                "date_made",
-                "multimedia.@processed.original.format"
+                "datatype",
+                "property",
+                "place",
+                "collection",
+                "date",
+                "title",
+                "group"
               ]
             }
           ]
