@@ -220,7 +220,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggs"
+            "values": "$$.aggs"
           },
           []
         ]
