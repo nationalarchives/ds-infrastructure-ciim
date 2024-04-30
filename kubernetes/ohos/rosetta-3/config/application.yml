@@ -131,6 +131,9 @@ rosetta:
               date: "creation.date.from"
               title: "summary.title.keyword"
               group: "@datatype.group.value"
+          aggregation_configs:
+            - name: group
+              size: 50
 
       - name: ciim/search/request
         type: proteus
