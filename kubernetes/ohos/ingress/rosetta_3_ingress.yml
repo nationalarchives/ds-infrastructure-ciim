@@ -3,8 +3,6 @@ kind: Ingress
 metadata:
   name: ohos-ingress-rosetta-3
   namespace: tna-ohos
-  annotations:
-#    konghq.com/strip-path: "true"
 spec:
   ingressClassName: tna-ohos
   rules:
