@@ -45,7 +45,7 @@
                     },
                     "appraisalInformation": "$.appraisal.value",
                     "arrangement": "$.arrangement.value",
-                    "catalogueContext": {
+                    "catalogueContext":{
                       "#type": "as_list",
                       "values": "$.@template.details.catalogueContext"
                     },
@@ -97,7 +97,7 @@
                     "referenceNumber": "$.identifier[?(@.type == 'reference number')].value",
                     "relatedMaterials": {
                       "#type": "as_list",
-                      "values": "$.@template.details.relatedMaterials"
+                      "values":"$.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.availability.restrictions.value",
                     "separatedMaterials": "$.@template.details.separatedMaterials",
