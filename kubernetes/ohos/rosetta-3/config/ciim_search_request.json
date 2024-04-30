@@ -2,7 +2,6 @@
   "aggs": {
     "request": {
       "aggregations": "$.aggregations",
-      "query": "$.query",
       "size": 0,
       "timeout": "60s"
     },
