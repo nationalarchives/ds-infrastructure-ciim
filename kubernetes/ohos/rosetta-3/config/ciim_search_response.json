@@ -52,7 +52,10 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggregations"
+            "values": [
+              "$.aggs.datasets.elasticsearch.aggregations",
+              "$.aggs.datasets.elasticsearchEtna.aggregations"
+            ]
           },
           []
         ]
