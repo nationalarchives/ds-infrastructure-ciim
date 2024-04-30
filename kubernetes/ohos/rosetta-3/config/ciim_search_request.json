@@ -16,7 +16,8 @@
       "aggregations": {
         "#type": "as_list",
         "values": {
-          "#type": "spec",
+          "#type": "require",
+          "require": "$.request[?(!(@.ids))]",
           "value": [
             "group"
           ]
