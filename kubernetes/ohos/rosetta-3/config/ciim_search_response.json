@@ -215,6 +215,18 @@
         }
       },
       "found": "$.found"
+    },
+    {
+      "aggregations": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.aggs"
+          },
+          []
+        ]
+      }
     }
   ]
 }
