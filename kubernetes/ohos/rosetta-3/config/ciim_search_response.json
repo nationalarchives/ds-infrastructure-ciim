@@ -10,7 +10,7 @@
           "stats": "$.results.stats"
         },
         {
-          "aggs": {
+          "aggregations": {
             "#type": "merge",
             "values": [
               "$.results.datasets.elasticsearch.aggregations",
@@ -191,7 +191,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggs"
+            "values": "$.aggregations"
           },
           []
         ]
@@ -220,7 +220,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggregations"
+            "values": "$.aggs"
           },
           []
         ]
