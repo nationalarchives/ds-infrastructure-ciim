@@ -4,9 +4,7 @@
     {
       "#type": "merge",
       "values": [
-        "$.results.datasets.elasticsearchEtna",
         "$.results.datasets.elasticsearch",
-        "$.aggs.datasets.elasticsearchEtna",
         "$.aggs.datasets.elasticsearch",
         {
           "stats": "$.aggs.stats"
