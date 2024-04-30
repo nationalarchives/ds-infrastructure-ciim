@@ -7,7 +7,7 @@
         "$.results.datasets.elasticsearch",
         "$.results.datasets.elasticsearchEtna",
         {
-          "stats": "$.results.stats"
+          "aggregations": "$.results"
         }
       ]
     },
@@ -182,13 +182,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": {
-              "#type": "flatten",
-              "values": [
-                "$$.aggs.datasets.elasticsearch.aggregations",
-                "$$.aggs.datasets.elasticsearchEtna.aggregations"
-              ]
-            }
+            "values": "$.aggregations"
           },
           []
         ]
