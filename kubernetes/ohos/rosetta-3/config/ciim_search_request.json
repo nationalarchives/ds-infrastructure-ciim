@@ -1,10 +1,7 @@
 {
   "aggs": {
     "request": {
-      "aggregations": {
-        "#type": "as_list",
-        "values": "group"
-      },
+      "aggregations": "$.aggregations",
       "size": 0,
       "timeout": "60s"
     },

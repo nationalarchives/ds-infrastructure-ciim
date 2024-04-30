@@ -5,19 +5,7 @@
     {
       "aggregations": {
         "#type": "as_list",
-        "values": {
-          "#type": "fallback",
-          "strategies": [
-            "$.request.aggregations",
-            {
-              "#type": "require",
-              "require": "$.request[?(!(@.ids))]",
-              "value": [
-                "group"
-              ]
-            }
-          ]
-        }
+        "values": "group"
       }
     }
   ]
