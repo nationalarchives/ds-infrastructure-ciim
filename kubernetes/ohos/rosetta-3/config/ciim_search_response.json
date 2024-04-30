@@ -15,7 +15,7 @@
           "stats": "$.aggs.stats"
         },
         {
-          "aggregations": "$.results.aggregations"
+          "aggregations": "$.results"
         }
       ]
     },
@@ -190,7 +190,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.results.aggregations"
+            "values": "$.aggregations"
           },
           []
         ]
