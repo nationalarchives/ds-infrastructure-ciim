@@ -12,7 +12,7 @@
           "stats": "$.results.stats"
         },
         {
-          "aggregations": "$.aggs"
+          "aggregations": "$.results"
         }
       ]
     },
