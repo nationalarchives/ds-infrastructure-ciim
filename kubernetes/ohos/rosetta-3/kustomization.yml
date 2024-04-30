@@ -1,4 +1,4 @@
-namespace: elnet-dev
+namespace: tna-ohos
 resources:
   - rosetta.yml
 configMapGenerator:
