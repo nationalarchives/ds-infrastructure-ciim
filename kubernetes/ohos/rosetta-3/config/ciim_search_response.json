@@ -24,8 +24,8 @@
             "#type": "as_list",
             "values": {
               "#type": "for_each",
-              "values": "$.data",
-              "spec": "$.data"
+              "values": "$$.data",
+              "spec": "$$.data"
             }
           },
           []
@@ -54,7 +54,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggregations"
+            "values": "$$.aggregations"
           },
           []
         ]
