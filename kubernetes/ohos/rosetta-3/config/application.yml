@@ -181,8 +181,8 @@ rosetta:
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
 
   provider:
-    global_timeout: 60s
-    timeout: 60s
+    global_timeout: 500s
+    timeout: 500s
     providers:
       - name: elasticsearch
         type: elasticsearch
