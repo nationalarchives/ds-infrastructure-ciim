@@ -12,7 +12,10 @@
           "stats": "$.results.stats"
         },
         {
-          "aggregations": "$.aggs"
+          "aggregations": "$.aggs.datasets.elasticsearch.aggregations"
+        },
+        {
+          "aggregations": "$.aggs.datasets.elasticsearchEtna.aggregations"
         }
       ]
     },
