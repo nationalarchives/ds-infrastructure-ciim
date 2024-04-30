@@ -2,7 +2,7 @@
   "aggs": {
     "request": {
       "aggregations": "$.aggregations",
-      "query": "$.query",
+      "query": "",
       "size": 0,
       "timeout": "60s"
     },
@@ -13,6 +13,7 @@
   "results": {
     "request": {
       "query": "$.query",
+      "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
