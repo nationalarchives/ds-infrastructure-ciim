@@ -30,7 +30,7 @@ rosetta:
       - name: ciim/search
         paths:
           - /rosetta-3/ciim/search
-        profile: elasticsearch
+        profile: elasticsearchEtna
         type: advanced-cache-multi
         transforms:
           request:
@@ -181,6 +181,14 @@ rosetta:
           password: g19415GWedJc1Zbv4w87pw5K
           client_timeout: 60000
           skip_ping: true
+      - name: elasticsearchEtna
+        type: elasticsearch
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: Kng6K7J41j882P77EQeS9cTI
 
   monitoring:
     log_stages: false
