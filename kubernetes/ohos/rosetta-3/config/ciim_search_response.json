@@ -52,8 +52,8 @@
             "values": {
               "#type": "flatten",
               "values": [
-                "$.aggs.datasets.elasticsearch.aggregations",
-                "$.aggs.datasets.elasticsearchEtna.aggregations"
+                "$$.aggs.datasets.elasticsearch.aggregations",
+                "$$.aggs.datasets.elasticsearchEtna.aggregations"
               ]
             }
           },
