@@ -2,6 +2,13 @@
   "#type": "chain",
   "chain": [
     {
+      "#type": "merge",
+      "values": [
+        "$.results.datasets.elasticsearch",
+        "$.results.datasets.elasticsearchEtna"
+      ]
+    },
+    {
       "data": {
         "#type": "fallback",
         "strategies": [
