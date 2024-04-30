@@ -3,7 +3,19 @@
     "request": {
       "aggregations": {
         "#type": "as_list",
-        "values": "group"
+        "values": {
+          "#type": "fallback",
+          "strategies": [
+            "$.request.aggregations",
+            {
+              "#type": "require",
+              "require": "$.request[?(!(@.ids))]",
+              "value": [
+                "group"
+              ]
+            }
+          ]
+        }
       },
       "size": 0,
       "timeout": "60s"
