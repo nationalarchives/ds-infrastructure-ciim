@@ -6,6 +6,8 @@
       "values": [
         "$.results.datasets.elasticsearch",
         "$.results.datasets.elasticsearchEtna",
+        "$.aggs.datasets.elasticsearch",
+        "$.aggs.datasets.elasticsearchEtna",
         {
           "stats": "$.results.stats"
         }
