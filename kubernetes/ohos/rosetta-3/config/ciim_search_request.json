@@ -6,7 +6,7 @@
         "values": {
           "#type": "fallback",
           "strategies": [
-            "$.request.aggregations",
+            "group",
             {
               "#type": "require",
               "require": "$.request[?(!(@.ids))]",
