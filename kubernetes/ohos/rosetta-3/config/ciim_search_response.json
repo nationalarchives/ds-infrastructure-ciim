@@ -6,6 +6,8 @@
       "values": [
         "$.results.datasets.elasticsearch",
         "$.results.datasets.elasticsearchEtna",
+        "$.aggs.datasets.elasticsearch",
+        "$.aggs.datasets.elasticsearchEtna",
         {
           "stats": "$.results.stats"
         },
@@ -15,6 +17,15 @@
             "values": [
               "$.results.datasets.elasticsearch.aggregations",
               "$.results.datasets.elasticsearchEtna.aggregations"
+            ]
+          }
+        },
+        {
+          "aggs": {
+            "#type": "merge",
+            "values": [
+              "$.aggs.datasets.elasticsearch",
+              "$.aggs.datasets.elasticsearchEtna"
             ]
           }
         }
