@@ -4,9 +4,9 @@ metadata:
   name: ohos-ingress-rosetta-3
   namespace: tna-ohos
 spec:
-  ingressClassName: tna-ohos
+  ingressClassName:  tna-ohos
   rules:
-      http:
+    - http:
         paths:
           - path: /rosetta-3
             pathType: Prefix
