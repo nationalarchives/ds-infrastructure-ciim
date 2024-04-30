@@ -1,7 +1,16 @@
 {
   "aggs": {
     "request": {
-      "aggregations": "$.aggregations",
+      "aggregations": {
+        "#type": "as_list",
+        "values": {
+          "#type": "require",
+          "require": "$.request[?(!(@.ids))]",
+          "value": [
+            "group"
+          ]
+        }
+      },
       "size": 0,
       "timeout": "60s"
     },

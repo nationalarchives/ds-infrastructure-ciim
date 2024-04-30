@@ -6,10 +6,16 @@
       "aggregations": {
         "#type": "as_list",
         "values": {
-          "#type": "require",
-          "require": "$.request[?(!(@.ids))]",
-          "value": [
-            "group"
+          "#type": "fallback",
+          "strategies": [
+            "$.request.aggregations",
+            {
+              "#type": "require",
+              "require": "$.request[?(!(@.ids))]",
+              "value": [
+                "group"
+              ]
+            }
           ]
         }
       }
