@@ -15,7 +15,7 @@
           "stats": "$.aggs.stats"
         },
         {
-          "aggregaions": "$.aggs"
+          "aggregations": "$.aggs"
         }
       ]
     },
