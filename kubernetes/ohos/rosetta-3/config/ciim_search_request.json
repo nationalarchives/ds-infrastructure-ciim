@@ -1,23 +1,4 @@
 {
-  "aggs": {
-    "request": {
-      "aggregations": {
-        "#type": "as_list",
-        "values": {
-          "#type": "require",
-          "require": "$.request[?(!(@.ids))]",
-          "value": [
-            "group"
-          ]
-        }
-      },
-      "size": 0,
-      "timeout": "60s"
-    },
-    "cache": {
-      "name": "slow-cache"
-    }
-  },
   "results": {
     "request": {
       "query": "$.query",
@@ -28,6 +9,24 @@
     },
     "cache": {
       "name": "fast-cache"
+    }
+  },
+  "aggs": {
+    "request": {
+      "aggregations": {
+        "#type": "as_list",
+        "values": {
+          "#type": "spec",
+          "value": [
+            "group"
+          ]
+        }
+      },
+      "size": 0,
+      "timeout": "60s"
+    },
+    "cache": {
+      "name": "slow-cache"
     }
   }
 }
