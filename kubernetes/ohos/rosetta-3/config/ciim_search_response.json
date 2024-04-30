@@ -6,13 +6,18 @@
       "values": [
         "$.results.datasets.elasticsearch",
         "$.results.datasets.elasticsearchEtna",
+        {
+          "stats": "$.results.stats"
+        }
+      ]
+    },
+    {
+      "#type": "merge",
+      "values": [
         "$.aggs.datasets.elasticsearch",
         "$.aggs.datasets.elasticsearchEtna",
         {
-          "stats": "$.results.stats"
-        },
-        {
-          "aggregations": "$.results"
+          "aggregations": "$aggs.aggregations"
         }
       ]
     },
