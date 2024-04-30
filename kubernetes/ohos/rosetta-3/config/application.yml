@@ -87,6 +87,19 @@ rosetta:
                 names:
                   - generic-to-elastic
           data: *global-data-transforms
+      - name: elasticsearchEtna
+        providers:
+          policy: list
+          names:
+            - elasticsearchEtna
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - singularize-creation
+          data: *global-data-transforms
+
 
   transform:
     timeout_millis: 60000
