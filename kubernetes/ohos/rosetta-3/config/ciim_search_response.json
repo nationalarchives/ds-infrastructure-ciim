@@ -13,6 +13,9 @@
         },
         {
           "stats": "$.results.stats"
+        },
+        {
+          "aggregations": "$.results.aggregations"
         }
       ]
     },
