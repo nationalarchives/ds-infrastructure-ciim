@@ -87,8 +87,18 @@ rosetta:
                 names:
                   - generic-to-elastic
           data: *global-data-transforms
-
-
+      - name: elasticsearch
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - singularize-creation
+          data: *global-data-transforms
 
   transform:
     timeout_millis: 60000
