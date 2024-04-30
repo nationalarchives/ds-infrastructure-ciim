@@ -1,22 +1,7 @@
 {
   "aggs": {
     "request": {
-      "aggregations": {
-          "#type": "as_list",
-          "values": {
-            "#type": "fallback",
-            "strategies": [
-              "group",
-              {
-                "#type": "require",
-                "require": "$.request[?(!(@.ids))]",
-                "value": [
-                  "group"
-                ]
-              }
-            ]
-          }
-        },
+      "aggregations": "group",
       "size": 0,
       "timeout": "60s"
     },
