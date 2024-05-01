@@ -14,9 +14,12 @@
   "aggs": {
     "request": {
       "aggregations": {
-        "value": [
-          "group"
-        ]
+        "group": {
+          "terms": {
+            "field": "parent.summary.title.keyword",
+            "size": "50"
+          }
+        }
       },
       "size": 0,
       "timeout": "60s"
