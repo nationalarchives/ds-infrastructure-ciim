@@ -13,30 +13,6 @@
   },
   "aggs": {
     "request": {
-      "query": {
-        "#type": "merge","depth": -1,
-        "values": [
-          "$.current",
-          {
-            "query": {
-              "bool": {
-                "filter": {
-                  "#type": "require_catch",
-                  "value": {
-                    "spec": {
-                      "exists": {
-                        "field": {
-                          "@datatype.group.value": "*"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
       "aggregations": {
         "group": {
           "terms": {
