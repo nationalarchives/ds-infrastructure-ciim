@@ -22,7 +22,7 @@
           }
         }
       },
-      "filter":"$.filter[?(!(@.@datatype.group.value)]",
+      "filter":"$.filter[?(!(@.@datatype.group.value))]",
       "size": 0,
       "timeout": "60s"
     },
