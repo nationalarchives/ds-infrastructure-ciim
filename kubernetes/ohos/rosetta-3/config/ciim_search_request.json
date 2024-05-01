@@ -13,7 +13,7 @@
   },
   "aggs": {
     "request": {
-      "query": "$.query[?(!(@.bool))]",
+      "query": "$.query[?(!(@.bool.filter))]",
       "aggregations": {
         "group": {
           "terms": {
