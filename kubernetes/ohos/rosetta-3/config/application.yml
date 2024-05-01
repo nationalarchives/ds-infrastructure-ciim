@@ -195,4 +195,4 @@ rosetta:
           password: Kng6K7J41j882P77EQeS9cTI
 
   monitoring:
-    log_stages: false
+    log_stages: true
