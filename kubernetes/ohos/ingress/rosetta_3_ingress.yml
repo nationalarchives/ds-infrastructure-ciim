@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: ohos-ingress-rosetta-3
   namespace: tna-ohos
+  annotations:
+    konghq.com/plugins: request-transform-ohos
 spec:
   ingressClassName:  tna-ohos
   rules:
