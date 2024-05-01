@@ -13,7 +13,12 @@
   },
   "aggs": {
     "request": {
-      "aggregations": ["group"],
+      "aggregations": {
+        "#type": "as_list",
+        "values": [
+          "group"
+        ]
+      },
       "size": 0,
       "timeout": "60s"
     },
