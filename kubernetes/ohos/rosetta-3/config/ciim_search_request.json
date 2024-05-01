@@ -13,7 +13,7 @@
   },
   "aggs": {
     "request": {
-      "aggregations": "$.aggregations",
+      "aggregations": ["group"],
       "size": 0,
       "timeout": "60s"
     },
