@@ -4,19 +4,8 @@
     {
       "#type": "merge",
       "values": [
-        "$.results.datasets.elasticsearch",
-        "$.results.datasets.elasticsearchEtna",
         {
           "stats": "$.results.stats"
-        },
-        {
-          "aggregations": {
-            "#type": "merge",
-            "values": [
-              "$.results.datasets.elasticsearch.aggregations",
-              "$.results.datasets.elasticsearchEtna.aggregations"
-            ]
-          }
         }
       ]
     },
@@ -191,8 +180,13 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.aggregations"
-          },
+            "values": {
+            "#type": "flatten",
+              "values": [
+                "$.results.datasets.elasticsearchEtna.aggregations",
+                "$.results.datasets.elasticsearch.aggregations"
+              ]
+          }},
           []
         ]
       },
