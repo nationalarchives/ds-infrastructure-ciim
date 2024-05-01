@@ -13,7 +13,7 @@
   },
   "aggs": {
     "request": {
-      "query": "$.query[?(!(@.@datatype.group.value))]",
+      "query": "$.query[?(!(@.filter))]",
       "aggregations": {
         "group": {
           "terms": {
