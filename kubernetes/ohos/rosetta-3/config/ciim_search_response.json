@@ -11,11 +11,15 @@
         },
         {
           "aggregations": {
-            "#type": "merge",
+            "#type": "group",
             "values": [
               "$.results.datasets.elasticsearch.aggregations",
               "$.results.datasets.elasticsearchEtna.aggregations"
-            ]
+            ],
+            "by": "$.name",
+            "yield_element": {
+              "identifier": "name: {$.entries}"
+            }
           }
         }
       ]
