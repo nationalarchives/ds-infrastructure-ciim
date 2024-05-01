@@ -13,6 +13,7 @@
   },
   "aggs": {
     "request": {
+      "query": "$.query",
       "aggregations": {
         "group": {
           "terms": {
@@ -21,6 +22,7 @@
           }
         }
       },
+      "filter": "$.filter[?(!(@.group))]",
       "size": 0,
       "timeout": "60s"
     },
