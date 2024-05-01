@@ -16,7 +16,7 @@
       "aggregations": {
         "group": {
           "terms": {
-            "field": "parent.summary.title.keyword",
+            "field": "@datatype.group.value",
             "size": "50"
           }
         }
