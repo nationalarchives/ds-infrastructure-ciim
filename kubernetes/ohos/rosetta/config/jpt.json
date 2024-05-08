@@ -47,7 +47,7 @@
         "mediator": "$.source.organisation.name.value",
         "repository": "$.source.repository.code.value"
       },
-      "provenance":  "$.provenance.text.value"
+      "provenance":  "$.source.provenance.text.value"
     }
   }
 }
