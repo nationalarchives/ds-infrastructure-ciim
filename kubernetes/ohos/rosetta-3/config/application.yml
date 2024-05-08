@@ -60,7 +60,7 @@ rosetta:
           response:
             policy: list
             names:
-              - to-simple-data-response
+              - ciim/get/response
 
   profile:
     profiles:
@@ -152,6 +152,12 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_get_request.json
+
+      - name: ciim/get/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_response.json
 
       # Global data transforms
       - name: singularize-creation
