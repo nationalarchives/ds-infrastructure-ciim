@@ -42,7 +42,12 @@
             "$.source.tag[*].value"
           ]
         }
-      }
+      },
+      "place of deposit": {
+        "mediator": "$.source.organisation.name.value",
+        "repository": "$.source.repository.code.value"
+      },
+      "provenance":  "$.provenance.text.value"
     }
   }
 }
