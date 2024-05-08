@@ -30,7 +30,6 @@
       "licence": "$.source.licence.value",
       "status": "$.source.status.value",
       "accessStatus": "$.source.legal.access.value",
-      "repository": "$.source.repository.code.value",
       "enrichment": "$.source.enrichment",
       "subjects": {
         "#type": "as_list",
