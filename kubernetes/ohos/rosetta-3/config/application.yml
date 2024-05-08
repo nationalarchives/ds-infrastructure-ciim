@@ -51,7 +51,7 @@ rosetta:
       - name: ciim/get
         paths:
           - /rosetta-3/ciim/get
-        profile: generic-search
+        profile: elasticsearch
         transforms:
           request:
             policy: list
@@ -60,7 +60,7 @@ rosetta:
           response:
             policy: list
             names:
-              - to-simple-data-response
+              - ciim/get/response
 
   profile:
     profiles:
