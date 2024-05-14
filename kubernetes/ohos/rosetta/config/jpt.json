@@ -4,6 +4,8 @@
       "level": "$.source.level.value",
       "description": "$.source.description[0].value",
       "descriptionCy": "$.source.description[?(@.language == 'cy')].value",
+      "descriptionView": "$.source.description[?(@.type == 'View From')].value",
+      "descriptionPlace": "$.source.description[?(@.type == 'Place Notes')].value",
       "date": "$.source.date[0].value",
       "summary": "$.source.summary.title",
       "title": "$.source.title[0].value",
