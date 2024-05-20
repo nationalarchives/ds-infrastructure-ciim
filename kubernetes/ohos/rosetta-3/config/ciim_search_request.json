@@ -13,12 +13,7 @@
   },
   "aggs": {
     "request": {
-      "query": {
-        "#type": "select",
-        "value": "$.query",
-        "policy": "exclude",
-        "keys": "bool.filter"
-      },
+      "query": "$.query.q",
       "aggregations": {
         "group": {
           "terms": {
