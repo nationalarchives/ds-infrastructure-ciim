@@ -16,7 +16,7 @@
       "query": {
         "bool": {
           "must": [
-            "$.request.query.search"
+            "$.query.search"
           ]
         }
       },
