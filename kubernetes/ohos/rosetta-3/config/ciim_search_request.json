@@ -13,6 +13,9 @@
   },
   "aggs": {
     "request": {
+      "query": {
+        "search": "$.query.search"
+      },
       "aggregations": {
         "group": {
           "terms": {
