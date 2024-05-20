@@ -56,8 +56,7 @@ rosetta:
           request:
             policy: list
             names:
-              - to-generic-search
-              - generic-to-elastic
+             - generic-to-elastic
           response:
             policy: list
             names:
