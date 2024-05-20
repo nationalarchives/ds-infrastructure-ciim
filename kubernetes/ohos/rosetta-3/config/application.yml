@@ -51,12 +51,12 @@ rosetta:
       - name: ciim/get
         paths:
           - /rosetta-3/ciim/get
-        profile: elasticsearch
+        profile: generic-search
         transforms:
           request:
             policy: list
             names:
-             - generic-to-elastic
+              - ciim/get/request
           response:
             policy: list
             names:
@@ -81,6 +81,7 @@ rosetta:
           policy: list
           names:
             - elasticsearch
+            - elasticsearchEtna
         transforms:
           request:
             - glyphs:
