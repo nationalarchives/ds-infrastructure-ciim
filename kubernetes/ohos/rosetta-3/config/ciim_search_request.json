@@ -17,7 +17,7 @@
         "#type": "select",
         "value": "$.query",
         "policy": "exclude",
-        "keys": "filter"
+        "keys": "bool.filter"
       },
       "aggregations": {
         "group": {
