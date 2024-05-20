@@ -44,10 +44,7 @@
           ]
         }
       },
-      "place of deposit": {
-        "mediator": "$.source.organisation.name.value",
-        "repository": "$.source.repository.code.value"
-      },
+      "repository": "$.source.repository.code.value",
       "provenance":  "$.source.provenance.text.value"
     }
   }
