@@ -58,7 +58,6 @@ rosetta:
             names:
               - to-generic-search
               - generic-to-elastic
-              - ciim/get/request
           response:
             policy: list
             names:
