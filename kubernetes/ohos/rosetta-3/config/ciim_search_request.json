@@ -12,44 +12,25 @@
     }
   },
   "aggs": {
-    "#type": "merge",
-    "values": [
-      "$.request",
-      {
-        "query": {
-          "bool": {
-            "must": [
-              "$.request.query",
-              {
-                "range": {
-                  "@admin.sequence": {
-                    "gte": "$.original_request.sequence_from",
-                    "lte": "$.original_request.sequence_to"
-                  }
-                }
-              },
-              {
-                "range": {
-                  "@admin.sequence": {
-                    "gt": "$.original_request.last_sequence"
-                  }
-                }
-              }
-            ]
+    "request": {
+      "query": {
+        "bool": {
+          "must": [
+            "$request.query.search"
+          ]
+        }
+      },
+      "aggregations": {
+        "group": {
+          "terms": {
+            "field": "@datatype.group.value",
+            "size": "50"
           }
-        },
-        "aggregations": {
-          "group": {
-            "terms": {
-              "field": "@datatype.group.value",
-              "size": "50"
-            }
-          }
-        },
-        "from": 0,
-        "size": 0
-      }
-    ],
+        }
+      },
+      "size": 0,
+      "timeout": "60s"
+    },
     "cache": {
       "name": "slow-cache"
     }
