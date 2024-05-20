@@ -12,21 +12,44 @@
     }
   },
   "aggs": {
-    "request": {
-      "query": {
-        "search": "$.query.search"
-      },
-      "aggregations": {
-        "group": {
-          "terms": {
-            "field": "@datatype.group.value",
-            "size": "50"
+    "#type": "merge",
+    "values": [
+      "$.request",
+      {
+        "query": {
+          "bool": {
+            "must": [
+              "$.request.query",
+              {
+                "range": {
+                  "@admin.sequence": {
+                    "gte": "$.original_request.sequence_from",
+                    "lte": "$.original_request.sequence_to"
+                  }
+                }
+              },
+              {
+                "range": {
+                  "@admin.sequence": {
+                    "gt": "$.original_request.last_sequence"
+                  }
+                }
+              }
+            ]
           }
-        }
-      },
-      "size": 0,
-      "timeout": "60s"
-    },
+        },
+        "aggregations": {
+          "group": {
+            "terms": {
+              "field": "@datatype.group.value",
+              "size": "50"
+            }
+          }
+        },
+        "from": 0,
+        "size": 0
+      }
+    ],
     "cache": {
       "name": "slow-cache"
     }
