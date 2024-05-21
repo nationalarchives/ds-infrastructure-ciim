@@ -14,14 +14,12 @@
   "aggs": {
     "request": {
       "query": {
-        "query": {
           "bool": {
             "filter": [
               {}
             ],
             "must": "$.query.bool.must"
           }
-        }
       },
       "aggregations": {
         "group": {
