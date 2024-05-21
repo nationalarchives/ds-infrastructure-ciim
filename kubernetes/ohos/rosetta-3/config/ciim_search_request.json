@@ -18,7 +18,8 @@
         "value": "$.query",
         "policy": "exclude",
         "keys": [
-          "filter"
+          "filter",
+          "bool.filter"
         ]
       },
       "aggregations": {
