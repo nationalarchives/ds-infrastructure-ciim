@@ -14,15 +14,12 @@
   "aggs": {
     "request": {
       "query": {
-        "#type": "merge",
-        "depth": -1,
-        "values": [
-          "$.query",
-          {
-              "bool": {
-                "filter": {}
-              }
-          }
+        "#type": "select",
+        "value": "$.query",
+        "policy": "exclude",
+        "keys": [
+          "bool",
+          "filter"
         ]
       },
       "aggregations": {
