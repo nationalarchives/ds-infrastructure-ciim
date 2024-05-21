@@ -13,7 +13,13 @@
   },
   "aggs": {
     "request": {
-      "query": "$.query",
+      "query": {
+        "#type": "merge",
+        "depth": -1,
+        "values": [
+          "$.query"
+        ]
+      },
       "aggregations": {
         "group": {
           "terms": {
