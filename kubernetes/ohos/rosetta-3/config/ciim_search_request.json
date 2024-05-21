@@ -17,7 +17,14 @@
         "#type": "merge",
         "depth": -1,
         "values": [
-          "$.query"
+          "$.query",
+          {
+            "query": {
+              "bool":{
+                "filter": []
+              }
+            }
+          }
         ]
       },
       "aggregations": {
