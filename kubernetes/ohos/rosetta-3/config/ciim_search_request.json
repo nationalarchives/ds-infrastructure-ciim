@@ -13,7 +13,14 @@
   },
   "aggs": {
     "request": {
-      "query": "$.query",
+      "query":  {
+        "value": "$.query",
+        "policy": "exclude",
+        "depth": -1,
+        "keys": [
+          "filter"
+        ]
+      },
       "aggregations": {
         "group": {
           "terms": {
