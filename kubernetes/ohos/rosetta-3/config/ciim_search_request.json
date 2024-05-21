@@ -19,11 +19,13 @@
         "values": [
           "$.query",
           {
-            "bool": {
-              "filter": [
-                {}
-              ],
-              "must": "$.bool.must"
+            "query": {
+              "bool": {
+                "filter": [
+                  {}
+                ],
+                "must": "$.bool.must"
+              }
             }
           }
           ]
