@@ -223,7 +223,8 @@
             "values": {
               "#type": "flatten",
               "values": [
-                "$$.aggs"
+                "$$.aggs.datasets.elasticsearch.aggregations",
+                "$$.aggs.datasets.elasticsearchEtna.aggregations"
               ]
             }
           },
