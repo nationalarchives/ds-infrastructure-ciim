@@ -13,22 +13,15 @@
   },
   "aggs": {
     "request": {
-      "query":  {
-        "#type": "merge",
-        "depth": -1,
-        "values": [
-          "$.query",
-          {
-            "query": {
-              "bool": {
-                "filter": [
-                  {}
-                ],
-                "must": "$.query.bool.must"
-              }
-            }
+      "query": {
+        "query": {
+          "bool": {
+            "filter": [
+              {}
+            ],
+            "must": "$.query.bool.must"
           }
-          ]
+        }
       },
       "aggregations": {
         "group": {
