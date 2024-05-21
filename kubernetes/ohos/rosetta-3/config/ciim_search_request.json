@@ -19,7 +19,7 @@
         "policy": "exclude",
         "depth": -1,
         "keys": [
-          "filter"
+          "bool.filter"
         ]
       },
       "aggregations": {
