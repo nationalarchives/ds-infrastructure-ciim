@@ -24,7 +24,7 @@
                 "filter": [
                   {}
                 ],
-                "must": "$.bool.must"
+                "must": "$.query.bool.must"
               }
             }
           }
