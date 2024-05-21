@@ -22,7 +22,8 @@
             "bool": {
               "filter": [
                 {}
-              ]
+              ],
+              "must": "$.bool.must"
             }
           }
           ]
