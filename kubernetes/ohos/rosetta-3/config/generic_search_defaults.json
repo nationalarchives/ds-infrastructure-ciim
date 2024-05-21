@@ -13,7 +13,6 @@
               "#type": "require",
               "require": "$.request[?(!(@.ids))]",
               "value": [
-                "group"
               ]
             }
           ]
