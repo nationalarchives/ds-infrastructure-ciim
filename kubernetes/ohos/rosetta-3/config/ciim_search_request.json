@@ -19,10 +19,8 @@
         "values": [
           "$.query",
           {
-            "query": {
-              "bool":{
-                "filter": []
-              }
+            "bool": {
+              "filter": []
             }
           }
         ]
