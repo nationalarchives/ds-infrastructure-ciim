@@ -14,6 +14,7 @@
   "aggs": {
     "request": {
       "query":  {
+        "#type": "select",
         "value": "$.query",
         "policy": "exclude",
         "depth": -1,
