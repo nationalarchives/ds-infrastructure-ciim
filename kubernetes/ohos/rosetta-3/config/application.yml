@@ -123,6 +123,10 @@ rosetta:
               agg_name: "fromDate"
             - path: "creation.date.to"
               agg_name: "toDate"
+            - path: "origination.date.from"
+              agg_name: "coveringFromDate"
+            - path: "origination.date.to"
+              agg_name: "coveringToDate"
           path_config:
             paths:
               datatype: "@datatype.base"
