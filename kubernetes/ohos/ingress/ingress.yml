@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: rosetta-service
+                name: rosetta-3-service
                 port:
                   name: rosetta-port
           - path: /tna/api/
