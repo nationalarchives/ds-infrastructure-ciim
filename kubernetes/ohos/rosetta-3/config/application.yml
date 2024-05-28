@@ -140,25 +140,25 @@ rosetta:
             - name: group
               size: 50
 
-      - name: ciim/search/request
+      - name: data/search/request
         type: proteus
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_search_request.json
 
-      - name: ciim/search/response
+      - name: data/search/response
         type: proteus
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_search_response.json
 
-      - name: ciim/get/request
+      - name: data/get/request
         type: proteus
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_get_request.json
 
-      - name: ciim/get/response
+      - name: data/get/response
         type: proteus
         properties:
           mutable: true
