@@ -127,6 +127,8 @@ rosetta:
               agg_name: "coveringFromDate"
             - path: "origination.date.to"
               agg_name: "coveringToDate"
+            - path: "enrichment.date.from"
+              agg_name: "enrichmentDate"
           path_config:
             paths:
               datatype: "@datatype.base"
@@ -139,6 +141,10 @@ rosetta:
               community: "community.summary.title.keyword"
               collectionMorrab: "collectionMorrab.summary.title.keyword"
               collectionSurrey: "collectionSurrey.summary.title.keyword"
+              enrichmentLoc: "enrichment.loc.value.keyword"
+              enrichmentOrg: "enrichment.org.value.keyword"
+              enrichmentPer: "enrichment.per.value.keyword"
+              enrichmentMisc: "enrichment.misc.value.keyword"
           aggregation_configs:
             - name: group
               size: 50
@@ -146,6 +152,18 @@ rosetta:
               size: 50
             - name: collectionSurrey
               size: 50
+            - name: enrichmentLoc
+              size: 20
+            - name: enrichmentLoc
+              size: 20
+            - name: enrichmentOrg
+              size: 20
+            - name: enrichmentPer
+              size: 20
+            - name: enrichmentMisc
+              size: 20
+            - name: enrichmentDate
+              size: 20
 
       - name: ciim/search/request
         type: proteus
