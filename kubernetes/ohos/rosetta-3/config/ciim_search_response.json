@@ -191,36 +191,34 @@
           []
         ]
       },
-      "spec": {
-        "#type": "chain",
-        "chain": [
-          {
-            "#type": "group",
-            "values": "$.aggregations",
-            "by": "$.name",
-            "yield_group": {
-              "#type": "merge",
-              "values": "$"
-            }
-          },
-          {
-            "aggregations": {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "for_each",
-                  "values": {
-                    "#type": "entries",
-                    "map": "$"
-                  },
-                  "spec": "$.value"
-                },
-                []
-              ]
-            }
+      "#type": "chain",
+      "chain": [
+        {
+          "#type": "group",
+          "values": "$.aggregations",
+          "by": "$.name",
+          "yield_group": {
+            "#type": "merge",
+            "values": "$"
           }
-        ]
-      },
+        },
+        {
+          "aggregations": {
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
+                },
+                "spec": "$.value"
+              },
+              []
+            ]
+          }
+        }
+      ],
       "stats": {
         "total": "$.stats.total",
         "results": "$$.results.stats.results",
