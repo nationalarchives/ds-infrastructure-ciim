@@ -13,8 +13,7 @@
           "aggregations": {
             "#type": "merge",
             "values": [
-              "$.results.datasets.elasticsearch.aggregations",
-              "$.results.datasets.elasticsearchEtna.aggregations"
+              "$.results"
             ]
           }
         }
@@ -191,7 +190,7 @@
         "strategies": [
           {
             "#type": "as_list",
-            "values": "$.results"
+            "values": "$.aggregations"
           },
           []
         ]
