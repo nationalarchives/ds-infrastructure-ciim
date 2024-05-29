@@ -199,52 +199,23 @@
             "values": "$.aggregations",
             "by": "$.name",
             "yield_group": {
-              "name": "$[0].name",
-              "total": {
-                "#type": "chain",
-                "chain": [
-                  {
-                    "#type": "as_list",
-                    "values": "$[*].total"
-                  },
-                  "$.sum()",
-                  {
-                    "#type": "maths",
-                    "expression": "{$}",
-                    "output_type": "long"
-                  }
-                ]
-              },
-              "other": {
-                "#type": "chain",
-                "chain": [
-                  {
-                    "#type": "as_list",
-                    "values": "$[*].other"
-                  },
-                  "$.sum()",
-                  {
-                    "#type": "maths",
-                    "expression": "{$}",
-                    "output_type": "long"
-                  }
-                ]
-              }
+              "#type": "merge",
+              "values": "$"
             }
           },
           {
-            "#type": "fallback",
-            "strategies": [
-              {
-                "#type": "for_each",
-                "values": {
-                  "#type": "entries",
-                  "map": "$"
+              "#type": "fallback",
+              "strategies": [
+                {
+                  "#type": "for_each",
+                  "values": {
+                    "#type": "entries",
+                    "map": "$"
+                  },
+                  "spec": "$.value"
                 },
-                "spec": "$.value"
-              },
-              []
-            ]
+                []
+              ]
           }
         ]
       },
