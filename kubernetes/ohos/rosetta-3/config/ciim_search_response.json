@@ -195,7 +195,7 @@
         "#type": "chain",
         "chain": [
           {
-            "type": "group",
+            "#type": "group",
             "values": "$.aggregations",
             "by": "$.name",
             "yield_group": {
