@@ -191,14 +191,34 @@
           []
         ]
       },
-      "aggregations": {
-        "#type": "fallback",
-        "strategies": [
+      "spec": {
+        "#type": "chain",
+        "chain": [
           {
-            "#type": "as_list",
-            "values": "$.aggregations"
+            "type": "group",
+            "values": "$.aggregations",
+            "by": "$.name",
+            "yield_group": {
+              "#type": "merge",
+              "values": "$"
+            }
           },
-          []
+          {
+            "aggregations": {
+              "#type": "fallback",
+              "strategies": [
+                {
+                  "#type": "for_each",
+                  "values": {
+                    "#type": "entries",
+                    "map": "$"
+                  },
+                  "spec": "$.value"
+                },
+                []
+              ]
+            }
+          }
         ]
       },
       "stats": {
