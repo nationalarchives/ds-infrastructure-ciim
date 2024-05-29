@@ -129,7 +129,6 @@ rosetta:
               agg_name: "coveringToDate"
             - path: "enrichment.date.from"
               agg_name: "enrichmentDate"
-              additional_path: "enrichment.date.to"
               format: "yyyy"
               date_ranges:
                 - from: "1100"
