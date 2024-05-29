@@ -191,7 +191,7 @@
           []
         ]
       },
-      "spec": {
+      "aggregations": {
         "#type": "chain",
         "chain": [
           {
@@ -204,20 +204,18 @@
             }
           },
           {
-            "aggregations": {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "for_each",
-                  "values": {
-                    "#type": "entries",
-                    "map": "$"
-                  },
-                  "spec": "$.value"
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
                 },
-                []
-              ]
-            }
+                "spec": "$.value"
+              },
+              []
+            ]
           }
         ]
       },
