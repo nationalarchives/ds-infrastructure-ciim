@@ -136,8 +136,15 @@ rosetta:
               date: "creation.date.from"
               title: "summary.title.keyword"
               group: "@datatype.group.value"
+              community: "community.summary.title.keyword"
+              collectionMorrab: "collectionMorrab.summary.title.keyword"
+              collectionSurrey: "collectionSurrey.summary.title.keyword"
           aggregation_configs:
             - name: group
+              size: 50
+            - name: collectionMorrab
+              size: 50
+            - name: collectionSurrey
               size: 50
 
       - name: ciim/search/request
