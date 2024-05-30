@@ -57,6 +57,7 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - ciim/search/request
           response:
             policy: list
             names:
