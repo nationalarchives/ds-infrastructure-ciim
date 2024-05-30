@@ -60,7 +60,7 @@ rosetta:
           response:
             policy: list
             names:
-              - to-simple-data-response
+              - ciim/search/response
 
       - name: ciim/get
         paths:
