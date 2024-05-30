@@ -75,7 +75,7 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - singularize-creation
+                  - generic-to-elastic
       - name: generic-search
         providers:
           policy: list
