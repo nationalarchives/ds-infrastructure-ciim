@@ -1,18 +1,35 @@
 {
   "#type": "merge",
-  "depth": -1,
   "values": [
     "$.request",
     {
-        "aggregations": {
-          "creationDateDecade": {
-            "date_histogram": {
-              "field": "creation.date.from",
-              "fixed_interval": " 315360000000ms",
-              "format": "y G || y"
+      "query": {
+        "bool": {
+          "must": [
+            "$.request.query",
+            {
+              "range": {
+                "@admin.sequence": {
+                  "gte": "1",
+                  "lte": "2"
+                }
+              }
+            },
+            {
+              "range": {
+                "@admin.sequence": {
+                  "gt": "3"
+                }
+              }
             }
-          }
+          ]
         }
+      },
+      "from": 0,
+      "size": 10,
+      "sort": {
+        "@admin.sequence": "asc"
+      }
     }
   ]
 }
