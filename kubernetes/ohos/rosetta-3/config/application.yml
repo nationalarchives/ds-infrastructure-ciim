@@ -76,6 +76,7 @@ rosetta:
                 policy: list
                 names:
                   - generic-to-elastic
+                  - inject-date-hist
       - name: generic-search
         providers:
           policy: list
@@ -99,6 +100,12 @@ rosetta:
         properties:
           types:
             - query
+
+      - name: inject-date-hist
+        type: proteus
+        input: full
+        properties:
+          spec: ${base_paths.proteus}/inject_date_hist.json
 
       - name: generic-search-defaults
         type: proteus-simple
