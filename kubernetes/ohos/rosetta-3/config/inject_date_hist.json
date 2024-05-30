@@ -3,8 +3,15 @@
   "values": [
     "$.request",
     {
-      "from": 0,
-      "size": 1
+      "aggs":{
+        "creationDateDecade": {
+          "date_histogram": {
+            "field": "creation.date.from",
+            "fixed_interval": " 315360000000ms",
+            "format": "y G || y"
+          }
+        }
+      }
     }
   ]
 }

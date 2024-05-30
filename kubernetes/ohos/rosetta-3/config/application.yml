@@ -19,7 +19,6 @@ rosetta:
           maximum_size: 100
           use_scheduler: true
 
-        - name: eds-auth-cache
   cache:
     enabled: true
     manager:
