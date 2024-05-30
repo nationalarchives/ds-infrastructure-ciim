@@ -3,8 +3,7 @@
   "values": [
     "$.request",
     {
-      "request": {
-        "aggregations": {
+        "aggs": {
           "creationDateDecade": {
             "date_histogram": {
               "field": "creation.date.from",
@@ -13,7 +12,6 @@
             }
           }
         }
-      }
     }
   ]
 }
