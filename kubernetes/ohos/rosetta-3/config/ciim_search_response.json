@@ -153,6 +153,7 @@
                         "$.source.@datatype.group[0].value"
                         ]
                     },
+                    "groupArray":  "$.source.@datatype.group",
                     "lon": "$.source.coordinates[0].lon",
                     "lat": "$.source.coordinates[0].lat",
                     "licence": "$.source.licence.value",
