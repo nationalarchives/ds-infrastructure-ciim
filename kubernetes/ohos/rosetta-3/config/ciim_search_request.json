@@ -2,22 +2,7 @@
   "results": {
     "request": {
       "query": "$.query",
-      "aggregations": {
-        "#type": "merge",
-        "values": [
-          "$.aggregations",
-          {
-            "creationDateDecade": {
-              "date_histogram": {
-                "field": "creation.date.from",
-                "fixed_interval": " 315360000000ms",
-                "format": "y G || y"
-              }
-            }
-          }
-
-        ]
-      },
+      "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
