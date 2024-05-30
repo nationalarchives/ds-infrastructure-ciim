@@ -111,6 +111,9 @@ rosetta:
       # Elastic search glyphs
       - name: to-generic-search
         type: to-generic-search
+        properties:
+          types:
+            - query
 
       - name: inject-date-hist
         type: proteus
