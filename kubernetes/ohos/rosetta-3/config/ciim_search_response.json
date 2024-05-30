@@ -15,7 +15,11 @@
             "values": [ {
               "#type": "as_list",
               "values": "$.results.datasets.elasticsearch.aggregations"
-            }
+            },
+              {
+                "#type": "as_list",
+                "values": "$.results.datasets.elasticsearchEtna.aggregations[?(@.name nin ['enrichmentDate', 'dateCentury'])]"
+              }
             ]
           }
         }
