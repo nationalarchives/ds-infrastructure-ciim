@@ -52,6 +52,7 @@ rosetta:
         paths:
           - /rosetta/data/searchTest
         profile: generic-search
+        type: advanced-cache-multi
         transforms:
           request:
             policy: list
