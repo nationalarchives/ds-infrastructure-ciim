@@ -30,7 +30,7 @@ rosetta:
       - name: ciim/search
         paths:
           - /rosetta/data/search
-        profile: elasticsearch
+        profile: generic-search
         type: advanced-cache-multi
         transforms:
           request:
@@ -89,6 +89,7 @@ rosetta:
                 policy: list
                 names:
                   - generic-to-elastic
+                  - inject-date-hist
           data: *global-data-transforms
 
   transform:
