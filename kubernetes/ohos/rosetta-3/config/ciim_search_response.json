@@ -146,7 +146,13 @@
                     "rights": "$.source.legal.holder",
                     "location": "$.source.place[0].name[0].value",
                     "ciimId": "$.source.@admin.id",
-                    "group": "$.source.@datatype.group[0].value",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                        ]
+                    },
                     "lon": "$.source.coordinates[0].lon",
                     "lat": "$.source.coordinates[0].lat",
                     "licence": "$.source.licence.value",
