@@ -71,12 +71,13 @@ rosetta:
             - elasticsearch
             - elasticsearchEtna
         transforms:
-          data: &global-data-transforms
+          request:
             - glyphs:
                 policy: list
                 names:
                   - generic-to-elastic
                   - inject-date-hist
+          data: &global-data-transforms
       - name: generic-search
         providers:
           policy: list
