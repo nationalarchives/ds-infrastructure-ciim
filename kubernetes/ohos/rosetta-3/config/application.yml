@@ -48,6 +48,21 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
+      - name: ciim/searchTest
+        paths:
+          - /rosetta/data/searchTest
+        profile: generic-search
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+          response:
+            policy: list
+            names:
+              - to-simple-data-response
+
       - name: ciim/get
         paths:
           - /rosetta/data/get
