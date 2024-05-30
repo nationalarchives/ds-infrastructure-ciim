@@ -1,9 +1,10 @@
 {
   "#type": "merge",
+  "depth": -1,
   "values": [
     "$.request",
     {
-        "aggs": {
+        "aggregations": {
           "creationDateDecade": {
             "date_histogram": {
               "field": "creation.date.from",
