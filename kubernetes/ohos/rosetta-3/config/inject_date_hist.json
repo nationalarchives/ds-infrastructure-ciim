@@ -3,33 +3,8 @@
   "values": [
     "$.request",
     {
-      "query": {
-        "bool": {
-          "must": [
-            "$.request.query",
-            {
-              "range": {
-                "@admin.sequence": {
-                  "gte": "1",
-                  "lte": "2"
-                }
-              }
-            },
-            {
-              "range": {
-                "@admin.sequence": {
-                  "gt": "3"
-                }
-              }
-            }
-          ]
-        }
-      },
       "from": 0,
-      "size": 1,
-      "sort": {
-        "@admin.sequence": "asc"
-      }
+      "size": 1
     }
   ]
 }
