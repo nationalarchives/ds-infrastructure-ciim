@@ -103,7 +103,6 @@ rosetta:
                 policy: list
                 names:
                   - generic-to-elastic
-                  - inject-date-hist
           data: *global-data-transforms
 
   transform:
@@ -112,9 +111,6 @@ rosetta:
       # Elastic search glyphs
       - name: to-generic-search
         type: to-generic-search
-        properties:
-          types:
-            - query
 
       - name: inject-date-hist
         type: proteus
