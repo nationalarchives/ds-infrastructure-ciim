@@ -1,15 +1,6 @@
 {
   "#type": "merge",
   "values": [
-    "$.request.aggregations",
-    {
-      "creationDate": {
-        "date_histogram": {
-          "field": "creation.date.from",
-          "fixed_interval": " 315360000000ms",
-          "format": "y G || y"
-        }
-      }
-    }
+    "$.request"
   ]
 }
