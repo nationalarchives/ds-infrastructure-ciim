@@ -105,7 +105,6 @@ rosetta:
                 policy: list
                 names:
                   - generic-to-elastic
-                  - inject-date-hist
           data: *global-data-transforms
 
   transform:
