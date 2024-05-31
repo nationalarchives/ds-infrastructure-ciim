@@ -145,7 +145,7 @@ rosetta:
               agg_name: "creationDecade"
               format: "y G || y"
               fixed_interval: "315569520000ms"
-              offset: "77760000ms"
+              offset: "0d"
             - path: "creation.date.from"
               agg_name: "creationYear"
               format: "y G || y"
