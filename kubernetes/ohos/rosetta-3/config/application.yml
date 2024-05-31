@@ -140,6 +140,11 @@ rosetta:
         properties:
           index: public-es
           request_timeout: 60000
+          date_histograms:
+            - path: "creation.date.from"
+              agg_name: "creationDateDecade"
+              format: "y G || y"
+              fixed_interval: "10y"
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
