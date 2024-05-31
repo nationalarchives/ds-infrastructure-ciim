@@ -142,9 +142,13 @@ rosetta:
           request_timeout: 60000
           date_histograms:
             - path: "creation.date.from"
-              agg_name: "creationDateDecade"
+              agg_name: "creationDecade"
               format: "y G || y"
               fixed_interval: "315360000000ms"
+            - path: "creation.date.from"
+              agg_name: "creationYear"
+              format: "y G || y"
+              fixed_interval: "31536000000ms"
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
