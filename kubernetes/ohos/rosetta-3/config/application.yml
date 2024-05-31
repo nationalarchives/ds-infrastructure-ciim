@@ -149,7 +149,7 @@ rosetta:
               agg_name: "creationYear"
               format: "y G || y"
               fixed_interval: "31536000000ms"
-              offset: "31536000000ms"
+              offset: "-31536000000ms"
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
