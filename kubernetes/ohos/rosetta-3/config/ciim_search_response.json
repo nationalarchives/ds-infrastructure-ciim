@@ -18,7 +18,7 @@
             },
               {
                 "#type": "as_list",
-                "values": "$.results.datasets.elasticsearchEtna.aggregations[?(@.name nin ['enrichmentDate', 'dateCentury'])]"
+                "values": "$.results.datasets.elasticsearchEtna.aggregations[?(@.name nin ['enrichmentDate', 'creationCentury'])]"
               }
             ]
           }
