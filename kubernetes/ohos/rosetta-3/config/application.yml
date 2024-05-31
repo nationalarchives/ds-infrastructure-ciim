@@ -152,6 +152,8 @@ rosetta:
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
+            - path: "creation.date.from"
+              agg_name: "creationDate"
             - path: "creation.date.to"
               agg_name: "toDate"
             - path: "origination.date.from"
