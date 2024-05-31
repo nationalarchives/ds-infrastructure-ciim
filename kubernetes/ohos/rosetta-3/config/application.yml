@@ -182,7 +182,7 @@ rosetta:
                 - from: "2001"
                   to: "2050"
             - path: "creation.date.from"
-              agg_name: "dateCentury"
+              agg_name: "creationCentury"
               format: "y G || y"
               date_ranges:
                 - from: "9000 BC"
