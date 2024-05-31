@@ -144,7 +144,7 @@ rosetta:
             - path: "creation.date.from"
               agg_name: "creationDecade"
               format: "y G || y"
-              fixed_interval: "315532560000ms"
+              fixed_interval: "5200w"
             - path: "creation.date.from"
               agg_name: "creationYear"
               format: "y G || y"
