@@ -30,7 +30,7 @@ spec:
         - name: regcred
       containers:
         - name: rosetta
-          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:elnet-3-9
+          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:tna-3
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
