@@ -153,6 +153,7 @@ rosetta:
             - path: "creation.date.from"
               agg_name: "fromDate"
             - path: "creation.date.from"
+              format: "y G || y"
               agg_name: "creationDate"
             - path: "creation.date.to"
               agg_name: "toDate"
