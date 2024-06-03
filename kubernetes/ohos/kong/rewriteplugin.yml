@@ -33,7 +33,7 @@ config:
               local concatenatedValues = ""
               local i = 1
               while query_params["aggs"][i] do
-                concatenatedValues = concatenatedValues .. query_params["aggs"][i] .. ";"
+                concatenatedValues = concatenatedValues .. query_params["aggs"][i] .. ","
                 i = i + 1
               end
               return concatenatedValues
