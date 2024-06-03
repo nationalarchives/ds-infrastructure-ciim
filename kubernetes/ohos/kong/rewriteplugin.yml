@@ -7,7 +7,9 @@ plugin: request-transformer
 config:
   remove:
     querystring:
-      ["filter"]
+      - "filter"
+      - "aggs"
+
   add:
     querystring:
       - filter:$((function()
@@ -22,6 +24,21 @@ config:
               return concatenatedValues
             else
               return query_params["filter"]
+            end
+          end
+        end)())
+      - aggs:$((function()
+          if query_params["aggs"] then
+            if type(query_params["aggs"]) == "table" then
+              local concatenatedValues = ""
+              local i = 1
+              while query_params["aggs"][i] do
+                concatenatedValues = concatenatedValues .. query_params["aggs"][i] .. ";"
+                i = i + 1
+              end
+              return concatenatedValues
+            else
+              return query_params["aggs"]
             end
           end
         end)())
