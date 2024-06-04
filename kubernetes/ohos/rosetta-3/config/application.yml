@@ -162,26 +162,6 @@ rosetta:
               agg_name: "coveringFromDate"
             - path: "origination.date.to"
               agg_name: "coveringToDate"
-            - path: "enrichment.date.from"
-              agg_name: "enrichmentDate"
-              format: "yyyy"
-              date_ranges:
-                - from: "0100"
-                  to: "1500"
-                - from: "1501"
-                  to: "1600"
-                - from: "1601"
-                  to: "1700"
-                - from: "1701"
-                  to: "1800"
-                - from: "1801"
-                  to: "1850"
-                - from: "1851"
-                  to: "1900"
-                - from: "1951"
-                  to: "2000"
-                - from: "2001"
-                  to: "2050"
             - path: "creation.date.from"
               agg_name: "creationCentury"
               format: "y G || y"
@@ -246,6 +226,9 @@ rosetta:
               enrichmentOrg: "enrichment.org.value.keyword"
               enrichmentPer: "enrichment.per.value.keyword"
               enrichmentMisc: "enrichment.misc.value.keyword"
+              century: "__century.keyword"
+              decade: "__decade.keyword"
+              year: "__year.keyword"
           aggregation_configs:
             - name: group
               size: 50
@@ -263,8 +246,12 @@ rosetta:
               size: 20
             - name: enrichmentMisc
               size: 20
-            - name: enrichmentDate
-              size: 20
+            - name: century
+              size: 200
+            - name: decade
+              size: 200
+            - name: year
+              size: 200
 
       - name: ciim/search/request
         type: proteus
