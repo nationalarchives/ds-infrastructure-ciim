@@ -215,7 +215,7 @@ rosetta:
               datatype: "@datatype.base"
               property: "property.name.value.keyword"
               place: "place.name.value.keyword"
-              collection: "parent.summary.title.keyword"
+              collection: "hierarchy.summary.title.keyword"
               date: "creation.date.from"
               title: "summary.title.keyword"
               group: "@datatype.group.value"
