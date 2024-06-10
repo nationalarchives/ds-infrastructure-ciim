@@ -7,13 +7,17 @@
         "values": [
           "$.aggregations",
           {
-            "decade": {
-              "terms": {
-                "field": "$.aggregations.decade.terms.field",
-                "include":"19.*"
+            "type": "require",
+            "require": "$.aggregations.decade.terms.field",
+            "value": {
+              "decade": {
+                "terms": {
+                  "field": "$.aggregations.decade.terms.field",
+                  "size": "$.aggregations.decade.terms.size",
+                  "include": "19.*"
+                }
               }
             }
-
           }
         ]
       },
