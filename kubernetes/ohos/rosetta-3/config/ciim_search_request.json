@@ -15,11 +15,16 @@
                   "field": "$.aggregations.decade.terms.field",
                   "size": "$.aggregations.decade.terms.size",
                   "include": {
-                    "#type": "string_split",
-                    "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__century.keyword'])].term['__century.keyword'].value",
-                    "delimiter": "",
-                    "values": [
-                      "$[0]$[1].*"
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "#type": "string_split",
+                        "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__century.keyword'])].term['__century.keyword'].value",
+                        "delimiter": ""
+                      },
+                      {
+                      "values": "$[02].*"
+                      }
                     ]
                   }
                 }
