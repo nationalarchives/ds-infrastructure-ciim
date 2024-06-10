@@ -22,7 +22,7 @@
                         "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__century.keyword'])].term['__century.keyword'].value",
                         "delimiter": ""
                       },
-                      "$[0:2].*"
+                      "$[0].*"
                     ]
                   }
                 }
