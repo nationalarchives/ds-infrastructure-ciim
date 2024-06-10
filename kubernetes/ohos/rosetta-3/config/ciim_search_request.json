@@ -2,7 +2,20 @@
   "results": {
     "request": {
       "query": "$.query",
-      "aggregations": "$.aggregations",
+      "aggregations": {
+        "#type": "merge",
+        "values": [
+          "$.aggregations",
+          {
+            "decade": {
+              "terms": {
+                "include":"19.*"
+              }
+            }
+
+          }
+        ]
+      },
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
