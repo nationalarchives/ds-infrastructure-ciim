@@ -7,7 +7,6 @@
         "values": [
           "$.aggregations",
           {
-
             "#type": "require",
             "require": "$.aggregations.decade.terms.field",
             "value": {
@@ -15,6 +14,17 @@
                 "terms": {
                   "field": "$.aggregations.decade.terms.field",
                   "size": "$.aggregations.decade.terms.size",
+                  "include": "19.*"
+                }
+              }
+            },
+            "#type": "require",
+            "require": "$.aggregations.year.terms.field",
+            "value": {
+              "decade": {
+                "terms": {
+                  "field": "$.aggregations.year.terms.field",
+                  "size": "$.aggregations.year.terms.size",
                   "include": "19.*"
                 }
               }
