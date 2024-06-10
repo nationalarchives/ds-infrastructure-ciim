@@ -21,7 +21,7 @@
             "#type": "require",
             "require": "$.aggregations.year.terms.field",
             "value": {
-              "decade": {
+              "year": {
                 "terms": {
                   "field": "$.aggregations.year.terms.field",
                   "size": "$.aggregations.year.terms.size",
