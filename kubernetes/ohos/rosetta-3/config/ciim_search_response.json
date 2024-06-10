@@ -18,7 +18,7 @@
             },
               {
                 "#type": "as_list",
-                "values": "$.results.datasets.elasticsearchEtna.aggregations[?(@.name nin ['enrichmentDate', 'creationCentury', 'century', 'decade', 'year'])]"
+                "values": "$.results.datasets.elasticsearchEtna.aggregations[?(@.name nin ['enrichmentDate', 'creationCentury', 'century', 'decade', 'year', 'collectionMorrab', 'collectionSurrey'])]"
               }
             ]
           }
