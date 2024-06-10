@@ -17,7 +17,9 @@
                   "include": "19.*"
                 }
               }
-            },
+            }
+          },
+          {
             "#type": "require",
             "require": "$.aggregations.year.terms.field",
             "value": {
