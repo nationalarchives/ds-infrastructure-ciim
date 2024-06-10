@@ -14,7 +14,7 @@
                 "terms": {
                   "field": "$.aggregations.decade.terms.field",
                   "size": "$.aggregations.decade.terms.size",
-                  "include": "$.query.bool.filter.bool.should.term.__century.keyword.value"
+                  "include": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__century.keyword'])].term['__century.keyword'].value"
                 }
               }
             }
