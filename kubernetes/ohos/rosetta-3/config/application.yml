@@ -232,11 +232,11 @@ rosetta:
               year: "__year.keyword"
           aggregation_configs:
             - name: group
-              size: 50
+              size: 10
             - name: collectionMorrab
-              size: 50
+              size: 10
             - name: collectionSurrey
-              size: 50
+              size: 10
             - name: enrichmentLoc
               size: 20
             - name: enrichmentLoc
