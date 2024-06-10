@@ -14,7 +14,7 @@
                 "terms": {
                   "field": "$.aggregations.decade.terms.field",
                   "size": "$.aggregations.decade.terms.size",
-                  "include": "19.*"
+                  "include": "$.query.bool.filter.bool.should.term.__century.keyword.value"
                 }
               }
             }
