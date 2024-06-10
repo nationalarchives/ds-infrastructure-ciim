@@ -9,7 +9,7 @@
           {
             "decade": {
               "terms": {
-                "field": "$.decade.terms.field",
+                "field": "$.aggregations.decade.terms.field",
                 "include":"19.*"
               }
             }
