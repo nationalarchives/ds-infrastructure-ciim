@@ -37,7 +37,17 @@
                 "terms": {
                   "field": "$.aggregations.year.terms.field",
                   "size": "$.aggregations.year.terms.size",
-                  "include": "19.*"
+                  "include": {
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "#type": "string_split",
+                        "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__decade.keyword'])].term['__decade.keyword'].value",
+                        "delimiter": ""
+                      },
+                      "{$[0]}{$[1]}{.*}"
+                    ]
+                  }
                 }
               }
             }
