@@ -1,0 +1,11 @@
+{
+    "type": "job",
+    "id": {
+      "#type": "require_throw",
+      "value": "$.query.id",
+      "message": "Required parameter 'id' not specified",
+      "args": {
+        "type": "bad_request"
+      }
+    }
+  }

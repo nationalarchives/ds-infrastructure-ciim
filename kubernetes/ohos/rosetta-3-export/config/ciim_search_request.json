@@ -1,0 +1,90 @@
+{
+  "results": {
+    "request": {
+      "query": "$.query",
+      "aggregations": {
+        "#type": "merge",
+        "values": [
+          "$.aggregations",
+          {
+            "#type": "require",
+            "require": "$.aggregations.decade.terms.field",
+            "value": {
+              "decade": {
+                "terms": {
+                  "field": "$.aggregations.decade.terms.field",
+                  "size": "$.aggregations.decade.terms.size",
+                  "include": {
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "#type": "string_split",
+                        "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__century.keyword'])].term['__century.keyword'].value",
+                        "delimiter": ""
+                      },
+                      "{$[0]}{$[1]}{.*}"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "#type": "require",
+            "require": "$.aggregations.year.terms.field",
+            "value": {
+              "year": {
+                "terms": {
+                  "field": "$.aggregations.year.terms.field",
+                  "size": "$.aggregations.year.terms.size",
+                  "include": {
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "#type": "string_split",
+                        "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__decade.keyword'])].term['__decade.keyword'].value",
+                        "delimiter": ""
+                      },
+                      "{$[0]}{$[1]}{.*}"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "from": "$.from",
+      "size": "$.size",
+      "sort": "$.sort"
+    },
+    "cache": {
+      "name": "fast-cache"
+    }
+  },
+  "aggs": {
+    "request": {
+      "query": {
+          "bool": {
+            "filter": [
+              {}
+            ],
+            "must": "$.query.bool.must"
+          }
+      },
+      "aggregations": {
+        "group": {
+          "terms": {
+            "field": "@datatype.group.value",
+            "size": "50"
+          }
+        }
+      },
+      "size": 0,
+      "timeout": "60s"
+    },
+    "cache": {
+      "name": "slow-cache"
+    }
+  }
+}

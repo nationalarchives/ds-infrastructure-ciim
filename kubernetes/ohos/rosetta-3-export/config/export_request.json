@@ -1,0 +1,90 @@
+{
+    "type": "csv",
+    "processes": [
+      {
+        "#type": "chain",
+        "chain": [
+          {
+            "starting_request": {
+              "profile": "%.profile",
+              "request": {
+                "#type": "select",
+                "value": "$.current",
+                "policy": "exclude",
+                "keys": [
+                  "aggs",
+                  "aggregations"
+                ]
+              }
+            },
+            "to": {
+              "#type": "require_catch",
+              "value": {
+                "#type": "require",
+                "require": "[R]$$.original.query[?(!(@.export_size))]",
+                "value": 10000
+              },
+              "or_else": {
+                "#type": "chain",
+                "chain": [
+                  {
+                    "#type": "maths",
+                    "expression": "$$.original.query.export_size",
+                    "output_type": "integer"
+                  },
+                  {
+                    "export_size": "$"
+                  },
+                  {
+                    "#type": "require",
+                    "require": {
+                      "#type": "require_throw",
+                      "value": "$[?(@.export_size <= 10000)]",
+                      "message": "Export size must be less than or equal to 10000",
+                      "args": {
+                        "type": "bad_request"
+                      }
+                    },
+                    "value": "$.export_size"
+                  }
+                ]
+              }
+            },
+            "exit_conditions": [
+              "to",
+              "not_found",
+              "size_no_errors",
+              "total"
+            ]
+          },
+          {
+            "#type": "merge",
+            "depth": -1,
+            "values": [
+              "$",
+              {
+                "starting_request": {
+                  "request": {
+                    "size": {
+                      "#type": "chain",
+                      "chain": [
+                        [
+                          50,
+                          "$.to"
+                        ],
+                        "$.min()"
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "file_path": "/rosetta/export/",
+      "export_type": "local"
+    }
+  }

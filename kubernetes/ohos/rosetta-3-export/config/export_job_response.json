@@ -1,0 +1,9 @@
+{
+    "#type": "select",
+    "value": "$",
+    "policy": "exclude",
+    "keys": [
+      "sequence",
+      "request"
+    ]
+  }

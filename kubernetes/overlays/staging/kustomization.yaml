@@ -18,6 +18,7 @@ bases:
   - ../../ohos/ciim-ui
   - ../../ohos/public-clean-es
   - ../../ohos/rosetta-3
+  - ../../ohos/rosetta-3-export
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

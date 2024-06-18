@@ -1,0 +1,21 @@
+namespace: tna-ohos
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosetta-3-export-config
+    files:
+      - ./config/aggs_count_to_doc_count.json
+      - ./config/application.yml
+      - ./config/ciim_get_request.json
+      - ./config/ciim_get_response.json
+      - ./config/ciim_search_request.json
+      - ./config/ciim_search_response.json
+      - ./config/generic_search_defaults.json
+      - ./config/generic_search_modifications.json
+      - ./config/singularize_creation.json
+      - ./config/inject_date_hist.json
+      - ./config/export_job_request.json
+      - ./config/export_job_response.json
+      - ./config/export_request.json
+      - ./config/main_template.json
+      - ./config/unpacked_request.json
