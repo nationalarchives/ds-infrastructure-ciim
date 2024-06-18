@@ -87,7 +87,7 @@ rosetta:
 
       - name: export
         paths:
-          - /rosetta/export
+          - /rosetta-3/export
         type: export/request
         transforms:
           request:
@@ -100,7 +100,7 @@ rosetta:
 
       - name: export/job
         paths:
-          - /rosetta/export/job
+          - /rosetta-3/export/job
         type: export/get
         transforms:
           request:
