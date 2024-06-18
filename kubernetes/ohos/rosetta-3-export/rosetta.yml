@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: rosetta-3-ohos
+      app: rosetta-3-export-ohos
   revisionHistoryLimit: 1
   replicas: 1
   progressDeadlineSeconds: 600
