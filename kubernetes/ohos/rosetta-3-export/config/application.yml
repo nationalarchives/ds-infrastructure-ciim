@@ -34,7 +34,7 @@ rosetta:
     views:
       - name: ciim/search
         paths:
-          - /rosetta/data/search
+          - /rosetta-3/export/search
         profile: elasticsearch
         type: advanced-cache-multi
         transforms:
@@ -55,7 +55,7 @@ rosetta:
 
       - name: ciim/searchTest
         paths:
-          - /rosetta/data/searchTest
+          - /rosetta-3/export/searchTest
         profile: generic-search
         type: advanced-cache-multi
         transforms:
@@ -71,7 +71,7 @@ rosetta:
 
       - name: ciim/get
         paths:
-          - /rosetta/data/get
+          - /rosetta-3/export/get
         profile: generic-search
         transforms:
           request:
