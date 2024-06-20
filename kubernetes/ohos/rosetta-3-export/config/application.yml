@@ -406,7 +406,7 @@ rosetta:
           port: 9200
           index: ciim
           username: elastic
-          password: P04G47lojwvwk72kc5t84JW7
+          password: P04G47lojwvwk72kc5t84JW
           client_timeout: 60000
 
   monitoring:
