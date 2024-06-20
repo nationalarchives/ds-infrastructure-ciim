@@ -22,7 +22,7 @@
               "value": {
                 "#type": "require",
                 "require": "[R]$$.original.query[?(!(@.export_size))]",
-                "value": 10000
+                "value": 100000
               },
               "or_else": {
                 "#type": "chain",
@@ -39,8 +39,8 @@
                     "#type": "require",
                     "require": {
                       "#type": "require_throw",
-                      "value": "$[?(@.export_size <= 10000)]",
-                      "message": "Export size must be less than or equal to 10000",
+                      "value": "$[?(@.export_size <= 100000)]",
+                      "message": "Export size must be less than or equal to 100000",
                       "args": {
                         "type": "bad_request"
                       }
