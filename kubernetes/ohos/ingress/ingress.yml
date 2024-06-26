@@ -52,3 +52,10 @@ spec:
                 name: rosetta-3-graphql-service
                 port:
                   name: rosetta-port
+          - path: /rosetta-3/graphiql
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-graphql-service
+                port:
+                  name: rosetta-port
