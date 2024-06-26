@@ -1,0 +1,22 @@
+type Query {
+    metadataById(id: ID!) : [Metadata]
+    metadata(query: String, ids: [String], aggs: [String], from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
+}
+
+type TypedValue {
+    primary: Boolean
+    value: String
+    type: String
+}
+
+type Metadata{
+    id: String
+    title: String
+    identifier: [TypedValue]
+    name: [TypedValue]
+    datatype: String
+    description: [String]
+    maker: [String]
+    parent: [Metadata]
+    children: [Metadata]
+}

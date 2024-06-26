@@ -1,0 +1,11 @@
+namespace: tna-ohos
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosetta-3-graphql-config
+    files:
+      - ./config/application.yml
+      - ./config/add-source.json
+      - ./config/data-modification.json
+      - ./config/unpack-request.json
+      - ./config/schema.graphqls

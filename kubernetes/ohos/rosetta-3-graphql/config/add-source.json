@@ -1,0 +1,29 @@
+{
+    "#type": "chain",
+    "chain": [
+        {
+            "#type": "merge",
+            "values": [
+                "$.request",
+                {
+                    "_source": {
+                        "includes": {
+                            "#type": "merge",
+                            "values": [
+                                {
+                                    "#type": "as_list",
+                                    "values": {
+                                        "#type": "for_each",
+                                        "values": "$$.original_request.fields",
+                                        "spec": "[C]%.fields['{$}']"
+                                    }
+                                },
+                                "@datatype.base"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

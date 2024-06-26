@@ -1,0 +1,36 @@
+{
+   "id": "$.@admin.id",
+   "title": "$.summary.title",
+   "name": {
+      "#type": "for_each",
+      "values": "$.name",
+      "spec": {
+         "type": "$.type",
+         "value": "$.value"
+      }
+   },
+   "identifier": {
+      "#type": "for_each",
+      "values": "$.identifier",
+      "spec": {
+         "type": "$.type",
+         "value": "$.value"
+      }
+   },
+   "description": {
+      "#type": "for_each",
+      "values": "$.description",
+      "spec": "$.value"
+   },
+   "datatype": "$.@datatype.base",
+   "parent": {
+      "#type": "for_each",
+      "values": "$.parent",
+      "spec": "$.@admin.id"
+   },
+   "maker": {
+      "#type": "for_each",
+      "values": "$.creation.maker",
+      "spec": "$.name.[0].value"
+   }
+}

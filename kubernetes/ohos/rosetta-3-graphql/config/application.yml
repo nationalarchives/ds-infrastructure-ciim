@@ -1,0 +1,124 @@
+base_paths:
+  proteus: ./config
+
+spring:
+  graphql:
+    path: /rosetta-3/graphql
+    graphiql:
+      enabled: true
+      path: /rosetta-3/graphiql
+    schema:
+      locations: file:${base_paths.proteus}/
+
+rosetta:
+  graphql:
+    max_depth: 15
+    max_complexity: 64
+  view:
+    views:
+      - name: search
+        paths:
+          - /search
+        profile: default
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+          response:
+            policy: list
+            names:
+              - to-simple-data-response
+
+  profile:
+    profiles:
+      - name: default
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - elastic-generic-search
+
+      - name: graphql
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - unpack-request
+                  - elastic-generic-search
+                  - add-source
+          data:
+            - glyphs:
+                policy: list
+                names:
+                  - data-modification
+
+  provider:
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        properties:
+          host: ciim-public-tna-es-http.tna-ohos
+          port: 9200
+          index: ciim
+          username: elastic
+          password: g19415GWedJc1Zbv4w87pw5K
+          client_timeout: 60000
+          skip_ping: true
+
+  transform:
+    glyphs:
+      - name: to-generic-search
+        type: to-generic-search
+
+      - name: to-simple-data-response
+        type: to-simple-data-response
+
+      - name: elastic-generic-search
+        type: elastic-generic-search
+        properties:
+          path_config:
+            paths:
+              datatype: "@datatype.base"
+
+      - name: data-modification
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/data-modification.json
+
+      - name: add-source
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/add-source.json
+          config:
+            properties:
+              fields:
+                id : "@admin.id"
+                title: "summary.title"
+                description: "description.value"
+                identifier: "identifier.*"
+                name: "name.*"
+                parent: "parent.*"
+                maker: "creation.maker.*"
+
+      - name: unpack-request
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/unpack-request.json
+
+
