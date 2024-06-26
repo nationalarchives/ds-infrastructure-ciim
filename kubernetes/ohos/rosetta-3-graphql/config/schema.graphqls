@@ -9,14 +9,21 @@ type TypedValue {
     type: String
 }
 
+type Enrichment {
+    value: String
+    url: String
+}
+
 type Metadata{
     id: String
     title: String
     identifier: [TypedValue]
     name: [TypedValue]
-    datatype: String
     description: [String]
     maker: [String]
     parent: [Metadata]
     children: [Metadata]
+    enrichment: [Enrichment]
+    repository: String
+    subject: [String]
 }

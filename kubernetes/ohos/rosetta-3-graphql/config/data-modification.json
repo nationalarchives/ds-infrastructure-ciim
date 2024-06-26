@@ -32,5 +32,19 @@
       "#type": "for_each",
       "values": "$.creation.maker",
       "spec": "$.name.[0].value"
+   },
+   "repository": "$.repository.code.value",
+   "subject": {
+      "#type": "for_each",
+      "values": "$.subject",
+      "spec": "$.summary.title"
+   },
+   "enrichment": {
+      "#type": "for_each",
+      "values": "$.enrichment.loc",
+      "spec": {
+         "value": "$.value",
+         "url": "$.url"
+      }
    }
 }

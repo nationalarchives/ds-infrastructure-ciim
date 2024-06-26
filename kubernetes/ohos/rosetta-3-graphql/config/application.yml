@@ -113,6 +113,9 @@ rosetta:
                 name: "name.*"
                 parent: "parent.*"
                 maker: "creation.maker.*"
+                enrichment: "enrichment.*"
+                subject: "subject.summary.title"
+                repository: "repository.code.value"
 
       - name: unpack-request
         type: proteus
