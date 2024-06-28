@@ -4,7 +4,7 @@ metadata:
   name: tna-ohos-ingress
   namespace: tna-ohos
   annotations:
-    konghq.com/plugins: request-transform-ohos
+    konghq.com/plugins: request-transform-ohos, global-cors-dev
 spec:
   ingressClassName: tna-ohos
   rules:
