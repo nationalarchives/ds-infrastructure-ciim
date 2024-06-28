@@ -19,6 +19,7 @@ bases:
   - ../../ohos/public-clean-es
   - ../../ohos/rosetta-3
   - ../../ohos/rosetta-3-export
+  - ../../ohos/rosetta-3-graphql
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
