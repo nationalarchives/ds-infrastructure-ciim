@@ -47,9 +47,9 @@
                     "itemURL": "$.source.identifier[?(@.type == 'url')].value",
                     "identifier": "$.source.identifier[?(@.type == 'identifier')].value",
                     "uuid": "$.source.@admin.uuid",
-                    "creationDateTo": "$.source.creation.date[0].to",
-                    "creationDateFrom": "$.source.creation.date[0].from",
-                    "creationDate": "$.source.creation.date[0].value",
+                    "creationDateTo": "$.source.creation[0].date[0].to",
+                    "creationDateFrom": "$.source.creation[0].date[0].from",
+                    "creationDate": "$.source.creation[0].date[0].value",
                     "creator": "$.source.creation[0].maker[0].name[0].value",
                     "note": "$.source.note[0].value",
                     "collection": "$.source.parent[0].summary.title",
@@ -75,6 +75,7 @@
                     "accessStatus": "$.source.legal.access.value",
                     "repository": "$.source.repository.code.value",
                     "enrichment": "$.source.enrichment",
+                    "provenance": "$.provenance.text.value",
                     "subjects": {
                       "#type": "as_list",
                       "values": {
