@@ -58,6 +58,7 @@
                     "format": "$.source.name[?(@.type =='format')].value",
                     "publisher": "$.source.creation.publisher[0].name[0].value",
                     "rights": "$.source.legal.holder",
+                    "rights": "$.source.legal.rights.holder",
                     "location": "$.source.place[0].name[0].value",
                     "ciimId": "$.source.@admin.id",
                     "group": {
