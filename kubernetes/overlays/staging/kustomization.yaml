@@ -9,7 +9,6 @@ bases:
   - ../../ohos/base
   - ../../ohos/eks
   - ../../ohos/kong
-  - ../../ohos/rosetta
   - ../../ohos/ingress
   - ../../ohos/ciim
   - ../../ohos/mysql
