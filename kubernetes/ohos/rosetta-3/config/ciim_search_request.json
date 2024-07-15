@@ -24,7 +24,7 @@
                 {
                   "range": {
                     "enrichment.date.to": {
-                      "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.to'])].range['creation.date.to'].lte"
+                      "lte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.to'])].range['creation.date.to'].lte"
                     }
                   }
                 }
