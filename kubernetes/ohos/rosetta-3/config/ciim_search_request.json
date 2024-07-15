@@ -7,12 +7,18 @@
           "$.query",
           {
             "bool": {
-              "should": [
+              "filter": [
                 {
-                  "range": {
-                    "enrichment.date.from": {
-                      "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range['creation.date.from'].gte"
-                    }
+                  "bool": {
+                    "should": [
+                      {
+                        "range": {
+                          "enrichment.date.from": {
+                            "gtw": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range['creation.date.from'].gte"
+                          }
+                        }
+                      }
+                    ]
                   }
                 }
               ]
@@ -20,18 +26,23 @@
           },
           {
             "bool": {
-              "should": [
+              "filter": [
                 {
-                  "range": {
-                    "enrichment.date.to": {
-                      "lte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.to'])].range['creation.date.to'].lte"
-                    }
+                  "bool": {
+                    "should": [
+                      {
+                        "range": {
+                          "enrichment.date.to": {
+                            "lte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.to'])].range['creation.date.to'].lte"
+                          }
+                        }
+                      }
+                    ]
                   }
                 }
               ]
             }
           }
-
         ]
       },
       "aggregations": {
