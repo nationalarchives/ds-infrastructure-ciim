@@ -153,6 +153,10 @@ rosetta:
           date_aggregations:
             - path: "creation.date.from"
               agg_name: "fromDate"
+            - path: "enrichment.date.from"
+              agg_name: "enrichmentFrom"
+            - path: "enrichment.date.to"
+              agg_name: "enrichmentTo"
             - path: "creation.date.from"
               format: "y G || y"
               agg_name: "creationDate"
