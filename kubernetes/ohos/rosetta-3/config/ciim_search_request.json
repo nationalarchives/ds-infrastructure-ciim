@@ -6,17 +6,17 @@
         "values": [
           "$.query",
           {
-            "#type": "require",
-            "require": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range['creation.date.from'].gte",
             "value": {
               "bool": {
-                "should":[{
-                "range":{
-                  "enrichment.date.from": {
-                    "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range['creation.date.from'].gte"
+                "should": [
+                  {
+                    "range": {
+                      "enrichment.date.from": {
+                        "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range['creation.date.from'].gte"
+                      }
+                    }
                   }
-                }
-          }]
+                ]
               }
             }
           }
