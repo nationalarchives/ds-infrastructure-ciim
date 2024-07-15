@@ -13,7 +13,7 @@
                 "should":[{
                 "range":{
                   "enrichment.date.from": {
-                    "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.gte"
+                    "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.from.gte"
                   }
                 }
           }]
