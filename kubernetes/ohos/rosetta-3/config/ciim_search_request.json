@@ -6,7 +6,6 @@
         "values": [
           "$.query",
           {
-            "value": {
               "bool": {
                 "should": [
                   {
@@ -18,7 +17,6 @@
                   }
                 ]
               }
-            }
           }
         ]
       },
