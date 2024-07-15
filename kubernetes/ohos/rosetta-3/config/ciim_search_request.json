@@ -7,7 +7,7 @@
           "$.query",
           {
             "#type": "require",
-            "require": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.from",
+            "require": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.from.gte",
             "value": {
               "bool": {
                 "should":[{
