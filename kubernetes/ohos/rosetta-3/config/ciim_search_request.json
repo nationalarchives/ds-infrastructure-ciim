@@ -1,7 +1,27 @@
 {
   "results": {
     "request": {
-      "query": "$.query",
+      "query": {
+        "#type": "merge",
+        "values": [
+          "$.query",
+          {
+            "#type": "require",
+            "require": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.from",
+            "value": {
+              "bool": {
+                "should":[{
+                "range":{
+                  "enrichment.date.from": {
+                    "gte": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.range['creation.date.from'])].range.creation.date.gte"
+                  }
+                }
+          }]
+              }
+            }
+          }
+        ]
+      },
       "aggregations": {
         "#type": "merge",
         "values": [
