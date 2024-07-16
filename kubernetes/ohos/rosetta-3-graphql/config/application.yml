@@ -144,7 +144,7 @@ rosetta:
                 level: "level.value"
                 organisation: "organisation.*"
                 place: "place.name.value"
-                creation_date: "creation_date.*"
+                creation_date: "creation.date.*"
 
       - name: unpack-request
         type: proteus

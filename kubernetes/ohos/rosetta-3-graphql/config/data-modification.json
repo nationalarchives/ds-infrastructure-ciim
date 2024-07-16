@@ -68,9 +68,5 @@
    "legal": "$.legal.holder",
    "organisation": "$.organisation.name.[0].value",
    "place": "$.place.[0].name.[0].value",
-   "creation_date": {
-      "#type": "for_each",
-      "values": "$.creation.date",
-      "spec": "$.value"
-   }
+   "creation_date": "$.creation.date.[0].value"
 }
