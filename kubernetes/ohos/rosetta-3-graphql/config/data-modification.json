@@ -4,10 +4,7 @@
    "name": {
       "#type": "for_each",
       "values": "$.name",
-      "spec": {
-         "type": "$.type",
-         "value": "$.value"
-      }
+      "spec": "$.value"
    },
    "identifier": {
       "#type": "for_each",
@@ -28,6 +25,11 @@
       "values": "$.parent",
       "spec": "$.@admin.id"
    },
+   "community": {
+      "#type": "for_each",
+      "values": "$.community",
+      "spec": "$.@admin.id"
+   },
    "maker": {
       "#type": "for_each",
       "values": "$.creation.maker",
@@ -46,5 +48,29 @@
          "value": "$.value",
          "url": "$.url"
       }
+   },
+   "level": "$.level.value",
+   "hierarchy": {
+      "#type": "for_each",
+      "values": "$.hierarchy",
+      "spec": "$.@admin.id"
+   },
+   "institution": {
+      "#type": "for_each",
+      "values": "$.institution",
+      "spec": "$.name.[0].value"
+   },
+   "multimedia": {
+      "#type": "for_each",
+      "values": "$.multimedia",
+      "spec": "$.@admin.id"
+   },
+   "legal": "$.legal.holder",
+   "organisation": "$.organisation.name.[0].value",
+   "place": "$.place.[0].name.[0].value",
+   "creation_date": {
+      "#type": "for_each",
+      "values": "$.creation.date",
+      "spec": "$.value"
    }
 }

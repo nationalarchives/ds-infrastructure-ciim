@@ -90,6 +90,24 @@ rosetta:
           path_config:
             paths:
               datatype: "@datatype.base"
+              title: "summary.title.keyword"
+              name: "name.value.keyword"
+              identifier: "identifier.value.keyword"
+              description: "description.value.keyword"
+              parent: "parent.summary.title.keyword"
+              community: "community.summary.title.keyword"
+              maker: "creation.maker.name.value.keyword"
+              creation_date: "creation.date.value.keyword"
+              repository: "repository.code.value.keyword"
+              subject: "subject.summary.title.keyword"
+              enrichment: "enrichment.loc.value.keyword"
+              level: "level.value"
+              hierarchy: "hierarchy.summary.title.keyword"
+              institution: "institution.name.value.keyword"
+              multimedia: "multimedia.@admin.id"
+              legal: "legal.holder.keyword"
+              organisation: "organisation.name.value.keyword"
+              place: "place.name.value.keyword"
 
       - name: data-modification
         type: proteus
@@ -116,6 +134,17 @@ rosetta:
                 enrichment: "enrichment.*"
                 subject: "subject.summary.title"
                 repository: "repository.code.value"
+                community: "community.*"
+                legal: "legal.holder"
+                institution: "institution.*"
+                multimedia: "multimedia.@admin.id"
+                hierarchy: "hierarchy.@admin.id"
+                datatype_base: datatype.base
+                datatype_group: "datatype.group.*"
+                level: "level.value"
+                organisation: "organisation.*"
+                place: "place.name.value"
+                creation_date: "creation_date.*"
 
       - name: unpack-request
         type: proteus
