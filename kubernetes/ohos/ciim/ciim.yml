@@ -120,7 +120,7 @@ spec:
               value: elastic
           resources:
             requests:
-              memory: 4Gi
+              memory: 6Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
