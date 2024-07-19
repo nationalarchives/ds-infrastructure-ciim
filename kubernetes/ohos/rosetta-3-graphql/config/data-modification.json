@@ -25,6 +25,16 @@
       "values": "$.parent",
       "spec": "$.@admin.id"
    },
+   "collection": {
+      "#type": "for_each",
+      "values": "$.collection",
+      "spec": "$.@admin.id"
+   },
+   "collectionMorrab": {
+      "#type": "for_each",
+      "values": "$.collectionMorrab",
+      "spec": "$.@admin.id"
+   },
    "community": {
       "#type": "for_each",
       "values": "$.community",
@@ -41,9 +51,38 @@
       "values": "$.subject",
       "spec": "$.summary.title"
    },
-   "enrichment": {
+   "enrichment_location": {
       "#type": "for_each",
       "values": "$.enrichment.loc",
+      "spec": {
+         "value": "$.value",
+         "url": "$.url"
+      }
+   },
+   "enrichment_date": {
+      "#type": "for_each",
+      "values": "$.enrichment.date",
+      "spec": "$.value"
+   },
+   "enrichment_misc": {
+      "#type": "for_each",
+      "values": "$.enrichment.misc",
+      "spec": {
+         "value": "$.value",
+         "url": "$.url"
+      }
+   },
+   "enrichment_org": {
+      "#type": "for_each",
+      "values": "$.enrichment.org",
+      "spec": {
+         "value": "$.value",
+         "url": "$.url"
+      }
+   },
+   "enrichment_per": {
+      "#type": "for_each",
+      "values": "$.enrichment.per",
       "spec": {
          "value": "$.value",
          "url": "$.url"
@@ -68,5 +107,32 @@
    "legal": "$.legal.holder",
    "organisation": "$.organisation.name.[0].value",
    "place": "$.place.[0].name.[0].value",
-   "creation_date": "$.creation.date.[0].value"
+   "creation_date": "$.creation.date.[0].value",
+   "colour": "$.colour.[0].value",
+   "condition": "$.condition.[0].value",
+   "coordinates_lat": "$.coordinates.[0].lat",
+   "coordinates_lon": "$.coordinates.[0].lon",
+   "copies": "$.copies.[0].value",
+   "publisher": {
+      "#type": "for_each",
+      "values": "$.creation.publisher",
+      "spec": "$.name.[0].value"
+   },
+   "inscription": {
+      "#type": "for_each",
+      "values": "$.inscription",
+      "spec": "$.value"
+   },
+   "licence": "$.licence.value",
+   "measurements": {
+      "#type": "for_each",
+      "values": "$.measurements.[0].dimensions",
+      "spec": {
+         "dimension": "$.dimension",
+         "value": "$.value"
+      }
+   },
+   "place_hierarchy": "$.place.[0].hierarchy.[0].value",
+   "provenance": "$.provenance.text.value",
+   "related_material": "$.related.material.value"
 }

@@ -14,6 +14,11 @@ type Enrichment {
     url: String
 }
 
+type Measurement{
+    dimension: String
+    value: String
+}
+
 type Metadata{
     id: String
     title: String
@@ -24,7 +29,11 @@ type Metadata{
     maker: [String]
     parent: [Metadata]
     children(query: String, ids: [String],from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
-    enrichment: [Enrichment]
+    enrichment_location: [Enrichment]
+    enrichment_date: [String]
+    enrichment_misc: [Enrichment]
+    enrichment_org: [Enrichment]
+    enrichment_per: [Enrichment]
     repository: String
     subject: [String]
     level: String
@@ -35,4 +44,19 @@ type Metadata{
     organisation: String
     place: String
     creation_date: String
+    collection: [Metadata]
+    collectionMorrab: [Metadata]
+    colour: String
+    condition: String
+    coordinates_lat: String
+    coordinates_lon: String
+    copies: String
+    publisher: String
+    inscription: [String]
+    legal_holder: String
+    licence: String
+    measurements: [Measurement]
+    place_hierarchy: String
+    provenance: String
+    related_material: String
 }

@@ -131,7 +131,11 @@ rosetta:
                 name: "name.*"
                 parent: "parent.*"
                 maker: "creation.maker.*"
-                enrichment: "enrichment.*"
+                enrichment_location: "enrichment.loc.*"
+                enrichment_date: "enrichment.date.*"
+                enrichment_misc: "enrichment.misc.*"
+                enrichment_org: "enrichment.org.*"
+                enrichment_per: "enrichment.per.*"
                 subject: "subject.summary.title"
                 repository: "repository.code.value"
                 community: "community.*"
@@ -145,6 +149,20 @@ rosetta:
                 organisation: "organisation.*"
                 place: "place.name.value"
                 creation_date: "creation.date.*"
+                collection: "collection.@admin.id"
+                collectionMorrab: "collectionMorrab.@admin.id"
+                licence: "licence.value"
+                measurements: "measurements.dimensions"
+                place_hierarchy: "place.hierarchy"
+                provenance: provenance.text.value
+                related_material: related.material.value
+                copies: "copies.value"
+                inscription: "inscription.value"
+                condition: "condition.value"
+                colour: "colour"
+                coordinates_lat: "coordinates.lat"
+                coordinates_lon: "coordinates.lon"
+                publisher: creation.publisher.name.value
 
       - name: unpack-request
         type: proteus
