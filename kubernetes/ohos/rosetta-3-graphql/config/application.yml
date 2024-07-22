@@ -213,7 +213,7 @@ rosetta:
                 enrichment_location: "enrichment.loc.*"
                 enrichment_misc: "enrichment.misc.*"
                 enrichment_org: "enrichment.org.*"
-                enrichment_per: "enrichment.per.*"
+                enrichment_person: "enrichment.per.*"
                 hierarchy: "hierarchy.@admin.id"
                 id : "@admin.id"
                 identifier: "identifier.*"
@@ -229,7 +229,7 @@ rosetta:
                 organisation: "organisation.*"
                 parent: "parent.*"
                 place: "place.name.value"
-                place_hierarchy: "place.hierarchy"
+                place_hierarchy: "place.hierarchy.value"
                 provenance: provenance.text.value
                 publisher: creation.publisher.name.value
                 related_material: related.material.value
