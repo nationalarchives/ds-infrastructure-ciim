@@ -33,7 +33,7 @@ type Metadata{
     enrichment_date: [String]
     enrichment_misc: [Enrichment]
     enrichment_org: [Enrichment]
-    enrichment_per: [Enrichment]
+    enrichment_person: [Enrichment]
     repository: String
     subject: [String]
     level: String
@@ -46,6 +46,7 @@ type Metadata{
     creation_date: String
     collection: [Metadata]
     collectionMorrab: [Metadata]
+    collectionSurrey: [Metadata]
     colour: String
     condition: String
     coordinates_lat: String

@@ -80,7 +80,7 @@
          "url": "$.url"
       }
    },
-   "enrichment_per": {
+   "enrichment_person": {
       "#type": "for_each",
       "values": "$.enrichment.per",
       "spec": {
