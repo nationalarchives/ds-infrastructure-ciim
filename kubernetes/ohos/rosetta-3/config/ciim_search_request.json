@@ -45,7 +45,7 @@
                         "value": "$.query.bool.filter[?(@.bool.should)].bool.should[?(@.term['__decade.keyword'])].term['__decade.keyword'].value",
                         "delimiter": ""
                       },
-                      "{$[0]}{$[1]}{.*}"
+                      "{$[0]}{$[1]}{$[2]}{.*}"
                     ]
                   }
                 }
