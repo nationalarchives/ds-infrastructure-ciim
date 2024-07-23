@@ -14,16 +14,50 @@ type Enrichment {
     url: String
 }
 
+type Measurement{
+    dimension: String
+    value: String
+}
+
 type Metadata{
     id: String
     title: String
     identifier: [TypedValue]
-    name: [TypedValue]
+    name: [String]
     description: [String]
+    datatype: String
     maker: [String]
     parent: [Metadata]
-    children: [Metadata]
-    enrichment: [Enrichment]
+    children(query: String, ids: [String],from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
+    enrichment_location: [Enrichment]
+    enrichment_date: [String]
+    enrichment_misc: [Enrichment]
+    enrichment_org: [Enrichment]
+    enrichment_person: [Enrichment]
     repository: String
     subject: [String]
+    level: String
+    hierarchy(query: String, from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
+    community: [Metadata]
+    institution: [String]
+    legal: String
+    organisation: String
+    place: String
+    creation_date: String
+    collection: [Metadata]
+    collectionMorrab: [Metadata]
+    collectionSurrey: [Metadata]
+    colour: String
+    condition: String
+    coordinates_lat: String
+    coordinates_lon: String
+    copies: String
+    publisher: String
+    inscription: [String]
+    legal_holder: String
+    licence: String
+    measurements: [Measurement]
+    place_hierarchy: String
+    provenance: String
+    related_material: String
 }
