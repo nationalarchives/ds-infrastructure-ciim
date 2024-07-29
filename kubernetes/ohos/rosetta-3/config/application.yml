@@ -230,6 +230,7 @@ rosetta:
               collectionWMK: "collectionWMK.summary.title.keyword"
               collectionMorrabAll: "collectionMorrab.summary.title.keyword"
               collectionSurreyAll: "collectionSurrey.summary.title.keyword"
+              collectionCain: "collectionCain.summary.title.keyword"
               enrichmentLoc: "enrichment.loc.value.keyword"
               enrichmentOrg: "enrichment.org.value.keyword"
               enrichmentPer: "enrichment.per.value.keyword"
