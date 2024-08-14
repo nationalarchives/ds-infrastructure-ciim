@@ -104,7 +104,7 @@ rosetta:
               organisation_named_entity: "enrichment.org.value.keyword"
               person_named_entity: "enrichment.per.value.keyword"
               item_hierarchy: "hierarchy.summary.title.keyword"
-              identifier: "identifier.value.keyword"
+              community_identifier: "identifier.value.keyword"
               inscription: "inscription.value"
               owner: "institution.name.value.keyword"
               rights_holder: "legal.rights.holder"
