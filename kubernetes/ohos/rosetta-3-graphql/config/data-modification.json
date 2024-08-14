@@ -1,12 +1,12 @@
 {
-   "id": "$.@admin.id",
+   "admin_ID": "$.@admin.id",
    "title": "$.summary.title",
-   "name": {
+   "format": {
       "#type": "for_each",
       "values": "$.name",
       "spec": "$.value"
    },
-   "identifier": {
+   "community_identifier": {
       "#type": "for_each",
       "values": "$.identifier",
       "spec": {
@@ -19,39 +19,28 @@
       "values": "$.description",
       "spec": "$.value"
    },
-   "datatype": "$.@datatype.base",
-   "parent": {
+   "parent_record_ID": {
       "#type": "for_each",
       "values": "$.parent",
       "spec": "$.@admin.id"
    },
-   "collection": {
-      "#type": "for_each",
-      "values": "$.collection",
-      "spec": "$.@admin.id"
-   },
-   "collectionMorrab": {
-      "#type": "for_each",
-      "values": "$.collectionMorrab",
-      "spec": "$.@admin.id"
-   },
-   "community": {
+   "community_archive_ID": {
       "#type": "for_each",
       "values": "$.community",
       "spec": "$.@admin.id"
    },
-   "maker": {
+   "creator": {
       "#type": "for_each",
       "values": "$.creation.maker",
       "spec": "$.name.[0].value"
    },
-   "repository": "$.repository.code.value",
+   "place_of_deposit": "$.repository.code.value",
    "subject": {
       "#type": "for_each",
       "values": "$.subject",
       "spec": "$.summary.title"
    },
-   "enrichment_location": {
+   "location_named_entity": {
       "#type": "for_each",
       "values": "$.enrichment.loc",
       "spec": {
@@ -59,12 +48,12 @@
          "url": "$.url"
       }
    },
-   "enrichment_date": {
+   "date_named_entity": {
       "#type": "for_each",
       "values": "$.enrichment.date",
       "spec": "$.value"
    },
-   "enrichment_misc": {
+   "miscellaneous_named_entity": {
       "#type": "for_each",
       "values": "$.enrichment.misc",
       "spec": {
@@ -72,7 +61,7 @@
          "url": "$.url"
       }
    },
-   "enrichment_org": {
+   "organisation_named_entity": {
       "#type": "for_each",
       "values": "$.enrichment.org",
       "spec": {
@@ -80,7 +69,7 @@
          "url": "$.url"
       }
    },
-   "enrichment_person": {
+   "person_named_entity": {
       "#type": "for_each",
       "values": "$.enrichment.per",
       "spec": {
@@ -89,29 +78,25 @@
       }
    },
    "level": "$.level.value",
-   "hierarchy": {
+   "item_hierarchy": {
       "#type": "for_each",
       "values": "$.hierarchy",
       "spec": "$.@admin.id"
    },
-   "institution": {
+   "owner": {
       "#type": "for_each",
       "values": "$.institution",
       "spec": "$.name.[0].value"
    },
-   "multimedia": {
-      "#type": "for_each",
-      "values": "$.multimedia",
-      "spec": "$.@admin.id"
-   },
-   "legal": "$.legal.holder",
-   "organisation": "$.organisation.name.[0].value",
-   "place": "$.place.[0].name.[0].value",
-   "creation_date": "$.creation.date.[0].value",
+   "rights": "$.legal.rights.type",
+   "rights_holder": "$.legal.rights.holder",
+   "community_archive": "$.organisation.name.[0].value",
+   "location": "$.place.[0].name.[0].value",
+   "date": "$.creation.date.[0].value",
    "colour": "$.colour.[0].value",
    "condition": "$.condition.[0].value",
-   "coordinates_lat": "$.coordinates.[0].lat",
-   "coordinates_lon": "$.coordinates.[0].lon",
+   "latitude": "$.coordinates.[0].lat",
+   "longitude": "$.coordinates.[0].lon",
    "copies": "$.copies.[0].value",
    "publisher": {
       "#type": "for_each",
@@ -124,7 +109,7 @@
       "spec": "$.value"
    },
    "licence": "$.licence.value",
-   "measurements": {
+   "extent": {
       "#type": "for_each",
       "values": "$.measurements.[0].dimensions",
       "spec": {
@@ -132,7 +117,6 @@
          "value": "$.value"
       }
    },
-   "place_hierarchy": "$.place.[0].hierarchy.[0].value",
-   "provenance": "$.provenance.text.value",
-   "related_material": "$.related.material.value"
+   "location_hierarchy": "$.place.[0].hierarchy.[0].value",
+   "provenance": "$.provenance.text.value"
 }
