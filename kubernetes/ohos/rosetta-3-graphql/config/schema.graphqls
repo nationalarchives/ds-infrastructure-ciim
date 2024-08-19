@@ -32,7 +32,6 @@ type Query {
 }
 
 type TypedValue {
-    primary: Boolean
     value: String
     type: String
 }
@@ -48,44 +47,74 @@ type Measurement{
 }
 
 type Metadata{
-    id: String
+    """The project ID created for the item"""
+    admin_ID: String
+    """The title of the item"""
     title: String
-    identifier: [TypedValue]
-    name: [String]
+    """The identifier created by the Community Archive"""
+    community_identifier: [TypedValue]
+    """The format of the item, for example photo"""
+    format: [String]
+    """The description of the item"""
     description: [String]
-    datatype: String
-    maker: [String]
-    parent: [Metadata]
-    children(query: String, ids: [String],from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
-    enrichment_location: [Enrichment]
-    enrichment_date: [String]
-    enrichment_misc: [Enrichment]
-    enrichment_org: [Enrichment]
-    enrichment_person: [Enrichment]
-    repository: String
+    """The creator of the item"""
+    creator: [String]
+    """The project ID for the parent record of the item"""
+    parent_record_ID: [Metadata]
+    """The project ID for the child record of the item"""
+    child_record_ID(query: String, ids: [String],from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
+    """Location identified via Named Entity Recognition"""
+    location_named_entity: [Enrichment]
+    """Date identified via Named Entity Recognition"""
+    date_named_entity: [String]
+    """Miscellaneous entity identified via Named Entity Recognition"""
+    miscellaneous_named_entity: [Enrichment]
+    """Organisation identified via Named Entity Recognition"""
+    organisation_named_entity: [Enrichment]
+    """Person identified via Named Entity Recognition"""
+    person_named_entity: [Enrichment]
+    """The institution where the item is held"""
+    place_of_deposit: String
+    """Subject associated with the item on the community archive website"""
     subject: [String]
+    """The archival level of the item (e.g. collection, series, item)"""
     level: String
-    hierarchy(query: String, from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
-    community: [Metadata]
-    institution: [String]
-    legal: String
-    organisation: String
-    place: String
-    creation_date: String
-    collection: [Metadata]
-    collectionMorrab: [Metadata]
-    collectionSurrey: [Metadata]
+    """The project IDs of the records that are above this item in the Community Archive’s hierarchy"""
+    item_hierarchy(query: String, from: Int, size: Int, field: String, filter: String, sort: String): [Metadata]
+    """The project ID of the Community Archive"""
+    community_archive_ID: [Metadata]
+    """The owner of the item"""
+    owner: [String]
+    """Rights asserted in the item"""
+    rights: String
+    """The Community Archive that holds the item"""
+    community_archive: String
+    """A location associated with the item"""
+    location: String
+    """The date associated with the item, often when the item was created"""
+    date: String
+    """Notes on whether the item is in full colour or monochrome"""
     colour: String
+    """Information on the condition of the original object"""
     condition: String
-    coordinates_lat: String
-    coordinates_lon: String
+    """Latitude co-ordinate associated with the item"""
+    latitude: String
+    """Longitude co-ordinate associated with the item"""
+    longitude: String
+    """Information on the number of copies available of the item"""
     copies: String
+    """The publisher of the item"""
     publisher: String
+    """Inscription recorded on the original item"""
     inscription: [String]
-    legal_holder: String
+    """The person or institution who holds the rights in the item"""
+    rights_holder: String
+    """Details of the licence applied to the item"""
     licence: String
-    measurements: [Measurement]
-    place_hierarchy: String
+    """Information on the measurement or amount of the item"""
+    extent: [Measurement]
+    """A location associated with the item"""
+    location_hierarchy: String
+    """Information on the provenance of the item"""
     provenance: String
-    related_material: String
 }
