@@ -109,6 +109,8 @@
                     "level": "$.source.level.value",
                     "description": "$.source.description[0].value",
                     "descriptionCy": "$.source.description[?(@.language == 'cy')].value",
+                    "descriptionView": "$.source.description[?(@.type == 'View From')].value",
+                    "descriptionPlace": "$.source.description[?(@.type == 'Place Notes')].value",
                     "date": "$.source.date[0].value",
                     "summary": "$.source.summary.title",
                     "title": "$.source.title[0].value",
@@ -129,7 +131,14 @@
                     "rights": "$.source.legal.holder",
                     "location": "$.source.place[0].name[0].value",
                     "ciimId": "$.source.@admin.id",
-                    "group": "$.source.@datatype.group[0].value",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
+                    "groupArray":  "$.source.@datatype.group",
                     "lon": "$.source.coordinates[0].lon",
                     "lat": "$.source.coordinates[0].lat",
                     "licence": "$.source.licence.value",
@@ -151,6 +160,87 @@
                   }
                 }
               }
+            }
+          },
+          []
+        ]
+      },
+      "errors": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "flatten",
+              "values": [
+                "$$.results.errors",
+                "$$.aggs.errors",
+                "$$.results.datasets.elasticsearch.errors",
+                "$$.aggs.datasets.elasticsearch.errors"
+              ]
+            }
+          },
+          []
+        ]
+      },
+      "aggregations": {
+        "#type": "chain",
+        "chain": [
+          {
+            "#type": "group",
+            "values": "$.aggregations",
+            "by": "$.name",
+            "yield_group": {
+              "#type": "merge",
+              "values": "$"
+            }
+          },
+          {
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
+                },
+                "spec": "$.value"
+              },
+              []
+            ]
+          }
+        ]
+      },
+      "stats": {
+        "total": "$.stats.total",
+        "results": "$$.results.stats.results",
+        "providers": "$.stats.providers",
+        "latency": {
+          "#type": "chain",
+          "chain": [
+            {
+              "#type": "as_list",
+              "values": [
+                "$$.results.stats.latency",
+                "$$.aggs.stats.latency"
+              ]
+            },
+            "$.sum()"
+          ]
+        }
+      },
+      "found": "$.found",
+      "buckets": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "flatten",
+              "values": [
+                "$$.aggs.datasets.elasticsearch.aggregations",
+                "$$.aggs.datasets.elasticsearchEtna.aggregations"
+              ]
             }
           },
           []
