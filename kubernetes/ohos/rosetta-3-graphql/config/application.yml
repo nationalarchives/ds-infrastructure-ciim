@@ -125,7 +125,7 @@ rosetta:
               title: "summary.title.keyword"
           date_aggregations:
             - path: "enrichment.date.from"
-              agg_name: "enrichment_date"
+              agg_name: "date_named_entity"
               format: "y G || y"
               date_ranges: &date_ranges
                 - from: "9000 BC"
@@ -173,7 +173,7 @@ rosetta:
                 - from: "2001"
                   to: "2100"
             - path: "creation.date.from"
-              agg_name: "creation_date"
+              agg_name: "date"
               format: "y G || y"
               date_ranges:
                 *date_ranges
