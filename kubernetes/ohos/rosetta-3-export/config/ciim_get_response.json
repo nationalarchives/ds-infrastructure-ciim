@@ -137,6 +137,7 @@
                     "accessStatus": "$.source.legal.access.value",
                     "repository": "$.source.repository.code.value",
                     "enrichment": "$.source.enrichment",
+                    "provenance":  "$.source.provenance.text.value",
                     "subjects": {
                       "#type": "as_list",
                       "values": {
