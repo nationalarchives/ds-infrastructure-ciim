@@ -2,7 +2,7 @@ namespace: tna-ohos
 resources:
   - rosetta.yml
 configMapGenerator:
-  - name: rosetta-3-config
+  - name: rosetta-3-config-test
     files:
       - ./config/aggs_count_to_doc_count.json
       - ./config/application.yml

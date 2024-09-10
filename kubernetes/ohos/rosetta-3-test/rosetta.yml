@@ -19,9 +19,9 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: rosetta-3-config
+        - name: rosetta-3-config-test
           configMap:
-            name: rosetta-3-config
+            name: rosetta-3-config-test
       initContainers:
         - name: set-rosetta-permissions
           image: registry.hub.docker.com/library/busybox:latest
@@ -37,7 +37,7 @@ spec:
               containerPort: 4923
               protocol: TCP
           volumeMounts:
-            - name: rosetta-3-config
+            - name: rosetta-3-config-test
               mountPath: /rosetta/config
           env:
             - name: JAVA_OPTS
