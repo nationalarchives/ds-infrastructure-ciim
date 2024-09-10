@@ -1,15 +1,19 @@
----
-apiVersion: v1
-kind: Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: rosetta-3-service-test
+  name: ohos-ingress-rosetta-3
   namespace: tna-ohos
+  annotations:
+    konghq.com/plugins: request-transform-ohos
 spec:
-  type: ClusterIP
-  selector:
-    app: rosetta-3-ohos-test
-  ports:
-    - protocol: TCP
-      port: 4923
-      targetPort: 4923
-      name: rosetta-port
+  ingressClassName:  tna-ohos
+  rules:
+    - http:
+        paths:
+          - path: /rosetta-3
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-service-test
+                port:
+                  name: rosetta-port
