@@ -1,0 +1,335 @@
+base_paths:
+  proteus: ./config
+
+rosetta:
+  admin:
+    enabled: true
+
+  plugins:
+    advanced_cache:
+      enabled: true
+      caches:
+        - name: fast-cache
+          expire_after_write: 5m
+          maximum_size: 100
+          use_scheduler: true
+
+        - name: slow-cache
+          expire_after_write: 1h
+          maximum_size: 100
+          use_scheduler: true
+
+  cache:
+    enabled: true
+    manager:
+      enabled: false
+
+  view:
+    views:
+      - name: ciim/search
+        paths:
+          - /rosetta/data/search
+        profile: elasticsearch
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
+      - name: ciim/searchTest
+        paths:
+          - /rosetta/data/searchTest
+        profile: generic-search
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+
+      - name: ciim/get
+        paths:
+          - /rosetta/data/get
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/get/request
+          response:
+            policy: list
+            names:
+              - ciim/get/response
+
+  profile:
+    profiles:
+      - name: elasticsearch
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+            - elasticsearchEtna
+        transforms:
+          data: &global-data-transforms
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+                  - inject-date-hist
+      - name: generic-search
+        providers:
+          policy: list
+          names:
+            - elasticsearch
+            - elasticsearchEtna
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+          data: *global-data-transforms
+
+  transform:
+    timeout_millis: 60000
+    glyphs:
+      # Elastic search glyphs
+      - name: to-generic-search
+        type: to-generic-search
+        properties:
+          types:
+            - query
+
+      - name: inject-date-hist
+        type: proteus
+        input: full
+        properties:
+          spec: ${base_paths.proteus}/inject_date_hist.json
+
+      - name: generic-search-defaults
+        type: proteus-simple
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_defaults.json
+
+      - name: generic-search-modifications
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_modifications.json
+
+      - name: generic-to-elastic
+        type: elastic-generic-search
+        properties:
+          index: public-es
+          request_timeout: 60000
+          date_histograms:
+            - path: "creation.date.from"
+              agg_name: "creationDecade"
+              format: "y G || y"
+              fixed_interval: "3652d"
+              offset: "-3d"
+            - path: "creation.date.from"
+              agg_name: "creationYear"
+              format: "y G || y"
+              calendar_interval: "1y"
+          date_aggregations:
+            - path: "creation.date.from"
+              agg_name: "fromDate"
+            - path: "enrichment.date.from"
+              agg_name: "enrichmentFrom"
+            - path: "enrichment.date.to"
+              agg_name: "enrichmentTo"
+            - path: "creation.date.from"
+              format: "y G || y"
+              agg_name: "creationDate"
+            - path: "creation.date.to"
+              agg_name: "toDate"
+            - path: "origination.date.from"
+              agg_name: "coveringFromDate"
+            - path: "origination.date.to"
+              agg_name: "coveringToDate"
+            - path: "creation.date.from"
+              agg_name: "creationCentury"
+              format: "y G || y"
+              date_ranges:
+                - from: "9000 BC"
+                  to: "1 BC"
+                - from: "1"
+                  to: "0100"
+                - from: "0101"
+                  to: "0200"
+                - from: "0201"
+                  to: "0300"
+                - from: "0301"
+                  to: "0400"
+                - from: "0401"
+                  to: "0500"
+                - from: "0501"
+                  to: "0600"
+                - from: "0601"
+                  to: "0700"
+                - from: "0701"
+                  to: "0800"
+                - from: "0801"
+                  to: "0900"
+                - from: "0901"
+                  to: "1000"
+                - from: "1001"
+                  to: "1100"
+                - from: "1101"
+                  to: "1200"
+                - from: "1201"
+                  to: "1300"
+                - from: "1301"
+                  to: "1400"
+                - from: "1401"
+                  to: "1500"
+                - from: "1501"
+                  to: "1600"
+                - from: "1601"
+                  to: "1700"
+                - from: "1701"
+                  to: "1800"
+                - from: "1801"
+                  to: "1900"
+                - from: "1901"
+                  to: "2000"
+                - from: "2001"
+                  to: "2100"
+          path_config:
+            paths:
+              datatype: "@datatype.base"
+              property: "property.name.value.keyword"
+              place: "place.name.value.keyword"
+              collection: "collection.identifier.value"
+              collectionOhos: "hierarchy.summary.title.keyword"
+              date: "creation.date.from"
+              title: "summary.title.keyword"
+              group: "@datatype.group.value"
+              community: "community.summary.title.keyword"
+              collectionMorrab: "collectionMorrab.summary.title.keyword"
+              collectionSurrey: "collectionSurrey.summary.title.keyword"
+              collectionWMK: "collectionWMK.summary.title.keyword"
+              collectionMorrabAll: "collectionMorrab.summary.title.keyword"
+              collectionSurreyAll: "collectionSurrey.summary.title.keyword"
+              collectionCain: "collectionCain.summary.title.keyword"
+              enrichmentLoc: "enrichment.loc.value.keyword"
+              enrichmentOrg: "enrichment.org.value.keyword"
+              enrichmentPer: "enrichment.per.value.keyword"
+              enrichmentMisc: "enrichment.misc.value.keyword"
+              century: "__century.keyword"
+              decade: "__decade.keyword"
+              year: "__year.keyword"
+          aggregation_configs:
+            - name: group
+              size: 10
+            - name: collectionMorrab
+              size: 10
+            - name: collectionSurrey
+              size: 10
+            - name: collectionMorrabAll
+              size: 200
+            - name: collectionSurreyAll
+              size: 200
+            - name: enrichmentLoc
+              size: 20
+            - name: enrichmentLoc
+              size: 20
+            - name: enrichmentOrg
+              size: 20
+            - name: enrichmentPer
+              size: 20
+            - name: enrichmentMisc
+              size: 20
+            - name: century
+              size: 200
+            - name: decade
+              size: 200
+            - name: year
+              size: 200
+
+      - name: ciim/search/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_request.json
+
+      - name: ciim/search/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_response.json
+
+      - name: ciim/get/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_request.json
+
+      - name: ciim/get/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_response.json
+
+      # Global data transforms
+      - name: singularize-creation
+        type: proteus
+        properties:
+          spec: ${base_paths.proteus}/singularize_creation.json
+          config:
+            accumulator: first
+
+      # System glyphs
+      - name: to-simple-data-response
+        type: to-simple-data-response
+
+      - name: aggs-count-to-doc-count
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+  provider:
+    global_timeout: 500s
+    timeout: 500s
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        properties:
+          host: ciim-public-tna-es-http.tna-ohos
+          port: 9200
+          index: ciim
+          username: elastic
+          password: g19415GWedJc1Zbv4w87pw5K
+          client_timeout: 60000
+          skip_ping: true
+      - name: elasticsearchEtna
+        type: elasticsearch
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: Kng6K7J41j882P77EQeS9cTI
+
+  monitoring:
+    log_stages: true

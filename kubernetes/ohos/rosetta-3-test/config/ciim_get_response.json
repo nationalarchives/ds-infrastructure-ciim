@@ -1,0 +1,171 @@
+{
+  "#type": "chain",
+  "chain": [
+    {
+      "#type": "merge",
+      "values": [
+        "$.datasets.elasticsearch",
+        "$.datasets.elasticsearchEtna"
+      ]
+    },
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "$.data",
+              "spec": {
+                "@template": {
+                  "details": {
+                    "accessCondition": "$.source.availability.access.condition.value",
+                    "accruals": "$.source.accruals.value",
+                    "accumulationDates": "$.source.accruals.date.value",
+                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
+                    "agentBirthLocation": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.location.name.value"
+                    },
+                    "agentDateOfBirth": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.date.value"
+                    },
+                    "agentName": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].name.value"
+                    },
+                    "agentServiceNumber": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].service.identifier.value"
+                    },
+                    "appraisalInformation": "$.source.appraisal.value",
+                    "arrangement": "$.source.arrangement.value",
+                    "catalogueContext":{
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.catalogueContext"
+                    },
+                    "closureStatus": "$.source.availability.closure.label.value",
+                    "copiesInformation": {
+                      "#type": "as_list",
+                      "values": "$.source.copies[0].value"
+                    },
+                    "creator": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.creator"
+                    },
+                    "custodialHistory": "$.source.custodial[*].description.value",
+                    "dateCovering": "$.source.origination.date.value",
+                    "deliveryOption": "$.source.availability.delivery.condition.value",
+                    "description": "$.source.description[0].value",
+                    "digitised": "$.source.@template.details.digitised",
+                    "dimensions": "$.source.measurements.dimensions[*].value",
+                    "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
+                    "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "heldBy": "$.source.repository.name.value",
+                    "heldById": "$.source.repository.@admin.id",
+                    "iaid": "$.source.identifier..__iaid",
+                    "immediateSourceOfAcquisition": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.immediateSourceOfAcquisition"
+                    },
+                    "language": {
+                      "#type": "as_list",
+                      "values": "$.source.language[*].value"
+                    },
+                    "legalStatus": "$.source.legal.status",
+                    "level": "$.source.level.value",
+                    "locationOfOriginals": {
+                      "#type": "as_list",
+                      "values": "$.source.originals[*].organisation.name"
+                    },
+                    "mapDesignation": "$.source.@template.details.mapDesignation",
+                    "mapScale": "$.source.@template.details.mapScale",
+                    "note": "$.source.@template.details.note",
+                    "physicalCondition": "$.source.condition.value",
+                    "physicalDescription": "$.source.@template.details.physicalDescription",
+                    "primaryIdentifier": "$.source.@admin.id",
+                    "publicationNote": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'publication note')].value"
+                    },
+                    "recordOpening": "$.source.availability.access.opening.label.value",
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "relatedMaterials": {
+                      "#type": "as_list",
+                      "values":"$.source.@template.details.relatedMaterials"
+                    },
+                    "restrictionsOnUse": "$.source.availability.restrictions.value",
+                    "separatedMaterials": "$.source.@template.details.separatedMaterials",
+                    "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "summaryTitle": "$.source.summary.title",
+                    "title": "$.source.title[?(@.primary == true)].value",
+                    "type": "$.source.@datatype.base",
+                    "unpublishedFindingAids": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
+                    },
+                    "level": "$.source.level.value",
+                    "description": "$.source.description[0].value",
+                    "descriptionCy": "$.source.description[?(@.language == 'cy')].value",
+                    "descriptionView": "$.source.description[?(@.type == 'View From')].value",
+                    "descriptionPlace": "$.source.description[?(@.type == 'Place Notes')].value",
+                    "date": "$.source.date[0].value",
+                    "summary": "$.source.summary.title",
+                    "title": "$.source.title[0].value",
+                    "titleCy": "$.source.title[?(@.language == 'cy')].value",
+                    "itemURL": "$.source.identifier[?(@.type == 'url')].value",
+                    "identifier": "$.source.identifier[?(@.type == 'identifier')].value",
+                    "uuid": "$.source.@admin.uuid",
+                    "creationDateTo": "$.source.creation.date[0].to",
+                    "creationDateFrom": "$.source.creation.date[0].from",
+                    "creationDate": "$.source.creation.date[0].value",
+                    "creator": "$.source.creation.maker[0].name[0].value",
+                    "note": "$.source.note[0].value",
+                    "collection": "$.source.parent[0].summary.title",
+                    "collectionId": "$.source.parent[0].@admin.id",
+                    "type": "$.source.name[?(@.type =='type')].value",
+                    "format": "$.source.name[?(@.type =='format')].value",
+                    "publisher": "$.source.creation.publisher[0].name[0].value",
+                    "rights": "$.source.legal.holder",
+                    "location": "$.source.place[0].name[0].value",
+                    "ciimId": "$.source.@admin.id",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
+                    "groupArray":  "$.source.@datatype.group",
+                    "lon": "$.source.coordinates[0].lon",
+                    "lat": "$.source.coordinates[0].lat",
+                    "licence": "$.source.licence.value",
+                    "status": "$.source.status.value",
+                    "accessStatus": "$.source.legal.access.value",
+                    "repository": "$.source.repository.code.value",
+                    "enrichment": "$.source.enrichment",
+                    "provenance":  "$.source.provenance.text.value",
+                    "subjects": {
+                      "#type": "as_list",
+                      "values": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "$.source.subject.summary.title",
+                          "$.source.subject[*].summary.title",
+                          "$.source.tag[*].value"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          []
+        ]
+      }
+    }
+  ]
+}
