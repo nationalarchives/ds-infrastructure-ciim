@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rosetta-3-service-test
+  namespace: tna-ohos
+spec:
+  type: ClusterIP
+  selector:
+    app: rosetta-3-ohos-test
+  ports:
+    - protocol: TCP
+      port: 4923
+      targetPort: 4923
+      name: rosetta-port
