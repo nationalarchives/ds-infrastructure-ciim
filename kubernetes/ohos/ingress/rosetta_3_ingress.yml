@@ -11,7 +11,7 @@ spec:
     - host: rosetta-ohos.nationalarchives.gov.uk
       http:
         paths:
-          - path: /
+          - path: /rosetta-3
             pathType: Prefix
             backend:
               service:
