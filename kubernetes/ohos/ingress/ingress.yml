@@ -10,13 +10,6 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-3-service
-                port:
-                  name: rosetta-port
           - path: /tna/api/
             pathType: Prefix
             backend:
