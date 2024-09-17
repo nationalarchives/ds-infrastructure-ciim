@@ -8,7 +8,8 @@ metadata:
 spec:
   ingressClassName:  tna-ohos
   rules:
-    - http:
+    - host: rosetta-ohos.nationalarchives.gov.uk
+      http:
         paths:
           - path: /rosetta-3
             pathType: Prefix
