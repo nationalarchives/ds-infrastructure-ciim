@@ -73,7 +73,7 @@ spec:
         - name: regcred
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:ohos1.0.40
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:ohos1.0.41
           imagePullPolicy: Always
           ports:
             - name: api-port
