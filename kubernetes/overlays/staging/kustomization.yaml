@@ -19,6 +19,7 @@ bases:
   - ../../ohos/rosetta-3
   - ../../ohos/rosetta-3-export
   - ../../ohos/rosetta-3-graphql
+  - ../../ohos/acme
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

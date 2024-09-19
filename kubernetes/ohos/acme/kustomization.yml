@@ -1,0 +1,4 @@
+namespace: tna-ohos
+resources:
+  - acme.yml
+  - acme_ingress.yml

@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-acme
+  namespace: tna-ohos
+  annotations:
+    konghq.com/protocols: "http"
+spec:
+  ingressClassName: dev-kong
+  rules:
+    - http:
+        paths:
+          - path: /.well-known/acme-challenge
+            pathType: Prefix
+            backend:
+              service:
+                name: acme-service
+                port:
+                  number: 80
