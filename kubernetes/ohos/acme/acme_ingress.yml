@@ -6,7 +6,7 @@ metadata:
   annotations:
     konghq.com/protocols: "http"
 spec:
-  ingressClassName: dev-kong
+  ingressClassName: tna-ohos
   rules:
     - http:
         paths:
