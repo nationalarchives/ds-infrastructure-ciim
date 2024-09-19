@@ -7,8 +7,23 @@ metadata:
     konghq.com/plugins: request-transform-ohos, global-cors-dev
 spec:
   ingressClassName: tna-ohos
+  tls:
+    - hosts:
+        - rosetta.tna.k-int.com
+      secretName: tls-secret
   rules:
-    - http:
+    - host: rosetta.tna.k-int.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-service
+                port:
+                  name: rosetta-port
+    - host: a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com
+      http:
         paths:
           - path: /
             pathType: Prefix
