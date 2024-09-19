@@ -6,7 +6,7 @@ metadata:
   annotations:
     konghq.com/plugins: request-transform-ohos
 spec:
-  ingressClassName:  tna-ohos
+  ingressClassName: tna-ohos
   rules:
     - host: rosetta-ohos.nationalarchives.gov.uk
       http:
@@ -18,3 +18,6 @@ spec:
                 name: rosetta-3-service
                 port:
                   name: rosetta-port
+  tls:
+    - hosts:
+        - rosetta-ohos.nationalarchives.gov.uk
