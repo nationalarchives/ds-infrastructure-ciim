@@ -9,10 +9,10 @@ spec:
   ingressClassName: tna-ohos
   tls:
     - hosts:
-        - rosetta.tna.k-int.com
+        - tna.rosetta.k-int.com
       secretName: tls-secret
   rules:
-    - host: rosetta.tna.k-int.com
+    - host: tna.rosetta.k-int.com
       http:
         paths:
           - path: /
