@@ -484,6 +484,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
     service.beta.kubernetes.io/aws-load-balancer-type: nlb
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-west-2:337670467269:certificate/b023da69-2174-444c-9f84-07e304d43a7d"
   name: kong-proxy
   namespace: tna-ohos
 spec:
