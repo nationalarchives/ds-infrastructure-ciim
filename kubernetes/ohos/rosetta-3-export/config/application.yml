@@ -281,6 +281,7 @@ rosetta:
               community: "community.summary.title.keyword"
               collectionMorrab: "collectionMorrab.summary.title.keyword"
               collectionSurrey: "collectionSurrey.summary.title.keyword"
+              collectionConflict: "collectionConflict.summary.title.keyword"
               enrichmentLoc: "enrichment.loc.value.keyword"
               enrichmentOrg: "enrichment.org.value.keyword"
               enrichmentPer: "enrichment.per.value.keyword"
