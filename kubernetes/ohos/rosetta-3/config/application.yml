@@ -227,6 +227,7 @@ rosetta:
               community: "community.summary.title.keyword"
               collectionMorrab: "collectionMorrab.summary.title.keyword"
               collectionSurrey: "collectionSurrey.summary.title.keyword"
+              collectionConflict: "collectionConflict.summary.title.keyword"
               collectionWMK: "collectionWMK.summary.title.keyword"
               collectionMorrabAll: "collectionMorrab.summary.title.keyword"
               collectionSurreyAll: "collectionSurrey.summary.title.keyword"
