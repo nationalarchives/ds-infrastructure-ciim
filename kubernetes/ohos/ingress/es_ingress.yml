@@ -8,7 +8,8 @@ metadata:
 spec:
   ingressClassName:  tna-ohos
   rules:
-    - http:
+    - host: a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com
+      http:
         paths:
           - path: /es
             pathType: Prefix
