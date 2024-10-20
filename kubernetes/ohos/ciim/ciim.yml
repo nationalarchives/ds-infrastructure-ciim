@@ -18,8 +18,6 @@ spec:
       labels:
         app: ciim-tna-ohos
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: "ip-10-100-50-11.eu-west-2.compute.internal"
       terminationGracePeriodSeconds: 60
       volumes:
         - name: ciim-logging-data
