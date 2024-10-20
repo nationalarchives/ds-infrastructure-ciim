@@ -1,0 +1,53 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: ciim-internal-etna
+  namespace: etna
+spec:
+  version: 7.17.6
+  # DeleteOnScaledownOnly keeps the PersistentVolumeClaims when deleting the Elasticsearch cluster.
+  # If you recreate a deleted cluster with the same name and node sets as before, the existing
+  # PersistentVolumeClaims will be adopted by the new cluster.
+  volumeClaimDeletePolicy: DeleteOnScaledownOnly
+  # Disable TLS
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  nodeSets:
+    - name: default
+      count: 1
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 500Gi
+      podTemplate:
+        spec:
+          volumes:
+            - name: dictionaries
+              configMap:
+                name: dictionaries
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: "-Xms4g -Xmx4g -Dlog4j2.formatMsgNoLookups=true"
+              resources:
+                requests:
+                  memory: 6Gi
+                  cpu: 1
+              volumeMounts:
+                - name: dictionaries-etna
+                  mountPath: /usr/share/elasticsearch/config/dictionaries
+          # For production workloads, it is strongly recommended to increase the kernel setting
+          # vm.max_map_count to 262144 and leave node.store.allow_mmap unset.
+          initContainers:
+            - name: sysctl
+              securityContext:
+                privileged: true
+              command: [ 'sh', '-c', 'sysctl -w vm.max_map_count=262144' ]
