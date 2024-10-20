@@ -29,9 +29,9 @@ spec:
       podTemplate:
         spec:
           volumes:
-            - name: dictionaries
+            - name: dictionaries-etna
               configMap:
-                name: dictionaries
+                name: dictionaries-etna
           containers:
             - name: elasticsearch
               env:
