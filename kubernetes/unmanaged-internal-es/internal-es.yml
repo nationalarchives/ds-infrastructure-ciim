@@ -28,6 +28,8 @@ spec:
                 storage: 500Gi
       podTemplate:
         spec:
+          nodeSelector:
+            kubernetes.io/hostname: "ip-10-100-40-69.eu-west-2.compute.internal"
           volumes:
             - name: dictionaries
               configMap:
