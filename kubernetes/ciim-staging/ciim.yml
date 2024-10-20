@@ -56,7 +56,7 @@ spec:
               mountPath: /ciim/ciim-persistence
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:1.1.0
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:2.1.0
           imagePullPolicy: Always
           ports:
             - name: api-port
