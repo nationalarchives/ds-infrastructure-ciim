@@ -5,15 +5,15 @@ es:
       label: Internal Admin
       description: The main search index containing all data in the internal data model
       active: true
-      cluster: ciim-internal
-      node: ciim-internal-client
-      host: ciim-internal-es-http.etna
+      cluster: ciim-internal-etna
+      node: ciim-internal-etna-client
+      host: ciim-internal-etna-es-http.etna
       port: 9200
       pingTimeout: 10s
       protocol: http
       pathPrefix:
       username: elastic
-      password: jh82P2Z38Om3jV5DJvk193NQ
+      password: 323RWM9jU5XZ2Mkn190lre8B
       mediaBase: http://localhost/mediaLib
       indices:
         - ciim
