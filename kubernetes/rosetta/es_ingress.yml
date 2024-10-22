@@ -14,7 +14,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ciim-internal-es-http
+                name: ciim-internal-etna-es-http
                 port:
                   number: 9200
           - path: /public
