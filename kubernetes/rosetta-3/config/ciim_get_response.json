@@ -112,7 +112,7 @@
                       "chain": [
                         {
                           "#type": "http_request",
-                          "url": "https://discovery.nationalarchives.gov.uk/API/fileauthorities/v1/details/{$.source.identifier..__iaid}"
+                          "url": "https://discovery.nationalarchives.gov.uk/API/fileauthorities/v1/details/{$.source.@admin.id}"
                         },
                         {
                           "authorityName": "$.authorityName",
