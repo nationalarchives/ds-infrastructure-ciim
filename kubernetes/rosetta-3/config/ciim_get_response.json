@@ -112,14 +112,14 @@
                       "chain": [
                         {
                           "#type": "http_request",
-                          "url": "https://discovery.nationalarchives.gov.uk/API/fileauthorities/v1/details/F176020"
+                          "url": "https://discovery.nationalarchives.gov.uk/API/fileauthorities/v1/details/{$.source.identifier..__iaid}"
                         },
                         {
-                          "my_output_field_1": "$.authorityName",
-                          "my_output_field_2": {
-                            "value": "$.categories.categoryDescription"
+                          "authorityName": "$.authorityName",
+                          "categories": {
+                            "categoryDescription": "$.categories[*].categoryDescription"
                           },
-                          "etc.": "$.sortName"
+                          "sortName": "$.sortName"
                         }
                       ]
                     }
