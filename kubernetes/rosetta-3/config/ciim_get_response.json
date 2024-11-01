@@ -98,6 +98,7 @@
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "separatedMaterials": "$.source.@template.details.separatedMaterials",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "subject": "$.source.subject",
                     "summaryTitle": "$.source.summary.title",
                     "title": "$.source.title[?(@.primary == true)].value",
                     "type": "$.source.@datatype.base",
