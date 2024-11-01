@@ -102,7 +102,7 @@
                     "separatedMaterials": "$.source.@template.details.separatedMaterials",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "summaryTitle": "$.source.summary.title",
-                    "subject": "$.source.subject",
+                    "subject": "$.source.subject[*].label.value",
                     "title": "$.source.title[?(@.primary == true)].value",
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
