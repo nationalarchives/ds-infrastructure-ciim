@@ -100,7 +100,7 @@
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "separatedMaterials": "$.source.@template.details.separatedMaterials",
-                    "source": "$.source.value",
+                    "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "summaryTitle": "$.source.summary.title",
                     "subject": "$.source.subject[*].label.value",
