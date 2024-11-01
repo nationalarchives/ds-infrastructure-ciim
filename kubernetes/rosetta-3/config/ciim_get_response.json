@@ -1,0 +1,136 @@
+{
+  "#type": "chain",
+  "chain": [
+    {
+      "#type": "merge",
+      "values": [
+        "$.datasets.elasticsearchEtna"
+      ]
+    },
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "$.data",
+              "spec": {
+                "@template": {
+                  "details": {
+                    "accessCondition": "$.source.availability.access.condition.value",
+                    "accruals": "$.source.accruals.value",
+                    "accumulationDates": "$.source.accruals.date.value",
+                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
+                    "agentBirthLocation": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.location.name.value"
+                    },
+                    "agentDateOfBirth": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.date.value"
+                    },
+                    "agentName": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].name.value"
+                    },
+                    "agentServiceNumber": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].service.identifier.value"
+                    },
+                    "appraisalInformation": "$.source.appraisal.value",
+                    "arrangement": "$.source.arrangement.value",
+                    "catalogueContext":{
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.catalogueContext"
+                    },
+                    "closureStatus": "$.source.availability.closure.label.value",
+                    "copiesInformation": {
+                      "#type": "as_list",
+                      "values": "$.source.copies[0].value"
+                    },
+                    "creator": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.creator"
+                    },
+                    "custodialHistory": "$.source.custodial[*].description.value",
+                    "dateCovering": "$.source.origination.date.value",
+                    "deliveryOption": "$.source.availability.delivery.condition.value",
+                    "description": "$.source.description[0].value",
+                    "digitised": "$.source.@template.details.digitised",
+                    "dimensions": "$.source.measurements.dimensions[*].value",
+                    "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
+                    "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "heldBy": "$.source.repository.name.value",
+                    "heldById": "$.source.repository.@admin.id",
+                    "iaid": "$.source.identifier..__iaid",
+                    "immediateSourceOfAcquisition": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.immediateSourceOfAcquisition"
+                    },
+                    "language": {
+                      "#type": "as_list",
+                      "values": "$.source.language[*].value"
+                    },
+                    "legalStatus": "$.source.legal.status",
+                    "level": "$.source.level.value",
+                    "locationOfOriginals": {
+                      "#type": "as_list",
+                      "values": "$.source.originals[*].organisation.name"
+                    },
+                    "mapDesignation": "$.source.@template.details.mapDesignation",
+                    "mapScale": "$.source.@template.details.mapScale",
+                    "note": "$.source.@template.details.note",
+                    "physicalCondition": "$.source.condition.value",
+                    "physicalDescription": "$.source.@template.details.physicalDescription",
+                    "primaryIdentifier": "$.source.@admin.id",
+                    "publicationNote": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'publication note')].value"
+                    },
+                    "recordOpening": "$.source.availability.access.opening.label.value",
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "relatedMaterials": {
+                      "#type": "as_list",
+                      "values":"$.source.@template.details.relatedMaterials"
+                    },
+                    "restrictionsOnUse": "$.source.availability.restrictions.value",
+                    "separatedMaterials": "$.source.@template.details.separatedMaterials",
+                    "source": "$.source.source.value",
+                    "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "subject": "$.source.subject",
+                    "summaryTitle": "$.source.summary.title",
+                    "title": "$.source.title[?(@.primary == true)].value",
+                    "type": "$.source.@datatype.base",
+                    "unpublishedFindingAids": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
+                    },
+                    "deliveryOptions": {
+                      "#type": "chain",
+                      "chain": [
+                        {
+                          "#type": "http_request",
+                          "url": "https://discovery.nationalarchives.gov.uk/API/fileauthorities/v1/details/{$.source.@admin.id}"
+                        },
+                        {
+                          "authorityName": "$.authorityName",
+                          "categories": {
+                            "categoryDescription": "$.categories[*].categoryDescription"
+                          },
+                          "sortName": "$.sortName"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          []
+        ]
+      }
+    }
+  ]
+}
