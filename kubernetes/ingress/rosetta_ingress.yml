@@ -4,9 +4,9 @@ metadata:
   name: ingress-rosetta-3
   namespace: etna
   annotations:
+    kubernetes.io/ingress.class: kong
     konghq.com/plugins: request-transform-etna
 spec:
-  ingressClassName:  etna
   rules:
     - http:
         paths:
