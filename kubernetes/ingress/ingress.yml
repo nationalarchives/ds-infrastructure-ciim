@@ -11,6 +11,13 @@ spec:
   rules:
     - http:
         paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-service
+                port:
+                  name: rosetta-port
           - path: /api/v1/data/(.*)
             pathType: Prefix
             backend:
@@ -60,10 +67,3 @@ spec:
                 name: ui-service
                 port:
                   name: ui-port
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-3-service
-                port:
-                  name: rosetta-port
