@@ -122,7 +122,8 @@
                           "categories": {
                             "categoryDescription": "$.categories[*].categoryDescription"
                           },
-                          "sortName": "$.sortName"
+                          "sortName": "$.sortName",
+                          "price": "£3.50"
                         }
                       ]
                     }
