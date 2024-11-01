@@ -21,6 +21,7 @@ bases:
   - ../../ohos/rosetta-3-graphql
   - ../../ohos/acme
   - ../../internal-es
+  - ../../public-es
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
