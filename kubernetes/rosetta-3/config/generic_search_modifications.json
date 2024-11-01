@@ -1,0 +1,17 @@
+{
+  "#type": "merge",
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.original.query[?(@.q_exact == 'true')]",
+      "value": {
+        "queries": {
+          "#type": "for_each",
+          "values": "$.current.queries",
+          "spec": "(\"{$}\")"
+        }
+      }
+    }
+  ]
+}

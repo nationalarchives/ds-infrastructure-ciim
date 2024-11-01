@@ -1,0 +1,12 @@
+{
+  "#type": "merge",
+  "values": [
+    "$",
+    {
+      "creation": {
+        "#type": "as_value",
+        "value": "$.creation"
+      }
+    }
+  ]
+}

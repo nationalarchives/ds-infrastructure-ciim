@@ -22,6 +22,8 @@ bases:
   - ../../ohos/acme
   - ../../internal-es
   - ../../public-es
+  - ../../ingress
+  - ../../rosetta-3
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

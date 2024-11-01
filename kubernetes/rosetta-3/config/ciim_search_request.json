@@ -1,0 +1,39 @@
+{
+  "results": {
+    "request": {
+      "query": "$.query",
+      "aggregations": "$.aggregations",
+      "from": "$.from",
+      "size": "$.size",
+      "sort": "$.sort"
+    },
+    "cache": {
+      "name": "fast-cache"
+    }
+  },
+  "aggs": {
+    "request": {
+      "query": {
+          "bool": {
+            "filter": [
+              {}
+            ],
+            "must": "$.query.bool.must"
+          }
+      },
+      "aggregations": {
+        "group": {
+          "terms": {
+            "field": "@datatype.group.value",
+            "size": "50"
+          }
+        }
+      },
+      "size": 0,
+      "timeout": "60s"
+    },
+    "cache": {
+      "name": "slow-cache"
+    }
+  }
+}
