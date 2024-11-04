@@ -72,7 +72,16 @@
                       "#type": "as_list",
                       "values": "$.source.@template.details.immediateSourceOfAcquisition"
                     },
-                    "language":"$.source.language.value",
+                    "language": {
+                      "#type": "fallback",
+                      "strategies": [
+                        {
+                          "#type": "as_list",
+                          "values": "$.source.language[*].value"
+                        },
+                        "$.source.language[0].value"
+                      ]
+                    },
                     "legalStatus": "$.source.legal.status",
                     "level": "$.source.level.value",
                     "locationOfOriginals": {
