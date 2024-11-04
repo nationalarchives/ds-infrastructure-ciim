@@ -69,7 +69,7 @@
                       "#type": "as_list",
                       "values": "$.source.@template.details.immediateSourceOfAcquisition"
                     },
-                   "language": "$.source.language.value",
+                    "language":"$.source.language.value",
                     "legalStatus": "$.source.legal.status",
                     "level": "$.source.level.value",
                     "locationOfOriginals": {
