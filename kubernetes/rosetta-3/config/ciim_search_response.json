@@ -49,7 +49,6 @@
                       "values": "$.source.@template.details.catalogueContext"
                     },
                     "closureStatus": "$.source.availability.closure.label.value",
-
                     "copiesInformation": {
                       "#type": "as_list",
                       "values": "$.source.copies[0].value"
@@ -69,12 +68,6 @@
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
-                    "@datatype": {"base": "record",
-                      "group": [
-                      {"value": "record"},
-                      {"value": "tna"}
-                    ]
-                    },
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
