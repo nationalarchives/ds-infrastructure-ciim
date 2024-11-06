@@ -49,6 +49,7 @@
                       "values": "$.source.@template.details.catalogueContext"
                     },
                     "closureStatus": "$.source.availability.closure.label.value",
+
                     "copiesInformation": {
                       "#type": "as_list",
                       "values": "$.source.copies[0].value"
@@ -58,6 +59,7 @@
                       "values": "$.source.@template.details.creator"
                     },
                     "custodialHistory": "$.source.custodial[*].description.value",
+                    "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": "$.source.description[0].value",
@@ -85,6 +87,8 @@
                       "#type": "as_list",
                       "values": "$.source.originals[*].organisation.name"
                     },
+                    "lordChancellorInstrument": "$.source.lordChancellorInstrument.value",
+                    "licSignedDate": "$.source.licSignedDate.value",
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
