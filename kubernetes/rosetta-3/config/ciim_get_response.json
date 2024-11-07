@@ -57,7 +57,7 @@
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description":{
                       "#type": "as_list",
-                      "values":"$.source.description[*].value"
+                      "values":"$.source.description.value"
                     },
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
