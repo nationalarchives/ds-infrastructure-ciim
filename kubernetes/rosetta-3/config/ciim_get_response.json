@@ -46,10 +46,7 @@
                       "values": "$.source.@template.details.catalogueContext"
                     },
                     "closureStatus": "$.source.availability.closure.label.value",
-                    "copiesInformation": {
-                      "#type": "as_list",
-                      "values": "$.source.copies[0].value"
-                    },
+                    "copiesInformation": "$.source.copies[0].value",
                     "creator": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.creator"
