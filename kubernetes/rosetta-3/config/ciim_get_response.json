@@ -70,7 +70,7 @@
                     },
                     "language": {
                       "#type": "as_list",
-                      "values": "$.source.language[*].value,"
+                      "values": "$.source.language[*].value"
                     },
                     "legalStatus": "$.source.legal.status",
                     "level": "$.source.level.value",
