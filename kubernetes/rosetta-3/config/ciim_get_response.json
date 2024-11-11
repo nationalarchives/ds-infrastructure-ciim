@@ -68,7 +68,10 @@
                       "#type": "as_list",
                       "values": "$.source.@template.details.immediateSourceOfAcquisition"
                     },
-                    "language": "$.source.language[0].value",
+                    "language": {
+                      "#type": "as_list",
+                      "values": "$.source.language[0].value,"
+                    },
                     "legalStatus": "$.source.legal.status",
                     "level": "$.source.level.value",
                     "locationOfOriginals": {
