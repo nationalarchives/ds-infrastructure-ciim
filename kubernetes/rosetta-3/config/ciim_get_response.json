@@ -56,10 +56,7 @@
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": "$.source.description.description[?(@.type == 'description')].value",
-                    "description":{
-                      "#type": "as_list",
-                      "values":"$.source.description[*].value"
-                    },
+
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
