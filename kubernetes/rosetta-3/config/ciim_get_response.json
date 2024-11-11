@@ -68,7 +68,11 @@
                       "#type": "as_list",
                       "values": "$.source.@template.details.immediateSourceOfAcquisition"
                     },
-                    "language": "$.source.language[*].value",
+                    "language": {
+                      "#type": "string_join",
+                      "values":"$.source.language[*].value",
+                      "delimiter": " and "
+                    },
                     "legalStatus": "$.source.legal.status",
                     "level": "$.source.level.value",
                     "locationOfOriginals": {
