@@ -237,11 +237,11 @@ rosetta:
       - name: elasticsearchEtna
         type: elasticsearch
         properties:
-          host: ciim-public-es-http.etna
+          host: ciim-public-etna-es-http.etna
           port: 9200
           index: ciim
           username: elastic
-          password: Kng6K7J41j882P77EQeS9cTI
+          password: Sti565pqjc99I9Cfy4W824Ig
 
   monitoring:
     log_stages: true

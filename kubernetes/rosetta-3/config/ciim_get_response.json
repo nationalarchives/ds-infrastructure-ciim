@@ -60,6 +60,7 @@
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "groupArray":  "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
                     "iaid": "$.source.identifier..__iaid",
