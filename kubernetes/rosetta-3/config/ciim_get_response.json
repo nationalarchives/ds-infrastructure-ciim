@@ -55,7 +55,11 @@
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
-                    "description": "$.source.description[0].value",
+                    "description": "$.source.description.description[?(@.type == 'description')].value",
+                    "description":{
+                      "#type": "as_list",
+                      "values":"$.source.description[*].value"
+                    },
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
@@ -78,8 +82,6 @@
                       "#type": "as_list",
                       "values": "$.source.originals[*].organisation.name"
                     },
-                    "lordChancellorInstrument": "$.source.lordChancellorInstrument.value",
-                    "licSignedDate": "$.source.licSignedDate.value",
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
