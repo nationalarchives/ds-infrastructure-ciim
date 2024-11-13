@@ -6,8 +6,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
 spec:
+  ingressClassName: tna-ohos
+  tls:
+    - hosts:
+        - ciim-api-staging.k-int.com
+      secretName: tls-secret-etna
   rules:
-    - http:
+    - host: ciim-api-staging.k-int.com
+      http:
         paths:
           - path: /api/v1/data
             pathType: Prefix
@@ -16,3 +22,14 @@ spec:
                 name: data-api-service
                 port:
                   name: api-port
+    - host: afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com
+      http:
+        paths:
+          - path: /api/v1/data
+            pathType: Prefix
+            backend:
+              service:
+                name: data-api-service
+                port:
+                  name: api-port
+
