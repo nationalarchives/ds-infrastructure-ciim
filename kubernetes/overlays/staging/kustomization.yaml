@@ -25,6 +25,7 @@ bases:
   - ../../ingress
   - ../../rosetta-3
   - ../../api
+  - ../../acme
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
