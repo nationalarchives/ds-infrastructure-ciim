@@ -5,7 +5,6 @@ metadata:
   namespace: etna
   annotations:
     kubernetes.io/ingress.class: kong
-    konghq.com/plugins: etna-apikey-auth
 spec:
   rules:
     - http:
@@ -17,10 +16,3 @@ spec:
                 name: data-api-service
                 port:
                   name: api-port
-          - path: /search
-            pathType: Prefix
-            backend:
-              service:
-                name: ciim-internal-es-default
-                port:
-                  number: 9200
