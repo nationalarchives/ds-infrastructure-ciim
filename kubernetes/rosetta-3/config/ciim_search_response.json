@@ -66,10 +66,7 @@
                     "groupArray":  "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
-                    "hierarchy": {
-                      "#type": "as_list",
-                      "values": "$.source.hierarchy[*].value"
-                    },
+                    "@hierarchy":"$.source.hierarchy[*].value",
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
