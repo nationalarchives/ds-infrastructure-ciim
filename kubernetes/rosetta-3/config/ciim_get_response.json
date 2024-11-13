@@ -75,7 +75,7 @@
                       "delimiter": " and "
                     },
                     "legalStatus": "$.source.legal.status",
-                    "level": "$.source.level.value",
+                    "level": "$.source.level",
                     "locationOfOriginals": {
                       "#type": "as_list",
                       "values": "$.source.originals[*].organisation.name"
