@@ -97,7 +97,10 @@
                       "values":"$.source.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
-                    "separatedMaterials": "$.source.@template.details.separatedMaterials",
+                    "separatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.separatedMaterials"
+                    },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "subject": "$.source.subject",
