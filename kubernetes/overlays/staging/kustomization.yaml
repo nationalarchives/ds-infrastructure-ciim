@@ -24,6 +24,8 @@ bases:
   - ../../public-es
   - ../../ingress
   - ../../rosetta-3
+  - ../../api
+  - ../../acme
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

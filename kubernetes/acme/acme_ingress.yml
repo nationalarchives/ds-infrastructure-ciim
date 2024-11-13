@@ -9,9 +9,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - tna.ciim.k-int.com
+        - ciim-api-staging.k-int.com
   rules:
-    - host: tna.ciim.k-int.com
+    - host: ciim-api-staging.k-int.com
       http:
         paths:
           - path: /.well-known/acme-challenge
