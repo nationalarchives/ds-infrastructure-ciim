@@ -18,13 +18,6 @@ spec:
                 name: rosetta-3-service
                 port:
                   name: rosetta-port
-          - path: /api/v1/data/(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-service
-                port:
-                  name: rosetta-port
           - path: /tna/api/
             pathType: Prefix
             backend:
@@ -32,34 +25,6 @@ spec:
                 name: ciim-service
                 port:
                   name: api-port
-          - path: /api/v1/
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-service
-                port:
-                  name: rosetta-port
-          - path: /swagger-ui/index.html
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-service
-                port:
-                  name: rosetta-port
-          - path: /swagger-ui/index.html/(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-service
-                port:
-                  name: rosetta-port
-          - path: /api/v1/spec
-            pathType: Prefix
-            backend:
-              service:
-                name: rosetta-service
-                port:
-                  name: rosetta-port
           - path: /ciim/
             pathType: Prefix
             backend:
