@@ -78,7 +78,7 @@
                       "delimiter": " and "
                     },
                     "legalStatus": "$.source.legal.status",
-                    "level": "$.source.level.value",
+                    "level": "$.source.level",
                     "locationOfOriginals": {
                       "#type": "as_list",
                       "values": "$.source.originals[*].organisation.name"
@@ -100,7 +100,10 @@
                       "values":"$.source.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
-                    "separatedMaterials": "$.source.@template.details.separatedMaterials",
+                    "separatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.separatedMaterials"
+                    },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "summaryTitle": "$.source.summary.title",
