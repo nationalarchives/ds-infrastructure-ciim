@@ -8,8 +8,23 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /api/v1/$1
 spec:
+  tls:
+    - hosts:
+        - rosetta-staging.k-int.com
+      secretName: tls-secret-rosetta
   rules:
-    - http:
+    - host: rosetta-staging.k-int.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-service
+                port:
+                  name: rosetta-port
+    - host: afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com
+      http:
         paths:
           - path: /
             pathType: Prefix
