@@ -6,4 +6,4 @@ metadata:
   labels:
     app: ciim-db-service
 spec:
-  externalName: ciim-staging22-db.ceb6kampxuhs.eu-west-2.rds.amazonaws.com
+  externalName: ciim-staging-db.ceb6kampxuhs.eu-west-2.rds.amazonaws.com
