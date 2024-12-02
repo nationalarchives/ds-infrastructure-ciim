@@ -127,16 +127,28 @@
                         }
                       ]
                     },
-                    "spac":{
+
+                    "spac": {
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
-                        "parentId":"$.source.parent.@admin.id",
+                        "parentId": "$.source.parent.@admin.id",
                         "rangeSort": "{\"gt\": \"{$.source.sort}\"}",
                         "sortOrder": "asc"
                       },
-                      "@next": "$.hits.hits._source.@admin.id"
+                      "@next": {
+                        "#type": "fallback",
+                        "strategies": [
+                          {
+                            "#type": "first_non_null",
+                            "values": [
+                              "$.hits.hits._source.@admin.id"
+                            ]
+                          }
+                        ]
+                      }
                     }
+
                   }
                 }
               }
