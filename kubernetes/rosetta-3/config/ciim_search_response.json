@@ -86,6 +86,7 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
+
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
@@ -129,6 +130,16 @@
                           "sortName": "$.sortName"
                         }
                       ]
+                    },
+                    "spac":{
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId":"$.source.parent.@admin.id",
+                        "rangeSort": "{\"gt\": \"{$.source.sort}\"}",
+                        "sortOrder": "asc"
+                      },
+                      "@next": "$.hits.hits._source.@admin.id"
                     }
                   }
                 }

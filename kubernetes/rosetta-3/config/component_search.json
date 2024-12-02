@@ -1,0 +1,43 @@
+{
+  "search_url":"https://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public/_search",
+  "type_registry":{
+    "es_query":{
+      "#type":"http_request",
+      "url":"{%.search_url}",
+      "method":"POST",
+      "headers":{
+        "Content-Type":"application/json",
+        "Authorization": "Basic ZWxhc3RpYzo2dFZoSDRvR0syM1RVODk1UGZhMDRCOEs="
+      },
+      "body":{
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "parent.@admin.id": "{&.parentId}"
+                }
+              },
+              {
+                "range": {
+                  "sort": "{&.rangeSort}"
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "@sort.keyword": {
+              "order": "{&.sortOrder}"
+            }
+          }
+        ],
+        "size": 1
+      },
+      "allow":200,
+      "require_allowed":true,
+      "require_response":true
+    }
+  }
+}
