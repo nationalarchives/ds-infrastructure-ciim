@@ -15,13 +15,24 @@
             "must": [
               {
                 "term": {
-                  "parent.@admin.id": "C2082198"
+                  "parent.@admin.id": "{&.parentId}"
+                }
+              },
+              {
+                "range": {
+                  "sort": "{&.rangeSort}"
                 }
               }
             ]
           }
         },
-        "sort": [],
+        "sort": [
+          {
+            "@sort.keyword": {
+              "order": "{&.sortOrder}"
+            }
+          }
+        ],
         "size": 1
       },
       "allow":200,
