@@ -131,7 +131,7 @@
                         }
                       ]
                     },
-                    "spec": {
+                    "@next": {
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
@@ -139,18 +139,8 @@
                         "rangeSort": "{\"gt\": \"{$.source.sort}\"}",
                         "sortOrder": "asc"
                       },
-                      "@next": {
-                        "#type": "fallback",
-                        "strategies": [
-                          {
-                            "#type": "first_non_null",
-                            "values": [
-                              "$.hits.hits._source.@admin.id"
-                            ]
-                          }
-                        ]
+                      "value": "$.hits.hits._source.@admin.id"
                       }
-                    }
                   }
                 }
               }
