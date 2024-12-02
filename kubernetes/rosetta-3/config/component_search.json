@@ -7,28 +7,26 @@
       "method":"POST",
       "headers":{
         "Content-Type":"application/json",
-        "Authorization": "Basic xxxx"
+        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
       },
       "body":{
-        "query": {
-          "bool": {
-            "must": [
-              {
-                "term": {
-                  "parent.@admin.id": "{&.parentId}"
-                }
-              }
-            ]
-          }
-        },
+        "query":{
+          "query_string":{
+            "query":"test"
+          }},
         "sort": [
           {
             "@sort.keyword": {
-              "order": "{&.sortOrder}"
+              "order": "asc"
             }
           }
         ],
-        "size": 1
+        "size": 1,
+        "_source":{
+          "includes":[
+            "@processed"
+          ]
+        }
       },
       "allow":200,
       "require_allowed":true,
