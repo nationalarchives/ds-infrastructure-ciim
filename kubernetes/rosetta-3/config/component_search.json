@@ -17,22 +17,11 @@
                 "term": {
                   "parent.@admin.id": "{&.parentId}"
                 }
-              },
-              {
-                "range": {
-                  "sort": "{&.rangeSort}"
-                }
               }
             ]
           }
         },
-        "sort": [
-          {
-            "@sort.keyword": {
-              "order": "{&.sortOrder}"
-            }
-          }
-        ],
+        "sort": [],
         "size": 1
       },
       "allow":200,
