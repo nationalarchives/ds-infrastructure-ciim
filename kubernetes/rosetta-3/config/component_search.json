@@ -28,7 +28,7 @@
         },
         "sort": [
           {
-            "@sort.keyword": {
+            "sort": {
               "order": "{&.sortOrder}"
             }
           }
