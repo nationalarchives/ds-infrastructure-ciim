@@ -7,7 +7,7 @@
       "method":"POST",
       "headers":{
         "Content-Type":"application/json",
-        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+        "Authorization": "Basic xxxx"
       },
       "body":{
         "query": {
