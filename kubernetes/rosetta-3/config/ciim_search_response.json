@@ -123,7 +123,7 @@
                         "rangeSort": "{\"gt\": \"{$.source.sort}\"}",
                         "sortOrder": "asc"
                       },
-                      "value": "$.hits.hits._source.@admin.id"
+                      "value": "$.hits.hits[0]._source.@admin.id"
                       }
                   }
                 }
