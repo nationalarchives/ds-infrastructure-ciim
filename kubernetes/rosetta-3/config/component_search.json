@@ -17,11 +17,6 @@
                 "term": {
                   "parent.@admin.id": "{&.parentId}"
                 }
-              },
-              {
-                "range": {
-                  "sort": "{&.rangeSort}"
-                }
               }
             ]
           }
