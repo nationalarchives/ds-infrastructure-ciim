@@ -199,6 +199,8 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_search_response.json
+          include:
+            - ./config/component_search.json
 
       - name: ciim/get/request
         type: proteus

@@ -131,7 +131,7 @@
                         }
                       ]
                     },
-                    "spac": {
+                    "spec": {
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
