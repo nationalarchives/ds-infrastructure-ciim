@@ -119,7 +119,7 @@
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
-                        "parentId": "$.source.parent.@admin.id",
+                        "parentId": "$.source.parent[0].@admin.id",
                         "rangeSort": "{\"gt\": \"{$.source.sort}\"}",
                         "sortOrder": "asc"
                       },

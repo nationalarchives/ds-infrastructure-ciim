@@ -15,7 +15,7 @@
             "must": [
               {
                 "term": {
-                  "parent.@admin.id": "C2082198"
+                  "parent.@admin.id": "{&.parentId}"
                 }
               },
               {
