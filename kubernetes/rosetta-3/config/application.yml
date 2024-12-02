@@ -1,6 +1,11 @@
 base_paths:
   proteus: ./config
 
+logging:
+  level:
+    com.k_int.proteus.component.core.HttpRequestSpec: trace
+    com.k_int.proteus.provider.http.client.OkHttpClientFacade: trace
+
 rosetta:
   admin:
     enabled: true

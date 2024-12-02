@@ -10,23 +10,30 @@
         "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
       },
       "body":{
-        "query":{
-          "query_string":{
-            "query":"test"
-          }},
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "parent.@admin.id": "{&.parentId}"
+                }
+              },
+              {
+                "range": {
+                  "sort": "{&.rangeSort}"
+                }
+              }
+            ]
+          }
+        },
         "sort": [
           {
             "@sort.keyword": {
-              "order": "asc"
+              "order": "{&.sortOrder}"
             }
           }
         ],
-        "size": 1,
-        "_source":{
-          "includes":[
-            "@processed"
-          ]
-        }
+        "size": 1
       },
       "allow":200,
       "require_allowed":true,
