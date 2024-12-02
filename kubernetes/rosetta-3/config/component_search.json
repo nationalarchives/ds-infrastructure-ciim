@@ -12,17 +12,23 @@
       "body":{
         "query": {
           "bool": {
-            "must":
+            "must": [
               {
                 "term": {
                   "parent.@admin.id": "{&.parentId}"
                 }
+              },
+              {
+                "range": {
+                  "sort": "{&.rangeSort}"
+                }
               }
+            ]
           }
         },
         "sort": [
           {
-            "sort": {
+            "@sort.keyword": {
               "order": "{&.sortOrder}"
             }
           }
