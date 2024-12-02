@@ -12,13 +12,12 @@
       "body":{
         "query": {
           "bool": {
-            "must": [
+            "must":
               {
                 "term": {
                   "parent.@admin.id": "{&.parentId}"
                 }
               }
-            ]
           }
         },
         "sort": [
