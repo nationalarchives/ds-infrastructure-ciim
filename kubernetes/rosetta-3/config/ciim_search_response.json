@@ -133,7 +133,7 @@
                         "#type": "es_query",
                         "parentId": "$.source.parent[0].@admin.id",
                         "rangeSort": {
-                          "gt": "$.source.sort"
+                          "lt": "$.source.sort"
                         },
                         "sortOrder": "desc"
                       },
