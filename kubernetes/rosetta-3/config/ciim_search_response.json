@@ -125,9 +125,16 @@
                         },
                         "sortOrder": "asc"
                       },
-                      "value": "$.hits.hits[0]._source.@admin.id"
+                      "value":{
+                       "@admin":{
+                         "id": "$.hits.hits[0]._source.@admin.id`"
+                       },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
                       },
-                    "@previews": {
+                    "@previous": {
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
