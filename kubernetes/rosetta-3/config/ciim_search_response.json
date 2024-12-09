@@ -24,7 +24,7 @@
                   "details": {
                     "accessCondition": "$.source.availability.access.condition.value",
                     "accruals": "$.source.accruals.value",
-                    "accumulationDates": "$.source.accruals.value",
+                    "accumulationDates": "$.source.accruals.date.value",
                     "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
                     "agentBirthLocation": {
                       "#type": "as_list",
@@ -81,7 +81,18 @@
                     "level": "$.source.level",
                     "locationOfOriginals": {
                       "#type": "as_list",
-                      "values": "$.source.originals[*].organisation.name"
+                      "values": {
+                        "#type": "for_each",
+                        "values":"$.source.originals",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "$.organisation.name[0].value",
+                            "$.description.value"
+                          ],
+                          "delimiter": " "
+                        }
+                      }
                     },
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
