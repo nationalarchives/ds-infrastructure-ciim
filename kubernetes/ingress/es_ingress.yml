@@ -25,3 +25,17 @@ spec:
                 name: ciim-public-etna-es-http
                 port:
                   number: 9200
+          - path: /public
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-public-etna-es-http
+                port:
+                  number: 9200
+          - path: /etna-public
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-public-es-http
+                port:
+                  number: 9200
