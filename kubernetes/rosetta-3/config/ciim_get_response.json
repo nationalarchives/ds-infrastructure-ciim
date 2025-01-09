@@ -78,7 +78,18 @@
                     "level": "$.source.level",
                     "locationOfOriginals": {
                       "#type": "as_list",
-                      "values": "$.source.originals[*].organisation.name"
+                      "values": {
+                        "#type": "for_each",
+                        "values":"$.source.originals",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "$.organisation.name[0].value",
+                            "$.description.value"
+                          ],
+                          "delimiter": " "
+                        }
+                      }
                     },
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
