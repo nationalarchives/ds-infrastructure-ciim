@@ -137,6 +137,44 @@
                           "sortName": "$.sortName"
                         }
                       ]
+                    },
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
+                        },
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin":{
+                          "id":"$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary":{
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value":{
+                        "@admin":{
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
                     }
                   }
                 }
