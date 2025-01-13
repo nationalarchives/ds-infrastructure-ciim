@@ -94,7 +94,6 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "@parent": "$.source.parent",
                     "parent": {
                       "#type": "as_list",
                       "values": "$.source.parent"
