@@ -94,10 +94,10 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "@parent": "$.source.parent.value",
+                    "@parent": "$.source.parent",
                     "parent": {
                       "#type": "as_list",
-                      "values": "$.source.parent.value"
+                      "values": "$.source.parent"
                     },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",

@@ -101,7 +101,7 @@
                     "@parent": "$.source.parent.value",
                     "parent": {
                       "#type": "as_list",
-                      "values": "$.source.parent.value"
+                      "values": "$.source.parent"
                     },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
