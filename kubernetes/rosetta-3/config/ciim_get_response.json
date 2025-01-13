@@ -94,8 +94,8 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "parent":{
-                      "type": "as_list",
+                    "parent": {
+                      "#type": "as_list",
                       "values": "$.source.parent.value"
                     },
                     "physicalCondition": "$.source.condition.value",
