@@ -30,7 +30,7 @@
                         "#type": "string_join",
                         "values": [
                           "$.source.accruals.date.accumulationDates",
-                          "$.sorce.accruals.date.value"
+                          "$.source.accruals.date.value"
                         ]
                       }
                     }
