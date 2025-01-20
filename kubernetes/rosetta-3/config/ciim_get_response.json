@@ -23,7 +23,7 @@
                     "accruals": "$.source.accruals.value",
                     "accumulationDates":{
                       "#type": "as_list",
-                      "values": "$.source.accruals.date.role.value"
+                      "values": "$.source.accruals.date.value"
                     },
                     "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
                     "agentBirthLocation": {
