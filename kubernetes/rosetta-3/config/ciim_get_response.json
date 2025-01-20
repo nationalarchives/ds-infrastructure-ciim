@@ -21,10 +21,7 @@
                   "details": {
                     "accessCondition": "$.source.availability.access.condition.value",
                     "accruals": "$.source.accruals.value",
-                    "accumulationDates":{
-                      "#type": "as_list",
-                      "values": "$.source.accruals.date.value"
-                    },
+                    "accumulationDates": "$.source.accruals.date.value",
                     "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
                     "agentBirthLocation": {
                       "#type": "as_list",
