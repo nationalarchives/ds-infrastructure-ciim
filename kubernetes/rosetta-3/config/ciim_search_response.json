@@ -22,120 +22,12 @@
               "spec": {
                 "@template": {
                   "details": {
-                    "accessCondition": "$.source.availability.access.condition.value",
-                    "accruals": "$.source.accruals.value",
-                    "accumulationDates": "$.source.accruals.date.value",
-                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
-                    "agentBirthLocation": {
-                      "#type": "as_list",
-                      "values": "$.source.agent[0].@birth.location.name.value"
-                    },
-                    "agentDateOfBirth": {
-                      "#type": "as_list",
-                      "values": "$.source.agent[0].@birth.date.value"
-                    },
-                    "agentName": {
-                      "#type": "as_list",
-                      "values": "$.source.agent[0].name.value"
-                    },
-                    "agentServiceNumber": {
-                      "#type": "as_list",
-                      "values": "$.source.agent[0].service.identifier.value"
-                    },
-                    "appraisalInformation": "$.source.appraisal.value",
-                    "arrangement": "$.source.arrangement.value",
-                    "catalogueContext":{
-                      "#type": "as_list",
-                      "values": "$.source.@template.details.catalogueContext"
-                    },
-                    "closureStatus": "$.source.availability.closure.label.value",
-                    "copiesInformation": "$.source.copies[0].value",
-                    "creator": {
-                      "#type": "as_list",
-                      "values": "$.source.@template.details.creator"
-                    },
-                    "custodialHistory": "$.source.custodial[*].description.value",
-                    "closureCriterion": "$.source.closureCriterion.value",
-                    "dateCovering": "$.source.origination.date.value",
-                    "deliveryOption": "$.source.availability.delivery.condition.value",
-                    "description": {
-                      "title": "$..source.title[?(@.primary == true)].value",
-                      "description": "$..source.description[0].value",
-                      "dateCovering": "$..source.origination.date.value",
-                      "heldBy": "$..source.repository.name.value",
-                      "referenceNumber": "$..source.identifier[?(@.type == 'reference number')].value"
-                    },
-                    "digitised": "$.source.@template.details.digitised",
-                    "dimensions": "$.source.measurements.dimensions[*].value",
-                    "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
-                    "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
-                    "groupArray":  "$.source.@datatype.group",
-                    "heldBy": "$.source.repository.name.value",
-                    "heldById": "$.source.repository.@admin.id",
-                    "@hierarchy":"$.source.@hierarchy",
                     "iaid": "$.source.identifier..__iaid",
-                    "immediateSourceOfAcquisition": {
-                      "#type": "as_list",
-                      "values": "$.source.@template.details.immediateSourceOfAcquisition"
-                    },
-                    "language": {
-                      "#type": "string_join",
-                      "values":"$.source.language[*].value",
-                      "delimiter": " and "
-                    },
-                    "legalStatus": "$.source.legal.status",
-                    "level": "$.source.level",
-                    "locationOfOriginals": {
-                      "#type": "as_list",
-                      "values": {
-                        "#type": "for_each",
-                        "values":"$.source.originals",
-                        "spec": {
-                          "#type": "string_join",
-                          "values": [
-                            "$.organisation.name[0].value",
-                            "$.description.value"
-                          ],
-                          "delimiter": " "
-                        }
-                      }
-                    },
-
-                    "mapDesignation": "$.source.@template.details.mapDesignation",
-                    "mapScale": "$.source.@template.details.mapScale",
-                    "note": "$.source.@template.details.note",
-                    "parent": {
-                      "#type": "as_list",
-                      "values": "$.source.parent"
-                    },
-                    "physicalCondition": "$.source.condition.value",
-                    "physicalDescription": "$.source.@template.details.physicalDescription",
-                    "primaryIdentifier": "$.source.@admin.id",
-                    "publicationNote": {
-                      "#type": "as_list",
-                      "values": "$.source.note[?(@.type == 'publication note')].value"
-                    },
-                    "recordOpening": "$.source.availability.access.opening.label.value",
-                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                    "relatedMaterials": {
-                      "#type": "as_list",
-                      "values":"$.source.@template.details.relatedMaterials"
-                    },
-                    "restrictionsOnUse": "$.source.availability.restrictions.value",
-                    "separatedMaterials": {
-                      "#type": "as_list",
-                      "values": "$.source.@template.details.separatedMaterials"
-                    },
-                    "source": "$.source.source.value",
-                    "sourceUrl": "$.source.@template.details.sourceUrl",
-                    "summaryTitle": "$.source.summary.title",
-                    "subject": "$.source.subject[*].label.value",
-                    "title": "$.source.title[?(@.primary == true)].value",
-                    "type": "$.source.@datatype.base",
-                    "unpublishedFindingAids": {
-                      "#type": "as_list",
-                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
-                    }
+                    "title": "$..source.title[?(@.primary == true)].value",
+                    "description": "$..source.description[0].value",
+                    "dateCovering": "$..source.origination.date.value",
+                    "heldBy": "$..source.repository.name.value",
+                    "referenceNumber": "$..source.identifier[?(@.type == 'reference number')].value"
                   }
                 }
               }
