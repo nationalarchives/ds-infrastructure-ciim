@@ -58,6 +58,7 @@
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
+
                     "description": {
                       "#type": "as_list",
                       "title": "$.source.title[?(@.primary == true)].value",
