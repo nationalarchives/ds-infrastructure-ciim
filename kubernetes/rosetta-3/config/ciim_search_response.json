@@ -59,12 +59,11 @@
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": {
-                      "#type": "as_list",
-                      "title": "$.source.title[?(@.primary == true)].value",
-                      "description": "$.source.description[0].value",
-                      "heldBy": "$.source.repository.name.value",
-                      "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                      "dateCovering": "$.source.origination.date.value"
+                      "title": "$..source.title[?(@.primary == true)].value",
+                      "description": "$..source.description[0].value",
+                      "dateCovering": "$..source.origination.date.value",
+                      "heldBy": "$..source.repository.name.value",
+                      "referenceNumber": "$..source.identifier[?(@.type == 'reference number')].value"
                     },
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
