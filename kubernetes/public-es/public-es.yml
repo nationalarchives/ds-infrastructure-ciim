@@ -26,6 +26,7 @@ spec:
             resources:
               requests:
                 storage: 500Gi
+            storageClassName: ebs-sc
       podTemplate:
         spec:
           volumes:
