@@ -58,7 +58,10 @@
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
-                    "description": "$.source.description[0].value",
+                    "description":{
+                      "#type": "as_list",
+                      "values": "$.source.description"
+                    },
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
