@@ -24,6 +24,7 @@
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
                     "title": "$.source.title[?(@.primary == true)].value",
+                    "summaryTitle": "$.source.summary.title",
                     "description": "$.source.description[0].value",
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
