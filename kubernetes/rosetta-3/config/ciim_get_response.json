@@ -87,10 +87,7 @@
                           "#type": "for_each",
                           "values": "$.identifier",
                           "spec": {
-                            "reference_number": "$.__reference_number",
-                            "primary": "$.primary",
-                            "type": "$.type",
-                            "value": "$.value"
+                            "reference_number": "$.__reference_number"
                           }
                         },
                         "level": {
