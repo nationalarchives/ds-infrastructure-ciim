@@ -76,7 +76,35 @@
                     "groupArray":  "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
-                    "@hierarchy":"$.source.@hierarchy",
+                    "@hierarchy": {
+                    "#type": " for_each",
+                    "values": "$.source.@hierarchy",
+                      "spec": {
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec":{
+                            "reference_number":"$.reference_number",
+                            "primary": "$.primary",
+                            "type": "$.type",
+                            "value": "$.value"
+                          }
+                        },
+
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source":{
+                          "source": "$.source.value"
+                        },
+                        "summary":{
+                          "title": "$.summary.title"
+                        }
+                      }
+                  },
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
