@@ -76,9 +76,7 @@ rosetta:
           request:
             policy: list
             names:
-              - to-generic-search
               - generic-search-defaults
-              - generic-search-modifications
               - ciim/get/request
           response:
             policy: list
