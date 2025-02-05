@@ -58,14 +58,15 @@
                         },
                         "sortOrder": "asc"
                       },
-                      "value":{
-                        "@admin":{
+                      "value": {
+                        "@admin": {
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
                           "title": "$.hits.hits[0]._source.summary.title"
                         }
                       }
+                    }
                   }
                 }
               }
