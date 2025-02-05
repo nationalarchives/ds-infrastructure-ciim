@@ -104,7 +104,15 @@
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
-                      "values": "[($.source.@template.details.immediateSourceOfAcquisition ? $.source.@template.details.immediateSourceOfAcquisition : $.source.acquisition[*].description.value)]"
+                      "values": "$.source.@template.details.immediateSourceOfAcquisition"
+                    },
+                    "immediateSourceOfAcquisitionFallback": {
+                      "#type": "as_list",
+                      "values": "$.source.acquisition[*].description.value"
+                    },
+                    "immediateSourceOfAcquisitionFinal": {
+                      "#type": "as_list",
+                      "values": "[($.immediateSourceOfAcquisition ? $.immediateSourceOfAcquisition : $.immediateSourceOfAcquisitionFallback)]"
                     },
 
                     "language": {
