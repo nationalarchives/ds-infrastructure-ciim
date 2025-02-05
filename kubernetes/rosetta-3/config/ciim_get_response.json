@@ -167,7 +167,7 @@
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id"
+                        "parentId": "C198022"
                       },
                       "value": {
                         "@admin": {
