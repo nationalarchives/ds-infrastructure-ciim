@@ -52,11 +52,7 @@
                       "#type": "scope",
                       "scope": {
                         "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id",
-                        "rangeSort": {
-                          "gt": "$.source.sort"
-                        },
-                        "sortOrder": "asc"
+                        "parentId": "$.source.parent[0].@admin.id"
                       },
                       "value": {
                         "@admin": {

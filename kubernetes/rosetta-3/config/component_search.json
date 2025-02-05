@@ -15,12 +15,12 @@
             "must": [
               {
                 "term": {
-                  "parent.@admin.id": "&.parentId"
+                  "parent.@admin.id": "C12112"
                 }
               },
               {
                 "range": {
-                  "sort": "&.rangeSort"
+                  "sort": "06 0 31000 0#1000"
                 }
               }
             ]
@@ -29,7 +29,7 @@
         "sort": [
           {
             "sort": {
-              "order": "{&.sortOrder}"
+              "order": "asc"
             }
           }
         ],
