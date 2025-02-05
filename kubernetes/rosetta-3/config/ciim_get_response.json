@@ -104,9 +104,8 @@
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
-                      "values": "$.source.@template.details.[immediateSourceOfAcquisition.description.value, acquisition[*].agent.description.value, acquisition[*].agent.name[*].value]"
+                      "values": "$.source.@template.details.immediateSourceOfAcquisition"
                     },
-
                     "language": {
                       "#type": "string_join",
                       "values":"$.source.language[*].value",
