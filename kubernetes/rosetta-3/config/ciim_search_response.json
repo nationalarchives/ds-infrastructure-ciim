@@ -28,7 +28,44 @@
                     "description": "$.source.description[0].value",
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
-                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value"
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
+                        },
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin":{
+                          "id":"$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary":{
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value":{
+                        "@admin":{
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
                   }
                 }
               }
