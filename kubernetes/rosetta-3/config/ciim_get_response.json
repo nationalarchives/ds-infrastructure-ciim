@@ -164,16 +164,22 @@
                       "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
                     },
                     "@next": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_query",
-                        "parentId": "C198022"
-                      },
-                      "value": {
-                        "@admin": {
-                          "id": "$.hits.hits[0]._source.@admin.id"
-                        }
-                      }
+                      "#type": "fallback",
+                      "strategies": [
+                        {
+                          "#type": "scope",
+                          "scope": {
+                            "#type": "es_query",
+                            "parentId": "C198022"
+                          },
+                          "value": {
+                            "@admin": {
+                              "id": "$.hits.hits[0]._source.@admin.id"
+                            }
+                          }
+                        },
+                        []
+                      ]
                     }
                   }
                 }
