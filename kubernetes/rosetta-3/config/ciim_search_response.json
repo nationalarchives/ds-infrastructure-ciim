@@ -47,18 +47,6 @@
                           "title": "$.hits.hits[0]._source.summary.title"
                         }
                       }
-                    },
-                    "@next": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id"
-                      },
-                      "value": {
-                        "@admin": {
-                          "id": "$.hits.hits[0]._source.@admin.id"
-                        }
-                      }
                     }
                   }
                 }

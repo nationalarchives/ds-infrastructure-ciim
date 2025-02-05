@@ -162,6 +162,18 @@
                     "unpublishedFindingAids": {
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        }
+                      }
                     }
                   }
                 }
