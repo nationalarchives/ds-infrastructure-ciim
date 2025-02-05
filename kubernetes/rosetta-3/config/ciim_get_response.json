@@ -128,7 +128,16 @@
                         }
                       }
                     },
-                    "mapDesignation": "$.source.@template.details.mapDesignation",
+                    "mapDesignation":{
+                      "#type": "for_each",
+                      "values": "$.source.@template.details.mapDesignation",
+                      "spec": {
+                        "#type": "string_replace",
+                        "value": "$.value",
+                        "pattern": "<[^>]*>",
+                        "replacement": ""
+                      }
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
