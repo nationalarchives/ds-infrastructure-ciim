@@ -104,7 +104,7 @@
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSource": {
                       "#type": "as_list",
-                      "value": "$.source.acquisition[*].description.value"
+                      "values": "$.source.acquisition[*].description.value"
                     },
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
