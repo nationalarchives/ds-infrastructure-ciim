@@ -102,7 +102,10 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-                    "immediateSource": "$.source.acquisition[*].description.value",
+                    "immediateSource": {
+                      "#type": "as_list",
+                      "value": "$.source.acquisition[*].description.value"
+                    },
                     "immediateSourceOfAcquisition": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.immediateSourceOfAcquisition"
