@@ -103,11 +103,14 @@
                     },
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "$.source.@template.details.immediateSourceOfAcquisition",
-                        "$.source.acquisition[*].description.value"
-                      ]
+                      "#type": "as_list",
+                      "values": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "$.source.@template.details.immediateSourceOfAcquisition",
+                          "$.source.acquisition[*].description.value"
+                        ]
+                      }
                     },
 
                     "language": {
