@@ -163,23 +163,43 @@
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
                     },
-                    "@next": {
-                      "#type": "fallback",
-                      "strategies": [
-                        {
-                          "#type": "scope",
-                          "scope": {
-                            "#type": "es_query",
-                            "parentId": "C198022"
-                          },
-                          "value": {
-                            "@admin": {
-                              "id": "$.hits.hits[0]._source.@admin.id"
-                            }
-                          }
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
                         },
-                        []
-                      ]
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin":{
+                          "id":"$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary":{
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value":{
+                        "@admin":{
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
+                      }
                     }
                   }
                 }
