@@ -186,20 +186,11 @@
                         "summary":{
                           "title": "$.hits.hits[0]._source.summary.title"
                         },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
-                          }
-                        },
                         "level": {
-                          "code": "$.level.code"
-                        },
-                        "reference_number": "$.__reference_number"
+                          "code": "$.@hierarchy.level.code"
+                        }
                       }
-                    }
-                  },
+                    },
                     "@next": {
                       "#type": "scope",
                       "scope": {
@@ -217,16 +208,8 @@
                         "summary": {
                           "title": "$.hits.hits[0]._source.summary.title"
                         },
-                        "identifier":{
-                          "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
-                            "reference_number":"$.__reference_number"
-                          }
-                        },
-
                         "level": {
-                          "code": "$.level.code"
+                          "code": "$.@hierarchy.level.code"
                         }
                       }
                     }
