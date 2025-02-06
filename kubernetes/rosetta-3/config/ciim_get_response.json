@@ -209,7 +209,7 @@
                           "title": "$.hits.hits[0]._source.summary.title"
                         },
                         "level": {
-                          "code": "$.source.@hierarchy"
+                          "code": "$.hits.hits[0]._source.@hierarchy"
                         }
                       }
                     }
