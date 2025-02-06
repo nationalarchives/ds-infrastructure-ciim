@@ -155,10 +155,6 @@
                       "values":"$.source.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
-                    "reference": {
-                      "#type": "as_list",
-                      "values": "$.source.manifestations.identifier[?(@.type == 'NRA reference')].value"
-                    },
                     "separatedMaterials": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.separatedMaterials"
