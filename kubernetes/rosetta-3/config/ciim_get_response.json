@@ -141,17 +141,17 @@
                       "#type": "as_list",
                       "values": "$.source.parent",
                       "spec": {
-                        "@admin":{
-                          "id": "$.admin.id"
+                        "@admin": {
+                          "id": "$.@admin.id"
                         },
-                        "identifier":{
+                        "identifier": {
                           "#type": "for_each",
-                          "values":"$.identifier",
+                          "values": "$.identifier",
                           "spec": {
-                            "reference_number": "$__reference_number"
+                            "reference_number": "$.__reference_number"
                           }
                         },
-                        "level":{
+                        "level": {
                           "code": "$.level.code"
                         },
                         "source": {
@@ -162,6 +162,7 @@
                         }
                       }
                     },
+
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
