@@ -157,7 +157,7 @@
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "reference": {
                       "#type": "as_list",
-                      "values": "$.source.manifestations.identifier[*]"
+                      "values": "$.source.manifestations.identifier.value"
                     },
                     "separatedMaterials": {
                       "#type": "as_list",
