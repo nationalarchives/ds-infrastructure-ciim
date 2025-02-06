@@ -157,7 +157,7 @@
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "reference": {
                       "#type": "as_list",
-                      "values": "$.source.manifestations[?(@.type == 'NRA reference')].value"
+                      "values": "$.source.manifestations[*].value"
                     },
                     "separatedMaterials": {
                       "#type": "as_list",
