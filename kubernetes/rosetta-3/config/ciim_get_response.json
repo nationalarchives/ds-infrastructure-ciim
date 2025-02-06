@@ -186,6 +186,13 @@
                         "summary":{
                           "title": "$.hits.hits[0]._source.summary.title"
                         },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        },
                         "level": {
                           "code": "$.level.code"
                         }
@@ -208,6 +215,14 @@
                         "summary": {
                           "title": "$.hits.hits[0]._source.summary.title"
                         },
+                        "identifier":{
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number":"$.__reference_number"
+                          }
+                        },
+
                         "level": {
                           "code": "$.level.code"
                         }
