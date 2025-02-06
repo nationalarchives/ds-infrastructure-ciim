@@ -217,6 +217,13 @@
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "string_join",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec":{
+                            "reference_number": "$.__reference_number"
+                          }
                         }
                       }
                     }
