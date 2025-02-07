@@ -111,7 +111,7 @@
                         },
                         {
                           "#type": "as_string",
-                          "values": "$.source.acquisition[0].description.value"
+                          "values": "$.source.acquisition[*].description.value"
                         }
                       ]
                     },
