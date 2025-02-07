@@ -103,7 +103,7 @@
                     },
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
-                      "#type": "as_list",
+                      "#type": "as_string",
                       "values": {
                         "#type": "fallback",
                         "strategies": [
