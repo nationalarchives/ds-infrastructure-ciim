@@ -22,13 +22,6 @@ resource "aws_route_table_association" "public_rt_assoc" {
     route_table_id = aws_route_table.ciim_public_rt.id
 }
 
-resource "aws_route_table_association" "public_rt_assoc" {
-    for_each = aws_subnet.ciim_public_subs
-
-    subnet_id      = each.value.id
-    route_table_id = aws_route_table.ciim_public_rt.id
-}
-
 # ----------------------------------------------------------------------------------------------------------------------
 # Private Routes
 # ----------------------------------------------------------------------------------------------------------------------

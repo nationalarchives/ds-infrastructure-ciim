@@ -1,0 +1,22 @@
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "${principal}"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+                },
+                "ForAnyValue:StringLike": {
+                    "token.actions.githubusercontent.com:sub": [
+                        "repo:nationalarchives/ds-infrastructure-ciim:*"
+                    ]
+                }
+            }
+        }
+    ]
+}

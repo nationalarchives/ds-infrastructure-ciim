@@ -1,6 +1,6 @@
 .idea
 plans
-.terraform
+.terraform*
 .tfstate
 *.tfstate*
 .DS_Store
