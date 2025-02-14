@@ -135,16 +135,23 @@
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
-                      "#type": "as_list",
-                      "values": "$.source.parent",
-                      "spec": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value": {
                         "@admin": {
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "identifier": {
                           "#type": "for_each",
                           "values": "$.hits.hits[0]._source.identifier",
-                          "spec":{
+                          "spec": {
                             "reference_number": "$.__reference_number"
                           }
                         },
@@ -156,6 +163,7 @@
                         }
                       }
                     },
+
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
