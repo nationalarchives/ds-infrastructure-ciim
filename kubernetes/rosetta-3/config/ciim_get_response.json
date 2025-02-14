@@ -155,6 +155,9 @@
                             "reference_number": "$.__reference_number"
                           }
                         },
+                        "source": {
+                          "value": "$.hits.hits[0]._source.source.value"
+                        },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
                         },
