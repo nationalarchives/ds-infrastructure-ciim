@@ -134,20 +134,14 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "parents": "$.source.parent",
                     "parent": {
                       "#type": "as_list",
                       "values": "$.source.parent",
                       "spec": {
                         "@admin": {
-                          "id": "$.@admin.id"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
-                          }
+                          "id": "$.@admin.id",
+                          "source": "$.@admin.source",
+                          "status": "$.@admin.status"
                         },
                         "level": {
                           "code": "$.level.code"
