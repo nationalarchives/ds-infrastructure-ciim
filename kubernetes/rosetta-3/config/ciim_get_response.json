@@ -106,21 +106,9 @@
                       "#type": "fallback",
                       "strategies": [
                         "$.source.@template.details.immediateSourceOfAcquisition",
-                        {
-                          "#type": "as_string",
-                          "values": {
-                            "#type": "transform",
-                            "values": "$.source.acquisition[*].description.value",
-                            "spec": {
-                              "#type": "join",
-                              "prefix": "<p>",
-                              "suffix": "</p>"
-                            }
-                          }
-                        }
+                        "$.source.acquisition[0].description.value"
                       ]
                     },
-
                     "language": {
                       "#type": "string_join",
                       "values":"$.source.language[*].value",
