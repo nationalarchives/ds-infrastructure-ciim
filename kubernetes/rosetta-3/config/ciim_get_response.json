@@ -139,23 +139,20 @@
                       "values": "$.source.parent",
                       "spec": {
                         "@admin": {
-                          "id": "$.@admin.id"
+                          "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "identifier": {
                           "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec":{
                             "reference_number": "$.__reference_number"
                           }
                         },
                         "level": {
-                          "code": "$.level.code"
-                        },
-                        "source": {
-                          "value": "$.source.value"
+                          "code": "$.hits.hits[0]._source.level.code"
                         },
                         "summary": {
-                          "title": "$.summary.title"
+                          "title": "$.hits.hits[0]._source.summary.title"
                         }
                       }
                     },
