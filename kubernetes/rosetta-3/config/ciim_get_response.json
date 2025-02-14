@@ -139,9 +139,14 @@
                       "values": "$.source.parent",
                       "spec": {
                         "@admin": {
-                          "id": "$.@admin.id",
-                          "source": "$.@admin.source",
-                          "status": "$.@admin.status"
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
                         },
                         "level": {
                           "code": "$.level.code"
