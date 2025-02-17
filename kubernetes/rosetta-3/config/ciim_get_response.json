@@ -166,22 +166,28 @@
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
-                      "@admin": {
-                        "id": "$.parent[0].@admin.id"
-                      },
-                      "identifier": [
-                        {
-                          "reference_number": "$.parent[0].identifier[0].value"
+                      "#type": "for_each",
+                      "values": "$.source.parent",
+                      "spec": {
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
                         }
-                      ],
-                      "source": {
-                        "value": "$.parent[0].source.value"
-                      },
-                      "level": {
-                        "code": "$.parent[0].level.code"
-                      },
-                      "summary": {
-                        "title": "$.parent[0].summary.title"
                       }
                     },
                     "physicalCondition": "$.source.condition.value",
