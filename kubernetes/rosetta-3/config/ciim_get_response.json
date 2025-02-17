@@ -102,31 +102,33 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-                    "immediateSourceOfAcquisition": {
-                      "#type": "fallback",
-                      "strategies": [
-                        {
-                          "#type": "string_join",
-                          "values": {
-                            "#type": "for_each",
-                            "values": [
-                              "$.source.@template.details.immediateSourceOfAcquisition",
-                              "$.source.acquisition[0].description.value"
-                            ],
-                            "spec": {
-                              "#type": "string_join",
-                              "values": [
-                                "<p>",
-                                "$",
-                                "</p>"
-                              ]
-                            }
-                          },
-                          "delimiter": " "
-                        }
-                      ]
-                    },
-                    "language": {
+
+              "immediateSourceOfAcquisition": {
+              "#type": "fallback",
+              "strategies": [
+                {
+                  "#type": "for_each",
+                  "values": [
+                    "$.source.@template.details.immediateSourceOfAcquisition",
+                    "$.source.acquisition[0].description.value"
+                  ],
+                  "spec": {
+                    "#type": "string_join",
+                    "values": [
+                      "<p>",
+                      "$",
+                      "</p>"
+                    ]
+                  }
+                }
+              ],
+              "format": {
+                "#type": "string_join",
+                "values": "$",
+                "delimiter": "<br>"
+              }
+            },
+          "language": {
                       "#type": "string_join",
                       "values":"$.source.language[*].value",
                       "delimiter": " and "
