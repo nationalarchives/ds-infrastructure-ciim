@@ -107,12 +107,10 @@
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
+                        "$.source.@template.details.immediateSourceOfAcquisition",
                         {
                           "#type": "for_each",
-                          "values": [
-                            "$.source.@template.details.immediateSourceOfAcquisition",
-                            "$.source.acquisition[0].description.value"
-                          ],
+                          "values": "$.source.acquisition[0].description.value",
                           "spec": {
                             "#type": "string_join",
                             "values": [
