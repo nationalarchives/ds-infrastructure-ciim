@@ -104,14 +104,19 @@
                     "iaid": "$.source.identifier..__iaid",
                     "ABC": {
                       "#type": "string_join",
-                      "strategies": [
-                        "$.source.@template.details.immediateSourceOfAcquisition"
-                      ],
-                      "format": {
+                      "values": {
                         "#type": "for_each",
-                        "values": "$",
-                        "delimiter": " "
+                        "values": "$.list",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "<p ",
+                            "$",
+                            " p>"
+                          ]
+                        }
                       }
+                    }
                     },
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
