@@ -106,7 +106,7 @@
                       "#type": "string_join",
                       "values": {
                         "#type": "for_each",
-                        "values": "$.list",
+                        "values": "$",
                         "spec": {
                           "#type": "string_join",
                           "values": [
