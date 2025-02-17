@@ -102,7 +102,17 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-                    "ABC": "$.source.@template.details.immediateSourceOfAcquisition",
+                    "ABC": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "$.source.@template.details.immediateSourceOfAcquisition"
+                      ],
+                      "format": {
+                        "#type": "string_join",
+                        "values": "$",
+                        "delimiter": "\n"
+                      }
+                    },
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
