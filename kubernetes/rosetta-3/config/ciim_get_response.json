@@ -183,9 +183,7 @@
                       "summary": {
                         "title": "$.parent[0].summary.title"
                       }
-                    }
-                  }
-                },
+                    },
                 "parent": {
                   "#type": "scope",
                   "scope": {
