@@ -103,12 +103,12 @@
                     },
                     "iaid": "$.source.identifier..__iaid",
                     "ABC": {
-                      "#type": "for_each",
+                      "#type": "string_join",
                       "strategies": [
                         "$.source.@template.details.immediateSourceOfAcquisition"
                       ],
                       "format": {
-                        "#type": "string_join",
+                        "#type": "for_each",
                         "values": "$",
                         "delimiter": " "
                       }
