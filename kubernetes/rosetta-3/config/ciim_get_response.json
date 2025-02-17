@@ -167,21 +167,21 @@
                     "note": "$.source.@template.details.note",
                     "parentMain": {
                       "@admin": {
-                        "id": "$.parentMain[0].@admin.id"
+                        "id": "$.parent[0].@admin.id"
                       },
                       "identifier": [
                         {
-                          "reference_number": "$.parentMain[0].identifier[0].value"
+                          "reference_number": "$.parent[0].identifier[0].value"
                         }
                       ],
                       "source": {
-                        "value": "$.parentMain[0].source.value"
+                        "value": "$.parent[0].source.value"
                       },
                       "level": {
                         "code": "$.parentMain[0].level.code"
                       },
                       "summary": {
-                        "title": "$.parentMain[0].summary.title"
+                        "title": "$.parent[0].summary.title"
                       }
                     }
                   }
