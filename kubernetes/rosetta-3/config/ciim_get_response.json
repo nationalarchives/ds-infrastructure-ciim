@@ -165,7 +165,7 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "parentMain": {
+                    "parent": {
                       "@admin": {
                         "id": "$.parent[0].@admin.id"
                       },
@@ -178,42 +178,10 @@
                         "value": "$.parent[0].source.value"
                       },
                       "level": {
-                        "code": "$.parentMain[0].level.code"
+                        "code": "$.parent[0].level.code"
                       },
                       "summary": {
                         "title": "$.parent[0].summary.title"
-                      }
-                    },
-                    "parent": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id",
-                        "rangeSort": {
-                          "gt": "$.source.sort"
-                        },
-                        "sortOrder": "asc"
-                      },
-                      "value": {
-                        "@admin": {
-                          "id": "$.hits.hits[0]._source.@admin.id"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.hits.hits[0]._source.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
-                          }
-                        },
-                        "source": {
-                          "value": "$.hits.hits[0]._source.source.value"
-                        },
-                        "level": {
-                          "code": "$.hits.hits[0]._source.level.code"
-                        },
-                        "summary": {
-                          "title": "$.hits.hits[0]._source.summary.title"
-                        }
                       }
                     },
                     "physicalCondition": "$.source.condition.value",
