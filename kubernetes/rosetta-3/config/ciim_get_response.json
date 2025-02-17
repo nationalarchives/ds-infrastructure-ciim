@@ -103,7 +103,7 @@
                     },
               "iaid": "$.source.identifier..__iaid",
               "immediateFirst": "$.source.@template.details.immediateSourceOfAcquisition",
-              "immediateSecond": "$.source.acquisition[0].description.value",
+              "immediateSecond": "$.source.acquisition.description.value",
               "immediateSourceOfAcquisition": {
               "#type": "fallback",
               "strategies": [
