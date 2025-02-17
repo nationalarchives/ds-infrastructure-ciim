@@ -106,15 +106,18 @@
                       "#type": "fallback",
                       "strategies": [
                         {
-                          "#type": "for_each",
-                          "values": "$.source.@template.details.immediateSourceOfAcquisition",
-                          "spec": {
-                            "#type": "string_join",
-                            "values": [
-                              "<p>",
-                              "$",
-                              "</p>"
-                            ]
+                          "#type" : "string_join",
+                          "values": {
+                            "#type": "for_each",
+                            "values": "$.source.@template.details.immediateSourceOfAcquisition",
+                            "spec": {
+                              "#type": "string_join",
+                              "values": [
+                                "<p>",
+                                "$",
+                                "</p>"
+                              ]
+                            }
                           }
                         },
                         {
