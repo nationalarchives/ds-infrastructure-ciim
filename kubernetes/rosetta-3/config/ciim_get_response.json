@@ -107,7 +107,15 @@
                       "strategies": [
                         "$.source.@template.details.immediateSourceOfAcquisition",
                         "$.source.acquisition[0].description.value"
-                      ]
+                      ],
+                      "format": {
+                        "type": "string_join",
+                        "values": [
+                          "<p>",
+                          "$",
+                          "</p>"
+                        ]
+                      }
                     },
                     "language": {
                       "#type": "string_join",
