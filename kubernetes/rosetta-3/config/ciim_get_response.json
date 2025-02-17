@@ -101,8 +101,8 @@
                         }
                       }
                     },
-              "iaid": "$.source.identifier..__iaid",
-              "immediateSourceOfAcquisition": {
+             "iaid": "$.source.identifier..__iaid",
+            "immediateSourceOfAcquisition": {
               "#type": "fallback",
               "strategies": [
                 {
