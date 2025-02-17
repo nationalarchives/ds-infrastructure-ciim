@@ -165,32 +165,31 @@
                     "mapDesignation": "$.source.@template.details.mapDesignation",
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
-                    "parentMain": {
-                      "#type": "as_list",
-                      "values": "$.source.parent"
-                    },
                     "parent": {
-                      "#type": "for_each",
-                      "values": "$.source.parent",
-                      "spec": {
-                        "@admin": {
-                          "id": "$.@admin.id"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
+                      "#type": "string_join",
+                      "values": {
+                        "#type": "for_each",
+                        "values": "$.source.parent",
+                        "spec": {
+                          "@admin": {
+                            "id": "$.@admin.id"
+                          },
+                          "identifier": {
+                            "#type": "for_each",
+                            "values": "$.identifier",
+                            "spec": {
+                              "reference_number": "$.__reference_number"
+                            }
+                          },
+                          "level": {
+                            "code": "$.level.code"
+                          },
+                          "source": {
+                            "value": "$.source.value"
+                          },
+                          "summary": {
+                            "title": "$.summary.title"
                           }
-                        },
-                        "level": {
-                          "code": "$.level.code"
-                        },
-                        "source": {
-                          "value": "$.source.value"
-                        },
-                        "summary": {
-                          "title": "$.summary.title"
                         }
                       }
                     },
