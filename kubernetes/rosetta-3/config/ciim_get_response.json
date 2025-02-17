@@ -106,7 +106,7 @@
                       "#type": "string_join",
                       "values": {
                         "#type": "for_each",
-                        "values": "$",
+                        "values": "$.source.@template.details.immediateSourceOfAcquisition",
                         "spec": {
                           "#type": "string_join",
                           "values": [
