@@ -128,9 +128,7 @@
                           "spec": {
                             "#type": "string_join",
                             "values": [
-                              "<p>",
-                              "$",
-                              "</p>"
+                              "$"
                             ]
                           }
                         }
