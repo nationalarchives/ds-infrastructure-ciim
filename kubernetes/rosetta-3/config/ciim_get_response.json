@@ -121,6 +121,8 @@
                           }
                         },
                         {
+                          "#type": "string_join",
+                          "values": {
                           "#type": "for_each",
                           "values": "$.source.acquisition[0].description.value",
                           "spec": {
@@ -131,6 +133,7 @@
                               "</p>"
                             ]
                           }
+                        }
                         }
                       ],
                       "format": {
