@@ -184,128 +184,128 @@
                         "title": "$.parent[0].summary.title"
                       }
                     },
-                "parent": {
-                  "#type": "scope",
-                  "scope": {
-                    "#type": "es_query",
-                    "parentId": "$.source.parent[0].@admin.id",
-                    "rangeSort": {
-                      "gt": "$.source.sort"
-                    },
-                    "sortOrder": "asc"
-                  },
-                  "value": {
-                    "@admin": {
-                      "id": "$.hits.hits[0]._source.@admin.id"
-                    },
-                    "identifier": {
-                      "#type": "for_each",
-                      "values": "$.hits.hits[0]._source.identifier",
-                      "spec": {
-                        "reference_number": "$.__reference_number"
+                    "parent": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        },
+                        "source": {
+                          "value": "$.hits.hits[0]._source.source.value"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        }
                       }
                     },
-                    "source": {
-                      "value": "$.hits.hits[0]._source.source.value"
+                    "physicalCondition": "$.source.condition.value",
+                    "physicalDescription": "$.source.@template.details.physicalDescription",
+                    "primaryIdentifier": "$.source.@admin.id",
+                    "publicationNote": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
-                    "level": {
-                      "code": "$.hits.hits[0]._source.level.code"
+                    "recordOpening": "$.source.availability.access.opening.label.value",
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "relatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.relatedMaterials"
                     },
-                    "summary": {
-                      "title": "$.hits.hits[0]._source.summary.title"
-                    }
-                  }
-                },
-                "physicalCondition": "$.source.condition.value",
-                "physicalDescription": "$.source.@template.details.physicalDescription",
-                "primaryIdentifier": "$.source.@admin.id",
-                "publicationNote": {
-                  "#type": "as_list",
-                  "values": "$.source.note[?(@.type == 'publication note')].value"
-                },
-                "recordOpening": "$.source.availability.access.opening.label.value",
-                "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                "relatedMaterials": {
-                  "#type": "as_list",
-                  "values": "$.source.@template.details.relatedMaterials"
-                },
-                "restrictionsOnUse": "$.source.availability.restrictions.value",
-                "separatedMaterials": {
-                  "#type": "as_list",
-                  "values": "$.source.@template.details.separatedMaterials"
-                },
-                "source": "$.source.source.value",
-                "sourceUrl": "$.source.@template.details.sourceUrl",
-                "subject": "$.source.subject",
-                "summaryTitle": "$.source.summary.title",
-                "title": "$.source.title[?(@.primary == true)].value",
-                "type": "$.source.@datatype.base",
-                "unpublishedFindingAids": {
-                  "#type": "as_list",
-                  "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
-                },
-                "@previous": {
-                  "#type": "scope",
-                  "scope": {
-                    "#type": "es_query",
-                    "parentId": "$.source.parent[0].@admin.id",
-                    "rangeSort": {
-                      "lt": "$.source.sort"
+                    "restrictionsOnUse": "$.source.availability.restrictions.value",
+                    "separatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.separatedMaterials"
                     },
-                    "sortOrder": "desc"
-                  },
-                  "value": {
-                    "@admin": {
-                      "id": "$.hits.hits[0]._source.@admin.id"
+                    "source": "$.source.source.value",
+                    "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "subject": "$.source.subject",
+                    "summaryTitle": "$.source.summary.title",
+                    "title": "$.source.title[?(@.primary == true)].value",
+                    "type": "$.source.@datatype.base",
+                    "unpublishedFindingAids": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
                     },
-                    "summary": {
-                      "title": "$.hits.hits[0]._source.summary.title"
-                    },
-                    "level": {
-                      "code": "$.hits.hits[0]._source.level.code"
-                    },
-                    "identifier": {
-                      "#type": "for_each",
-                      "values": "$.hits.hits[0]._source.identifier",
-                      "spec": {
-                        "reference_number": "$.__reference_number"
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
+                        },
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        }
                       }
-                    }
-                  }
-                },
-                "@next": {
-                  "#type": "scope",
-                  "scope": {
-                    "#type": "es_query",
-                    "parentId": "$.source.parent[0].@admin.id",
-                    "rangeSort": {
-                      "gt": "$.source.sort"
                     },
-                    "sortOrder": "asc"
-                  },
-                  "value": {
-                    "@admin": {
-                      "id": "$.hits.hits[0]._source.@admin.id"
-                    },
-                    "summary": {
-                      "title": "$.hits.hits[0]._source.summary.title"
-                    },
-                    "level": {
-                      "code": "$.hits.hits[0]._source.level.code"
-                    },
-                    "identifier": {
-                      "#type": "for_each",
-                      "values": "$.hits.hits[0]._source.identifier",
-                      "spec": {
-                        "reference_number": "$.__reference_number"
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        }
                       }
                     }
                   }
                 }
               }
             }
-          }
-          }
           },
           []
         ]
