@@ -102,7 +102,6 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
@@ -122,7 +121,7 @@
                           "#type": "for_each",
                           "values": "$.source.acquisition[0].description.value",
                           "spec": {
-                            "#type": " string_join",
+                            "#type": "string_join",
                             "values": [
                               "<p>",
                               "$",
