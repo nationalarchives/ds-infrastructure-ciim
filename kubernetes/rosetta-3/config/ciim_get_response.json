@@ -102,14 +102,14 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-                    "immediateOne":{
+                    "immediateOne": {
                       "#type": "fallback",
                       "strategies": [
                         "$.source.@template.details.immediateSourceOfAcquisition",
                         {
                           "#type": "for_each",
                           "values": "$.source.acquisition[0].description.value",
-                          "spec":{
+                          "spec": {
                             "#type": "string_join",
                             "values": [
                               "<p>",
@@ -120,12 +120,11 @@
                         }
                       ],
                       "format": {
-                        "#type": "syring_jon",
+                        "#type": "string_join",
                         "values": "$",
-                        "delimiter": "<br>>"
+                        "delimiter": "<br>"
                       }
                     },
-
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
