@@ -103,14 +103,14 @@
                     },
                     "iaid": "$.source.identifier..__iaid",
                     "ABC": {
-                      "#type": "fallback",
+                      "#type": "for_each",
                       "strategies": [
                         "$.source.@template.details.immediateSourceOfAcquisition"
                       ],
                       "format": {
                         "#type": "string_join",
                         "values": "$",
-                        "delimiter": "\n"
+                        "delimiter": " "
                       }
                     },
                     "immediateSourceOfAcquisition": {
