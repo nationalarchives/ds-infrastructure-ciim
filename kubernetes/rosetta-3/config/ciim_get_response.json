@@ -102,6 +102,30 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
+                    "immediateOne":{
+                      "#type": "fallback",
+                      "strategies": [
+                        "$.source.@template.details.immediateSourceOfAcquisition",
+                        {
+                          "#type": "for_each",
+                          "values": "$.source.acquisition[0].description.value",
+                          "spec":{
+                            "#type": "string_join",
+                            "values": [
+                              "<p>",
+                              "$",
+                              "</p>"
+                            ]
+                          }
+                        }
+                      ],
+                      "format": {
+                        "#type": "syring_jon",
+                        "values": "$",
+                        "delimiter": "<br>>"
+                      }
+                    },
+
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
