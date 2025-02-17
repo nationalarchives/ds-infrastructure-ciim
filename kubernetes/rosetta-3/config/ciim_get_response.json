@@ -139,7 +139,7 @@
                       "format": {
                         "#type": "string_join",
                         "values": "$",
-                        "delimiter": "<br>"
+                        "delimiter": " "
                       }
                     },
                     "language": {
