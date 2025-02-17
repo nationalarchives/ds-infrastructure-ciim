@@ -103,19 +103,18 @@
                     },
                     "iaid": "$.source.identifier..__iaid",
                     "immediateSourceOfAcquisition": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "$.source.@template.details.immediateSourceOfAcquisition",
-                        "$.source.acquisition[0].description.value"
-                      ],
-                      "format": {
-                        "type": "string_join",
-                        "values": [
-                          "<p>",
-                          "$",
-                          "</p>"
-                        ]
-                      }
+                     "#type": "string_join",
+                      "values": [
+                        "<p>",
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.@template.details.immediateSourceOfAcquisition",
+                            "$.source.acquisition[0].description.value"
+                          ]
+                        },
+                        "</p>"
+                      ]
                     },
                     "language": {
                       "#type": "string_join",
