@@ -102,30 +102,27 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
-                    "ABC": {
-                      "#type": "string_join",
-                      "values": {
-                        "#type": "for_each",
-                        "values": "$.source.@template.details.immediateSourceOfAcquisition",
-                        "spec": {
-                          "#type": "string_join",
-                          "values": [
-                            "<p ",
-                            "$",
-                            " p>"
-                          ]
-                        }
-                      }
-                    },
+
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
-                        "$.source.@template.details.immediateSourceOfAcquisition",
+                        {
+                          "#type": "for_each",
+                          "values": "$.source.@template.details.immediateSourceOfAcquisition",
+                          "spec": {
+                            "#type": "string_join",
+                            "values": [
+                              "<p>",
+                              "$",
+                              "</p>"
+                            ]
+                          }
+                        },
                         {
                           "#type": "for_each",
                           "values": "$.source.acquisition[0].description.value",
                           "spec": {
-                            "#type": "string_join",
+                            "#type": " string_join",
                             "values": [
                               "<p>",
                               "$",
