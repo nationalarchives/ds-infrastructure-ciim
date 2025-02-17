@@ -116,7 +116,6 @@
                           ]
                         }
                       }
-                    }
                     },
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
