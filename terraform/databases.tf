@@ -19,7 +19,7 @@ module "maria_db" {
     ciim_rds_maria_db_instance_class          = "db.m6g.large"
     ciim_rds_maria_db_multi_az                = false
     ciim_rds_maria_db_port                    = 3306
-    ciim_rds_maria_db_license_model           = "license-included"
+    ciim_rds_maria_db_license_model           = "general-public-license"
     ciim_rds_maria_db_apply_immediately       = true
     ciim_rds_maria_db_auto_minor_upgrade      = true
     ciim_rds_maria_db_skip_final_snapshot     = true
