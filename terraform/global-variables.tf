@@ -16,17 +16,17 @@ locals {
         public_a = {
             "name" = "ciim-public-subnet-a"
             "cidr" = "10.100.40.0/24"
-            "az"   = "euw2-az1"
+            "az"   = "eu-west-2a"
         }
         public_b = {
             "name" = "ciim-public-subnet-b"
             "cidr" = "10.100.50.0/24"
-            "az"   = "euw2-az2"
+            "az"   = "eu-west-2b"
         }
         public_c = {
             "name" = "ciim-public-subnet-c"
             "cidr" = "10.100.60.0/24"
-            "az"   = "euw2-az3"
+            "az"   = "eu-west-2c"
         }
     }
 
@@ -34,17 +34,17 @@ locals {
         private_a = {
             "name" = "ciim-private-subnet-a"
             "cidr" = "10.100.10.0/24"
-            "az"   = "euw2-az1"
+            "az"   = "eu-west-2a"
         }
         private_b = {
             "name" = "ciim-private-subnet-b"
             "cidr" = "10.100.20.0/24"
-            "az"   = "euw2-az2"
+            "az"   = "eu-west-2b"
         }
         private_c = {
             "name" = "ciim-private-subnet-c"
             "cidr" = "10.100.30.0/24"
-            "az"   = "euw2-az3"
+            "az"   = "eu-west-2c"
         }
     }
 
