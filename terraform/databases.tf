@@ -11,7 +11,7 @@ module "maria_db" {
 
     maria_db_private_subnet_ids = module.network.private_subnet_ids
 
-    ciim_rds_maria_db_database_storage        = "2000"
+    ciim_rds_maria_db_database_storage        = "1536"
     ciim_rds_maria_db_database_storage_type   = "gp2"
     ciim_rds_maria_db_storage_encryption      = true
     ciim_rds_maria_db_engine                  = "mariadb"
