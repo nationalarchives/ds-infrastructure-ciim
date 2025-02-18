@@ -166,27 +166,28 @@
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
-                      "#type": "for_each",
-                      "values": "$.source.parent",
-                      "spec": {
-                        "@admin": {
-                          "id": "$.@admin.id"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
+                      "#type": "scope",
+                      "scope": "$.source.parent[0]",
+                      "value": {
+                          "@admin": {
+                            "id": "$.@admin.id"
+                          },
+                          "identifier": {
+                            "#type": "for_each",
+                            "values": "$.identifier",
+                            "spec": {
+                              "reference_number": "$.__reference_number"
+                            }
+                          },
+                          "level": {
+                            "code": "$.level.code"
+                          },
+                          "source": {
+                            "value": "$.source.value"
+                          },
+                          "summary": {
+                            "title": "$.summary.title"
                           }
-                        },
-                        "level": {
-                          "code": "$.level.code"
-                        },
-                        "source": {
-                          "value": "$.source.value"
-                        },
-                        "summary": {
-                          "title": "$.summary.title"
                         }
                       }
                     },
