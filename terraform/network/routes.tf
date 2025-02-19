@@ -39,7 +39,7 @@ resource "aws_route_table" "ciim_private_rt" {
 
 resource "aws_route" "internet_access" {
     route_table_id         = aws_route_table.ciim_private_rt.id
-    nat_gateway_id         = aws_nat_gateway.nat_gateway.id
+    nat_gateway_id         = aws_nat_gateway.ciim_nat_gateway.id
     destination_cidr_block = "0.0.0.0/0"
 }
 
