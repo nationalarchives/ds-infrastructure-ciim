@@ -11,5 +11,6 @@ bases:
   - ../../ciim-ui
   - ../../public-clean-es
   - ../../rosetta-3
+  - ../../acme
 commonAnnotations:
   environment: dev
