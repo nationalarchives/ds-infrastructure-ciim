@@ -17,6 +17,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: acme-service
+                name: acme-service-ohos
                 port:
                   number: 80
