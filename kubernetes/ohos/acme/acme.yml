@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acme
+  name: acme-ohos
   namespace: tna-ohos
 spec:
   selector:
     matchLabels:
-      app: acme
+      app: acme-ohos
   template:
     metadata:
-      name: acme
+      name: acme-ohos
       namespace: tna-ohos
       labels:
-        app: acme
+        app: acme-ohos
     spec:
       containers:
         - name: acme-container
@@ -33,7 +33,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: acme
+    app: acme-ohos
   ports:
     - name: acme-port
       port: 80
