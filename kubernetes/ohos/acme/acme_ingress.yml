@@ -6,9 +6,12 @@ metadata:
   annotations:
     konghq.com/protocols: "http"
 spec:
-  ingressClassName: tna-ohos
+  tls:
+    - hosts:
+        - tna.rosetta.k-int.com
   rules:
-    - http:
+    - host: tna.rosetta.k-int.com
+      http:
         paths:
           - path: /.well-known/acme-challenge
             pathType: Prefix
