@@ -36,6 +36,7 @@
         "size": 1
       },
       "allow":200,
+      "timeout": 10000,
       "require_allowed":true,
       "require_response":true
     }

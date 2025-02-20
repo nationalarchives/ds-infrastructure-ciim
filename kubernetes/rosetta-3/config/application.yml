@@ -110,7 +110,7 @@ rosetta:
           data: *global-data-transforms
 
   transform:
-    timeout_millis: 60000
+    timeout_millis: 80000
     glyphs:
       # Elastic search glyphs
       - name: to-generic-search
