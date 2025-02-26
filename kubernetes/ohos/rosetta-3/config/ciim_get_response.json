@@ -107,6 +107,7 @@
                       "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
                     },
                     "level": "$.source.level.value",
+                    "author": "$.source.author.name[0].value",
                     "description": "$.source.description[0].value",
                     "descriptionCy": "$.source.description[?(@.language == 'cy')].value",
                     "descriptionView": "$.source.description[?(@.type == 'View From')].value",
