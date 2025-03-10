@@ -1,6 +1,6 @@
 resource "aws_iam_role" "iam_admin_role" {
     name = "iam-admin-role"
-    assume_role_policy = templatefile("${path.module}/templates/iam-admin-relationships.json", {
+    assume_role_policy = templatefile("${path.module}/templates/iam-admin-relationship.json", {
         principal = var.principal
     })
     tags = merge(var.tags, {
