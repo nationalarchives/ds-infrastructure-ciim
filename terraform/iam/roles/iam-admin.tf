@@ -1,10 +1,10 @@
-resource "aws_iam_role" "github_actions_role" {
-    name = "github-actions-role"
-    assume_role_policy = templatefile("${path.module}/templates/github-trust-relationships.json", {
+resource "aws_iam_role" "iam_admin_role" {
+    name = "iam-admin-role"
+    assume_role_policy = templatefile("${path.module}/templates/iam-admin-relationships.json", {
         principal = var.principal
     })
     tags = merge(var.tags, {
-        Name = "github-actions-role"
+        Name = "iam-admin-role-role"
     })
 }
 
