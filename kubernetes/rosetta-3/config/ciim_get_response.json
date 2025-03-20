@@ -163,16 +163,16 @@
                       }
                     },
                     "mapDesignation": {
-                      "#type": "regex_replace",
-                      "value": "$.source.@template.details.mapDesignation",
-                      "pattern": "<span class=\\\"unittitle\\\" type=\\\"",
-                      "replacement": "<unittitle type=\""
-                    },
-                    "mapDesignationFinal": {
-                      "#type": "regex_replace",
-                      "value": "$.spec.mapDesignation",
-                      "pattern": "</span>",
-                      "replacement": "</unittitle>"
+                        "#type": "regex_replace",
+                        "value": "$.source.@template.details.mapDesignation",
+                        "pattern": "<span class=\\\"unittitle\\\" type=\\\"",
+                        "replacement": "<unittitle type=\""
+                      },
+                      "mapDesignationFinal": {
+                        "#type": "regex_replace",
+                        "value": "$.details.mapDesignation",
+                        "pattern": "</span>",
+                        "replacement": "</unittitle>"
                     },
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
