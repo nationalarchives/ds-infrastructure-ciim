@@ -162,7 +162,16 @@
                         }
                       }
                     },
-                    "mapDesignation": "$.source.@template.details.mapDesignation",
+                    "mapDesignation":{
+                      "#type": "string_join",
+                      "values": [
+                        "<unittitle type=\"Map Designation\">",
+                        "$.source.@template.details.mapDesignation[?(@.contains('<span') == false)]",
+                        "$.source.@template.details.mapDesignation[?(@.contains('<span') == true)].replace('<span class=\\\"unittitle\\\" type=\\\"', '').replace('\\\">', '>').replace('</span>', '</unittitle>')"
+                      ],
+                      "delimiter": ""
+
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
