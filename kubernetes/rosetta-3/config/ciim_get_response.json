@@ -165,7 +165,7 @@
                     "mapDesignationFinal": {
                       "#type": "regex_replace",
                       "value": "$.source.@template.details.mapDesignation",
-                      "pattern": "<span class=\\\"unittitle\\\" type=\\\"([^\\\"]+)\\\">([^<]+)</span>",
+                      "pattern": "<span class=\\\"unittitle\\\" type=\\\"(.*?)\\\".*?>(.*?)</span>",
                       "replacement": "<unittitle type=\"\\1\">\\2</unittitle>"
                     },
                     "mapScale": "$.source.@template.details.mapScale",
