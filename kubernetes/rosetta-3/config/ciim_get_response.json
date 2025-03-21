@@ -162,7 +162,7 @@
                         }
                       }
                     },
-                    "mapDesignationFinal": {
+                    "mapDesignationFinal":{
                       "#type": "regex_replace",
                       "value": "$.source.@template.details.mapDesignation",
                       "pattern": "<span class=\\\"unittitle\\\" type=\\\"(.*?)\\\">(.*?)</span>",
