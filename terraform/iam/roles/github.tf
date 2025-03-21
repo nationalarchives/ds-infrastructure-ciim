@@ -4,7 +4,7 @@ resource "aws_iam_role" "github_actions_role" {
         principal = var.principal
     })
     tags = merge(var.tags, {
-        Name = "discovery-data-read-role"
+        Name = "github-actions-role"
     })
 }
 
