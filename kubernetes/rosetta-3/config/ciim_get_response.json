@@ -162,7 +162,8 @@
                         }
                       }
                     },
-                    "mapDesignation": {
+                   "mapDesignation": {
+
                         "#type": "regex_replace",
                         "value": "$.source.@template.details.mapDesignation",
                         "pattern": "<span class=\\\"unittitle\\\" type=\\\"",
@@ -170,7 +171,7 @@
                       },
                       "mapDesignationFinal": {
                         "#type": "regex_replace",
-                        "value": "$.details.mapDesignation",
+                        "value": "$.source.@template.details.mapDesignation",
                         "pattern": "</span>",
                         "replacement": "</unittitle>"
                     },
