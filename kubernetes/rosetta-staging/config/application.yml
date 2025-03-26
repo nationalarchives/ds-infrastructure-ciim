@@ -96,7 +96,7 @@ rosetta:
           path_config:
             paths:
               topic: "topic.summary.title.keyword"
-              collection: "collection.identifier.value"
+              collection: "@hierarch.identifier.__reference_number"
               group: "@datatype.group.value"
               level: "level.value"
               type: "repository.@datatype.actual"
