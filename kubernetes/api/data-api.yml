@@ -20,7 +20,7 @@ spec:
       terminationGracePeriodSeconds: 60
       containers:
         - name: data-api
-          image: public.ecr.aws/v3w7q3a1/tna-data-api:tna-etna1.0
+          image: public.ecr.aws/v3w7q3a1/tna-data-api:latest
           imagePullPolicy: Always
           ports:
             - name: api-port
