@@ -219,7 +219,7 @@ rosetta:
               datatype: "@datatype.base"
               property: "property.name.value.keyword"
               place: "place.name.value.keyword"
-              collection: "collection.identifier.value"
+              collection: "@hierarch.identifier.value"
               collectionOhos: "hierarchy.summary.title.keyword"
               date: "creation.date.from"
               title: "summary.title.keyword"
