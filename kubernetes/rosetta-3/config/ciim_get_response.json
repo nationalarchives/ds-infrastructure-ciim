@@ -70,7 +70,8 @@
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": {
                       "value": "$.source.description[0].value",
-                      "schema": "$.source.description[0].schema.value"
+                      "schema": "$.source.description[0].schema.value",
+                      "raw": "$.source.description[0].raw"
                     },
                     "digitised": "$.source.@template.details.digitised",
                     "dimensions": "$.source.measurements.dimensions[*].value",
