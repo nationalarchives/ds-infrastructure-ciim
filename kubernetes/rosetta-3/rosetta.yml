@@ -51,7 +51,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: rosetta
+              port: rosetta-port
             initialDelaySeconds: 30
 ---
 apiVersion: v1
