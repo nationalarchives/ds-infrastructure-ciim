@@ -192,7 +192,6 @@ rosetta:
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
               webReference: "web.identifier.value.lower"
-              webReference2: "web.identifier.value.lower"
 
       - name: ciim/search/request
         type: proteus
