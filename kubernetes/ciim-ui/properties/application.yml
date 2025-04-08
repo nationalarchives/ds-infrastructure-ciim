@@ -19,6 +19,22 @@ es:
         - ciim
         - management
         - unavailable
+    - code: Public
+      label: Rosetta
+      description: The main search index containing all data in the internal data model
+      active: true
+      cluster: ciim-public
+      node: ciim-public-client
+      host: ciim-public-es-http.etna
+      port: 9200
+      pingTimeout: 10s
+      protocol: http
+      pathPrefix:
+      username: elastic
+      password: Kng6K7J41j882P77EQeS9cTI
+      mediaBase: http://localhost/mediaLib
+      indices:
+        - ciim
 dataSource:
   url: jdbc:mysql://ciim-db-service.etna/ciim_mgmt?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf8&maxReconnects=10&initialTimeout=10&allowPublicKeyRetrieval=true&useSSL=false
   dialect: org.hibernate.dialect.MySQL8Dialect
