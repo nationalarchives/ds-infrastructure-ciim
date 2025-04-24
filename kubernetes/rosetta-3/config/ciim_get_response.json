@@ -53,7 +53,22 @@
                       "values": "$.source.agent[0].service.identifier.value"
                     },
                     "appraisalInformation": "$.source.appraisal.value",
-                    "arrangement": "$.source.arrangement.value",
+                    "arrangement": {
+                      "#type": "string_join",
+                      "values": {
+                        "#type": "for_each",
+                        "values": "$.source.arrangement.value",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "<arrangement><p>",
+                            "$",
+                            "</p></arrangement>"
+                          ]
+                        }
+                      },
+                      "delimiter": " "
+                    },
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
