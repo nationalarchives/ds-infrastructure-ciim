@@ -55,13 +55,18 @@
                     "appraisalInformation": "$.source.appraisal.value",
                     "arrangement": {
                       "#type": "string_join",
-                      "values": [
-                        "<arrangement><p>",
-                        "$.source.arrangement.value",
-                        "</p></arrangement>"
-                      ],
-                      "on_null": "omit"
-                    },
+                      "values": {
+                        "#type": "for_each",
+                        "values": "$.source.arrangement.value",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "<arrangement><p>",
+                            "$",
+                            "</p></arrangement>"
+                          ]
+                        }
+                      },
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
