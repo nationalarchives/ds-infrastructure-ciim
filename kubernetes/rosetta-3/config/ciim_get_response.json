@@ -59,8 +59,8 @@
                         "<arrangement><p>",
                         "$.source.arrangement.value",
                         "</p></arrangement>"
-                      ]
-
+                      ],
+                      "on_null": "omit"
                     },
                     "catalogueContext": {
                       "#type": "as_list",
