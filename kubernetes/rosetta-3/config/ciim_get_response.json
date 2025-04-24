@@ -67,6 +67,8 @@
                           ]
                         }
                       },
+                      "delimiter": " "
+                    },
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
