@@ -54,20 +54,15 @@
                     },
                     "appraisalInformation": "$.source.appraisal.value",
                     "arrangement": {
-                      "#type": "string_join",
-                      "values": {
-                        "#type": "for_each",
-                        "values": "$.source.arrangement.value",
-                        "spec": {
-                          "#type": "string_join",
-                          "values": [
-                            "<arrangement><p>",
-                            "$",
-                            "</p></arrangement>"
-                          ]
-                        }
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "regex_replace",
+                        "value": "$.source.arrangement.value",
+                        "pattern": "<span class=\\\"arrangement\\\"><p>",
+                        "replacement": "<arrangement><p>"
                       },
-                      "delimiter": " "
+                      "pattern": "</p></span>",
+                      "replacement": "</p></arrangement>"
                     },
                     "catalogueContext": {
                       "#type": "as_list",
