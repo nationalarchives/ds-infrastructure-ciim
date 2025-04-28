@@ -35,7 +35,10 @@
                         }
                       }
                     },
-                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
+                    "administrativeBackground": {
+                      "type": "regex_replace",
+                      "values": "$.source.origination.description[?(@.type == 'administrative background')].value"
+                    },
                     "agentBirthLocation": {
                       "#type": "as_list",
                       "values": "$.source.agent[0].@birth.location.name.value"
