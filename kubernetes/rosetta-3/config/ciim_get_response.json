@@ -61,20 +61,24 @@
                           "#type": "regex_replace",
                           "value": {
                             "#type": "regex_replace",
-                            "value": "$.source.arrangement.value",
-                            "pattern": "<span class=\\\"arrangement\\\"><p>",
-                            "replacement": "<arrangement><p>"
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "$.source.arrangement.value",
+                              "pattern": "<span class=\\\"arrangement\\\"><p>",
+                              "replacement": "<arrangement><p>"
+                            },
+                            "pattern": "</p></span>",
+                            "replacement": "</p></arrangement>"
                           },
-                          "pattern": "</p></span>",
-                          "replacement": "</p></arrangement>"
+                          "pattern": "<span class=\\\"list\\\">",
+                          "replacement": "<list>"
                         },
-                        "pattern": "<span class=\\\"item\\\"></span>",
-                        "replacement": "<item></item>"
+                        "pattern": "<span class=\\\"item\\\">",
+                        "replacement": "<item>"
                       },
-                      "pattern": "<span class=\\\"list\\\"></span>",
-                      "replacement": "<list></list>"
+                      "pattern": "</span>",
+                      "replacement": "</item>"
                     },
-
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
