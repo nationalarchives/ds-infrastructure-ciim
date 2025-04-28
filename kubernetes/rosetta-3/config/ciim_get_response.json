@@ -63,21 +63,33 @@
                             "#type": "regex_replace",
                             "value": {
                               "#type": "regex_replace",
-                              "value": "$.source.arrangement.value",
-                              "pattern": "<span class=\\\"arrangement\\\"><p>",
-                              "replacement": "<arrangement><p>"
+                              "value": {
+                                "#type": "regex_replace",
+                                "value": "$.source.arrangement.value",
+                                "pattern": "<span class=\\\"arrangement\\\"><p>",
+                                "replacement": "<arrangement><p>"
+                              },
+                              "pattern": "</p></span>",
+                              "replacement": "</p></arrangement>"
                             },
-                            "pattern": "</p></span>",
-                            "replacement": "</p></arrangement>"
+                            "pattern": "<span class=\\\"list\\\">",
+                            "replacement": "<list>"
                           },
-                          "pattern": "<span class=\\\"list\\\">",
-                          "replacement": "<list>"
+                          "pattern": "<span class=\\\"item\\\">",
+                          "replacement": "<item>"
                         },
-                        "pattern": "<span class=\\\"item\\\">",
-                        "replacement": "<item>"
-                      },
-                      "pattern": "</span>",
-                      "replacement": "</item>"
+                        "pattern": "</span>",
+                        "replacement": "</item>"
+                      }
+                    },
+                    "arrangement_final": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "regex_replace",
+                        "value": "$.arrangement",
+                        "pattern": "(</item>)(\\s*)(<p>)",
+                        "replacement": "</list>$2$3"
+                      }
                     },
                     "catalogueContext": {
                       "#type": "as_list",
