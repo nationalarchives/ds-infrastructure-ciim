@@ -62,7 +62,7 @@
                           "value": {
                             "#type": "regex_replace",
                             "value": "$.source.arrangement.value",
-                            "pattern": "<span class=\\\"arrangement\\\">$<p>",
+                            "pattern": "<span class=\\\"arrangement\\\"><p>",
                             "replacement": "<arrangement><p>"
                           },
                           "pattern": "</p></span>",
