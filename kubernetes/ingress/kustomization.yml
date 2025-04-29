@@ -3,3 +3,4 @@ resources:
   - ingress.yml
   - es_ingress.yml
   - rewriteplugin.yml
+  - rosetta_prod_ingress.yml
