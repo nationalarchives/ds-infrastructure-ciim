@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rosetta-prod-ingress
+  namespace: etna
+  annotations:
+    kubernetes.io/ingress.class: kong
+spec:
+  tls:
+    - hosts:
+        - rosetta-prod.k-int.com
+      secretName: tls-secret-rosetta-prod
+  rules:
+    - host: rosetta-prod.k-int.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-prod-service
+                port:
+                  name: rosetta-port

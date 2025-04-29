@@ -1,0 +1,256 @@
+base_paths:
+  proteus: ./config
+
+logging:
+  level:
+    com.k_int.proteus.component.core.HttpRequestSpec: trace
+    com.k_int.proteus.provider.http.client.OkHttpClientFacade: trace
+
+rosetta:
+  admin:
+    enabled: true
+
+  plugins:
+    advanced_cache:
+      enabled: true
+      caches:
+        - name: fast-cache
+          expire_after_write: 5m
+          maximum_size: 100
+          use_scheduler: true
+
+        - name: slow-cache
+          expire_after_write: 1h
+          maximum_size: 100
+          use_scheduler: true
+
+  cache:
+    enabled: true
+    manager:
+      enabled: false
+
+  view:
+    views:
+      - name: ciim/search
+        paths:
+          - /rosetta/data/search
+        profile: elasticsearch
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
+      - name: ciim/searchTest
+        paths:
+          - /rosetta/data/searchTest
+        profile: generic-search
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+
+      - name: ciim/get
+        paths:
+          - /rosetta/data/get
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/get/request
+          response:
+            policy: list
+            names:
+              - ciim/get/response
+
+  profile:
+    profiles:
+      - name: elasticsearch
+        providers:
+          policy: list
+          names:
+            - elasticsearchEtna
+        transforms:
+          data: &global-data-transforms
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+                  - inject-date-hist
+      - name: generic-search
+        providers:
+          policy: list
+          names:
+            - elasticsearchEtna
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+          data: *global-data-transforms
+
+  transform:
+    timeout: 60000
+    glyphs:
+      # Elastic search glyphs
+      - name: to-generic-search
+        type: to-generic-search
+        properties:
+          types:
+            - query
+
+      - name: inject-date-hist
+        type: proteus
+        input: full
+        properties:
+          spec: ${base_paths.proteus}/inject_date_hist.json
+
+      - name: generic-search-defaults
+        type: proteus-simple
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_defaults.json
+
+      - name: generic-search-modifications
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_modifications.json
+
+      - name: generic-to-elastic
+        type: elastic-generic-search
+        properties:
+          index: public-es
+          request_timeout: 60000
+          date_range_format: "{from} - {to}"
+          date_aggregations:
+            - path: "origination.date.from"
+              agg_name: "coveringDates"
+              additional_path: "origination.date.to"
+              format: "yyyy"
+              date_ranges:
+                - from: "1100"
+                  to: "1199"
+                - from: "1200"
+                  to: "1299"
+                - from: "1300"
+                  to: "1399"
+                - from: "1400"
+                  to: "1499"
+                - from: "1500"
+                  to: "1599"
+                - from: "1600"
+                  to: "1699"
+                - from: "1700"
+                  to: "1799"
+                - from: "1800"
+                  to: "1899"
+                - from: "1900"
+                  to: "1924"
+                - from: "1925"
+                  to: "1949"
+                - from: "1950"
+                  to: "3000"
+            - path: "availability.access.opening.date.from"
+              agg_name: "openingFromDate"
+            - path: "availability.access.opening.date.to"
+              agg_name: "openingToDate"
+            - path: "origination.date.from"
+              agg_name: "coveringFromDate"
+            - path: "origination.date.to"
+              agg_name: "coveringToDate"
+          path_config:
+            paths:
+              topic: "topic.summary.title.keyword"
+              collection: "@hierarch.identifier.value"
+              group: "@datatype.group.value"
+              level: "level.value"
+              type: "repository.@datatype.actual"
+              country: "place.@hierarchy.name.value.keyword"
+              closure: "availability.closure.label.value.keyword"
+              catalogueSource: "source.value"
+              heldBy: "repository.name.value.keyword"
+              webReference: "web.identifier.value.lower"
+
+      - name: ciim/search/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_request.json
+
+      - name: ciim/search/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_response.json
+          include:
+            - ./config/component_search.json
+
+      - name: ciim/get/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_request.json
+
+      - name: ciim/get/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_response.json
+          include:
+            - ./config/component_search.json
+
+      # Global data transforms
+      - name: singularize-creation
+        type: proteus
+        properties:
+          spec: ${base_paths.proteus}/singularize_creation.json
+          config:
+            accumulator: first
+
+      # System glyphs
+      - name: to-simple-data-response
+        type: to-simple-data-response
+
+      - name: aggs-count-to-doc-count
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+  provider:
+    global_timeout: 500s
+    timeout: 500s
+    providers:
+      - name: elasticsearchEtna
+        type: elasticsearch
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: Kng6K7J41j882P77EQeS9cTI
+
+  monitoring:
+    log_stages: true
