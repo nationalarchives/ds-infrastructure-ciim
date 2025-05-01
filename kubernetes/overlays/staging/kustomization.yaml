@@ -26,6 +26,7 @@ bases:
   - ../../rosetta-3
   - ../../api
   - ../../acme
+  - ../../rosetta-3-PROD
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
