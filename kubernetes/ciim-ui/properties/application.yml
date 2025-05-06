@@ -14,7 +14,7 @@ es:
       pathPrefix:
       username: elastic
       password: 323RWM9jU5XZ2Mkn190lre8B
-      mediaBase: http://localhost/mediaLib
+      mediaBase: http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/
       indices:
         - ciim
         - management
@@ -32,7 +32,7 @@ es:
       pathPrefix:
       username: elastic
       password: Kng6K7J41j882P77EQeS9cTI
-      mediaBase: http://localhost/mediaLib
+      mediaBase: http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/tna/api/secure/ui/media/
       indices:
         - ciim
 dataSource:
