@@ -35,10 +35,7 @@
                         }
                       }
                     },
-                    "administrativeBackground": {
-                      "type": "regex_replace",
-                      "values": "$.source.origination.description[?(@.type == 'administrative background')].value"
-                    },
+                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background raw')].value",
                     "agentBirthLocation": {
                       "#type": "as_list",
                       "values": "$.source.agent[0].@birth.location.name.value"
@@ -56,32 +53,7 @@
                       "values": "$.source.agent[0].service.identifier.value"
                     },
                     "appraisalInformation": "$.source.appraisal.value",
-                    "arrangement": {
-                      "#type": "regex_replace",
-                      "value": {
-                        "#type": "regex_replace",
-                        "value": {
-                          "#type": "regex_replace",
-                          "value": {
-                            "#type": "regex_replace",
-                            "value": {
-                              "#type": "regex_replace",
-                              "value": "$.source.arrangement.value",
-                              "pattern": "<span class=\\\"arrangement\\\"><p>",
-                              "replacement": "<arrangement><p>"
-                            },
-                            "pattern": "</p></span>",
-                            "replacement": "</p></arrangement>"
-                          },
-                          "pattern": "<span class=\\\"list\\\">",
-                          "replacement": "<list>"
-                        },
-                        "pattern": "<span class=\\\"item\\\">",
-                        "replacement": "<item>"
-                      },
-                      "pattern": "</span>",
-                      "replacement": "</item>"
-                    },
+                    "arrangement": "$.source.arrangement.raw",
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
