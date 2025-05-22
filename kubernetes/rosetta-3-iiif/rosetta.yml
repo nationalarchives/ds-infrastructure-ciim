@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rosettav-3-tna
+  namespace: etna
+spec:
+  selector:
+    matchLabels:
+      app: rosettav-3-tna
+  revisionHistoryLimit: 1
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rosettav-3-tna
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: rosettav-3-config
+          configMap:
+            name: rosetta-3-config
+      initContainers:
+        - name: set-rosetta-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: rosetta
+          image: public.ecr.aws/v3w7q3a1/rosetta:tna-rosetta-3-iiif
+          imagePullPolicy: Always
+          imagePullSecrets:
+            - name: regcred
+          ports:
+            - name: rosettav-3-port
+              containerPort: 4923
+              protocol: TCP
+          volumeMounts:
+            - name: rosettav-3-config
+              mountPath: /rosetta/config
+          env:
+            - name: JAVA_OPTS
+              value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
+          resources:
+            requests:
+              memory: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rosettav-3-service
+  namespace: etna
+spec:
+  type: ClusterIP
+  selector:
+    app: rosettav-3-tna
+  ports:
+    - protocol: TCP
+      port: 4923
+      targetPort: 4923
+      name: rosettav-3-port

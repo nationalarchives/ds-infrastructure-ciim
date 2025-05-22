@@ -1,0 +1,65 @@
+base_paths:
+  data: /rosetta/data
+  proteus: /rosetta/config/proteus
+
+rosetta:
+  cache:
+    enabled: false
+  monitoring:
+    log_stages: false
+
+  provider:
+    providers:
+      - name: elasticsearch
+        type: elasticsearch
+        properties:
+          host: ciim-public-es-http.etna
+          port: 9200
+          index: ciim
+          username: elastic
+          password: 6tVhH4oGK23TU895Pfa04B8K
+          global_timeout_millis: 1000000
+          timeout_millis: 100000
+
+  profile:
+    profiles:
+      - name: default
+        providers:
+          policy: all
+        profiles:
+          policy: all
+        glyphs:
+          policy: list
+          names:
+            - api-default
+      - name: iiif
+        providers:
+          policy: all
+        glyphs:
+          policy: list
+          names:
+            - iiif-mapping
+  transform:
+    enabled: true
+    timeout_millis: 30000
+    glyphs:
+      - name: iiif-mapping
+        type: proteus
+        properties:
+          spec: ./config/iiif-mapping.json
+          mutable: true
+          include:
+            - ./config/component_search.json
+      - name: api-default
+        type: proteus
+        properties:
+          spec: ./config/jpt.json
+          mutable: true
+
+  plugins:
+    iiif:
+      profile: iiif
+      base_url: https://tna.ciim.k-int.com/
+      external_media_base_url: https://tna.ciim.k-int.com/image/iiif/3/
+      iiif_media_base_url: https://tna.ciim.k-int.com/image/iiif/3/
+      mediaArtifact: mid

@@ -1,0 +1,11 @@
+namespace: etna
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosettav-3-config
+    files:
+      - ./config/application.yml
+      - ./config/jpt.json
+      - ./config/iiif-mapping.json
+      - ./config/component_search.json
+      - ./config/iiif_include.json
