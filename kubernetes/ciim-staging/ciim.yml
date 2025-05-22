@@ -129,11 +129,12 @@ metadata:
   name: ciim-batch-data-pvc
   namespace: etna
 spec:
+  storageClassName: ebs-sc
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 250Gi
+      storage: 500Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -141,6 +142,7 @@ metadata:
   name: ciim-logging-data-pvc
   namespace: etna
 spec:
+  storageClassName: ebs-sc
   accessModes:
     - ReadWriteOnce
   resources:
@@ -153,11 +155,12 @@ metadata:
   name: ciim-media-data-pvc
   namespace: etna
 spec:
+  storageClassName: ebs-sc-media
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 30Gi
+      storage: 500Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -165,6 +168,7 @@ metadata:
   name: ciim-temp-data-pvc
   namespace: etna
 spec:
+  storageClassName: ebs-sc
   accessModes:
     - ReadWriteOnce
   resources:
@@ -177,6 +181,7 @@ metadata:
   name: ciim-persistence-data-pvc
   namespace: etna
 spec:
+  storageClassName: ebs-sc
   accessModes:
     - ReadWriteOnce
   resources:
