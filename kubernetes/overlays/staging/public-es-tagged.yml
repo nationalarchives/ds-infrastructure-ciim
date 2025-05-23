@@ -12,11 +12,11 @@ spec:
           containers:
             - env:
                 - name: ES_JAVA_OPTS
-                  value: '-Xms24g -Xmx24g -Dlog4j2.formatMsgNoLookups=true'
+                  value: '-Xms16g -Xmx16g -Dlog4j2.formatMsgNoLookups=true'
               name: elasticsearch
               resources:
                 requests:
-                  memory: 24Gi
+                  memory: 16Gi
               volumeMounts:
                 - mountPath: /usr/share/elasticsearch/config/dictionaries
                   name: esdictionaries
