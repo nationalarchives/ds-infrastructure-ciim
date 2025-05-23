@@ -35,7 +35,7 @@
                         }
                       }
                     },
-                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background')].value",
+                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background raw')].value",
                     "agentBirthLocation": {
                       "#type": "as_list",
                       "values": "$.source.agent[0].@birth.location.name.value"
@@ -53,22 +53,7 @@
                       "values": "$.source.agent[0].service.identifier.value"
                     },
                     "appraisalInformation": "$.source.appraisal.value",
-                    "arrangement": {
-                      "#type": "string_join",
-                      "values": {
-                        "#type": "for_each",
-                        "values": "$.source.arrangement.value",
-                        "spec": {
-                          "#type": "string_join",
-                          "values": [
-                            "<arrangement><p>",
-                            "$",
-                            "</p></arrangement>"
-                          ]
-                        }
-                      },
-                      "delimiter": " "
-                    },
+                    "arrangement": "$.source.arrangement.raw",
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
@@ -181,39 +166,39 @@
                         }
                       }
                     },
-                   "mapDesignation": {
-                        "#type": "regex_replace",
-                        "value": "$.source.@template.details.mapDesignation",
-                        "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
-                        "replacement": "<unittitle type=\"$2\">$3</unittitle>"
-                      },
+                    "mapDesignation": {
+                      "#type": "regex_replace",
+                      "value": "$.source.@template.details.mapDesignation",
+                      "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
+                      "replacement": "<unittitle type=\"$2\">$3</unittitle>"
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
                       "value": {
-                          "@admin": {
-                            "id": "$.@admin.id"
-                          },
-                          "identifier": {
-                            "#type": "for_each",
-                            "values": "$.identifier",
-                            "spec": {
-                              "reference_number": "$.__reference_number"
-                            }
-                          },
-                          "level": {
-                            "code": "$.level.code"
-                          },
-                          "source": {
-                            "value": "$.source.value"
-                          },
-                          "summary": {
-                            "title": "$.summary.title"
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
                           }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
                         }
-                      },
+                      }
+                    },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
