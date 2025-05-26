@@ -19,22 +19,18 @@ rosetta:
 
   profile:
     profiles:
-      - name: default
-        providers:
-          policy: all
-        profiles:
-          policy: all
-        glyphs:
-          policy: list
-          names:
-            - api-default
       - name: iiif
         providers:
-          policy: all
-        glyphs:
           policy: list
           names:
-            - iiif-mapping
+            - elasticsearch
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - iiif-mapping
+
   transform:
     enabled: true
     timeout_millis: 30000
@@ -46,11 +42,7 @@ rosetta:
           mutable: true
           include:
             - ./config/component_search.json
-      - name: api-default
-        type: proteus
-        properties:
-          spec: ./config/jpt.json
-          mutable: true
+
 
   plugins:
     iiif:
