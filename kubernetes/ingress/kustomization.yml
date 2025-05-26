@@ -4,3 +4,4 @@ resources:
   - es_ingress.yml
   - rewriteplugin.yml
   - rosetta_prod_ingress.yml
+  - cantaloupe_ingress.yml

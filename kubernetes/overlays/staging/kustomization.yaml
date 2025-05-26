@@ -27,6 +27,8 @@ bases:
   - ../../api
   - ../../acme
   - ../../rosetta-3-PROD
+  - ../../rosetta-3-iiif
+  - ../../cantaloupe
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

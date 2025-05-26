@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tna-ingress-cantaloupe-ciim
+  namespace: etna
+  annotations:
+    konghq.com/strip-path: "true"
+    konghq.com/preserve-host: "false"
+    kubernetes.io/ingress.class: kong
+spec:
+  tls:
+    - hosts:
+        - rosetta-staging.k-int.com
+      secretName: tls-secret-rosetta
+  rules:
+    - host: rosetta-staging.k-int.com
+      http:
+        paths:
+          - path: /image/iiif/3
+            pathType: Prefix
+            backend:
+              service:
+                name: cantaloupe-tna-service
+                port:
+                  name: cantaloupe-port

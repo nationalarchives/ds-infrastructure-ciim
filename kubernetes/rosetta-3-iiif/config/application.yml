@@ -17,7 +17,7 @@ rosetta:
           port: 9200
           index: ciim
           username: elastic
-          password: 6tVhH4oGK23TU895Pfa04B8K
+          password: Kng6K7J41j882P77EQeS9cTI
           global_timeout_millis: 1000000
           timeout_millis: 100000
 
@@ -59,7 +59,7 @@ rosetta:
   plugins:
     iiif:
       profile: iiif
-      base_url: https://tna.ciim.k-int.com/
-      external_media_base_url: https://tna.ciim.k-int.com/image/iiif/3/
-      iiif_media_base_url: https://tna.ciim.k-int.com/image/iiif/3/
+      base_url: https://rosetta-staging.k-int.com/
+      external_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
+      iiif_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
       mediaArtifact: mid
