@@ -1,7 +1,3 @@
-base_paths:
-  data: /rosetta/data
-  proteus: /rosetta/config/proteus
-
 rosetta:
   cache:
     enabled: false
