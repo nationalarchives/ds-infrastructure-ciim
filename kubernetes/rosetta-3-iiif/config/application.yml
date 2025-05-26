@@ -51,3 +51,4 @@ rosetta:
       external_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
       iiif_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
       mediaArtifact: mid
+      identifier_type: iaid
