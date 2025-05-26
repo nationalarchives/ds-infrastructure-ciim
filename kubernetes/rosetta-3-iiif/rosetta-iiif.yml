@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rosettav-3-tna
+  name: iiif
   namespace: etna
 spec:
   selector:
     matchLabels:
-      app: rosettav-3-tna
+      app: iiif
   revisionHistoryLimit: 1
   replicas: 1
   progressDeadlineSeconds: 600
@@ -15,13 +15,13 @@ spec:
   template:
     metadata:
       labels:
-        app: rosettav-3-tna
+        app: iiif
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: rosettav-3-config
+        - name: iiif-config
           configMap:
-            name: rosetta-3-config
+            name: iiif-config
       initContainers:
         - name: set-rosetta-permissions
           image: registry.hub.docker.com/library/busybox:latest
@@ -29,17 +29,17 @@ spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: rosetta
+        - name: iiif
           image: public.ecr.aws/v3w7q3a1/rosetta:tna-rosetta-3-iiif
           imagePullPolicy: Always
           imagePullSecrets:
             - name: regcred
           ports:
-            - name: rosettav-3-port
+            - name: iiif-port
               containerPort: 4923
               protocol: TCP
           volumeMounts:
-            - name: rosettav-3-config
+            - name: iiif-config
               mountPath: /rosetta/config
           env:
             - name: JAVA_OPTS
@@ -51,14 +51,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rosettav-3-service
+  name: iiif-service
   namespace: etna
 spec:
   type: ClusterIP
   selector:
-    app: rosettav-3-tna
+    app: iiif
   ports:
     - protocol: TCP
       port: 4923
       targetPort: 4923
-      name: rosettav-3-port
+      name: iiif-port
