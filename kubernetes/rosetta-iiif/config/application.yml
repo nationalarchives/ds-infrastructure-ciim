@@ -23,18 +23,22 @@ rosetta:
 
   profile:
     profiles:
-      - name: iiif
+      - name: default
         providers:
+          policy: all
+        profiles:
+          policy: all
+        glyphs:
           policy: list
           names:
-            - elasticsearch
-        transforms:
-          request:
-            - glyphs:
-                policy: list
-                names:
-                  - iiif-mapping
-
+            - api-default
+      - name: iiif
+        providers:
+          policy: all
+        glyphs:
+          policy: list
+          names:
+            - iiif-mapping
   transform:
     enabled: true
     timeout_millis: 30000
@@ -46,6 +50,11 @@ rosetta:
           mutable: true
           include:
             - ./config/component_search.json
+      - name: api-default
+        type: proteus
+        properties:
+          spec: ./config/jpt.json
+          mutable: true
 
   plugins:
     iiif:
@@ -54,3 +63,4 @@ rosetta:
       IIIFMediaBaseUrl: https://tna.ciim.k-int.com/image/iiif/3/
       mediaArtifact: mid
       profile: iiif
+      identifier_type: iaid
