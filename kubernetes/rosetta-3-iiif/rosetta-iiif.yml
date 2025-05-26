@@ -11,7 +11,10 @@ spec:
   replicas: 1
   progressDeadlineSeconds: 600
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -32,8 +35,6 @@ spec:
         - name: iiif
           image: public.ecr.aws/v3w7q3a1/rosetta:tna-rosetta-3-iiif
           imagePullPolicy: Always
-          imagePullSecrets:
-            - name: regcred
           ports:
             - name: iiif-port
               containerPort: 4923
