@@ -1,8 +1,5 @@
 {
-  "#type": "scope",
-  "scope": "$.source",
-  "value": {
-    "id": "$.@admin.id",
+  "id": "$.@admin.id",
     "type": "manifest",
     "label": "$.summary.title",
     "summary": "$.description[0].value",
@@ -14,5 +11,4 @@
         }
       }
     ]
-  }
 }
