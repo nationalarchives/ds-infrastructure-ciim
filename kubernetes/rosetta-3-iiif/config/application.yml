@@ -29,20 +29,30 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - iiif-mapping
+                  - iiif-request-transform
+          data:
+            glyphs:
+              policy: list
+              names:
+                - iiif-mapping
 
   transform:
     enabled: true
     timeout_millis: 30000
     glyphs:
-      - name: iiif-mapping
+      - name: iiif-request-transform
         type: proteus
         properties:
           spec: ./config/request-transform.spec
           mutable: true
+
+      - name: iiif-mapping
+        type: proteus
+        properties:
+          mutable: true
+          spec: ./config/iiif-mapping.json
           include:
             - ./config/component_search.json
-            - ./config/iiif-mapping.json
 
 
   plugins:
