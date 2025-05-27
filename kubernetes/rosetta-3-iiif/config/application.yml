@@ -31,7 +31,7 @@ rosetta:
                 names:
                   - iiif-request-transform
           data:
-            glyphs:
+            - glyphs:
               policy: list
               names:
                 - iiif-mapping
