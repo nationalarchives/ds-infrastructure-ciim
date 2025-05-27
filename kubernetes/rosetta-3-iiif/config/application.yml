@@ -32,9 +32,9 @@ rosetta:
                   - iiif-request-transform
           data:
             - glyphs:
-              policy: list
-              names:
-                - iiif-mapping
+                policy: list
+                names:
+                  - iiif-mapping
 
   transform:
     enabled: true
