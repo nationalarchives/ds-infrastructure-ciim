@@ -38,10 +38,11 @@ rosetta:
       - name: iiif-mapping
         type: proteus
         properties:
-          spec: ./config/iiif-mapping.json
+          spec: ./config/request-transform.spec
           mutable: true
           include:
             - ./config/component_search.json
+            - ./config/iiif-mapping.json
 
 
   plugins:
@@ -51,6 +52,4 @@ rosetta:
       external_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
       iiif_media_base_url: https://rosetta-staging.k-int.com/image/iiif/3/
       mediaArtifact: mid
-      manifest_key:
-        key_type: IDENTIFIER
-        identifier_type: iaid
+      identifier_type: iaid
