@@ -1,8 +1,8 @@
 {
   "id": "$.@admin.id",
-    "type": "manifest",
-    "label": "$.title",
-    "summary": "$.description[0].value",
+  "type": "manifest",
+  "label": "$.title",
+  "summary": "$.description[0].value",
   "items": {
     "#type": "as_list",
     "values": {
