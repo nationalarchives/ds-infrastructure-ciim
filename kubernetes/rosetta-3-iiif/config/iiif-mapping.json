@@ -1,26 +1,10 @@
 {
-  "type": "manifest",
-  "id": "object-123",
-  "label": "Impression, Sunrise",
-  "metadata": {
-    "Creator": "Claude Monet",
-    "Genre": "Marine Art",
-    "Depicts": [
-      "Sunrise",
-      "Port of Le Havre",
-      "Barque"
-    ],
-    "Title": {
-      "en": "Impression, Sunrise",
-      "fr": "Impression, soleil levant"
-    }
-  },
-  "items": [
-    {
-      "type": "canvas",
-      "artifact": {
-        "location": "wikipedia/commons/thumb/5/59/Monet_-_Impression,_Sunrise.jpg/960px-Monet_-_Impression,_Sunrise.jpg"
-      }
-    }
-  ]
+  "#type": "scope",
+  "scope": "$.source",
+  "value": {
+    "id": "$.@admin.id",
+    "type": "manifest",
+    "label": "$.summary.title",
+    "summary": "$.description[0].value"
+  }
 }
