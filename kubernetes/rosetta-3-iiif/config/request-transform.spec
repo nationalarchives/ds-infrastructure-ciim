@@ -1,7 +1,7 @@
 {
   "query": {
     "term": {
-      "system_id": "$.identifier"
+      "@admin.id": "$.identifier"
     }
   }
 }
