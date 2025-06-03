@@ -42,7 +42,17 @@ spec:
         - name: set-ciim-permissions
           image: registry.hub.docker.com/library/busybox:latest
           imagePullPolicy: IfNotPresent
-          command: [ 'sh', '-c', 'chmod -R 777 /ciim' ]
+          command: ['/bin/sh']
+          args:
+            - -c
+            - >-
+              chmod 777 /ciim &&
+              chmod 777 /ciim/ciim-batches &&
+              chmod 777 /ciim/ciim-media &&
+              chmod 777 /ciim/ciim-persistence &&
+              chmod 777 /ciim/ciim-temp &&
+              chmod 777 /ciim/data &&
+              chmod -R 777 /usr/local/tomcat/logs
           volumeMounts:
             - name: ciim-logging-data
               mountPath: /ciim/tomcat/logs
