@@ -51,8 +51,7 @@ spec:
               chmod 777 /ciim/ciim-media &&
               chmod 777 /ciim/ciim-persistence &&
               chmod 777 /ciim/ciim-temp &&
-              chmod 777 /ciim/data &&
-              chmod -R 777 /usr/local/tomcat/logs
+              chmod -R 777 /ciim/tomcat/logs
           volumeMounts:
             - name: ciim-logging-data
               mountPath: /ciim/tomcat/logs
