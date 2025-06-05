@@ -28,6 +28,11 @@ spec:
                 storage: 500Gi
       podTemplate:
         spec:
+          tolerations:
+            - key: "special-elastic"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
           volumes:
             - name: esdictionaries-etna
               configMap:
@@ -39,10 +44,10 @@ spec:
                   value: "-Xms14g -Xmx14g -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 16Gi
-                  cpu: 1
+                  memory: 32Gi
+                  cpu: 3
                 limits:
-                  memory: 16Gi
+                  memory: 32Gi
               volumeMounts:
                 - name: esdictionaries-etna
                   mountPath: /usr/share/elasticsearch/config/dictionaries

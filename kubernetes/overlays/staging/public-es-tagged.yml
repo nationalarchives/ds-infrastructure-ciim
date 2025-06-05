@@ -16,7 +16,7 @@ spec:
               name: elasticsearch
               resources:
                 requests:
-                  memory: 16Gi
+                  memory: 32Gi
               volumeMounts:
                 - mountPath: /usr/share/elasticsearch/config/dictionaries
                   name: esdictionaries
