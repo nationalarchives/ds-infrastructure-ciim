@@ -34,3 +34,4 @@ patchesStrategicMerge:
   - ciim-tagged.yml
   - internal-es-tagged.yml
   - database-tagged.yml
+  - public-es-tagged.yml

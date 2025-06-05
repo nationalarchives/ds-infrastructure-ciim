@@ -9,6 +9,11 @@ spec:
       name: default
       podTemplate:
         spec:
+          tolerations:
+            - key: "special-elastic"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
           containers:
             - env:
                 - name: ES_JAVA_OPTS
@@ -16,6 +21,9 @@ spec:
               name: elasticsearch
               resources:
                 requests:
+                  memory: 32Gi
+                  cpu: 3
+                limits:
                   memory: 32Gi
               volumeMounts:
                 - mountPath: /usr/share/elasticsearch/config/dictionaries
