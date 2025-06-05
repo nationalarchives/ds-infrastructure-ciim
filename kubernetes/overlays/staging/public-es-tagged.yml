@@ -17,7 +17,7 @@ spec:
           containers:
             - env:
                 - name: ES_JAVA_OPTS
-                  value: '-Xms28g -Xmx28g -Dlog4j2.formatMsgNoLookups=true'
+                  value: '-Xms16g -Xmx16g -Dlog4j2.formatMsgNoLookups=true'
               name: elasticsearch
               resources:
                 requests:
