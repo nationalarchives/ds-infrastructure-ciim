@@ -16,4 +16,4 @@ spec:
               service:
                 name: rosetta-3-test-service
                 port:
-                  name: rosetta-test-port
+                  name: rosetta-port
