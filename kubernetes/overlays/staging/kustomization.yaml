@@ -4,7 +4,6 @@ bases:
   - ../../eks
   - ../../unmanaged-internal-es
   - ../../unmanaged-public-es
-  - ../../rosetta-staging
   - ../../ciim-ui
   - ../../ohos/base
   - ../../ohos/eks
