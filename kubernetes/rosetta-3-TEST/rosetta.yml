@@ -36,7 +36,7 @@ spec:
           image: public.ecr.aws/v3w7q3a1/rosetta:tna-etna-4.0
           imagePullPolicy: Always
           ports:
-            - name: rosetta-test-port
+            - name: rosetta-port
               containerPort: 4923
               protocol: TCP
           volumeMounts:
