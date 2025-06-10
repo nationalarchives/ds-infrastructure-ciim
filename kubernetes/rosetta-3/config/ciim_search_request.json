@@ -5,15 +5,7 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort",
-      "highlight": {
-        "pre_tags": ["<em>"],
-        "post_tags": ["</em>"],
-        "fields": {
-          "_generic_all_std": {},
-          "_all": {}
-        }
-      }
+      "sort": "$.sort"
     },
     "cache": {
       "name": "fast-cache"
