@@ -27,6 +27,7 @@ bases:
   - ../../rosetta-3-PROD
   - ../../rosetta-3-iiif
   - ../../cantaloupe
+  - ../../rosetta-3-TEST
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

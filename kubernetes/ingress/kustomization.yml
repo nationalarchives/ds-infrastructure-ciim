@@ -5,3 +5,4 @@ resources:
   - rewriteplugin.yml
   - rosetta_prod_ingress.yml
   - cantaloupe_ingress.yml
+  - rosetta_test_ingress.yml

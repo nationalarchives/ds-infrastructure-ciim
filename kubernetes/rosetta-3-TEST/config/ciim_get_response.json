@@ -1,0 +1,298 @@
+{
+  "#type": "chain",
+  "chain": [
+    {
+      "#type": "merge",
+      "values": [
+        "$.datasets.elasticsearchEtna"
+      ]
+    },
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "$.data",
+              "spec": {
+                "@template": {
+                  "details": {
+                    "accessCondition": "$.source.availability.access.condition.value",
+                    "accruals": "$.source.accruals.value",
+                    "accumulationDates": "$.source.accruals.date.value",
+                    "accumulationDate": {
+                      "values": {
+                        "#type": "for_each",
+                        "values": "$.source.accruals.date.accumulationDates",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "$.source.accruals.date.accumulationDates",
+                            "$.source.accruals.date.value"
+                          ]
+                        }
+                      }
+                    },
+                    "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background raw')].value",
+                    "agentBirthLocation": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.location.name.value"
+                    },
+                    "agentDateOfBirth": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].@birth.date.value"
+                    },
+                    "agentName": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].name.value"
+                    },
+                    "agentServiceNumber": {
+                      "#type": "as_list",
+                      "values": "$.source.agent[0].service.identifier.value"
+                    },
+                    "appraisalInformation": "$.source.appraisal.value",
+                    "arrangement": "$.source.arrangement.raw",
+                    "catalogueContext": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.catalogueContext"
+                    },
+                    "closureStatus": "$.source.availability.closure.label.value",
+                    "copiesInformation": "$.source.copies[0].value",
+                    "creator": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.creator"
+                    },
+                    "custodialHistory": "$.source.custodial[*].description.value",
+                    "closureCriterion": "$.source.closureCriterion.value",
+                    "dateCovering": "$.source.origination.date.value",
+                    "deliveryOption": "$.source.availability.delivery.condition.value",
+                    "description": {
+                      "value": "$.source.description[0].value",
+                      "schema": "$.source.description[0].schema.value",
+                      "raw": "$.source.description[0].raw"
+                    },
+                    "digitised": "$.source.@template.details.digitised",
+                    "dimensions": "$.source.measurements.dimensions[*].value",
+                    "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
+                    "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "groupArray": "$.source.@datatype.group",
+                    "heldBy": "$.source.repository.name.value",
+                    "heldById": "$.source.repository.@admin.id",
+                    "@hierarchy": {
+                      "#type": "for_each",
+                      "values": "$.source.@hierarchy",
+                      "spec": {
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
+                        }
+                      }
+                    },
+                    "iaid": "$.source.identifier..__iaid",
+                    "immediateSourceOfAcquisition": {
+                      "#type": "fallback",
+                      "strategies": [
+                        {
+                          "#type": "string_join",
+                          "values": {
+                            "#type": "for_each",
+                            "values": "$.source.@template.details.immediateSourceOfAcquisition",
+                            "spec": {
+                              "#type": "string_join",
+                              "values": [
+                                "<p>",
+                                "$",
+                                "</p>"
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "#type": "string_join",
+                          "values": {
+                            "#type": "for_each",
+                            "values": "$.source.acquisition[0].description.value",
+                            "spec": {
+                              "#type": "string_join",
+                              "values": [
+                                "$"
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "format": {
+                        "#type": "string_join",
+                        "values": "$",
+                        "delimiter": " "
+                      }
+                    },
+                    "language": {
+                      "#type": "string_join",
+                      "values": "$.source.language[*].value",
+                      "delimiter": " and "
+                    },
+                    "legalStatus": "$.source.legal.status",
+                    "level": "$.source.level",
+                    "locationOfOriginals": {
+                      "#type": "as_list",
+                      "values": {
+                        "#type": "for_each",
+                        "values": "$.source.originals",
+                        "spec": {
+                          "#type": "string_join",
+                          "values": [
+                            "$.organisation.name[0].value",
+                            "$.description.value"
+                          ],
+                          "delimiter": " "
+                        }
+                      }
+                    },
+                   "mapDesignation": {
+                        "#type": "regex_replace",
+                        "value": "$.source.@template.details.mapDesignation",
+                        "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
+                        "replacement": "<unittitle type=\"$2\">$3</unittitle>"
+                      },
+                    "mapScale": "$.source.@template.details.mapScale",
+                    "note": "$.source.@template.details.note",
+                    "parent": {
+                      "#type": "scope",
+                      "scope": "$.source.parent[0]",
+                      "value": {
+                          "@admin": {
+                            "id": "$.@admin.id"
+                          },
+                          "identifier": {
+                            "#type": "for_each",
+                            "values": "$.identifier",
+                            "spec": {
+                              "reference_number": "$.__reference_number"
+                            }
+                          },
+                          "level": {
+                            "code": "$.level.code"
+                          },
+                          "source": {
+                            "value": "$.source.value"
+                          },
+                          "summary": {
+                            "title": "$.summary.title"
+                          }
+                        }
+                      },
+                    "physicalCondition": "$.source.condition.value",
+                    "physicalDescription": "$.source.@template.details.physicalDescription",
+                    "primaryIdentifier": "$.source.@admin.id",
+                    "publicationNote": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'publication note')].value"
+                    },
+                    "recordOpening": "$.source.availability.access.opening.label.value",
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "relatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.relatedMaterials"
+                    },
+                    "restrictionsOnUse": "$.source.availability.restrictions.value",
+                    "separatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.separatedMaterials"
+                    },
+                    "source": "$.source.source.value",
+                    "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "summaryTitle": "$.source.summary.title",
+                    "title": "$.source.title[?(@.primary == true)].value",
+                    "type": "$.source.@datatype.base",
+                    "unpublishedFindingAids": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
+                    },
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
+                        },
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        }
+                      }
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          []
+        ]
+      }
+    }
+  ]
+}

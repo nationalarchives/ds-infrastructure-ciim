@@ -1,0 +1,17 @@
+{
+  "#type": "merge",
+  "values": [
+    "$.request",
+    {
+      "aggs":{
+        "creationDateDecade": {
+          "date_histogram": {
+            "field": "creation.date.from",
+            "fixed_interval": " 315360000000ms",
+            "format": "y G || y"
+          }
+        }
+      }
+    }
+  ]
+}
