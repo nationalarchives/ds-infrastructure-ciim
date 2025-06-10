@@ -193,6 +193,7 @@ rosetta:
               heldBy: "repository.name.value.keyword"
               webReference: "web.identifier.value.lower"
               subjects: "subjects.subject.summary.title.keyword"
+              title: "summary.title.keyword"
 
       - name: ciim/search/request
         type: proteus
