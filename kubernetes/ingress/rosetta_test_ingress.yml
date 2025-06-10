@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rosetta-prod-ingress
+  name: rosetta-test-ingress
   namespace: etna
   annotations:
     kubernetes.io/ingress.class: kong
