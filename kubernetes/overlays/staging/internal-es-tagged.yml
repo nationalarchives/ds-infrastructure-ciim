@@ -12,7 +12,7 @@ spec:
           containers:
             - env:
                 - name: ES_JAVA_OPTS
-                  value: '-Xms16g -Xmx16g -Dlog4j2.formatMsgNoLookups=true'
+                  value: '-XX:MaxRAMPercentage=50.0 -Dlog4j2.formatMsgNoLookups=true'
               name: elasticsearch
               resources:
                 requests:
