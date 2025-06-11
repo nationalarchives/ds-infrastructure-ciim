@@ -41,6 +41,8 @@ spec:
                 requests:
                   memory: 12Gi
                   cpu: 1
+                  limits:
+                    memory: 12Gi
               volumeMounts:
                 - name: dictionaries-etna
                   mountPath: /usr/share/elasticsearch/config/dictionaries
