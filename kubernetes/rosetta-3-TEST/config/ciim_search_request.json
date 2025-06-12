@@ -19,6 +19,7 @@
           "custodial.description.value": {},
           "originals.description.value": {}
         }
+      }
     },
     "cache": {
       "name": "fast-cache"
