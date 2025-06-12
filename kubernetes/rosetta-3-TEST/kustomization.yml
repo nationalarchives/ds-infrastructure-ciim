@@ -16,4 +16,3 @@ configMapGenerator:
       - ./config/inject_date_hist.json
       - ./config/es_query.json
       - ./config/component_search.json
-      - ./config/elastic_highlighting.json

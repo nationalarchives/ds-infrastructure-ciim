@@ -45,7 +45,6 @@ rosetta:
               - generic-search-modifications
               - generic-to-elastic
               - elastic-modifications
-              - elasticsearch-highlighting
               - ciim/search/request
           response:
             policy: list
@@ -138,13 +137,6 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/generic_search_modifications.json
-
-      - name: elasticsearch-highlighting
-        type: proteus
-        input: full
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/elastic_highlighting.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
