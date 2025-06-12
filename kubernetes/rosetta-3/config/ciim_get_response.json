@@ -219,7 +219,10 @@
                     },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
-                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "subjects": {
+                      "#type": "as_list",
+                      "values": "$.source.subjects.subject[*].summary.title"
+                    },
                     "summaryTitle": "$.source.summary.title",
                     "title": "$.source.title[?(@.primary == true)].value",
                     "type": "$.source.@datatype.base",
