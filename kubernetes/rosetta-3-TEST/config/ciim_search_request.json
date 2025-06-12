@@ -5,21 +5,7 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort",
-      "highlight": {
-        "fields": {
-          "name.value": {},
-          "identifier.__reference_number": {},
-          "agent.name.value": {},
-          "agent.summary.title.keyword": {},
-          "title.value.keyword": {},
-          "origination.creator.name.value": {},
-          "description.value": {},
-          "origination.description.value": {},
-          "custodial.description.value": {},
-          "originals.description.value": {}
-        }
-      }
+      "sort": "$.sort"
     },
     "cache": {
       "name": "fast-cache"
