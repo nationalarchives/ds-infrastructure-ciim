@@ -1,7 +1,7 @@
 [
   {
     "_source": [
-      "@admin.id"
+      "@admin.id", "description"
     ],
     "query": {
       "bool": {
