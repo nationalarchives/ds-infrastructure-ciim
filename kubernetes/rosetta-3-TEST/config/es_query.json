@@ -1,20 +1,24 @@
 [
   {
     "_source": [
-      "@admin.id", "description"
+      "@admin.id",
+      "details.iaid",
+      "details.summaryTitle",
+      "details.title",
+      "details.description"
     ],
     "query": {
       "bool": {
         "must": [
           {
             "term": {
-              "parent.@admin.id": "{&.query}"
+              "parent.@admin.id": "{{queryAdminId}}"
             }
           },
           {
             "range": {
               "sort": {
-                "gt": "{&.query}"
+                "gt": "{{sortValue}}"
               }
             }
           }
@@ -22,40 +26,49 @@
       }
     },
     "highlight": {
-      "pre_tags": [
-        "<mark>"
-      ],
-      "post_tags": [
-        "</mark>"
-      ],
+      "pre_tags": ["<mark>"],
+      "post_tags": ["</mark>"],
+      "fragment_size": 250,
+      "number_of_fragments": 1,
+      "require_field_match": false,
       "fields": {
-        "*": {}
-      },
-      "require_field_match": false
+        "details.iaid": {},
+        "details.summaryTitle": {},
+        "details.title": {},
+        "details.description": {},
+        "details.dateCovering": {},
+        "details.heldBy": {},
+        "details.referenceNumber": {},
+        "details.subjects": {}
+      }
     },
     "sort": [
       {
-        "sort": "asc"
+        "details.title.keyword": "asc"
       }
     ],
     "size": 1
   },
   {
     "_source": [
-      "@admin.id"
+      "@admin.id",
+      "details.iaid",
+      "details.summaryTitle",
+      "details.title",
+      "details.description"
     ],
     "query": {
       "bool": {
         "must": [
           {
             "term": {
-              "parent.@admin.id": "{&.query}"
+              "parent.@admin.id": "{{queryAdminId}}"
             }
           },
           {
             "range": {
               "sort": {
-                "lt": "{&.query}"
+                "lt": "{{sortValue}}"
               }
             }
           }
@@ -63,20 +76,25 @@
       }
     },
     "highlight": {
-      "pre_tags": [
-        "<mark>"
-      ],
-      "post_tags": [
-        "</mark>"
-      ],
+      "pre_tags": ["<mark>"],
+      "post_tags": ["</mark>"],
+      "fragment_size": 250,
+      "number_of_fragments": 1,
+      "require_field_match": false,
       "fields": {
-        "*": {}
-      },
-      "require_field_match": false
+        "details.iaid": {},
+        "details.summaryTitle": {},
+        "details.title": {},
+        "details.description": {},
+        "details.dateCovering": {},
+        "details.heldBy": {},
+        "details.referenceNumber": {},
+        "details.subjects": {}
+      }
     },
     "sort": [
       {
-        "sort": "desc"
+        "details.title.keyword": "desc"
       }
     ],
     "size": 1
