@@ -1,6 +1,8 @@
 [
   {
-    "_source": ["@admin.id"],
+    "_source": [
+      "@admin.id"
+    ],
     "query": {
       "bool": {
         "must": [
@@ -19,6 +21,18 @@
         ]
       }
     },
+    "highlight": {
+      "pre_tags": [
+        "<mark>"
+      ],
+      "post_tags": [
+        "</mark>"
+      ],
+      "fields": {
+        "*": {}
+      },
+      "require_field_match": false
+    },
     "sort": [
       {
         "sort": "asc"
@@ -27,7 +41,9 @@
     "size": 1
   },
   {
-    "_source": ["@admin.id"],
+    "_source": [
+      "@admin.id"
+    ],
     "query": {
       "bool": {
         "must": [
@@ -45,6 +61,18 @@
           }
         ]
       }
+    },
+    "highlight": {
+      "pre_tags": [
+        "<mark>"
+      ],
+      "post_tags": [
+        "</mark>"
+      ],
+      "fields": {
+        "*": {}
+      },
+      "require_field_match": false
     },
     "sort": [
       {
