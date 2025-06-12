@@ -1,100 +1,58 @@
 [
   {
     "_source": [
-      "@admin.id",
-      "details.iaid",
-      "details.summaryTitle",
-      "details.title",
-      "details.description"
+      "@admin.id"
     ],
     "query": {
       "bool": {
         "must": [
           {
             "term": {
-              "parent.@admin.id": "{{queryAdminId}}"
+              "parent.@admin.id": "{&.query}"
             }
           },
           {
             "range": {
               "sort": {
-                "gt": "{{sortValue}}"
+                "gt": "{&.query}"
               }
             }
           }
         ]
       }
     },
-    "highlight": {
-      "pre_tags": ["<mark>"],
-      "post_tags": ["</mark>"],
-      "fragment_size": 250,
-      "number_of_fragments": 1,
-      "require_field_match": false,
-      "fields": {
-        "details.iaid": {},
-        "details.summaryTitle": {},
-        "details.title": {},
-        "details.description": {},
-        "details.dateCovering": {},
-        "details.heldBy": {},
-        "details.referenceNumber": {},
-        "details.subjects": {}
-      }
-    },
     "sort": [
       {
-        "details.title.keyword": "asc"
+        "sort": "asc"
       }
     ],
     "size": 1
   },
   {
     "_source": [
-      "@admin.id",
-      "details.iaid",
-      "details.summaryTitle",
-      "details.title",
-      "details.description"
+      "@admin.id"
     ],
     "query": {
       "bool": {
         "must": [
           {
             "term": {
-              "parent.@admin.id": "{{queryAdminId}}"
+              "parent.@admin.id": "{&.query}"
             }
           },
           {
             "range": {
               "sort": {
-                "lt": "{{sortValue}}"
+                "lt": "{&.query}"
               }
             }
           }
         ]
       }
     },
-    "highlight": {
-      "pre_tags": ["<mark>"],
-      "post_tags": ["</mark>"],
-      "fragment_size": 250,
-      "number_of_fragments": 1,
-      "require_field_match": false,
-      "fields": {
-        "details.iaid": {},
-        "details.summaryTitle": {},
-        "details.title": {},
-        "details.description": {},
-        "details.dateCovering": {},
-        "details.heldBy": {},
-        "details.referenceNumber": {},
-        "details.subjects": {}
-      }
-    },
     "sort": [
       {
-        "details.title.keyword": "desc"
+        "sort": "desc"
       }
     ],
     "size": 1
