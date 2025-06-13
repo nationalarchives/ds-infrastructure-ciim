@@ -21,6 +21,13 @@
         ]
       }
     },
+    "highlight": {
+      "fields": {
+        "summary.title": {},
+        "title.value": {},
+        "description.value": {}
+      }
+    },
     "sort": [
       {
         "sort": "asc"
