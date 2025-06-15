@@ -194,6 +194,28 @@ rosetta:
               webReference: "web.identifier.value.lower"
               subjects: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
+          search_config:
+            search_fields:
+              - field: "name.value"
+                boost: 4
+              - field: "identifier.__reference_number"
+                boost: 4
+              - field: "agent.name.value"
+                boost: 3
+              - field: "agent.summary.title.keyword"
+                boost: 3
+              - field: "title.value.keyword"
+                boost: 3
+              - field: "origination.creator.name.value"
+                boost: 3
+              - field: "description.value"
+                boost: 2
+              - field: "origination.description.value"
+                boost: 2
+              - field: "custodial.description.value"
+                boost: 2
+              - field: "originals.description.value"
+                boost: 2
 
       - name: ciim/search/request
         type: proteus

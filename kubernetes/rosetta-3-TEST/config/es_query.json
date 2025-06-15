@@ -1,8 +1,6 @@
 [
   {
-    "_source": [
-      "@admin.id"
-    ],
+    "_source": ["@admin.id"],
     "query": {
       "bool": {
         "must": [
@@ -36,9 +34,7 @@
     "size": 1
   },
   {
-    "_source": [
-      "@admin.id"
-    ],
+    "_source": ["@admin.id"],
     "query": {
       "bool": {
         "must": [

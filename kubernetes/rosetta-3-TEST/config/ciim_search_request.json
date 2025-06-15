@@ -5,7 +5,14 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort"
+      "sort": "$.sort",
+      "highlight": {
+        "fields": {
+          "summary.title": {},
+          "title.value": {},
+          "description.value": {}
+        }
+      }
     },
     "cache": {
       "name": "fast-cache"

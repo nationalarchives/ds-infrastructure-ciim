@@ -29,7 +29,10 @@
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                    "subjects": "$.source.subjects.subject[*].summary.title"
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "highSTitle": "$.highlight.summary.title",
+                    "highTitle": "$.highlight.title.value",
+                    "highDesc": "$.highlight.description.value"
                   }
                 }
               }
