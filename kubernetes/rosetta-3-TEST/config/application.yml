@@ -139,11 +139,6 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/generic_search_modifications.json
 
-      - name: inject-highlighting
-        type: proteus
-        properties:
-          spec: ${base_paths.proteus}/inject_highlighting.json
-
       - name: generic-to-elastic
         type: elastic-generic-search
         properties:
@@ -222,6 +217,11 @@ rosetta:
                 boost: 2
               - field: "originals.description.value"
                 boost: 2
+
+      - name: inject-highlighting
+        type: proteus
+        properties:
+          spec: ${base_paths.proteus}/inject_highlighting.json
 
       - name: ciim/search/request
         type: proteus
