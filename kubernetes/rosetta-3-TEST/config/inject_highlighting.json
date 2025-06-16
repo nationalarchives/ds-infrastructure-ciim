@@ -1,6 +1,6 @@
 [
   {
-    "op": "add",
+    "#type": "merge",
     "path": "/highlight",
     "value": {
       "fields": {
