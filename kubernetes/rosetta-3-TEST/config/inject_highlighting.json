@@ -4,10 +4,12 @@
     "values": [
       "$.request",
       {
-        "fields": {
-          "name.value": {},
-          "identifier.__reference_number": {},
-          "summary.title.keyword": {}
+        "highlight": {
+          "fields": {
+            "name.value": {},
+            "identifier.__reference_number": {},
+            "summary.title.keyword": {}
+          }
         }
       }
     ]
