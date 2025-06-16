@@ -53,20 +53,6 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
-
-      - name: ciim/serachHighlight
-        type: transform-only
-        paths:
-            - /ciim/search/highlight
-        methods:
-            - GET
-        glyphs:
-            policy: list
-            names:
-              - to-generic-search
-              - ciim/search/request
-              - inject-highlighting
-
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
@@ -78,7 +64,6 @@ rosetta:
             names:
               - to-generic-search
               - ciim/search/request
-              - inject-highlighting
           response:
             policy: list
             names:
@@ -155,7 +140,7 @@ rosetta:
           spec: ${base_paths.proteus}/generic_search_modifications.json
 
       - name: inject-highlighting
-        type: proteus
+        type: merge
         properties:
           spec: ${base_paths.proteus}/inject_highlighting.json
 

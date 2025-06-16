@@ -1,26 +1,24 @@
 {
   "#type": "merge",
   "values": [
-    "$",
+    "$.request",
     {
-      "request": {
-        "#type": "literal",
-        "value": {
-          "highlight": {
-            "pre_tags": [
-              "<mark>"
-            ],
-            "post_tags": [
-              "</mark>"
-            ],
-            "fragment_size": 250,
-            "number_of_fragments": 1,
-            "fields": {
-              "name.value": {},
-              "identifier.__reference_number": {},
-              "summary.title.keyword": {},
-              "description.value": {}
-            }
+      "#type": "literal",
+      "value": {
+        "highlight": {
+          "pre_tags": [
+            "<mark>"
+          ],
+          "post_tags": [
+            "</mark>"
+          ],
+          "fragment_size": 250,
+          "number_of_fragments": 1,
+          "fields": {
+            "name.value": {},
+            "identifier.__reference_number": {},
+            "summary.title.keyword": {},
+            "description.value": {}
           }
         }
       }
