@@ -5,14 +5,7 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort",
-      "highlight": {
-        "fields": {
-          "summary.title": {},
-          "title.value": {},
-          "description.value": {}
-        }
-      }
+      "sort": "$.sort"
     },
     "cache": {
       "name": "fast-cache"
@@ -21,9 +14,9 @@
   "aggs": {
     "request": {
       "query": {
-          "bool": {
-            "must": "$.query.bool.must"
-          }
+        "bool": {
+          "must": "$.query.bool.must"
+        }
       },
       "aggregations": {
         "group": {

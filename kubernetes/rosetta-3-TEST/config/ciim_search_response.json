@@ -32,7 +32,8 @@
                     "subjects": "$.source.subjects.subject[*].summary.title",
                     "highSTitle": "$.highlight.summary.title",
                     "highTitle": "$.highlight.title.value",
-                    "highDesc": "$.highlight.description.value"
+                    "highDesc": "$.highlight.description.value",
+                    "highRefNumber": "$.highlight.identifier.__reference_number"
                   }
                 }
               }
@@ -72,18 +73,18 @@
             }
           },
           {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "for_each",
-                  "values": {
-                    "#type": "entries",
-                    "map": "$"
-                  },
-                  "spec": "$.value"
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
                 },
-                []
-              ]
+                "spec": "$.value"
+              },
+              []
+            ]
           }
         ]
       },
