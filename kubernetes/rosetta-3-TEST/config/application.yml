@@ -140,7 +140,7 @@ rosetta:
           spec: ${base_paths.proteus}/generic_search_modifications.json
 
       - name: inject-highlighting
-        type: merge
+        type: proteus
         properties:
           spec: ${base_paths.proteus}/inject_highlighting.json
 
