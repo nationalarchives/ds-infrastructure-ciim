@@ -143,17 +143,7 @@ rosetta:
         type: merge
         phase: request
         properties:
-          path: body
-          value:
-            highlight:
-              pre_tags: [ "<mark>" ]
-              post_tags: [ "</mark" ]
-              fragment_size: 250
-              number_of_fragments: 1
-              fields:
-                name.value: { }
-                identifier.__reference_number: { }
-                summary.title.keyword: { }
+          spec:${base_paths.proteus}/inject_highlighting.json
 
       - name: generic-to-elastic
         type: elastic-generic-search

@@ -1,7 +1,6 @@
 [
   {
-    "#type": "merge",
-    "target": "$.request.body",
+    "#type": "literal",
     "value": {
       "highlight": {
         "pre_tags": ["<mark>"],
