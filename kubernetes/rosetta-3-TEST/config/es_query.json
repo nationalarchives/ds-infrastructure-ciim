@@ -19,15 +19,6 @@
         ]
       }
     },
-    "highlight": {
-      "fields": {
-        "summary.title": {},
-        "title.value": {},
-        "description.value": {}
-      },
-      "pre_tags": ["<mark>"],
-      "post_tags": ["</mark>"]
-    },
     "sort": [
       {
         "sort": "asc"
