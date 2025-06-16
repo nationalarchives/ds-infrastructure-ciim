@@ -1,7 +1,7 @@
 {
   "#type": "merge",
   "values": [
-    "$.request",
+    "$.results.request",
     {
       "#type": "literal",
       "value": {
