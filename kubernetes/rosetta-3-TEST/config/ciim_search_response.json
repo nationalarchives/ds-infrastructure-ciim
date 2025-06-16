@@ -23,7 +23,7 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
-                    "summaryTitle": "$.source.summary.title",
+                    "summaryTitle": "$.source.highlight.summary.title",
                     "title": "$.source.title[?(@.primary == true)].value",
                     "description": "$.source.description[0].value",
                     "dateCovering": "$.source.origination.date.value",
