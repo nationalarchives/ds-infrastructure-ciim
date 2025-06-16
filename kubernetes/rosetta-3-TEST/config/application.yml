@@ -143,7 +143,7 @@ rosetta:
         type: merge
         phase: request
         properties:
-          spec:${base_paths.proteus}/inject_highlighting.json
+          spec: ${base_paths.proteus}/inject_highlighting.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
