@@ -14,5 +14,6 @@ configMapGenerator:
       - ./config/generic_search_modifications.json
       - ./config/singularize_creation.json
       - ./config/inject_date_hist.json
+      - ./config/inject_highlighting.json
       - ./config/es_query.json
       - ./config/component_search.json
