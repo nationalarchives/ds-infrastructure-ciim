@@ -65,6 +65,7 @@ rosetta:
             names:
               - to-generic-search
               - ciim/search/request
+              - inject-highlighting
 
       - name: ciim/searchTest
         paths:
