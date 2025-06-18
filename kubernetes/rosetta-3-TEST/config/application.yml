@@ -53,6 +53,23 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
+      - name: ciim/serachHighlight
+        type: transform-only
+        paths:
+          - /ciim/search/highlight
+        methods:
+          - GET
+        glyphs:
+          policy: list
+          names:
+            - to-generic-search
+            - generic-search-defaults
+            - generic-search-modifications
+            - generic-to-elastic
+            - elastic-modifications
+            - ciim/search/request
+            - inject-highlighting
+
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
