@@ -80,11 +80,16 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
               - ciim/search/request
           response:
             policy: list
             names:
               - ciim/search/response
+              - aggs-count-to-doc-count
 
       - name: ciim/get
         paths:
