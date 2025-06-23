@@ -15,7 +15,7 @@
               "post_tags": [
                 "</mark>"
               ],
-              "fragment_size": 250,
+              "fragment_size": "$.params.fragmentSize | 250",
               "number_of_fragments": 1,
               "fields": {
                 "name.value": {
