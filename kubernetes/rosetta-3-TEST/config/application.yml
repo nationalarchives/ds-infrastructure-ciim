@@ -239,6 +239,8 @@ rosetta:
                 boost: 3
               - field: "description.value"
                 boost: 2
+              - field: "summary.title"
+                boost: 2
               - field: "origination.description.value"
                 boost: 2
               - field: "custodial.description.value"
