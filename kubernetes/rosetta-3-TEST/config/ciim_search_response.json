@@ -25,7 +25,13 @@
                     "iaid": "$.source.identifier..__iaid",
                     "summaryTitle": "$.source.summary.title",
                     "title": "$.source.title[?(@.primary == true)].value",
-                    "description": "$.source.description[0].value",
+                    "description": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['description.value']",
+                        "$.source.description[0].value"
+                      ]
+                    },
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
