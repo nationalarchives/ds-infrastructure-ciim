@@ -23,10 +23,10 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
-                    "summaryTitle":{
+                    "summaryTitle": {
                       "#type": "fallback",
                       "strategies": [
-                        "[R]$.source.highlight['summary.title.value']",
+                        "[R]$.source.highlight['summary.title.value'][0]",
                         "$.source.summary.title"
                       ]
                     },
