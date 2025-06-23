@@ -26,7 +26,7 @@
                     "summaryTitle": {
                       "#type": "fallback",
                       "strategies": [
-                        "[R]$.source.highlight['summary.title.value']",
+                        "[R]$.source.highlight['summary.title']",
                         "$.source.summary.title"
                       ]
                     },
