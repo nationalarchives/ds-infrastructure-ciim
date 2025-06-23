@@ -28,6 +28,7 @@
                       "strategies": [
                         "[R]$.source.highlight['summary.title'][0]",
                         "[R]$.source.highlight['summary.title.value'][0]",
+                        "[R]$.source.highlight['summary.title']",
                         "$.source.summary.title"
                       ]
                     },
