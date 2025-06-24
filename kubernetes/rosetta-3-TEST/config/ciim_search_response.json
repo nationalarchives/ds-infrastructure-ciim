@@ -32,12 +32,18 @@
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['description.raw']",
-                        "$.source.description[0].raw"
-                      ]
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['description.raw']",
+                          "$.source.description[0].raw"
+                        ]
+                      },
+                      "pattern": "<[^>]+>",
+                      "replacement": ""
                     },
+
                     "description": {
                       "#type": "fallback",
                       "strategies": [
