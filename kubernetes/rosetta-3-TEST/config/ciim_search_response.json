@@ -31,6 +31,13 @@
                       ]
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
+                    "cleanDescription": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['description.raw']",
+                        "$.source.description[0].raw"
+                      ]
+                    },
                     "description": {
                       "#type": "fallback",
                       "strategies": [

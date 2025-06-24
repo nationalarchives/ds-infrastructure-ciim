@@ -246,6 +246,8 @@ rosetta:
                 boost: 3
               - field: "origination.creator.name.value"
                 boost: 3
+              - field: "description.raw"
+                boost: 2
               - field: "description.value"
                 boost: 2
               - field: "summary.title"
