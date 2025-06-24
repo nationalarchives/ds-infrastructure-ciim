@@ -47,6 +47,7 @@ rosetta:
               - elastic-modifications
               - ciim/search/request
               - inject-highlighting
+              - merge-advance-parameters
           response:
             policy: list
             names:
@@ -69,6 +70,7 @@ rosetta:
             - elastic-modifications
             - ciim/search/request
             - inject-highlighting
+
 
       - name: ciim/searchTest
         paths:
@@ -166,6 +168,13 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_highlighting.json
+
+      - name: merge-advance-parameters
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_advance_parameters.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
