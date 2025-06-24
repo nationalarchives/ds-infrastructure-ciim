@@ -34,8 +34,8 @@
                     "cleanDescription": {
                       "#type": "fallback",
                       "strategies": [
-                        "[R]$.source.highlight['description.raw']",
-                        "$.source.description[0].raw"
+                        "[R]$.source.highlight['description.value']",
+                        "$.source.description[0].value"
                       ]
                     },
                     "description": {
