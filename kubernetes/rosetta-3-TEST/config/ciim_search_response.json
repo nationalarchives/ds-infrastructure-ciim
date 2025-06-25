@@ -43,7 +43,7 @@
                       "pattern": "<[^>]+>",
                       "replacement": ""
                     },
-
+                    "rawDescription": "$.source.description[0].raw",
                     "description": {
                       "#type": "fallback",
                       "strategies": [
