@@ -46,16 +46,11 @@
                       "replacement": ""
                     },
                     "description": {
-                      "#type": "regex_replace",
-                      "value": {
-                        "#type": "fallback",
-                        "strategies": [
-                          "[R]$.source.highlight['description.value']",
-                          "$.source.description[0].value"
-                        ]
-                      },
-                      "pattern": "<[^>]+>",
-                      "replacement": ""
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['description.value']",
+                        "$.source.description[0].value"
+                      ]
                     },
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
