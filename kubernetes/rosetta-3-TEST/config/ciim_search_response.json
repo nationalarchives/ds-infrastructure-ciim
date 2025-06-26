@@ -40,15 +40,20 @@
                           "$.source.description[0].raw"
                         ]
                       },
-                      "pattern": "<[^>]+>",
+                      "pattern": "<\\/?[\\w]+(\\s+[\\w-]+=\"[^\"]*\")*\\s*\\/?>",
                       "replacement": ""
                     },
                     "description": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['description.value']",
-                        "$.source.description[0].value"
-                      ]
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['description.value']",
+                          "$.source.description[0].value"
+                        ]
+                      },
+                      "pattern": "<[^>]+>",
+                      "replacement": ""
                     },
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
