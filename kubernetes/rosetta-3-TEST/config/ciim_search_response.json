@@ -42,7 +42,7 @@
                           "$.source.description[0].value"
                         ]
                       },
-                      "pattern": "<\\/?[\\w]+(\\s+[\\w-]+=\"[^\"]*\")*\\s*\\/?>",
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
                     "description": {
