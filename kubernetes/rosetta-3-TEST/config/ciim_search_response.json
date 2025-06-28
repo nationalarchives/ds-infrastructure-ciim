@@ -23,6 +23,18 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
+                    "cleanSummaryTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          "$.source.summary.title"
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
                     "summaryTitle": {
                       "#type": "fallback",
                       "strategies": [
@@ -36,14 +48,15 @@
                       "value": {
                         "#type": "fallback",
                         "strategies": [
-                          "[R]$.source.highlight['description.raw']",
-                          "$.source.description[0].raw"
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw",
+                          "[R]$.source.highlight['description.value'][0]",
+                          "$.source.description[0].value"
                         ]
                       },
-                      "pattern": "<[^>]+>",
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-
                     "description": {
                       "#type": "fallback",
                       "strategies": [
