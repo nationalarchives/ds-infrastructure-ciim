@@ -27,20 +27,20 @@
         },
         "longSubjects": {
           "terms": {
-            "field": "subjects.subject.summary.title.keyword",
-            "size": 10
+            "field": "subjects.subject.summary.title",
+            "size": 100
           }
         },
         "longArchives": {
           "terms": {
             "field": "repository.name.value.keyword",
-            "size": 10
+            "size": 100
           }
         },
         "longCollections": {
           "terms": {
             "field": "@hierarch.identifier.value",
-            "size": 10
+            "size": 100
           }
         }
       },
