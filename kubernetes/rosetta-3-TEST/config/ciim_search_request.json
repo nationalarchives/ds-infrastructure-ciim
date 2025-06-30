@@ -36,6 +36,12 @@
             "field": "@hierarch.identifier.value",
             "size": "10"
           }
+        },
+        "longArchives": {
+          "terms": {
+            "field": "repository.name.value.keyword",
+            "size": "10"
+          }
         }
       },
       "size": 0,
