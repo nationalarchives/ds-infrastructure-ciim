@@ -232,6 +232,9 @@ rosetta:
               webReference: "web.identifier.value.lower"
               subjects: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
+              longSubjects: "subjects.subject.summary.title.keyword"
+              longArchives: "repository.name.value.keyword"
+              longCollections: "@hierarch.identifier.value"
           aggregation_configs:
             - name: longSubjects
               size: 200
