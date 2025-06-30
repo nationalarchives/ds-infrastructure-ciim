@@ -327,11 +327,8 @@ rosetta:
           config:
             properties:
               elasticsearch:
-                host: ciim-public-etna-es-http.etna
-                port: 9200
-                index: ciim
-                username: elastic
-                password: Sti565pqjc99I9Cfy4W824Ig
+                url: http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public
+                auth_token: ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc=
 
   monitoring:
     log_stages: true
