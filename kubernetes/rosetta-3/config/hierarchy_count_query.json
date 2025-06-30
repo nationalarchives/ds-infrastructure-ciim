@@ -16,7 +16,7 @@
             "@hierarchy.@admin.id": "&.Id"
           }
         },
-        "aggs": {
+        "aggregations": {
           "@hierarchy.@admin.id": {
             "terms": {
               "field": "@hierarchy.@admin.id"
