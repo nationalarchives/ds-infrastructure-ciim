@@ -229,64 +229,6 @@
                     "unpublishedFindingAids": {
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
-                    },
-                    "@previous": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id",
-                        "rangeSort": {
-                          "lt": "$.source.sort"
-                        },
-                        "sortOrder": "desc"
-                      },
-                      "value": {
-                        "@admin": {
-                          "id": "$.hits.hits[0]._source.@admin.id"
-                        },
-                        "summary": {
-                          "title": "$.hits.hits[0]._source.summary.title"
-                        },
-                        "level": {
-                          "code": "$.hits.hits[0]._source.level.code"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.hits.hits[0]._source.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
-                          }
-                        }
-                      }
-                    },
-                    "@next": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_query",
-                        "parentId": "$.source.parent[0].@admin.id",
-                        "rangeSort": {
-                          "gt": "$.source.sort"
-                        },
-                        "sortOrder": "asc"
-                      },
-                      "value": {
-                        "@admin": {
-                          "id": "$.hits.hits[0]._source.@admin.id"
-                        },
-                        "summary": {
-                          "title": "$.hits.hits[0]._source.summary.title"
-                        },
-                        "level": {
-                          "code": "$.hits.hits[0]._source.level.code"
-                        },
-                        "identifier": {
-                          "#type": "for_each",
-                          "values": "$.hits.hits[0]._source.identifier",
-                          "spec": {
-                            "reference_number": "$.__reference_number"
-                          }
-                        }
-                      }
                     }
                   }
                 }
