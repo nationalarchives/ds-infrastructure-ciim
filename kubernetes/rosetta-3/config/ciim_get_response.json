@@ -110,7 +110,7 @@
                             "Id": "$.@admin.id"
                           },
                           "value": {
-                            "count": "$.count"
+                            "count": "123"
                           }
                         }
                       }
