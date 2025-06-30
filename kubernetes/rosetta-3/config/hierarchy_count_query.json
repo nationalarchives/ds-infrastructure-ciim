@@ -1,0 +1,33 @@
+{
+  "search_url": "http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/etna-public/_search",
+  "type_registry": {
+    "es_agg_query": {
+      "#type": "http_request",
+      "url": "{%.search_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ZWxhc3RpYzpLbmc2SzdKNDFqODgyUDc3RVFlUzljVEk="
+      },
+      "body": {
+        "size": 0,
+        "query": {
+          "term": {
+            "@hierarchy.@admin.id": "&.Id"
+          }
+        },
+        "aggs": {
+          "@hierarchy.@admin.id": {
+            "terms": {
+              "field": "@hierarchy.@admin.id"
+            }
+          }
+        }
+      },
+      "allow": 200,
+      "timeout": 4000,
+      "require_allowed": true,
+      "require_response": true
+    }
+  }
+}
