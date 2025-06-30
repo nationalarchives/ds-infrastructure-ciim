@@ -110,7 +110,7 @@
                             "Id": "$.@admin.id"
                           },
                           "value": {
-                            "count": "$.aggregations['@hierarchy.@admin.id'].buckets[0].doc_count"
+                            "count": "$.count"
                           }
                         }
                       }
