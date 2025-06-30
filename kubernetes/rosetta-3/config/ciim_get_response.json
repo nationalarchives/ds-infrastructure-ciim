@@ -103,15 +103,14 @@
                         "summary": {
                           "title": "$.summary.title"
                         },
-                        "doc": {
+                        "count": {
                           "#type": "scope",
                           "scope": {
                             "#type": "es_count",
                             "Id": "$.@admin.id"
                           },
-                          "value": {
-                            "count": "$.count"
-                          }
+                          "value":"$.count"
+
                         }
                       }
                     },
