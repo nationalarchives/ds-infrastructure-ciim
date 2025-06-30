@@ -46,11 +46,31 @@ rosetta:
               - generic-to-elastic
               - elastic-modifications
               - ciim/search/request
+              - inject-highlighting
+              - merge-advance-parameters
           response:
             policy: list
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
+
+      - name: ciim/serachHighlight
+        type: transform-only
+        paths:
+          - /ciim/search/highlight
+        methods:
+          - GET
+        glyphs:
+          policy: list
+          names:
+            - to-generic-search
+            - generic-search-defaults
+            - generic-search-modifications
+            - generic-to-elastic
+            - elastic-modifications
+            - ciim/search/request
+            - inject-highlighting
+
 
       - name: ciim/searchTest
         paths:
@@ -62,11 +82,16 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
               - ciim/search/request
           response:
             policy: list
             names:
               - ciim/search/response
+              - aggs-count-to-doc-count
 
       - name: ciim/get
         paths:
@@ -138,6 +163,19 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/generic_search_modifications.json
 
+      - name: inject-highlighting
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_highlighting.json
+
+      - name: merge-advance-parameters
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_advance_parameters.json
+
       - name: generic-to-elastic
         type: elastic-generic-search
         properties:
@@ -194,6 +232,16 @@ rosetta:
               webReference: "web.identifier.value.lower"
               subjects: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
+              longSubjects: "subjects.subject.summary.title.keyword"
+              longArchives: "repository.name.value.keyword"
+              longCollections: "@hierarch.identifier.value"
+          aggregation_configs:
+            - name: longSubjects
+              size: 200
+            - name: longArchives
+              size: 200
+            - name: longCollections
+              size: 200
           search_config:
             search_fields:
               - field: "name.value"
@@ -208,7 +256,11 @@ rosetta:
                 boost: 3
               - field: "origination.creator.name.value"
                 boost: 3
+              - field: "description.raw"
+                boost: 2
               - field: "description.value"
+                boost: 2
+              - field: "summary.title"
                 boost: 2
               - field: "origination.description.value"
                 boost: 2
@@ -268,13 +320,15 @@ rosetta:
     timeout: 900s
     providers:
       - name: elasticsearchEtna
-        type: elasticsearch
+        type: proteus-simple
         properties:
-          host: ciim-public-es-http.etna
-          port: 9200
-          index: ciim
-          username: elastic
-          password: Kng6K7J41j882P77EQeS9cTI
+          mutable: true
+          spec: ${base_paths.proteus}/provider.json
+          config:
+            properties:
+              elasticsearch:
+                url: http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/etna-public
+                auth_token: ZWxhc3RpYzpLbmc2SzdKNDFqODgyUDc3RVFlUzljVEk=
 
   monitoring:
     log_stages: true

@@ -23,16 +23,51 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
-                    "summaryTitle": "$.source.summary.title",
+                    "cleanSummaryTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          "$.source.summary.title"
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
+                    "summaryTitle": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['summary.title']",
+                        "$.source.summary.title"
+                      ]
+                    },
                     "title": "$.source.title[?(@.primary == true)].value",
-                    "description": "$.source.description[0].value",
+                    "cleanDescription": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw",
+                          "[R]$.source.highlight['description.value'][0]",
+                          "$.source.description[0].value"
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
+                    "description": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['description.value']",
+                        "$.source.description[0].value"
+                      ]
+                    },
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                    "subjects": {
-                      "#type": "as_list",
-                      "values": "$.source.subjects.subject[*].summary.title"
-                    }
+                    "subjects": "$.source.subjects.subject[*].summary.title"
                   }
                 }
               }
@@ -72,18 +107,18 @@
             }
           },
           {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "for_each",
-                  "values": {
-                    "#type": "entries",
-                    "map": "$"
-                  },
-                  "spec": "$.value"
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
                 },
-                []
-              ]
+                "spec": "$.value"
+              },
+              []
+            ]
           }
         ]
       },

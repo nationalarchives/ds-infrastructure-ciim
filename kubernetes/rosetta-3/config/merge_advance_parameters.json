@@ -1,0 +1,16 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "results": {
+        "request": {
+          "highlight": {
+              "fragment_size":"$.original.query.fragmentSize"
+            }
+          }
+        }
+      }
+  ]
+}

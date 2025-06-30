@@ -14,9 +14,9 @@
   "aggs": {
     "request": {
       "query": {
-          "bool": {
-            "must": "$.query.bool.must"
-          }
+        "bool": {
+          "must": "$.query.bool.must"
+        }
       },
       "aggregations": {
         "group": {
