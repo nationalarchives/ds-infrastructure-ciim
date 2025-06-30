@@ -237,11 +237,11 @@ rosetta:
               longCollections: "@hierarch.identifier.value"
           aggregation_configs:
             - name: longSubjects
-              size: 200
+              size: 1000
             - name: longArchives
-              size: 200
+              size: 1000
             - name: longCollections
-              size: 200
+              size: 1000
           search_config:
             search_fields:
               - field: "name.value"
