@@ -107,7 +107,7 @@
                           "#type": "scope",
                           "scope": {
                             "#type": "es_agg_query",
-                            "Id": "$.source.@hierarchy.@admin.id"
+                            "Id": "$.@admin.id"
                           },
                           "value": {
                             "count": "$.aggregations['@hierarchy.@admin.id'].buckets[0].doc_count"
