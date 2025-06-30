@@ -24,6 +24,12 @@
             "field": "@datatype.group.value",
             "size": "50"
           }
+        },
+        "longSubjects": {
+          "terms": {
+            "field": "subjects.subject.summary.title.keyword",
+            "size": "10"
+          }
         }
       },
       "size": 0,

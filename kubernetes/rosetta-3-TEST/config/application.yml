@@ -107,6 +107,27 @@ rosetta:
             names:
               - ciim/get/response
 
+      - name: ciim/longSubjects
+        paths:
+          - /rosetta/data/longSubjects
+        profile: elasticsearch
+        type: advance-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+        response:
+          policy: list
+          names:
+            - ciim/search/response
+            - aggs-count-to-doc-count
+
+
   profile:
     profiles:
       - name: elasticsearch
