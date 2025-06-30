@@ -102,16 +102,6 @@
                         },
                         "summary": {
                           "title": "$.summary.title"
-                        },
-                        "doc": {
-                          "#type": "scope",
-                          "scope": {
-                            "#type": "es_agg_query",
-                            "Id": "$.@admin.id"
-                          },
-                          "value": {
-                            "count": "123"
-                          }
                         }
                       }
                     },
