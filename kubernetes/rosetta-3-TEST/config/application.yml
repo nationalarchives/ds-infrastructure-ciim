@@ -323,12 +323,15 @@ rosetta:
         type: proteus-simple
         properties:
           mutable: true
-          host: ciim-public-etna-es-http.etna
           spec: ${base_paths.proteus}/provider.json
-          port: 9200
-          index: ciim
-          username: elastic
-          password: Sti565pqjc99I9Cfy4W824Ig
+          config:
+            properties:
+              elasticsearch:
+                host: ciim-public-etna-es-http.etna
+                port: 9200
+                index: ciim
+                username: elastic
+                password: Sti565pqjc99I9Cfy4W824Ig
 
   monitoring:
     log_stages: true
