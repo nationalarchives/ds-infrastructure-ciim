@@ -78,27 +78,8 @@
             "field": "@datatype.group.value",
             "size": "50"
           }
-        },
-        "@aggs=longSubjects": {
-          "terms": {
-            "field": "subjects.subject.summary.title.keyword",
-            "size": 200
-          }
-        },
-        "@aggs=longArchives": {
-          "terms": {
-            "field": "repository.name.value.keyword",
-            "size": 200
-          }
-        },
-        "@aggs=longCollections": {
-          "terms": {
-            "field": "@hierarch.identifier.value",
-            "size": 200
-          }
         }
-      }
-    },
+      },
       "size": 0,
       "timeout": "60s"
     },
