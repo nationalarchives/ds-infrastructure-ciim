@@ -296,6 +296,7 @@ rosetta:
           spec: ${base_paths.proteus}/ciim_get_response.json
           include:
             - ./config/component_search.json
+            - ./config/hierarchy_count_query.json
 
       # Global data transforms
       - name: singularize-creation

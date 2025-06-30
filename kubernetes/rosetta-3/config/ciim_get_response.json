@@ -103,7 +103,7 @@
                         "summary": {
                           "title": "$.summary.title"
                         },
-                        "@agg_result": {
+                        "doc": {
                           "#type": "scope",
                           "scope": {
                             "#type": "es_agg_query",
