@@ -233,11 +233,11 @@ rosetta:
               subjects: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
           aggregation_configs:
-            - name: subjects
+            - name: longSubjects
               size: 200
-            - name: collection
+            - name: longArchives
               size: 200
-            - name: heldBy
+            - name: longCollections
               size: 200
           search_config:
             search_fields:

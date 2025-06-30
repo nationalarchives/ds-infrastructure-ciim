@@ -2,7 +2,48 @@
   "results": {
     "request": {
       "query": "$.query",
-      "aggregations": "$.aggregations",
+      "aggregations": {
+        "#type": "merge",
+        "values": [
+          "$.aggregations",
+          {
+            "#type": "require",
+            "require": "$.aggregations.longSubjects.terms.field",
+            "value": {
+              "longSubjects": {
+                "terms": {
+                  "field": "$.aggregations.longSubjects.terms.field",
+                  "size": "$.aggregations.longSubjects.terms.size"
+                }
+              }
+            }
+          },
+          {
+            "#type": "require",
+            "require": "$.aggregations.longArchives.terms.field",
+            "value": {
+              "longArchives": {
+                "terms": {
+                  "field": "$.aggregations.longArchives.terms.field",
+                  "size": "$.aggregations.longArchives.terms.size"
+                }
+              }
+            }
+          },
+          {
+            "#type": "require",
+            "require": "$.aggregations.longCollections.terms.field",
+            "value": {
+              "longCollections": {
+                "terms": {
+                  "field": "$.aggregations.longCollections.terms.field",
+                  "size": "$.aggregations.longCollections.terms.size"
+                }
+              }
+            }
+          }
+        ]
+      },
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
