@@ -22,25 +22,25 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50"
+            "size": 50
           }
         },
         "longSubjects": {
           "terms": {
             "field": "subjects.subject.summary.title.keyword",
-            "size": "10"
-          }
-        },
-        "longCollections": {
-          "terms": {
-            "field": "@hierarch.identifier.value",
-            "size": "10"
+            "size": 10
           }
         },
         "longArchives": {
           "terms": {
             "field": "repository.name.value.keyword",
-            "size": "10"
+            "size": 10
+          }
+        },
+        "longCollections": {
+          "terms": {
+            "field": "@hierarch.identifier.value",
+            "size": 10
           }
         }
       },
