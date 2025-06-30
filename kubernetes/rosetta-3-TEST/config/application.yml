@@ -130,7 +130,7 @@ rosetta:
 
       - name: ciim/longCollections
         paths:
-          -/rosetta/data/longCollections
+          - /rosetta/data/longCollections
         profile: elasticsearch
         type: advanced-cache-multi
         transforms:
