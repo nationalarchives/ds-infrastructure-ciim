@@ -106,7 +106,7 @@
                         "doc": {
                           "#type": "scope",
                           "scope": {
-                            "#type": "es_agg_query",
+                            "#type": "es_count",
                             "Id": "$.@admin.id"
                           },
                           "value": {
