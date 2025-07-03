@@ -23,7 +23,8 @@
           "terms": {
             "field": "@datatype.group.value",
             "size": "50",
-            "min_doc_count": 0
+            "min_doc_count": 0,
+            "sum_other_doc_count": 0
           }
         }
       },
