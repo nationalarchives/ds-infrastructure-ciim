@@ -60,7 +60,7 @@
                     "#type": "fallback",
                     "strategies": [
                       "$.count",
-                      0
+                     0
                     ]
                   }
                 }
