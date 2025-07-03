@@ -54,7 +54,7 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
-      - name: ciim/serachHighlight
+      - name: ciim/searchHighlight
         type: transform-only
         paths:
           - /ciim/search/highlight
