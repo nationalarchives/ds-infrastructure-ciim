@@ -17,5 +17,3 @@ configMapGenerator:
       - ./config/inject_highlighting.json
       - ./config/es_query.json
       - ./config/component_search.json
-      - ./config/provider.json
-      - ./config/merge_advance_parameters.json
