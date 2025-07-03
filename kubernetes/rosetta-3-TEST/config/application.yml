@@ -52,7 +52,7 @@ rosetta:
             policy: list
             names:
               - ciim/search/response
-
+              - aggs-count-to-doc-count
 
       - name: ciim/searchHighlight
         type: transform-only
