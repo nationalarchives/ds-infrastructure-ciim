@@ -109,6 +109,10 @@ rosetta:
 
   profile:
     profiles:
+      - name: default
+        profiles:
+          policy: all
+
       - name: elasticsearch
         providers:
           policy: list
