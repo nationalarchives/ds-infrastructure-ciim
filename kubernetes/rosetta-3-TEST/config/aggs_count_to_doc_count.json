@@ -56,13 +56,7 @@
                 "values": "$.entries",
                 "spec": {
                   "value": "$.value",
-                  "doc_count": {
-                    "#type": "fallback",
-                    "strategies": [
-                      "$.count",
-                     0
-                    ]
-                  }
+                  "doc_count": "$.count"
                 }
               }
             }
