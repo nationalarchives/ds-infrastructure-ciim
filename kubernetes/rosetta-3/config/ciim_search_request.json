@@ -3,6 +3,7 @@
     "request": {
       "query": "$.query",
       "aggregations": "$.aggregations",
+      "min_doc_count": 0,
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
