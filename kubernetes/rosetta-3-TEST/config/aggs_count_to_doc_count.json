@@ -59,6 +59,9 @@
                   "doc_count": "$.count"
                 }
               }
+            },
+            {
+              "min_doc_count": 0
             }
           ]
         }
