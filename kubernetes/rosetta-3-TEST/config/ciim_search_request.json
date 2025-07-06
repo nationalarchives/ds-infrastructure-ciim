@@ -1,36 +1,59 @@
 {
-  "results": {
-    "request": {
-      "query": "$.query",
-      "aggregations": "$.aggregations",
-      "from": "$.from",
-      "size": "$.size",
-      "sort": "$.sort"
-    },
-    "cache": {
-      "name": "fast-cache"
-    }
-  },
-  "aggs": {
-    "request": {
-      "query": {
-        "bool": {
-          "must": "$.query.bool.must"
-        }
-      },
-      "aggregations": {
-        "group": {
-          "terms": {
-            "field": "@datatype.group.value",
-            "size": "50"
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$",
+    {
+      "results": {
+        "request": {
+          "aggregations": {
+            "#type": "for_each",
+            "values": "$.results.request.aggregations",
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$",
+                {
+                  "terms": {
+                    "#type": "merge",
+                    "values": [
+                      "$.terms",
+                      {
+                        "min_doc_count": 0
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           }
         }
       },
-      "size": 0,
-      "timeout": "60s"
-    },
-    "cache": {
-      "name": "slow-cache"
+      "aggs": {
+        "request": {
+          "aggregations": {
+            "#type": "for_each",
+            "values": "$.aggs.request.aggregations",
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$",
+                {
+                  "terms": {
+                    "#type": "merge",
+                    "values": [
+                      "$.terms",
+                      {
+                        "min_doc_count": 0
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
     }
-  }
+  ]
 }
