@@ -1,0 +1,59 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$",
+    {
+      "results": {
+        "request": {
+          "aggregations": {
+            "#type": "for_each",
+            "values": "$.results.request.aggregations",
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$",
+                {
+                  "terms": {
+                    "#type": "merge",
+                    "values": [
+                      "$.terms",
+                      {
+                        "min_doc_count": 0
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "aggs": {
+        "request": {
+          "aggregations": {
+            "#type": "for_each",
+            "values": "$.aggs.request.aggregations",
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$",
+                {
+                  "terms": {
+                    "#type": "merge",
+                    "values": [
+                      "$.terms",
+                      {
+                        "min_doc_count": 0
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
