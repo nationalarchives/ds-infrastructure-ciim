@@ -8,10 +8,12 @@ spec:
     spec:
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:2.1.11
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:2.1.12
           env:
             - name: JAVA_OPTS
-              value: "-Xms16g -Xmx16g"
+              value: "-Xms26g -Xmx26g"
           resources:
             requests:
-              memory: 16Gi
+              memory: 28Gi
+            limits:
+              memory: 28Gi
