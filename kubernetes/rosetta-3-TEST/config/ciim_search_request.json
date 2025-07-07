@@ -6,12 +6,8 @@
         "#type": "for_each",
         "values": "$.aggregations",
         "spec": {
-          "$.name": {
-            "#type": "as_list",
-            "values": {
-              "#type": "for_each",
-              "values": "$.entries"
-            }
+          "$": {
+            "value": "test"
           }
         }
       },
