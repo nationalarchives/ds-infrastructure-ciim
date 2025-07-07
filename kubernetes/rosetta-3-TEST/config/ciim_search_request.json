@@ -2,15 +2,7 @@
   "results": {
     "request": {
       "query": "$.query",
-      "aggregations": {
-        "#type": "for_each",
-        "values": "$.aggregations",
-        "spec": {
-          "$.name": {
-            "min_doc_count": "test"
-          }
-        }
-      },
+      "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
