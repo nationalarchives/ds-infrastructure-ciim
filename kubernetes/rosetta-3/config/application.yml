@@ -238,7 +238,7 @@ rosetta:
           aggregation_configs:
             - name: longSubjects
               size: 10000
-            - name: longArchives
+            - name: longHeldBy
               size: 10000
             - name: longCollections
               size: 10000
