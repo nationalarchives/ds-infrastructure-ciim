@@ -4,15 +4,15 @@
       "query": "$.query",
       "aggregations": {
         "#type": "for_each",
-        "values": "$.aggregations[*].terms",
+        "values": "$.aggregations",
         "spec": {
-          "#type": "merge",
-          "values": [
-            "$",
-            {
-              "min_doc_count": 0
+          "$.name": {
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "$.entries"
             }
-          ]
+          }
         }
       },
       "from": "$.from",
