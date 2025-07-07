@@ -19,4 +19,3 @@ configMapGenerator:
       - ./config/component_search.json
       - ./config/provider.json
       - ./config/merge_advance_parameters.json
-      - ./config/inject_min_doc_count_into_all_aggregations.json
