@@ -237,15 +237,15 @@ rosetta:
               subjects: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
               longSubjects: "subjects.subject.summary.title.keyword"
-              longArchives: "repository.name.value.keyword"
+              longHeldBy: "repository.name.value.keyword"
               longCollections: "@hierarch.identifier.value"
           aggregation_configs:
             - name: longSubjects
-              size: 200
-            - name: longArchives
-              size: 200
+              size: 10000
+            - name: longHeldBy
+              size: 10000
             - name: longCollections
-              size: 200
+              size: 10000
           search_config:
             search_fields:
               - field: "name.value"
