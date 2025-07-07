@@ -5,15 +5,18 @@
       "aggregations": {
         "#type": "for_each",
         "values": "$.aggregations",
-        "value": "$.aggregations",
         "spec": {
-          "#type": "merge",
-          "values": [
-            "$",
-            {
-              "min_doc_count": 0
+          "$.name": {
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$.terms",
+                {
+                  "min_doc_count": 0
+                }
+              ]
             }
-          ]
+          }
         }
       },
       "from": "$.from",
