@@ -10,15 +10,14 @@
           "values": [
             "$",
             {
-              "terms": {
-                "#type": "merge",
-                "values": [
-                  "$.terms",
-                  {
-                    "min_doc_count": 0
-                  }
-                ]
-              }
+              "#type": "merge",
+              "values": [
+                "$.terms",
+                {
+                  "min_doc_count": 0
+                }
+              ],
+              "#path": "terms"
             }
           ]
         }
