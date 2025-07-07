@@ -5,8 +5,7 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort",
-      "min_doc_count": 0
+      "sort": "$.sort"
     },
     "cache": {
       "name": "fast-cache"
