@@ -6,16 +6,14 @@
         "#type": "for_each",
         "values": "$.aggregations",
         "spec": {
-          "*": {
-            "terms": {
+          "$": {
               "#type": "merge",
               "values": [
-                "$.aggregations.*.terms",
+                "$.terms",
                 {
                   "min_doc_count": 0
                 }
               ]
-            }
           }
         }
       },
