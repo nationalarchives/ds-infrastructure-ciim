@@ -2,7 +2,46 @@
   "results": {
     "request": {
       "query": "$.query",
-      "aggregations": "$.aggregations",
+      "aggregations": {
+        "#type": "to_map",
+        "entries": {
+          "#type": "for_each",
+          "values": {
+            "#type": "entries",
+            "map": "$.aggregations",
+            "key": "name",
+            "value": "agg"
+          },
+          "spec": {
+            "name": "$.name",
+            "agg": {
+              "#type": "merge",
+              "values": [
+                "$.agg",
+                {
+                  "#type": "if",
+                  "condition": {
+                    "#type": "exists",
+                    "path": "$.agg.terms"
+                  },
+                  "then": {
+                    "terms": {
+                      "#type": "merge",
+                      "values": [
+                        "$.agg.terms",
+                        { "min_doc_count": 0 }
+                      ]
+                    }
+                  },
+                  "else": "$.agg"
+                }
+              ]
+            }
+          }
+        },
+        "key": "name",
+        "value": "agg"
+      },
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
@@ -22,7 +61,8 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50"
+            "size": "50",
+            "min_doc_count": 0
           }
         }
       },
