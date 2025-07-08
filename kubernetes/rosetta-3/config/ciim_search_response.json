@@ -95,32 +95,23 @@
         ]
       },
       "aggregations": {
-        "#type": "chain",
-        "chain": [
-          {
-            "#type": "group",
-            "values": "$.aggregations",
-            "by": "$.name",
-            "yield_group": {
-              "#type": "merge",
-              "values": "$"
-            }
-          },
-          {
-            "#type": "fallback",
-            "strategies": [
-              {
-                "#type": "for_each",
-                "values": {
-                  "#type": "entries",
-                  "map": "$"
-                },
-                "spec": "$.value"
-              },
-              []
-            ]
+        "collection": {
+          "terms": {
+            "field": "@hierarch.identifier.value",
+            "size": 10
           }
-        ]
+        },
+        "type": {
+          "terms": {
+            "field": "repository.@datatype.actual",
+            "size": 10
+          }
+        },
+        "other": {
+          "not_terms": {
+            "example": "parameter"
+          }
+        }
       },
       "stats": {
         "total": "$.stats.total",
