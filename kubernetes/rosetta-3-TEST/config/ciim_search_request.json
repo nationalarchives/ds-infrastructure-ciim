@@ -57,7 +57,8 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50"
+            "size": "50",
+            "min_doc_count": 0
           }
         }
       },
