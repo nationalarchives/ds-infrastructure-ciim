@@ -3,44 +3,13 @@
     "request": {
       "query": "$.query",
       "aggregations": {
-        "#type": "to_map",
-        "entries": {
-          "#type": "for_each",
-          "values": {
-            "#type": "entries",
-            "map": "$.aggregations",
-            "key": "name",
-            "value": "agg"
-          },
-          "spec": {
-            "name": "$.name",
-            "agg": {
-              "#type": "merge",
-              "values": [
-                "$.agg",
-                {
-                  "#type": "if",
-                  "condition": {
-                    "#type": "exists",
-                    "path": "$.agg.terms"
-                  },
-                  "then": {
-                    "terms": {
-                      "#type": "merge",
-                      "values": [
-                        "$.agg.terms",
-                        { "min_doc_count": 0 }
-                      ]
-                    }
-                  },
-                  "else": "$.agg"
-                }
-              ]
-            }
+        "#type": "for_each",
+        "values": "$.aggregations",
+        "spec": {
+          "$": {
+            "value": "test"
           }
-        },
-        "key": "name",
-        "value": "agg"
+        }
       },
       "from": "$.from",
       "size": "$.size",
@@ -61,8 +30,7 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50",
-            "min_doc_count": 0
+            "size": "50"
           }
         }
       },
