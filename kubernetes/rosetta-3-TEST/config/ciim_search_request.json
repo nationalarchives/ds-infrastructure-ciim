@@ -9,12 +9,19 @@
           {
             "#type": "for_each",
             "values": {
-              "#type": "entries",
-              "map": "$.aggregations"
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "entries",
+                  "map": "$.aggregations"
+                },
+                "$[?(@.value.terms)]"
+              ]
             },
             "spec": {
               "$.key": {
                 "#type": "merge",
+                "depth": -1,
                 "values": [
                   "$.value",
                   {
@@ -38,34 +45,19 @@
   },
   "aggs": {
     "request": {
-      "query": "$.query",
-      "aggregations": {
-        "#type": "merge",
-        "values": [
-          "$.aggregations",
-          {
-            "#type": "for_each",
-            "values": {
-              "#type": "entries",
-              "map": "$.aggregations"
-            },
-            "spec": {
-              "$.key": {
-                "#type": "merge",
-                "values": [
-                  "$.value",
-                  {
-                    "terms": {
-                      "min_doc_count": 0
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        ]
+      "query": {
+        "bool": {
+          "must": "$.query.bool.must"
+        }
       },
-      "from": "$.from",
+      "aggregations": {
+        "group": {
+          "terms": {
+            "field": "@datatype.group.value",
+            "size": "50"
+          }
+        }
+      },
       "size": 0,
       "timeout": "60s"
     },
