@@ -36,7 +36,8 @@
               }
             }
           ]
-        },
+        }
+      },
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
