@@ -3,13 +3,38 @@
     "request": {
       "query": "$.query",
       "aggregations": {
-        "#type": "for_each",
-        "values": "$.aggregations",
-        "spec": {
-          "$": {
-            "value": "test"
+        "#type": "merge",
+        "depth": -1,
+        "values": [
+          "$.aggregations",
+          {
+            "#type": "for_each",
+            "values": {
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "entries",
+                  "map": "$.aggregations"
+                },
+                "$[?(@.value.terms)]"
+              ]
+            },
+            "spec": {
+              "$.key": {
+                "#type": "merge",
+                "depth": -1,
+                "values": [
+                  "$.value",
+                  {
+                    "terms": {
+                      "min_doc_count": 0
+                    }
+                  }
+                ]
+              }
+            }
           }
-        }
+        ]
       },
       "from": "$.from",
       "size": "$.size",
@@ -27,12 +52,38 @@
         }
       },
       "aggregations": {
-        "group": {
-          "terms": {
-            "field": "@datatype.group.value",
-            "size": "50"
+        "#type": "merge",
+        "depth": -1,
+        "values": [
+          "$.aggregations",
+          {
+            "#type": "for_each",
+            "values": {
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "entries",
+                  "map": "$.aggregations"
+                },
+                "$[?(@.value.terms)]"
+              ]
+            },
+            "spec": {
+              "$.key": {
+                "#type": "merge",
+                "depth": -1,
+                "values": [
+                  "$.value",
+                  {
+                    "terms": {
+                      "min_doc_count": 0
+                    }
+                  }
+                ]
+              }
+            }
           }
-        }
+        ]
       },
       "size": 0,
       "timeout": "60s"
