@@ -240,12 +240,12 @@ rosetta:
               longHeldBy: "repository.name.value.keyword"
               longCollections: "@hierarch.identifier.value"
           aggregation_configs:
-            - name: longSubjects
-              size: 10000
-            - name: longHeldBy
-              size: 10000
-            - name: longCollections
-              size: 10000
+              - name: longSubjects
+                size: 10000
+              - name: longHeldBy
+                size: 10000
+              - name: longCollections
+                size: 10000
           search_config:
             search_fields:
               - field: "name.value"
