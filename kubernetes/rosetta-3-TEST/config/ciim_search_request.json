@@ -3,7 +3,7 @@
     "request": {
       "query": "$.query",
       "aggregations": {
-        "#type": "flatten",
+        "#type": "merge",
         "values": [
           "$.aggregations",
           {
