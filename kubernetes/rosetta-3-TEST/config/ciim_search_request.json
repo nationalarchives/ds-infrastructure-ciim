@@ -7,7 +7,15 @@
         "values": "$.aggregations",
         "spec": {
           "$": {
-            "value": "test"
+            "#type": "merge",
+            "values": [
+              "$",
+              {
+                "terms": {
+                  "min_doc_count": 0
+                }
+              }
+            ]
           }
         }
       },
@@ -30,7 +38,8 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50"
+            "size": "50",
+            "min_doc_count": 0
           }
         }
       },
