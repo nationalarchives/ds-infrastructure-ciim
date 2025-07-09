@@ -3,5 +3,9 @@ bases:
   - ../../storage
   - ../../internal-es
   - ../../public-es
+  - ../../ciim-staging
 commonAnnotations:
   environment: dev
+patchesStrategicMerge:
+  - ciim-tagged.yml
+  - database-tagged.yml
