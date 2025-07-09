@@ -1,0 +1,7 @@
+bases:
+  - ../../base
+  - ../../ohos/eks
+  - ../../internal-es
+  - ../../public-es
+commonAnnotations:
+  environment: dev
