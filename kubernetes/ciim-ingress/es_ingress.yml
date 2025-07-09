@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: etna-ingress-es
+  namespace: etna
+  annotations:
+    konghq.com/strip-path: "true"
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /es
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-internal-etna-es-http
+                port:
+                  number: 9200
+          - path: /public
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-public-etna-es-http
+                port:
+                  number: 9200

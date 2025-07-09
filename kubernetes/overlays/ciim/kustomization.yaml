@@ -4,6 +4,7 @@ bases:
   - ../../internal-es
   - ../../public-es
   - ../../ciim-staging
+  - ../../ciim-ingress
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
