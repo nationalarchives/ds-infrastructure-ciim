@@ -10,14 +10,14 @@ spec:
   rules:
     - http:
         paths:
-          - path: /es
+          - path: /internal-es
             pathType: Prefix
             backend:
               service:
                 name: ciim-internal-etna-es-http
                 port:
                   number: 9200
-          - path: /public
+          - path: /es
             pathType: Prefix
             backend:
               service:
