@@ -1,6 +1,6 @@
 bases:
   - ../../base
-  - ../../ohos/eks
+  - ../../storage
   - ../../internal-es
   - ../../public-es
 commonAnnotations:
