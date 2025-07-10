@@ -248,6 +248,10 @@ rosetta:
                 boost: 4
               - field: "identifier.__reference_number"
                 boost: 4
+              - field: "identifier.__catalogue_id"
+                boost: 4
+              - field: "identifier.__iaid"
+                boost: 4
               - field: "agent.name.value"
                 boost: 3
               - field: "agent.summary.title.keyword"
@@ -268,6 +272,10 @@ rosetta:
                 boost: 2
               - field: "originals.description.value"
                 boost: 2
+              - field: "_generic_all_std"
+                boost: 0
+              - field: "_all"
+                boost: 0
 
       - name: ciim/search/request
         type: proteus
