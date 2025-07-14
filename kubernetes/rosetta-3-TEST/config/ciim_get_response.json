@@ -207,7 +207,7 @@
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
                     "recordOpening": "$.source.availability.access.opening.label.value",
-                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "referenceNumber": "$.source.identifier",
                     "relatedMaterials": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.relatedMaterials"
