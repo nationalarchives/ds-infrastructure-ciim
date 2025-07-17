@@ -4,6 +4,7 @@ metadata:
   name: ciim-tna
   namespace: etna
 spec:
+  replicas: 0
   template:
     spec:
       containers:
