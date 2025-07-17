@@ -4,12 +4,11 @@ metadata:
   name: ciim-tna
   namespace: etna
 spec:
-  replicas: 0
   template:
     spec:
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:3.0.1
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:3.0.2
           env:
             - name: JAVA_OPTS
               value: "-Xms6g -Xmx6g"
