@@ -32,6 +32,11 @@
       "bool": {
         "must": [
           {
+            "term": {
+              "parent.@admin.id": "{&.query}"
+            }
+          },
+          {
             "query_string": {
               "query": "{&.query}",
               "fields": "[parent.@admin.id]"
