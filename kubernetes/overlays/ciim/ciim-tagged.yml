@@ -11,9 +11,9 @@ spec:
           image: public.ecr.aws/v3w7q3a1/tna-ciim:3.0.2
           env:
             - name: JAVA_OPTS
-              value: "-Xms6g -Xmx6g"
+              value: "-Xms26g -Xmx26g"
           resources:
             requests:
-              memory: 8Gi
+              memory: 28Gi
             limits:
-              memory: 8Gi
+              memory: 28Gi
