@@ -46,7 +46,7 @@
                       "#type": "regex_replace",
                       "value": {
                         "#type": "fallback",
-                        "strategies":[
+                        "strategies": [
                           "$.source.title[?(@.primary == true)].value"
                         ]
                       },
