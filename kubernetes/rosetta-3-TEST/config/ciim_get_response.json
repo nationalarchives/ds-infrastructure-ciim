@@ -223,9 +223,12 @@
                     "summaryTitle": "$.source.summary.title",
                     "cleanTitle": {
                       "#type": "regex_replace",
-                      "value": "$.source.title[?(@.primary == true)].value",
-                      "pattern": "<[^>]+>(.*?)</[^>]+>",
-                      "replacement": "$1"
+                      "value": {
+                        "#type": "regex_replace",
+                        "value": "$.source.title[?(@.primary == true)].value",
+                        "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
+                        "replacement": "[L]$1"
+                      }
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "type": "$.source.@datatype.base",

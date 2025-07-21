@@ -48,11 +48,9 @@
                       "value": {
                         "#type": "regex_replace",
                         "value": "$.source.title[?(@.primary == true)].value",
-                        "pattern": "<[^>]+>(.*?)</[^>]+>",
+                        "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
                         "replacement": "[L]$1"
-                      },
-                      "pattern": "",
-                      "replacement": ""
+                      }
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
