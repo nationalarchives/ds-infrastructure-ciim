@@ -43,7 +43,15 @@
                       ]
                     },
 
-                    "cleanTitles":"$.source.title",
+                    "cleanTitles": {
+                      "primary": true,
+                      "value": {
+                        "#type": "regex_replace",
+                        "value": "$.source.title[?(@.primary == true)].value",
+                        "pattern": "<[^>]+>(.*?)</[^>]+>",
+                        "replacement": "$1"
+                      }
+                    },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
                       "#type": "regex_replace",
