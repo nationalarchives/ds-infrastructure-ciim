@@ -43,7 +43,7 @@
                       ]
                     },
 
-                    "cleanTitles": {
+                    "cleanTitle": {
                       "primary": true,
                       "value": {
                         "#type": "regex_replace",
