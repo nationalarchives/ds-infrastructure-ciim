@@ -42,6 +42,8 @@
                         "$.source.summary.title"
                       ]
                     },
+
+                    "cleanTitles":"$.source.title",
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true)].value",
