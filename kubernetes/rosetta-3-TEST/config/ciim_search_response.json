@@ -45,7 +45,7 @@
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": {
-                        "#type": "fallback",
+                        "#type": "regex_replace",
                         "strategies": [
                           "$.source.title[?(@.primary == true)].value"
                         ]
