@@ -221,6 +221,17 @@
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "subjects": "$.source.subjects.subject[*].summary.title",
                     "summaryTitle": "$.source.summary.title",
+                    "cleanTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies":[
+                          "$.source.title[?(@.primary == true)].value"
+                        ]
+                      },
+                      "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
+                      "replacement": "$1"
+                    },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {

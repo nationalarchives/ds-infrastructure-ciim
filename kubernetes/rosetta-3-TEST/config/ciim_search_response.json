@@ -42,6 +42,17 @@
                         "$.source.summary.title"
                       ]
                     },
+                    "cleanTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies":[
+                          "$.source.title[?(@.primary == true)].value"
+                        ]
+                      },
+                      "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
+                      "replacement": "$1"
+                    },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
                       "#type": "regex_replace",
