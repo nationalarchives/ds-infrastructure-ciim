@@ -50,9 +50,7 @@
                         "value": "$.source.title[?(@.primary == true)].value",
                         "pattern": "<[^>]+>(.*?)</[^>]+>",
                         "replacement": "'$1'"
-                      },
-                      "pattern": "",
-                      "replacement": ""
+                      }
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
