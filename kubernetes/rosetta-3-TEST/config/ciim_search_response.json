@@ -45,7 +45,7 @@
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true)].value",
-                      "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "$1"
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
