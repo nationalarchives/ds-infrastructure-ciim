@@ -44,13 +44,16 @@
                     },
 
                     "cleanTitle": {
-                      "primary": true,
+                      "#type":"regex_replace",
                       "value": {
-                        "#type": "regex_replace",
-                        "value": "$.source.title[?(@.primary == true)].value",
-                        "pattern": "<[^>]+>(.*?)</[^>]+>",
-                        "replacement": "$1"
-                      }
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['title[?(@.primary == true)].value'][0]",
+                          "$.source.title[?(@.primary == true)].value"
+                          ]
+                      },
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
+                      "replacement": "$1"
                     },
                     "title": "$.source.title[?(@.primary == true)].value",
                     "cleanDescription": {
