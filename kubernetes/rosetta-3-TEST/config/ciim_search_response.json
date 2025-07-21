@@ -42,7 +42,6 @@
                         "$.source.summary.title"
                       ]
                     },
-
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": {
