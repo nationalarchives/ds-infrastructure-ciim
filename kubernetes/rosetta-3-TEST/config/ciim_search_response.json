@@ -44,12 +44,7 @@
                     },
                     "cleanTitle": {
                       "#type": "regex_replace",
-                      "value": {
-                        "#type": "regex_replace",
-                        "strategies": [
-                          "$.source.title[?(@.primary == true)].value"
-                        ]
-                      },
+                      "value": "$.source.title[?(@.primary == true)].value",
                       "pattern": "<span class=\\\"unittitle\\\">(.*?)</span>",
                       "replacement": "$1"
                     },
