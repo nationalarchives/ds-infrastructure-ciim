@@ -226,17 +226,12 @@
                       "pattern": "^\\s*<[^>]+>\\s*</[^>]+>\\s*$|^\\s*<[^/>]+/?>\\s*$",
                       "replacement": ""
                     },
+
                     "cleanTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        {
-                          "#type": "regex_replace",
-                          "value": "$.source.title[?(@.primary == true)].value",
-                          "pattern": "<[^>]+>(.*?)</[^>]+>",
-                          "replacement": "[L]$1"
-                        },
-                        null
-                      ]
+                      "#type": "regex_replace",
+                      "value": "$.source.title[?(@.primary == true)].value",
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
+                      "replacement": "[L]$1"
                     },
                     "title":{
                       "#type": "regex_replace",
