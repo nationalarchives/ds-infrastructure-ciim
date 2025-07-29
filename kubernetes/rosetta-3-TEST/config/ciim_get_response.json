@@ -243,8 +243,8 @@
                       },
                       "pattern": "<[^>]+>",
                       "replacement": ""
-
                     },
+
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
