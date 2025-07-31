@@ -38,8 +38,24 @@
                     "summaryTitle": {
                       "#type": "fallback",
                       "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        "$.source.summary.title"
+                        {
+                          "#type": "regex_replace",
+                          "value": "$.source.summary.title",
+                          "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
+                          "replacement": ""
+                        },
+                        {
+                          "#type": "regex_replace",
+                          "value": {
+                            "#type": "fallback",
+                            "strategies": [
+                              "[R]$.source.highlight['description.value']",
+                              "$.source.description[0].value"
+                            ]
+                          },
+                          "pattern": "([^.\\n]+).*",
+                          "replacement": "$1"
+                        }
                       ]
                     },
                     "cleanTitle": {
