@@ -220,13 +220,7 @@
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "subjects": "$.source.subjects.subject[*].summary.title",
-                    "summaryTitle": {
-                      "#type": "regex_replace",
-                      "value": "$.source.summary.title",
-                      "pattern": "^\\s*<[^>]+>\\s*</[^>]+>\\s*$|^\\s*<[^/>]+/?>\\s*$",
-                      "replacement": ""
-                    },
-
+                    "summaryTitle":"$.source.summary.title",
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true)].value",
