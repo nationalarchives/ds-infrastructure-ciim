@@ -233,6 +233,30 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
+                    "titles": {
+                      "#type": "fallback",
+                      "strategies": [
+                        {
+                          "#type": "regex_replace",
+                          "value": {
+                            "#type": "fallback",
+                            "strategies": [
+                              {
+                                "#type": "regex_replace",
+                                "value": "$.source.title[?(@.primary == true)].value",
+                                "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
+                                "replacement": ""
+                              },
+                              "$.source.title[?(@.primary == true)].value"
+                            ]
+                          },
+                          "pattern": "<[^>]+>",
+                          "replacement": ""
+                        },
+                        "$.source.description[0].value"
+                      ]
+
+                    },
                     "title":{
                       "#type": "regex_replace",
                       "value": {
