@@ -246,7 +246,12 @@
                           "then": null,
                           "else": {
                             "#type": "regex_replace",
-                            "value": "$.source.title[?(@.primary == true)].value",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "$.source.title[?(@.primary == true)].value",
+                              "pattern": "<[^>]+>",
+                              "replacement": ""
+                            },
                             "pattern": "([^\n\\r.]+).*",
                             "replacement": "$1"
                           }
