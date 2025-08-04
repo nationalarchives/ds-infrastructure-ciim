@@ -240,7 +240,7 @@
                           "#type": "regex_replace",
                           "value": "$.source.description[0].value",
                           "pattern": "([^\n\\r.]+).*",
-                          "replacement": ""
+                          "replacement": "$1"
                         }
                       ]
                     },
