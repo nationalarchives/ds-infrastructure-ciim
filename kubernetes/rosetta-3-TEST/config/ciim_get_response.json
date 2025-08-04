@@ -227,7 +227,22 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
-                    "title":"$.source.title[?(@.primary == true)].value",
+                    "title": {
+                      "#type": "chain",
+                      "chain": [
+                        {
+                          "#type": "xml_to_json",
+                          "xml": "$.source.title[?(@.primary == true)].value"
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.span[0].@content",
+                            "$.source.description[0].value"
+                          ]
+                        }
+                      ]
+                    },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
