@@ -247,29 +247,7 @@
                                 "#type": "fallback",
                                 "strategies": [
                                   "$.span[0].@content",
-                                  {
-                                    "#type": "chain",
-                                    "chain": [
-                                      {
-                                        "#type": "regex_replace",
-                                        "value": "&.fallbackDesc",
-                                        "pattern": "<[^>]+>",
-                                        "replacement": ""
-                                      },
-                                      {
-                                        "#type": "regex_replace",
-                                        "value": "$",
-                                        "pattern": "\\n|\\r|\\s{2,}",
-                                        "replacement": " "
-                                      },
-                                      {
-                                        "#type": "regex_match",
-                                        "value": "$",
-                                        "pattern": "^(.{1,200}?)([\\.!?]|$)",
-                                        "group": 1
-                                      }
-                                    ]
-                                  }
+                                  "&.fallbackDesc"
                                 ]
                               }
                             ]
