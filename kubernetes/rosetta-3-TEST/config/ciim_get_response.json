@@ -240,26 +240,22 @@
                           "#type": "conditional",
                           "if": {
                             "#type": "regex_match",
-                            "value": "$.title",
+                            "value": "$.source.title[?(@.primary == true)].value",
                             "pattern": "^\\s*<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>\\s*$"
                           },
-                          "then": {
-                            "#type": "regex_replace",
-                            "value": {
-                              "#type": "regex_replace",
-                              "value": "$.description.value",
-                              "pattern": "<[^>]+>",
-                              "replacement": ""
-                            },
-                            "pattern": "^(.+?)(\\n|\\r|\\.|$)",
-                            "replacement": "$1"
-                          },
+                          "then": null,
                           "else": {
                             "#type": "regex_replace",
-                            "value": "$.title",
+                            "value": "$.source.title[?(@.primary == true)].value",
                             "pattern": "<[^>]+>",
                             "replacement": ""
                           }
+                        },
+                        {
+                          "#type": "regex_replace",
+                          "value": "$.source.description[0].value",
+                          "pattern": "<[^>]+>",
+                          "replacement": ""
                         }
                       ]
                     },
