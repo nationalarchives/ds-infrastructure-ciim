@@ -233,42 +233,28 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
-                    "titles": {
+                    "title": {
                       "#type": "fallback",
                       "strategies": [
                         {
                           "#type": "regex_replace",
                           "value": {
-                            "#type": "fallback",
-                            "strategies": [
-                              {
-                                "#type": "regex_replace",
-                                "value": "$.source.title[?(@.primary == true)].value",
-                                "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
-                                "replacement": ""
-                              },
-                              "$.source.title[?(@.primary == true)].value"
-                            ]
+                            "#type": "regex_replace",
+                            "value": "$.source.title[?(@.primary == true)].value",
+                            "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
+                            "replacement": ""
                           },
                           "pattern": "<[^>]+>",
                           "replacement": ""
                         },
-                        "$.source.description[0].value"
+                        {
+                          "#type": "regex_replace",
+                          "value": "$.source.description[0].value",
+                          "pattern": "<[^>]+>",
+                          "replacement": ""
+                        }
                       ]
-
                     },
-                    "title":{
-                      "#type": "regex_replace",
-                      "value": {
-                        "#type": "regex_replace",
-                        "value": "$.source.title[?(@.primary == true)].value",
-                        "pattern": "^\\s*(<[^>]+/?>)*\\s*$",
-                        "replacement": ""
-                      },
-                      "pattern": "<[^>]+>",
-                      "replacement": ""
-                    },
-
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
