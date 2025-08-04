@@ -228,20 +228,29 @@
                       "replacement": "[L]$1"
                     },
                     "title": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "#type": "xml_to_json",
-                          "xml": "$.source.title[?(@.primary == true)].value"
+                      "#type": "for_each",
+                      "values": "$.list",
+                      "spec": {
+                        "#type": "declare",
+                        "args": {
+                          "description":"$.source.description[0].value"
                         },
-                        {
-                          "#type": "fallback",
-                          "strategies": [
-                            "$.span[0].@content",
-                            "$.source.description[0].value"
+                        "value": {
+                          "#type": "chain",
+                          "chain": [
+                            {
+                              "#type": "xml_to_json",
+                              "xml": "$.source.title[?(@.primary == true)].value"
+                            },
+                            {
+                              "#type": "fallback",
+                              "strategies": [
+                                "$.span[0].@content",
+                                "$.source.description[0].value"
+                              ]
+                            }
                           ]
                         }
-                      ]
                     },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
