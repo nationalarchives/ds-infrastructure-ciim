@@ -237,15 +237,19 @@
                       "#type": "fallback",
                       "strategies": [
                         {
-                          "#type": "regex_replace",
-                          "value": {
+                          "#type": "conditional",
+                          "if": {
+                            "#type": "regex_match",
+                            "value": "$.source.title[?(@.primary == true)].value",
+                            "pattern": "^\\s*<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>\\s*$"
+                          },
+                          "then": null,
+                          "else": {
                             "#type": "regex_replace",
                             "value": "$.source.title[?(@.primary == true)].value",
-                            "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
+                            "pattern": "<[^>]+>",
                             "replacement": ""
-                          },
-                          "pattern": "<[^>]+>",
-                          "replacement": ""
+                          }
                         },
                         {
                           "#type": "regex_replace",
