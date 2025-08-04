@@ -231,18 +231,31 @@
                       "#type": "chain",
                       "chain": [
                         {
-                          "#type": "xml_to_json",
-                          "xml": "$.source.title[?(@.primary == true)].value"
-                        },
-                        {
-                          "#type": "fallback",
-                          "strategies": [
-                            "$.span[0].@content",
-                            "$.source.description[0].value"
-                          ]
+                          "#type": "declare",
+                          "args": {
+                            "rawTitle": "$.source.title[?(@.primary == true)].value",
+                            "fallbackDesc": "$.source.description[0].value"
+                          },
+                          "value": {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  "&.fallbackDesc"
+                                ]
+                              }
+                            ]
+                          }
                         }
                       ]
-                    },
+                    }
+                  ,
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
