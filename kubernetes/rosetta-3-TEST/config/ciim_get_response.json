@@ -228,32 +228,38 @@
                       "replacement": "[L]$1"
                     },
                     "title": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "#type": "declare",
-                          "args": {
-                            "rawTitle": "$.source.title[?(@.primary == true)].value",
-                            "fallbackDesc": "$.source.description[0].value"
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
                           },
-                          "value": {
-                            "#type": "chain",
-                            "chain": [
+                          {
+                            "#type": "fallback",
+                            "strategies": [
+                              "$.span[0].@content",
                               {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
+                                "#type": "regex_replace",
+                                "value": "&.fallbackDesc",
+                                "pattern": "<[^>]+>",
+                                "replacement": ""
                               },
                               {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  "&.fallbackDesc"
-                                ]
+                                "#type": "regex_replace",
+                                "value": "$",
+                                "pattern": "\\s+",
+                                "replacement": " "
                               }
                             ]
                           }
-                        }
-                      ]
+                        ]
+                      }
                     },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
