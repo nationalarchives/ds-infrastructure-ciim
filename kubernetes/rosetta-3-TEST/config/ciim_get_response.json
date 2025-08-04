@@ -247,13 +247,13 @@
                               {
                                 "#type": "regex_replace",
                                 "value": "&.fallbackDesc",
-                                "pattern": "([^\n\\r.]+).*",
+                                "pattern": "<[^>]+>",
                                 "replacement": ""
                               },
                               {
                                 "#type": "regex_replace",
                                 "value": "$",
-                                "pattern": "\\s+",
+                                "pattern": "([^\n\\r.]+).*",
                                 "replacement": " "
                               }
                             ]
