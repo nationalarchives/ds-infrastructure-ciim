@@ -239,7 +239,7 @@
                         {
                           "#type": "regex_replace",
                           "value": "$.source.description[0].value",
-                          "pattern": "<[^>]+>",
+                          "pattern": "([^\n\\r.]+).*",
                           "replacement": ""
                         }
                       ]
