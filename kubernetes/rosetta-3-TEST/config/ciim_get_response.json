@@ -238,6 +238,12 @@
                       "strategies": [
                         {
                           "#type": "regex_replace",
+                          "value": "$.source.title[?(@.primary == true)].value",
+                          "pattern": "^\\s*<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>\\s*$",
+                          "replacement": ""
+                        },
+                        {
+                          "#type": "regex_replace",
                           "value": "$.source.description[0].value",
                           "pattern": "^([^\\.\\n\\r]+)",
                           "replacement": "$1"
