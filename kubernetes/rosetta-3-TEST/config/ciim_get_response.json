@@ -233,7 +233,7 @@
                       "spec": {
                         "#type": "declare",
                         "args": {
-                          "description":"$.source.description[0].value"
+                          "description": "$.source.description[0].value"
                         },
                         "value": {
                           "#type": "chain",
@@ -251,6 +251,7 @@
                             }
                           ]
                         }
+                      }
                     },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
