@@ -253,8 +253,14 @@
                               {
                                 "#type": "regex_replace",
                                 "value": "$",
-                                "pattern": "([^\n\\r.]+).*",
+                                "pattern": "\\s+",
                                 "replacement": " "
+                              },
+                              {
+                                "#type": "regex_replace",
+                                "value": "$",
+                                "pattern": "^([^\\.]+\\.)\\s.*",
+                                "replacement": "$1"
                               }
                             ]
                           }
