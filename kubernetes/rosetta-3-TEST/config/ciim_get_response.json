@@ -220,24 +220,7 @@
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
                     "subjects": "$.source.subjects.subject[*].summary.title",
-                    "summaryTitle": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "#type": "regex_replace",
-                          "value": "$.source.summary.title",
-                          "pattern": "^<span class=\\\"unittitle\\\"[^>]*/>$",
-                          "replacement": ""
-                        },
-                        {
-                          "#type": "fallback",
-                          "strategies": [
-                            "&",
-                            null
-                          ]
-                        }
-                      ]
-                    },
+                    "summaryTitle":"$.source.summary.title",
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true)].value",
