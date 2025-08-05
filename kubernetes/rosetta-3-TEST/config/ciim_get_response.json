@@ -249,18 +249,6 @@
                                 "value": "&.fallbackDesc",
                                 "pattern": "<[^>]+>",
                                 "replacement": ""
-                              },
-                              {
-                                "#type": "regex_replace",
-                                "value": "$",
-                                "pattern": "\\s+",
-                                "replacement": " "
-                              },
-                              {
-                                "#type": "regex_replace",
-                                "value": "$",
-                                "pattern": "^([^\\.]+\\.)",
-                                "replacement": "$1"
                               }
                             ]
                           }
