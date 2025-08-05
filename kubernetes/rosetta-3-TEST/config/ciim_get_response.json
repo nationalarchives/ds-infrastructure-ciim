@@ -245,22 +245,27 @@
                             "strategies": [
                               "$.span[0].@content",
                               {
-                                "#type": "regex_replace",
-                                "value": "&.fallbackDesc",
-                                "pattern": "<[^>]+>",
-                                "replacement": ""
-                              },
-                              {
-                                "#type": "regex_replace",
-                                "value": "$",
-                                "pattern": "\\s+",
-                                "replacement": " "
-                              },
-                              {
-                                "#type": "regex_replace",
-                                "value": "$",
-                                "pattern": "^([^\\.]+\\.)",
-                                "replacement": "$1"
+                                "#type": "chain",
+                                "chain": [
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": "$",
+                                    "pattern": "\\s+",
+                                    "replacement": " "
+                                  },
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": "$",
+                                    "pattern": "^(.+?\\.)\\s.*",
+                                    "replacement": "$1"
+                                  }
+                                ]
                               }
                             ]
                           }
