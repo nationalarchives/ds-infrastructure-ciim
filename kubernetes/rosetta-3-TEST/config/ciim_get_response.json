@@ -223,7 +223,7 @@
                     "summaryTitle":{
                       "#type": "declare",
                       "args": {
-                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "rawTitle": "$.source.summary.title",
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {

@@ -35,28 +35,38 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-                    "summaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        {
-                          "#type": "regex_replace",
-                          "value": "$.source.summary.title",
-                          "pattern": "^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\s*/?>$",
-                          "replacement": ""
-                        },
-                        {
-                          "#type": "regex_replace",
-                          "value": {
+                    "summaryTitle":{
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
+                          },
+                          {
                             "#type": "fallback",
                             "strategies": [
-                              "[R]$.source.highlight['description.value']",
-                              "$.source.description[0].value"
+                              "$.span[0].@content",
+                              {
+                                "#type": "regex_replace",
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
+                              }
                             ]
-                          },
-                          "pattern": "([^.\\n]+).*",
-                          "replacement": "$1"
-                        }
-                      ]
+                          }
+                        ]
+                      }
                     },
                     "cleanTitle": {
                       "#type": "regex_replace",
