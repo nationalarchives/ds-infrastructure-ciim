@@ -64,7 +64,39 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
-                    "title": "$.source.title[?(@.primary == true)].value",
+                    "title": {
+                      "#type": "declare",
+                    "args": {
+                      "rawTitle": "$.source.title[?(@.primary == true)].value",
+                      "fallbackDesc": "$.source.description[0].value"
+                    },
+                    "value": {
+                      "#type": "chain",
+                      "chain": [
+                        {
+                          "#type": "xml_to_json",
+                          "xml": "&.rawTitle"
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.span[0].@content",
+                            {
+                              "#type": "regex_replace",
+                              "value": {
+                                "#type": "regex_replace",
+                                "value": "&.fallbackDesc",
+                                "pattern": "<[^>]+>",
+                                "replacement": ""
+                              },
+                              "pattern": "^([^\\.]+\\.).*",
+                              "replacement": "[L]$1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
                     "cleanDescription": {
                       "#type": "regex_replace",
                       "value": {
