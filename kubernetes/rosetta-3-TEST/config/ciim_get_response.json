@@ -101,7 +101,7 @@
                           "value": "$.source.value"
                         },
                         "summary": {
-                          "title":"$.summary.title"
+                          "title": "$.summary.title"
                         }
                       }
                     },
@@ -198,8 +198,8 @@
                           "title": {
                             "#type": "declare",
                             "args": {
-                              "rawTitle": "$.summary.title",
-                              "fallbackDesc": "$.source.description[0].value"
+                              "rawTitle": "$.title[?(@.primary == true)].value",
+                              "fallbackDesc": "$.description[0].value"
                             },
                             "value": {
                               "#type": "chain",
