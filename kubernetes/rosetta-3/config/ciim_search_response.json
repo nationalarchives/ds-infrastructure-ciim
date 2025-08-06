@@ -35,12 +35,46 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
+
                     "summaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        "$.source.summary.title"
-                      ]
+                      "#type": "declare",
+                      "args": {
+                        "highlighted": "[R]$.source.highlight['summary.title']",
+                        "rawTitle": "$.source.summary.title",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "&.highlighted",
+                          {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": {
+                                      "#type": "regex_replace",
+                                      "value": "&.fallbackDesc",
+                                      "pattern": "<[^>]+>",
+                                      "replacement": ""
+                                    },
+                                    "pattern": "^([^\\.]+\\.).*",
+                                    "replacement": "[L]$1"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     },
                     "cleanTitle": {
                       "#type": "regex_replace",
