@@ -35,7 +35,6 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-
                     "summaryTitle": {
                       "#type": "declare",
                       "args": {
