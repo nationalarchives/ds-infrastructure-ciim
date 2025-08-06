@@ -246,9 +246,14 @@
                               "$.span[0].@content",
                               {
                                 "#type": "regex_replace",
-                                "value": "&.fallbackDesc",
-                                "pattern": "<[^>]+>",
-                                "replacement": ""
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
                               }
                             ]
                           }
