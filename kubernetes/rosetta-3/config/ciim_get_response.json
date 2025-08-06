@@ -232,7 +232,39 @@
                       "#type": "as_list",
                       "values": "$.source.subjects.subject[*].summary.title"
                     },
-                    "summaryTitle": "$.source.summary.title",
+                    "summaryTitle":{
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.summary.title",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
+                          },
+                          {
+                            "#type": "fallback",
+                            "strategies": [
+                              "$.span[0].@content",
+                              {
+                                "#type": "regex_replace",
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true)].value",
