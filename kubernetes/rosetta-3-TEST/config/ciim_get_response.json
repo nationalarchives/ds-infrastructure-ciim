@@ -101,7 +101,7 @@
                           "value": "$.source.value"
                         },
                         "summary": {
-                          "title":
+                          "title":"$.summary.title"
                         }
                       }
                     },
@@ -195,199 +195,203 @@
                           "value": "$.source.value"
                         },
                         "summary": {
-                          "#type": "declare",
-                          "args": {
-                            "rawTitle": "$.summary.title",
-                            "fallbackDesc": "$.source.description[0].value"
-                          },
-                          "value": {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
+                          "title": {
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.summary.title",
+                              "fallbackDesc": "$.description[0].value"
+                            },
+                            "value": {
+                              "#type": "chain",
+                              "chain": [
+                                {
+                                  "#type": "xml_to_json",
+                                  "xml": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "$.span[0].@content",
+                                    {
                                       "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        },
-                        "physicalCondition": "$.source.condition.value",
-                        "physicalDescription": "$.source.@template.details.physicalDescription",
-                        "primaryIdentifier": "$.source.@admin.id",
-                        "publicationNote": {
-                          "#type": "as_list",
-                          "values": "$.source.note[?(@.type == 'publication note')].value"
-                        },
-                        "recordOpening": "$.source.availability.access.opening.label.value",
-                        "referenceNumber": "$.source.@template.details.referenceNumber",
-                        "relatedMaterials": {
-                          "#type": "as_list",
-                          "values": "$.source.@template.details.relatedMaterials"
-                        },
-                        "restrictionsOnUse": "$.source.availability.restrictions.value",
-                        "separatedMaterials": {
-                          "#type": "as_list",
-                          "values": "$.source.@template.details.separatedMaterials"
-                        },
-                        "source": "$.source.source.value",
-                        "sourceUrl": "$.source.@template.details.sourceUrl",
-                        "subjects": "$.source.subjects.subject[*].summary.title",
-                        "summaryTitle": {
-                          "#type": "declare",
-                          "args": {
-                            "rawTitle": "$.source.summary.title",
-                            "fallbackDesc": "$.source.description[0].value"
-                          },
-                          "value": {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        },
-                        "cleanTitle": {
-                          "#type": "regex_replace",
-                          "value": "$.source.title[?(@.primary == true)].value",
-                          "pattern": "<[^>]+>(.*?)</[^>]+>",
-                          "replacement": "[L]$1"
-                        },
-                        "title": {
-                          "#type": "declare",
-                          "args": {
-                            "rawTitle": "$.source.title[?(@.primary == true)].value",
-                            "fallbackDesc": "$.source.description[0].value"
-                          },
-                          "value": {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        },
-                        "type": "$.source.@datatype.base",
-                        "unpublishedFindingAids": {
-                          "#type": "as_list",
-                          "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
-                        },
-                        "@previous": {
-                          "#type": "scope",
-                          "scope": {
-                            "#type": "es_query",
-                            "parentId": "$.source.parent[0].@admin.id",
-                            "rangeSort": {
-                              "lt": "$.source.sort"
-                            },
-                            "sortOrder": "desc"
-                          },
-                          "value": {
-                            "@admin": {
-                              "id": "$.hits.hits[0]._source.@admin.id"
-                            },
-                            "summary": {
-                              "title": "$.hits.hits[0]._source.summary.title"
-                            },
-                            "level": {
-                              "code": "$.hits.hits[0]._source.level.code"
-                            },
-                            "identifier": {
-                              "#type": "for_each",
-                              "values": "$.hits.hits[0]._source.identifier",
-                              "spec": {
-                                "reference_number": "$.__reference_number"
-                              }
+                                      "value": {
+                                        "#type": "regex_replace",
+                                        "value": "&.fallbackDesc",
+                                        "pattern": "<[^>]+>",
+                                        "replacement": ""
+                                      },
+                                      "pattern": "^([^\\.]+\\.).*",
+                                      "replacement": "[L]$1"
+                                    }
+                                  ]
+                                }
+                              ]
                             }
                           }
-                        },
-                        "@next": {
-                          "#type": "scope",
-                          "scope": {
-                            "#type": "es_query",
-                            "parentId": "$.source.parent[0].@admin.id",
-                            "rangeSort": {
-                              "gt": "$.source.sort"
-                            },
-                            "sortOrder": "asc"
+                        }
+                      }
+                    },
+                    "physicalCondition": "$.source.condition.value",
+                    "physicalDescription": "$.source.@template.details.physicalDescription",
+                    "primaryIdentifier": "$.source.@admin.id",
+                    "publicationNote": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'publication note')].value"
+                    },
+                    "recordOpening": "$.source.availability.access.opening.label.value",
+                    "referenceNumber": "$.source.@template.details.referenceNumber",
+                    "relatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.relatedMaterials"
+                    },
+                    "restrictionsOnUse": "$.source.availability.restrictions.value",
+                    "separatedMaterials": {
+                      "#type": "as_list",
+                      "values": "$.source.@template.details.separatedMaterials"
+                    },
+                    "source": "$.source.source.value",
+                    "sourceUrl": "$.source.@template.details.sourceUrl",
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "summaryTitle": {
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.summary.title",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
                           },
-                          "value": {
-                            "@admin": {
-                              "id": "$.hits.hits[0]._source.@admin.id"
-                            },
-                            "summary": {
-                              "title": "$.hits.hits[0]._source.summary.title"
-                            },
-                            "level": {
-                              "code": "$.hits.hits[0]._source.level.code"
-                            },
-                            "identifier": {
-                              "#type": "for_each",
-                              "values": "$.hits.hits[0]._source.identifier",
-                              "spec": {
-                                "reference_number": "$.__reference_number"
+                          {
+                            "#type": "fallback",
+                            "strategies": [
+                              "$.span[0].@content",
+                              {
+                                "#type": "regex_replace",
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
                               }
-                            }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "cleanTitle": {
+                      "#type": "regex_replace",
+                      "value": "$.source.title[?(@.primary == true)].value",
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
+                      "replacement": "[L]$1"
+                    },
+                    "title": {
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
+                          },
+                          {
+                            "#type": "fallback",
+                            "strategies": [
+                              "$.span[0].@content",
+                              {
+                                "#type": "regex_replace",
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "type": "$.source.@datatype.base",
+                    "unpublishedFindingAids": {
+                      "#type": "as_list",
+                      "values": "$.source.note[?(@.type == 'unpublished finding aids')].value"
+                    },
+                    "@previous": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "lt": "$.source.sort"
+                        },
+                        "sortOrder": "desc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
+                          }
+                        }
+                      }
+                    },
+                    "@next": {
+                      "#type": "scope",
+                      "scope": {
+                        "#type": "es_query",
+                        "parentId": "$.source.parent[0].@admin.id",
+                        "rangeSort": {
+                          "gt": "$.source.sort"
+                        },
+                        "sortOrder": "asc"
+                      },
+                      "value": {
+                        "@admin": {
+                          "id": "$.hits.hits[0]._source.@admin.id"
+                        },
+                        "summary": {
+                          "title": "$.hits.hits[0]._source.summary.title"
+                        },
+                        "level": {
+                          "code": "$.hits.hits[0]._source.level.code"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.hits.hits[0]._source.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
                           }
                         }
                       }
                     }
                   }
                 }
-              },
+              }
+            }
+          },
           []
         ]
       }
