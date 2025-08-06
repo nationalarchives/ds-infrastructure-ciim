@@ -195,6 +195,7 @@
                             "value": "$.source.value"
                           },
                           "summary": {
+                            "title": {
                             "#type": "declare",
                             "args": {
                               "rawTitle": "$.summary.title",
