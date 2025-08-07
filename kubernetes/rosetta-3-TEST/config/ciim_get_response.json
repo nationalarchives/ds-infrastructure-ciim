@@ -102,6 +102,15 @@
                         },
                         "summary": {
                           "title": "$.summary.title"
+                        },
+                        "count": {
+                          "#type": "scope",
+                          "scope": {
+                            "#type": "es_count",
+                            "Id": "$.@admin.id"
+                          },
+                          "value":"$.count"
+
                         }
                       }
                     },
@@ -166,39 +175,39 @@
                         }
                       }
                     },
-                   "mapDesignation": {
-                        "#type": "regex_replace",
-                        "value": "$.source.@template.details.mapDesignation",
-                        "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
-                        "replacement": "<unittitle type=\"$2\">$3</unittitle>"
-                      },
+                    "mapDesignation": {
+                      "#type": "regex_replace",
+                      "value": "$.source.@template.details.mapDesignation",
+                      "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
+                      "replacement": "<unittitle type=\"$2\">$3</unittitle>"
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
                     "note": "$.source.@template.details.note",
                     "parent": {
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
                       "value": {
-                          "@admin": {
-                            "id": "$.@admin.id"
-                          },
-                          "identifier": {
-                            "#type": "for_each",
-                            "values": "$.identifier",
-                            "spec": {
-                              "reference_number": "$.__reference_number"
-                            }
-                          },
-                          "level": {
-                            "code": "$.level.code"
-                          },
-                          "source": {
-                            "value": "$.source.value"
-                          },
-                          "summary": {
-                            "title": "$.description[0].value"
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
                           }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
                         }
-                      },
+                      }
+                    },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
@@ -219,7 +228,10 @@
                     },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
-                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "subjects": {
+                      "#type": "as_list",
+                      "values": "$.source.subjects.subject[*].summary.title"
+                    },
                     "summaryTitle":{
                       "#type": "declare",
                       "args": {
@@ -254,10 +266,37 @@
                       }
                     },
                     "cleanTitle": {
-                      "#type": "regex_replace",
-                      "value": "$.source.title[?(@.primary == true)].value",
-                      "pattern": "<[^>]+>(.*?)</[^>]+>",
-                      "replacement": "[L]$1"
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "#type": "xml_to_json",
+                            "xml": "&.rawTitle"
+                          },
+                          {
+                            "#type": "fallback",
+                            "strategies": [
+                              "$.span[0].@content",
+                              {
+                                "#type": "regex_replace",
+                                "value": {
+                                  "#type": "regex_replace",
+                                  "value": "&.fallbackDesc",
+                                  "pattern": "<[^>]+>",
+                                  "replacement": ""
+                                },
+                                "pattern": "^([^\\.]+\\.).*",
+                                "replacement": "[L]$1"
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     },
                     "title": {
                       "#type": "declare",
@@ -312,7 +351,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": "$.hits.hits[0]._source.description[0].value"
+                          "title": "$.hits.hits[0]._source.summary.title"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
@@ -341,7 +380,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": "$.hits.hits[0]._source.description[0].value"
+                          "title": "$.hits.hits[0]._source.summary.title"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
