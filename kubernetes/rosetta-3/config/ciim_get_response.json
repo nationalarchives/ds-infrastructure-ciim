@@ -238,8 +238,8 @@
                           "title": {
                             "#type": "declare",
                             "args": {
-                              "rawTitle": "$.hits.hits[0]._source.title[?(@.primary == true)].value",
-                              "fallbackDesc": "$.hits.hits[0]._source.description[0].value"
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
                             },
                             "value": {
                               "#type": "chain",
