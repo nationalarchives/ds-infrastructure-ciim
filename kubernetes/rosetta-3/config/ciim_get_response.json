@@ -104,7 +104,7 @@
                           "title": {
                             "#type": "declare",
                             "args": {
-                              "rawTitle": "$.title[?(@.primary == true)].value",
+                              "rawTitle": "$.source.summary.title",
                               "fallbackDesc": "$.description[0].value"
                             },
                             "value": {
