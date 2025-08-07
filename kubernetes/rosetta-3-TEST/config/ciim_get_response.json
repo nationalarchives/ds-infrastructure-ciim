@@ -312,7 +312,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": "$.hits.hits[0]._source.summary.title"
+                          "title": "$.hits.hits[0]._source.description[0].value"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
@@ -341,7 +341,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": "$.hits.hits[0]._source.summary.title"
+                          "title": "$.hits.hits[0]._source.description[0].value"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
