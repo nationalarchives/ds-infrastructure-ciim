@@ -100,6 +100,9 @@
                         "source": {
                           "value": "$.source.value"
                         },
+                        "description": {
+                          "title": "$.source.description[0].value"
+                        },
                         "summary": {
                           "title": "$.summary.title"
                         },
