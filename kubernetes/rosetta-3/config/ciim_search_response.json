@@ -24,16 +24,43 @@
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
                     "cleanSummaryTitle": {
-                      "#type": "regex_replace",
-                      "value": {
-                        "#type": "fallback",
-                        "strategies": [
-                          "[R]$.source.highlight['summary.title']",
-                          "$.source.summary.title"
-                        ]
-                      },
-                      "pattern": "<(?!/?mark\\b)[^>]+>",
-                      "replacement": ""
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['summary.title']",
+                        {
+                          "#type": "declare",
+                          "args": {
+                            "rawTitle": "$.source.summary.title",
+                            "fallbackDesc": "$.source.description[0].value"
+                          },
+                          "value": {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": {
+                                      "#type": "regex_replace",
+                                      "value": "&.fallbackDesc",
+                                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                                      "replacement": ""
+                                    },
+                                    "pattern": "^([^\\.]+\\.).*",
+                                    "replacement": "[L]$1"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      ]
                     },
                     "summaryTitle": {
                       "#type": "fallback",
