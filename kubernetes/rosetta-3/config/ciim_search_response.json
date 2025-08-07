@@ -30,8 +30,14 @@
                         {
                           "#type": "declare",
                           "args": {
-                            "rawTitle": "$.source.summary.title",
-                            "fallbackDesc": "$.source.description[0].value"
+                            "fallbackDesc": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "[R]$.source.highlight['description.value'][0]",
+                                "$.source.description[0].value"
+                              ]
+                            },
+                            "rawTitle": "$.source.summary.title"
                           },
                           "value": {
                             "#type": "chain",
