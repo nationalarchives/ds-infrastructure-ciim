@@ -168,7 +168,7 @@
                                 "value": {
                                   "#type": "regex_replace",
                                   "value": "&.fallbackDesc",
-                                  "pattern": "<[^>]+>",
+                                  "pattern": "",
                                   "replacement": ""
                                 },
                                 "pattern": "^([^\\.]+\\.).*",
