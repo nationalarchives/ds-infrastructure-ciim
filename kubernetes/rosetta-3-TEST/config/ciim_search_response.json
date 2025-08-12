@@ -56,6 +56,13 @@
                         ]
                       }
                     },
+                    "summaryTitles": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['summary.title']",
+                        "$.source.summary.title"
+                      ]
+                    },
                     "cleanSummaryTitle": {
                       "#type": "regex_replace",
                       "value": {
