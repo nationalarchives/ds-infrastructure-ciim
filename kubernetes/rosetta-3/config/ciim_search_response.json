@@ -62,7 +62,7 @@
                                     "value": {
                                       "#type": "regex_replace",
                                       "value": "&.fallbackDesc",
-                                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                                      "pattern": "<[^>]+>",
                                       "replacement": ""
                                     },
                                     "pattern": "^([^\\.]+\\.).*",
