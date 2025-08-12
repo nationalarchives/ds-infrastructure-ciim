@@ -42,6 +42,7 @@
                         "$.source.summary.title"
                       ]
                     },
+                    
                     "cleanTitle": {
                       "#type": "declare",
                       "args": {
