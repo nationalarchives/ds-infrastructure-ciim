@@ -42,7 +42,45 @@
                         "$.source.summary.title"
                       ]
                     },
-
+                    "summaryTitles": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['summary.title']",
+                        {
+                          "#type": "chain",
+                          "chain": [
+                            {
+                              "#type": "declare",
+                              "args": {
+                                "rawSummary": "$.source.summary.title",
+                                "desc": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "[R]$.source.highlight['description.value']",
+                                    "$.source.description[0].value"
+                                  ]
+                                }
+                              },
+                              "value": {
+                                "#type": "if",
+                                "condition": {
+                                  "#type": "eq",
+                                  "value": "&.rawSummary",
+                                  "equals": "<span class=\"unittitle\" type=\"Title\"/>"
+                                },
+                                "then": {
+                                  "#type": "regex_replace",
+                                  "value": "&.desc",
+                                  "pattern": "<(?!/?mark\\b)[^>]+>",
+                                  "replacement": ""
+                                },
+                                "else": "&.rawSummary"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
                     "cleanTitle": {
                       "#type": "declare",
                       "args": {
