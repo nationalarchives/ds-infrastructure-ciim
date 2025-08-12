@@ -35,33 +35,40 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-                    "summaryTitle":{
+                    "summaryTitle": {
                       "#type": "declare",
                       "args": {
-                        "rawTitle": "$.source.title[?(@.primary == true)].value",
+                        "highlighted": "[R]$.source.highlight['summary.title']",
+                        "rawTitle": "$.source.summary.title",
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {
-                        "#type": "chain",
-                        "chain": [
+                        "#type": "fallback",
+                        "strategies": [
+                          "&.highlighted",
                           {
-                            "#type": "xml_to_json",
-                            "xml": "&.rawTitle"
-                          },
-                          {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.span[0].@content",
+                            "#type": "chain",
+                            "chain": [
                               {
-                                "#type": "regex_replace",
-                                "value": {
-                                  "#type": "regex_replace",
-                                  "value": "&.fallbackDesc",
-                                  "pattern": "<[^>]+>",
-                                  "replacement": ""
-                                },
-                                "pattern": "^([^\\.]+\\.).*",
-                                "replacement": "[L]$1"
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": {
+                                      "#type": "regex_replace",
+                                      "value": "&.fallbackDesc",
+                                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                                      "replacement": ""
+                                    },
+                                    "pattern": "^([^\\.]+\\.).*",
+                                    "replacement": "[L]$1"
+                                  }
+                                ]
                               }
                             ]
                           }
