@@ -24,49 +24,16 @@
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
                     "cleanSummaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        {
-                          "#type": "declare",
-                          "args": {
-                            "fallbackDesc": {
-                              "#type": "fallback",
-                              "strategies": [
-                                "[R]$.source.highlight['description.value'][0]",
-                                "$.source.description[0].value"
-                              ]
-                            },
-                            "rawTitle": "$.source.summary.title"
-                          },
-                          "value": {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<(?!/?mark\\b)[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        }
-                      ]
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          "$.source.summary.title"
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
                     },
                     "summaryTitle": {
                       "#type": "fallback",
