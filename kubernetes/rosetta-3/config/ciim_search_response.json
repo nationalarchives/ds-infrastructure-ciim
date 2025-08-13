@@ -35,13 +35,6 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-                    "summaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        "$.source.summary.title"
-                      ]
-                    },
                     "summaryTitles": {
                       "#type": "fallback",
                       "strategies": [
