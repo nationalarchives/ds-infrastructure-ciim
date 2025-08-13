@@ -42,7 +42,7 @@
                         "$.source.summary.title"
                       ]
                     },
-                    "highlightSummaryTitle": {
+                    "CleanSummaryTitle": {
                       "#type": "fallback",
                       "strategies": [
                         "[R]$.source.highlight['summary.title']",
