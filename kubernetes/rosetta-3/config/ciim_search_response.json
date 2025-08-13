@@ -50,36 +50,41 @@
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {
-                        "#type": "fallback",
-                        "strategies": [
-                          "&.highlighted",
-                          {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
+                        "#type": "regex_replace",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "&.highlighted",
+                            {
+                              "#type": "chain",
+                              "chain": [
+                                {
+                                  "#type": "xml_to_json",
+                                  "xml": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "$.span[0].@content",
+                                    {
                                       "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<(?!/?mark\\b)[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
+                                      "value": {
+                                        "#type": "regex_replace",
+                                        "value": "&.fallbackDesc",
+                                        "pattern": "<[^>]+>",
+                                        "replacement": ""
+                                      },
+                                      "pattern": "^([^\\.]+\\.).*",
+                                      "replacement": "[L]$1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "pattern": "<(?!/?mark\\b)[^>]+>",
+                        "replacement": ""
                       }
                     },
                     "summaryTitles":{
