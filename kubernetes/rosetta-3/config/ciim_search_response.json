@@ -36,50 +36,43 @@
                       "replacement": ""
                     },
                     "summaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        "$.source.summary.title"
-                      ]
-                    },
-                    "CleanSummaryTitle": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        {
-                          "#type": "declare",
-                          "args": {
-                            "rawTitle": "$.source.summary.title",
-                            "fallbackDesc": "$.source.description[0].value"
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.summary.title",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          {
+                            "#type": "require",
+                            "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                            "value": "&.rawTitle"
                           },
-                          "value": {
+                          {
                             "#type": "chain",
                             "chain": [
                               {
                                 "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
+                                "xml": "&.rawTitle",
+                                "require_convert": true
                               },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<(?!/?mark\\b)[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
+                              "$.span[0].@content"
                             ]
+                          },
+                          {
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.fallbackDesc",
+                              "pattern": "<(?!/?mark\\b)[^>]+>",
+                              "replacement": ""
+                            },
+                            "pattern": "^([^\\.]+\\.).*",
+                            "replacement": "[L]$1"
                           }
-                        }
-                      ]
+                        ]
+                      }
                     },
                     "cleanTitle": {
                       "#type": "declare",
