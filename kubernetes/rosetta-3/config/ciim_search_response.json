@@ -49,13 +49,18 @@
                             {
                               "#type": "fallback",
                               "strategies": [
-                                "$.span[0].@content",
+                                {
+                                  "#type": "regex_replace",
+                                  "value": "$.span[0].@content",
+                                  "pattern": "^\\s*$",   
+                                  "replacement": null
+                                },
                                 {
                                   "#type": "regex_replace",
                                   "value": {
                                     "#type": "regex_replace",
                                     "value": "$.source.description[0].value",
-                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "pattern": "<[^>]+>",
                                     "replacement": ""
                                   },
                                   "pattern": "^([^\\.]+\\.).*",
