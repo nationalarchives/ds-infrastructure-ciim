@@ -265,38 +265,55 @@
                         ]
                       }
                     },
-                    "summaryTitle":{
-                      "#type": "declare",
-                      "args": {
-                        "rawTitle": "$.source.summary.title",
-                        "fallbackDesc": "$.source.description[0].value"
-                      },
+                    "summaryTitle": {
+                      "#type": "regex_replace",
                       "value": {
-                        "#type": "chain",
-                        "chain": [
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
                           {
-                            "#type": "xml_to_json",
-                            "xml": "&.rawTitle"
-                          },
-                          {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.span[0].@content",
-                              {
-                                "#type": "regex_replace",
-                                "value": {
-                                  "#type": "regex_replace",
-                                  "value": "&.fallbackDesc",
-                                  "pattern": "",
-                                  "replacement": ""
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
+                            },
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "require",
+                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "value": "&.rawTitle"
                                 },
-                                "pattern": "^([^\\.]+\\.).*",
-                                "replacement": "[L]$1"
-                              }
-                            ]
+                                {
+                                  "#type": "chain",
+                                  "chain": [
+                                    {
+                                      "#type": "xml_to_json",
+                                      "xml": "&.rawTitle",
+                                      "require_convert": true
+                                    },
+                                    "$.span[0].@content"
+                                  ]
+                                },
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  "pattern": "^([^\\.]+\\.).*",
+                                  "replacement": "[L]$1"
+                                }
+                              ]
+                            }
                           }
                         ]
-                      }
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
                     },
                     "cleanTitle": {
                       "#type": "declare",
