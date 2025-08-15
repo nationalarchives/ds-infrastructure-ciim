@@ -362,7 +362,7 @@
                                   "pattern": "",
                                   "replacement": ""
                                 },
-                                "pattern": "^([^\\.]+\\.).*",
+                                "pattern": "",
                                 "replacement": "[L]$1"
                               }
                             ]
