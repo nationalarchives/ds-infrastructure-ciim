@@ -310,7 +310,11 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
-                    "title":"$.source.title[?(@.primary == true)].value",
+                    "title": {
+                      "#type": "require",
+                      "require": "&[?(!(@ =~ /^<span class=\\\"unittitle\\\" type=\\\"Title\\\"\\/>$/))]",
+                      "value": "$.source.title[?(@.primary == true)].value"
+                    },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
