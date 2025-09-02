@@ -192,6 +192,53 @@ rosetta:
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
               webReference: "web.identifier.value.lower"
+              subjects: "subjects.subject.summary.title.keyword"
+              title: "summary.title.keyword"
+              longSubjects: "subjects.subject.summary.title.keyword"
+              longHeldBy: "repository.name.value.keyword"
+              longCollections: "@hierarch.identifier.value"
+              datatype: "@datatype.base"
+          aggregation_configs:
+            - name: longSubjects
+              size: 10000
+            - name: longHeldBy
+              size: 10000
+            - name: longCollections
+              size: 10000
+          search_config:
+            search_fields:
+              - field: "name.value"
+                boost: 4
+              - field: "identifier.__reference_number"
+                boost: 4
+              - field: "identifier.__catalogue_id"
+                boost: 4
+              - field: "identifier.__iaid"
+                boost: 4
+              - field: "agent.name.value"
+                boost: 3
+              - field: "agent.summary.title.keyword"
+                boost: 3
+              - field: "title.value.keyword"
+                boost: 3
+              - field: "origination.creator.name.value"
+                boost: 3
+              - field: "description.raw"
+                boost: 2
+              - field: "description.value"
+                boost: 2
+              - field: "summary.title"
+                boost: 2
+              - field: "origination.description.value"
+                boost: 2
+              - field: "custodial.description.value"
+                boost: 2
+              - field: "originals.description.value"
+                boost: 2
+              - field: "_generic_all_std"
+                boost: 0
+              - field: "_all"
+                boost: 0
 
       - name: ciim/search/request
         type: proteus
