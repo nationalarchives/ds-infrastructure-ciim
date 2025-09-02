@@ -260,9 +260,27 @@
                       "replacement": "[L]$1"
                     },
                     "title": {
-                      "#type": "require",
-                      "require": "&[?(!(@ =~ /^<span class=\"unittitle\" type=\"Title\"\\s*\\/?>$/i))]",
-                      "value": "$.source.title[?(@.primary == true)].value"
+                      "#type": "declare",
+                      "args": {
+                        "raw": "$.source.title[?(@.primary == true)].value[0]",
+                        "stripped": {
+                          "#type": "regex_replace",
+                          "value": "&.raw",
+                          "pattern": "<(?!/?mark\\b)[^>]+>",
+                          "replacement": ""
+                        },
+                        "trimmed": {
+                          "#type": "regex_replace",
+                          "value": "&.stripped",
+                          "pattern": "^\\s+|\\s+$",
+                          "replacement": ""
+                        }
+                      },
+                      "value": {
+                        "#type": "require",
+                        "require": "&.trimmed",
+                        "value": "&.raw"
+                      }
                     },
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
