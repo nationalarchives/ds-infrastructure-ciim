@@ -259,29 +259,7 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
-                    "title": {
-                      "#type": "declare",
-                      "args": {
-                        "raw": "$.source.title[?(@.primary == true)].value[0]",
-                        "stripped": {
-                          "#type": "regex_replace",
-                          "value": "&.raw",
-                          "pattern": "<(?!/?mark\\b)[^>]+>",
-                          "replacement": ""
-                        },
-                        "trimmed": {
-                          "#type": "regex_replace",
-                          "value": "&.stripped",
-                          "pattern": "^\\s+|\\s+$",
-                          "replacement": ""
-                        }
-                      },
-                      "value": {
-                        "#type": "require",
-                        "require": "&.trimmed",
-                        "value": "&.raw"
-                      }
-                    },
+                    "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
                     "type": "$.source.@datatype.base",
                     "unpublishedFindingAids": {
                       "#type": "as_list",
