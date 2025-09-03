@@ -80,13 +80,17 @@
                     "groupArray": "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
-                    "heldByCount": {
-                      "#type": "scope",
-                      "scope": {
-                        "#type": "es_held_count",
-                        "Id": "$.source.repository.@admin.id"
-                      },
-                      "value": "$.count"
+                    "heldByCount":  {
+                      "#type": "require",
+                      "require": "$.source.repository.@admin.id",
+                      "value": {
+                        "#type": "scope",
+                        "scope": {
+                          "#type": "es_held_count",
+                          "Id": "$.source.repository.@admin.id"
+                        },
+                        "value": "$.count"
+                      }
                     },
                     "@hierarchy": {
                       "#type": "for_each",
