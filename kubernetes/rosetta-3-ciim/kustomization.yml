@@ -1,0 +1,23 @@
+namespace: etna
+resources:
+  - rosetta.yml
+configMapGenerator:
+  - name: rosetta-3-config
+    files:
+      - ./config/aggs_count_to_doc_count.json
+      - ./config/application.yml
+      - ./config/ciim_get_request.json
+      - ./config/ciim_get_response.json
+      - ./config/ciim_search_request.json
+      - ./config/ciim_search_response.json
+      - ./config/generic_search_defaults.json
+      - ./config/generic_search_modifications.json
+      - ./config/singularize_creation.json
+      - ./config/inject_date_hist.json
+      - ./config/es_query.json
+      - ./config/component_search.json
+      - ./config/provider.json
+      - ./config/merge_advance_parameters.json
+      - ./config/inject_highlighting.json
+      - ./config/hierarchy_count_query.json
+      - ./config/heldby_count_query.json

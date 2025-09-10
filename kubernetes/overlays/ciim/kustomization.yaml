@@ -5,6 +5,7 @@ bases:
   - ../../public-es
   - ../../ciim-staging
   - ../../ciim-ingress
+  - ../../rosetta-3-ciim
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:

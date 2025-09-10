@@ -1,0 +1,343 @@
+base_paths:
+  proteus: ./config
+
+logging:
+  level:
+    com.k_int.proteus.component.core.HttpRequestSpec: trace
+    com.k_int.proteus.provider.http.client.OkHttpClientFacade: trace
+
+rosetta:
+  admin:
+    enabled: true
+
+  plugins:
+    advanced_cache:
+      enabled: true
+      caches:
+        - name: fast-cache
+          expire_after_write: 5m
+          maximum_size: 100
+          use_scheduler: true
+
+        - name: slow-cache
+          expire_after_write: 1h
+          maximum_size: 100
+          use_scheduler: true
+
+  cache:
+    enabled: true
+    manager:
+      enabled: false
+
+  view:
+    views:
+      - name: ciim/search
+        paths:
+          - /rosetta/data/search
+        profile: elasticsearch
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+              - inject-highlighting
+              - merge-advance-parameters
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
+      - name: ciim/serachHighlight
+        type: transform-only
+        paths:
+          - /ciim/search/highlight
+        methods:
+          - GET
+        glyphs:
+          policy: list
+          names:
+            - to-generic-search
+            - generic-search-defaults
+            - generic-search-modifications
+            - generic-to-elastic
+            - elastic-modifications
+            - ciim/search/request
+            - inject-highlighting
+
+
+      - name: ciim/searchTest
+        paths:
+          - /rosetta/data/searchTest
+        profile: generic-search
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/search/request
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
+      - name: ciim/get
+        paths:
+          - /rosetta/data/get
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/get/request
+          response:
+            policy: list
+            names:
+              - ciim/get/response
+
+  profile:
+    profiles:
+      - name: elasticsearch
+        providers:
+          policy: list
+          names:
+            - elasticsearchEtna
+        transforms:
+          data: &global-data-transforms
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+                  - inject-date-hist
+      - name: generic-search
+        providers:
+          policy: list
+          names:
+            - elasticsearchEtna
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+          data: *global-data-transforms
+
+  transform:
+    timeout: 60000
+    glyphs:
+      # Elastic search glyphs
+      - name: to-generic-search
+        type: to-generic-search
+        properties:
+          types:
+            - query
+
+      - name: inject-date-hist
+        type: proteus
+        input: full
+        properties:
+          spec: ${base_paths.proteus}/inject_date_hist.json
+
+      - name: generic-search-defaults
+        type: proteus-simple
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_defaults.json
+
+      - name: generic-search-modifications
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/generic_search_modifications.json
+
+      - name: inject-highlighting
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_highlighting.json
+
+      - name: merge-advance-parameters
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_advance_parameters.json
+
+      - name: generic-to-elastic
+        type: elastic-generic-search
+        properties:
+          index: public-es
+          request_timeout: 60000
+          date_range_format: "{from} - {to}"
+          date_aggregations:
+            - path: "origination.date.from"
+              agg_name: "coveringDates"
+              additional_path: "origination.date.to"
+              format: "yyyy"
+              date_ranges:
+                - from: "1100"
+                  to: "1199"
+                - from: "1200"
+                  to: "1299"
+                - from: "1300"
+                  to: "1399"
+                - from: "1400"
+                  to: "1499"
+                - from: "1500"
+                  to: "1599"
+                - from: "1600"
+                  to: "1699"
+                - from: "1700"
+                  to: "1799"
+                - from: "1800"
+                  to: "1899"
+                - from: "1900"
+                  to: "1924"
+                - from: "1925"
+                  to: "1949"
+                - from: "1950"
+                  to: "3000"
+            - path: "availability.access.opening.date.from"
+              agg_name: "openingFromDate"
+            - path: "availability.access.opening.date.to"
+              agg_name: "openingToDate"
+            - path: "origination.date.from"
+              agg_name: "coveringFromDate"
+            - path: "origination.date.to"
+              agg_name: "coveringToDate"
+          path_config:
+            paths:
+              topic: "topic.summary.title.keyword"
+              collection: "@hierarch.identifier.value"
+              group: "@datatype.group.value"
+              level: "level.value"
+              type: "repository.@datatype.actual"
+              country: "place.@hierarchy.name.value.keyword"
+              closure: "availability.closure.label.value.keyword"
+              catalogueSource: "source.value"
+              heldBy: "repository.name.value.keyword"
+              webReference: "web.identifier.value.lower"
+              subjects: "subjects.subject.summary.title.keyword"
+              title: "summary.title.keyword"
+              longSubjects: "subjects.subject.summary.title.keyword"
+              longHeldBy: "repository.name.value.keyword"
+              longCollections: "@hierarch.identifier.value"
+              datatype: "@datatype.base"
+          aggregation_configs:
+            - name: longSubjects
+              size: 10000
+            - name: longHeldBy
+              size: 10000
+            - name: longCollections
+              size: 10000
+          search_config:
+            search_fields:
+              - field: "name.value"
+                boost: 4
+              - field: "identifier.__reference_number"
+                boost: 4
+              - field: "identifier.__catalogue_id"
+                boost: 4
+              - field: "identifier.__iaid"
+                boost: 4
+              - field: "agent.name.value"
+                boost: 3
+              - field: "agent.summary.title.keyword"
+                boost: 3
+              - field: "title.value.keyword"
+                boost: 3
+              - field: "origination.creator.name.value"
+                boost: 3
+              - field: "description.raw"
+                boost: 2
+              - field: "description.value"
+                boost: 2
+              - field: "summary.title"
+                boost: 2
+              - field: "origination.description.value"
+                boost: 2
+              - field: "custodial.description.value"
+                boost: 2
+              - field: "originals.description.value"
+                boost: 2
+              - field: "_generic_all_std"
+                boost: 0
+              - field: "_all"
+                boost: 0
+
+      - name: ciim/search/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_request.json
+
+      - name: ciim/search/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_search_response.json
+          include:
+            - ./config/component_search.json
+
+      - name: ciim/get/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_request.json
+
+      - name: ciim/get/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_get_response.json
+          include:
+            - ./config/component_search.json
+
+      # Global data transforms
+      - name: singularize-creation
+        type: proteus
+        properties:
+          spec: ${base_paths.proteus}/singularize_creation.json
+          config:
+            accumulator: first
+
+      # System glyphs
+      - name: to-simple-data-response
+        type: to-simple-data-response
+
+      - name: aggs-count-to-doc-count
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+  provider:
+    global_timeout: 900s
+    timeout: 900s
+    providers:
+      - name: elasticsearchEtna
+        type: proteus-simple
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/provider.json
+          config:
+            properties:
+              elasticsearch:
+                url: http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es
+                auth_token: ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI=
+
+  monitoring:
+    log_stages: true
