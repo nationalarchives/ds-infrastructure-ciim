@@ -157,7 +157,8 @@
                     "subjects": "$.source.subjects.subject[*].summary.title",
                     "level": {
                       "code": "$.level.code"
-                    }
+                    },
+                    "level": "$.source.level"
                   }
                 }
               }
