@@ -154,7 +154,11 @@
                     "dateCovering": "$.source.origination.date.value",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                    "subjects": "$.source.subjects.subject[*].summary.title"
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "level": {
+                      "code": "$.level.code"
+                    },
+                    "level": "$.source.level"
                   }
                 }
               }
