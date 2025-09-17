@@ -2,3 +2,4 @@ namespace: etna
 resources:
   - es_ingress.yml
   - ingress.yml
+  - rewriteplugin.yml
