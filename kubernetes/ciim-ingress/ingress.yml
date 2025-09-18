@@ -7,8 +7,13 @@ metadata:
     kubernetes.io/ingress.class: kong
     konghq.com/plugins: request-transform-etna
 spec:
+  tls:
+    - hosts:
+        - rosetta-test.k-int.com
+      secretName: tls-secret-test
   rules:
-    - http:
+    - host: rosetta-test.k-int.com
+      http:
         paths:
           - path: /tna/api/
             pathType: Prefix
