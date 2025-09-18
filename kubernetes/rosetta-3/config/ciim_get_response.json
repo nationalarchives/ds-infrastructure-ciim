@@ -68,6 +68,7 @@
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
+                    "descriptionSchema": "$.source.description",
                     "description": {
                       "value": "$.source.description[0].value",
                       "schema": "$.source.description[0].schema.value",
