@@ -1,6 +1,6 @@
 namespace: etna
 resources:
-  - public-es-2.yml
+  - public-es.yml
 configMapGenerator:
   - name: esdictionaries-2-etna
     files:
