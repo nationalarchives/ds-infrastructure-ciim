@@ -44,10 +44,10 @@ spec:
                   value: "-Xms14g -Xmx14g -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 16Gi
+                  memory: 12Gi
                   cpu: 1
                 limits:
-                  memory: 16Gi
+                  memory: 12Gi
               volumeMounts:
                 - name: esdictionaries-2-etna
                   mountPath: /usr/share/elasticsearch/config/dictionaries
