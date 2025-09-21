@@ -7,6 +7,7 @@ bases:
   - ../../ciim-ingress
   - ../../rosetta-3-ciim
   - ../../acme
+  - ../../public-es-2
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
