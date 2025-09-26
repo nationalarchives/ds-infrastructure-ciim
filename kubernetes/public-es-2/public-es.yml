@@ -41,13 +41,13 @@ spec:
             - name: elasticsearch
               env:
                 - name: ES_JAVA_OPTS
-                  value: "-Xms11g -Xmx11g -Dlog4j2.formatMsgNoLookups=true"
+                  value: "-Xms20g -Xmx20g -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 12Gi
+                  memory: 22Gi
                   cpu: 1
                 limits:
-                  memory: 12Gi
+                  memory: 22Gi
               volumeMounts:
                 - name: esdictionaries-2-etna
                   mountPath: /usr/share/elasticsearch/config/dictionaries

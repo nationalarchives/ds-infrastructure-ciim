@@ -1,0 +1,40 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: ciim-public-etna
+  namespace: etna
+spec:
+  nodeSets:
+    - name: default
+      count: 1
+      volumeClaimTemplates:
+        - metadata:
+            name: elasticsearch-data
+          spec:
+            accessModes:
+              - ReadWriteOnce
+            resources:
+              requests:
+                storage: 500Gi
+      podTemplate:
+        spec:
+          tolerations:
+            - key: "special-elastic"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
+          volumes:
+            - name: esdictionaries-etna
+              configMap:
+                name: esdictionaries-etna
+          containers:
+            - name: elasticsearch
+              env:
+                - name: ES_JAVA_OPTS
+                  value: "-Xms4g -Xmx4g -Dlog4j2.formatMsgNoLookups=true"
+              resources:
+                requests:
+                  memory: 6Gi
+                  cpu: 1
+                limits:
+                  memory: 6Gi
