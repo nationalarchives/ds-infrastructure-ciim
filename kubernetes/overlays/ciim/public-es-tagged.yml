@@ -38,3 +38,6 @@ spec:
                   cpu: 1
                 limits:
                   memory: 6Gi
+              volumeMounts:
+                - name: esdictionaries-etna
+                  mountPath: /usr/share/elasticsearch/config/dictionaries
