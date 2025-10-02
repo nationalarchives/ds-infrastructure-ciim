@@ -47,7 +47,7 @@
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Basic ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI="
+        "Authorization": "Basic ZWxhc3RpYzo1MzI0M1VTOWVmSDhFMmNhMlh0ZUM3VlE="
       },
       "body": {
         "query": {
@@ -67,7 +67,7 @@
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Basic ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI="
+        "Authorization": "Basic ZWxhc3RpYzo1MzI0M1VTOWVmSDhFMmNhMlh0ZUM3VlE="
       },
       "body": {
         "query": {
