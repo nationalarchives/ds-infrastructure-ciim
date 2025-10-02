@@ -230,11 +230,12 @@
                     "recordOpening": "$.source.availability.access.opening.label.value",
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
-                      "value": {
+                      "#type": "as_list",
+                      "values": {
                         "description": "$.source.related[*].@link.note.value",
                         "links": {
                           "#type": "as_list",
-                          "values": "<a href=\"$.source.related[*].@admin.id,\">\"$.source.related[*].@identifier.__reference_number\"</a>"
+                          "values": "<a href={$.source.related[*].@admin.id}>{$.source.related[*].@identifier.__reference_number}</a>"
                         }
                       }
                     },
