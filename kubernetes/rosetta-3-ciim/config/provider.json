@@ -43,13 +43,7 @@
             "values": [
               {
                 "#type": "for_each",
-                "values": {
-                  "#type": "fallback",
-                  "strategies": [
-                    "$[?(@.value.buckets[*].key)]",
-                    []
-                  ]
-                },
+                "values": "$[?(@.value.buckets[*].key)]",
                 "spec": {
                   "name": "$.key",
                   "entries": {
