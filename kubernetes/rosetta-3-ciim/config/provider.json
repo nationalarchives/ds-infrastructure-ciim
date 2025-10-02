@@ -37,6 +37,62 @@
           {
             "#type": "entries",
             "map": "$"
+          },
+          {
+            "#type": "merge",
+            "values": [
+              {
+                "#type": "for_each",
+                "values": "$[?(@.value.buckets[*].key)]",
+                "spec": {
+                  "name": "$.key",
+                  "entries": {
+                    "#type": "for_each",
+                    "values": "$.value.buckets",
+                    "spec": {
+                      "value": "$.key",
+                      "count": "$.doc_count"
+                    }
+                  },
+                  "total": {
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "counts": {
+                          "#type": "as_list",
+                          "values": "$.value.buckets[*].doc_count"
+                        },
+                        "other": "$.value.sum_other_doc_count"
+                      },
+                      {
+                        "total_in_buckets": "$.counts.sum()",
+                        "other": "$.other"
+                      },
+                      {
+                        "#type": "maths",
+                        "expression": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "{$.total_in_buckets} + {$.other}",
+                            "{$.total_in_buckets}"
+                          ]
+                        },
+                        "output_type": "long"
+                      }
+                    ]
+                  },
+                  "other": "$.value.sum_other_doc_count"
+                }
+              },
+              {
+                "#type": "for_each",
+                "values": "$[?(@.value.doc_count)]",
+                "spec": {
+                  "name": "$.key",
+                  "total": "$.value.doc_count"
+                }
+              }
+            ]
           }
         ]
       },
