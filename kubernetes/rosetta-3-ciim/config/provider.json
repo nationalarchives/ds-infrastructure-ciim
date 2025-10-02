@@ -30,6 +30,16 @@
           }
         }
       },
+      "aggregations": {
+        "#type": "chain",
+        "chain": [
+          "$.aggregations",
+          {
+            "#type": "entries",
+            "map": "$"
+          }
+        ]
+      },
       "stats": {
         "total": "$.hits.total.value"
       }
