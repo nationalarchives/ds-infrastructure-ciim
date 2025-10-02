@@ -235,7 +235,7 @@
                         "description": "$.source.related[*].@link.note.value",
                         "links": {
                           "#type": "as_list",
-                          "values": "test string: {$.source.related[*].@admin.id}"
+                          "values": "<a href=\"{$.source.related[*].@admin.id}\">"
                         }
                       }
                     },
