@@ -231,10 +231,10 @@
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
                       "value": {
-                        "description": "$.source.related.@link.note.value",
+                        "description": "$.source.related[*].@link.note.value",
                         "links": {
                           "#type": "as_list",
-                          "values": "\"<a href=\\\"C6980\\\">mongo-c6980</a>"
+                          "values": "<a href=\"$.source.related[*].@admin.id,\">\"$.source.related[*].@identifier.__reference_number\"</a>"
                         }
                       }
                     },
