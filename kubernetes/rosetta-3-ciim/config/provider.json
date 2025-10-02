@@ -33,7 +33,11 @@
       "aggregations": {
         "#type": "chain",
         "chain": [
-          "$.aggregations"
+          "$.aggregations",
+          {
+            "#type": "entries",
+            "map": "$"
+          }
         ]
       },
       "stats": {
