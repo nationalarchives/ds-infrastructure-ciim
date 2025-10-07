@@ -77,6 +77,13 @@
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
                     "groupArray": "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",

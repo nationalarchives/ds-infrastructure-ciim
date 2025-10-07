@@ -155,10 +155,15 @@
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
                     "subjects": "$.source.subjects.subject[*].summary.title",
-                    "level": {
-                      "code": "$.level.code"
+                    "level": "$.source.level",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
                     },
-                    "level": "$.source.level"
+                    "groupArray": "$.source.@datatype.group"
                   }
                 }
               }
