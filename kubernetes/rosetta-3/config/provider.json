@@ -47,12 +47,23 @@
                 "spec": {
                   "name": "$.key",
                   "entries": {
-                    "#type": "for_each",
-                    "values": "$.value.buckets",
-                    "spec": {
-                      "value": "$.key",
-                      "count": "$.doc_count"
-                    }
+                    "#type": "fallback",
+                    "strategies": [
+                      {
+                        "#type": "for_each",
+                        "values": "$.value.buckets",
+                        "spec": {
+                          "value": "$.key",
+                          "count": "$.doc_count"
+                        }
+                      },
+                      {
+                        "#type": "literal",
+                        "value": [
+
+                        ]
+                      }
+                    ]
                   },
                   "total": {
                     "#type": "chain",
@@ -65,7 +76,13 @@
                         "other": "$.value.sum_other_doc_count"
                       },
                       {
-                        "total_in_buckets": "$.counts.sum()",
+                        "total_in_buckets": {
+                          "#type": "fallback",
+                          "strategies":[
+                            "$.counts.sum()",
+                            0
+                          ]
+                        },
                         "other": "$.other"
                       },
                       {
