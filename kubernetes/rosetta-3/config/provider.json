@@ -30,7 +30,7 @@
           }
         }
       },
-      "aggregations": {
+      "aggregations":{
         "#type": "chain",
         "chain": [
           "$.aggregations",
@@ -43,7 +43,7 @@
             "values": [
               {
                 "#type": "for_each",
-                "values": "$[?(@.value.buckets[*].key)]",
+                "values": "$[?(@.value.buckets)]",
                 "spec": {
                   "name": "$.key",
                   "entries": {
