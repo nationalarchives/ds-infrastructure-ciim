@@ -1,104 +1,149 @@
 {
-  "#type": "chain",
-  "chain": [
-    {
-      "#type": "http_request",
-      "url": "{[R]%.elasticsearch.url}/_search",
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Basic {%.elasticsearch.auth_token}"
+  "#type": "declare",
+  "args": {
+    "aggsType": {
+      "#type": "for_each",
+      "values": {
+        "#type": "entries",
+        "map": "$.aggregations"
       },
-      "body": "$",
-      "require_response": true,
-      "require_allowed": true
-    },
-    {
-      "results": {
-        "#type": "as_list",
-        "values": {
-          "#type": "for_each",
-          "values": "$.hits.hits",
-          "spec": {
-            "#type": "merge",
-            "values": [
-              "$._source",
-              {
-                "highlight": "$.highlight"
-              }
-            ]
-          }
+      "spec": {
+        "$.key": {
+          "#type": "chain",
+          "chain": [
+            {
+              "#type": "entries",
+              "map": "$.value"
+            },
+            "$[0].key"
+          ]
         }
-      },
-      "aggregations": {
-        "#type": "chain",
-        "chain": [
-          "$.aggregations",
-          {
-            "#type": "entries",
-            "map": "$"
-          },
-          {
-            "#type": "merge",
-            "values": [
-              {
-                "#type": "for_each",
-                "values": "$[?(@.value.buckets[*].key)]",
-                "spec": {
-                  "name": "$.key",
-                  "entries": {
-                    "#type": "for_each",
-                    "values": "$.value.buckets",
-                    "spec": {
-                      "value": "$.key",
-                      "count": "$.doc_count"
-                    }
-                  },
-                  "total": {
-                    "#type": "chain",
-                    "chain": [
-                      {
-                        "counts": {
-                          "#type": "as_list",
-                          "values": "$.value.buckets[*].doc_count"
-                        },
-                        "other": "$.value.sum_other_doc_count"
-                      },
-                      {
-                        "total_in_buckets": "$.counts.sum()",
-                        "other": "$.other"
-                      },
-                      {
-                        "#type": "maths",
-                        "expression": {
-                          "#type": "fallback",
-                          "strategies": [
-                            "{$.total_in_buckets} + {$.other}",
-                            "{$.total_in_buckets}"
-                          ]
-                        },
-                        "output_type": "long"
-                      }
-                    ]
-                  },
-                  "other": "$.value.sum_other_doc_count"
-                }
-              },
-              {
-                "#type": "for_each",
-                "values": "$[?(@.value.doc_count)]",
-                "spec": {
-                  "name": "$.key",
-                  "total": "$.value.doc_count"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "stats": {
-        "total": "$.hits.total.value"
       }
     }
-  ]
+  },
+  "value": {
+    "#type": "chain",
+    "chain": [
+      {
+        "#type": "http_request",
+        "url": "{[R]%.elasticsearch.url}/_search",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Basic {%.elasticsearch.auth_token}"
+        },
+        "body": "$",
+        "require_response": true,
+        "require_allowed": true
+      },
+      {
+        "results": {
+          "#type": "as_list",
+          "values": {
+            "#type": "for_each",
+            "values": "$.hits.hits",
+            "spec": {
+              "#type": "merge",
+              "values": [
+                "$._source",
+                {
+                  "highlight": "$.highlight"
+                }
+              ]
+            }
+          }
+        },
+        "aggregations": {
+          "#type": "chain",
+          "chain": [
+            "$.aggregations",
+            {
+              "#type": "entries",
+              "map": "$"
+            },
+            {
+              "#type": "merge",
+              "values": [
+                {
+                  "#type": "for_each",
+                  "values": "$",
+                  "spec": {
+                    "#type": "require",
+                    "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
+                    "value": {
+                      "name": "$.key",
+                      "entries": {
+                        "#type": "fallback",
+                        "strategies": [
+                          {
+                            "#type": "for_each",
+                            "values": "$.value.buckets",
+                            "spec": {
+                              "value": "$.key",
+                              "count": "$.doc_count"
+                            }
+                          },
+                          {
+                            "#type": "literal",
+                            "value": [
+                            ]
+                          }
+                        ]
+                      },
+                      "total": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "counts": {
+                              "#type": "as_list",
+                              "values": "$.value.buckets[*].doc_count"
+                            },
+                            "other": "$.value.sum_other_doc_count"
+                          },
+                          {
+                            "total_in_buckets": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "$.counts.sum()",
+                                0
+                              ]
+                            },
+                            "other": "$.other"
+                          },
+                          {
+                            "#type": "maths",
+                            "expression": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "{$.total_in_buckets} + {$.other}",
+                                "{$.total_in_buckets}"
+                              ]
+                            },
+                            "output_type": "long"
+                          }
+                        ]
+                      },
+                      "other": "$.value.sum_other_doc_count"
+                    }
+                  }
+                },
+
+                {
+                  "#type": "for_each",
+                  "values": "$[?(@.value.doc_count)]",
+                  "spec": {
+                    "name": "$.key",
+                    "total": "$.value.doc_count"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "stats": {
+          "total": "$.hits.total.value"
+        }
+      }
+    ]
+  }
 }
