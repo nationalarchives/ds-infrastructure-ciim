@@ -230,14 +230,14 @@ rosetta:
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
               webReference: "web.identifier.value.lower"
-              subjects: "subjects.subject.summary.title.keyword"
+              subject: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
-              longSubjects: "subjects.subject.summary.title.keyword"
+              longSubject: "subjects.subject.summary.title.keyword"
               longHeldBy: "repository.name.value.keyword"
               longCollections: "@hierarch.identifier.value"
               datatype: "@datatype.base"
           aggregation_configs:
-            - name: longSubjects
+            - name: longSubject
               size: 10000
             - name: longHeldBy
               size: 10000
