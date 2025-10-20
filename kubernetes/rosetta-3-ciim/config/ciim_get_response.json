@@ -73,7 +73,11 @@
                       "schema": "$.source.description[0].schema.value",
                       "raw": "$.source.description[0].raw"
                     },
-                    "digitised": "$.source.@template.details.digitised",
+                    "digitised": {
+                      "#type": "require",
+                      "require": "$source.multimedia[*].@admin.id",
+                      "value": "true"
+                    },
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
