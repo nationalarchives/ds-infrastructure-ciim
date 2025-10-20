@@ -152,11 +152,7 @@
                       ]
                     },
                     "dateCovering": "$.source.origination.date.value",
-                    "digitised": {
-                      "#type": "require",
-                      "require": "$.source.multimedia.@admin.id",
-                      "value": "true"
-                    },
+                    "RID": "$.source.multimedia[*].@admin.id",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
                     "subjects": "$.source.subjects.subject[*].summary.title",
