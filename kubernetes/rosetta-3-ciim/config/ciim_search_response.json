@@ -154,7 +154,7 @@
                     "dateCovering": "$.source.origination.date.value",
                     "digitised": {
                       "#type": "require",
-                      "require": "$.source.multimedia[*].@admin.id",
+                      "require": "$.source.multimedia.@admin.id",
                       "value": "true"
                     },
                     "heldBy": "$.source.repository.name.value",

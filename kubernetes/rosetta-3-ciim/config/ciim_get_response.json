@@ -75,7 +75,7 @@
                     },
                     "digitised": {
                       "#type": "require",
-                      "require": "$.source.multimedia[*].@admin.id",
+                      "require": "$.source.multimedia.@admin.id",
                       "value": "true"
                     },
                     "dimensions": "$.source.measurements.dimensions[*].value",
