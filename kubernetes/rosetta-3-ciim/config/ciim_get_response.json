@@ -71,7 +71,12 @@
                     "description": {
                       "value": "$.source.description[0].value",
                       "schema": "$.source.description[0].schema.value",
-                      "raw": "$.source.description[0].raw"
+                      "raw": {
+                        "#type": "regex_replace",
+                        "value": "$.source.description[0].raw",
+                        "pattern": "(?<=<head>)Scope and Content(?=</head>)",
+                        "replacement": ""
+                      }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
                     "dimensions": "$.source.measurements.dimensions[*].value",
