@@ -70,8 +70,7 @@ rosetta:
             - elastic-modifications
             - ciim/search/request
             - inject-highlighting
-
-
+            - inject-exists_digitised-filter
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
@@ -171,6 +170,7 @@ rosetta:
 
       - name: inject-exists_digitised-filter
         type: proteus
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
