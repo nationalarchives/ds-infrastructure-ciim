@@ -48,7 +48,6 @@ rosetta:
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
-              - inject-exists_digitised-filter
           response:
             policy: list
             names:
