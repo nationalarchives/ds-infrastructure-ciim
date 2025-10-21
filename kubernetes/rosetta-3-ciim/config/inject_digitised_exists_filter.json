@@ -1,6 +1,6 @@
 {
   "#type": "require",
-  "require": "$.current.query.digitised",
+  "require": "$.original.query.digitised",
   "value": {
     "#type": "merge",
     "depth": -1,

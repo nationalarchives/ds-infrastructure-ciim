@@ -47,7 +47,6 @@ rosetta:
               - elastic-modifications
               - ciim/search/request
               - inject-highlighting
-              - inject-exists_digitised-filter
               - merge-advance-parameters
           response:
             policy: list
