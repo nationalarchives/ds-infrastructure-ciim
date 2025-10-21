@@ -1,4 +1,7 @@
 {
+  "#type": "require",
+  "require": "$.original.query.digitised",
+  "value": {
     "#type": "merge",
     "depth": -1,
     "values": [
@@ -10,9 +13,9 @@
               "bool": {
                 "filter": [
                   {
-                  "exists": {
-                    "field": "multimedia.@admin.id"
-                  }
+                    "exists": {
+                      "field": "multimedia.@admin.id"
+                    }
                   }
                 ]
               }
@@ -21,5 +24,6 @@
         }
       }
     ]
+  }
 }
 
