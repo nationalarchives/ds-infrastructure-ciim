@@ -1,7 +1,4 @@
 {
-  "#type": "require",
-  "require": "$.original.query.digitised",
-  "value": {
     "#type": "merge",
     "depth": -1,
     "values": [
@@ -18,6 +15,5 @@
         }
       }
     ]
-  }
 }
 
