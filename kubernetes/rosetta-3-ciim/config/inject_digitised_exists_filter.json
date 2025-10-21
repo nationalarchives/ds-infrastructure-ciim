@@ -5,7 +5,7 @@
     "$.current",
     {
       "#type": "require",
-      "require": "$.original.query.digitised",
+      "require": "$.original.query[?(@.digitised == 'true')]",
       "value": {
         "results": {
           "request": {
