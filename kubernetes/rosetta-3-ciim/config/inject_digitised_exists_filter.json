@@ -5,7 +5,7 @@
     "#type": "merge",
     "depth": -1,
     "values": [
-      "$.current",
+      "$",
       {
         "results": {
           "request": {
