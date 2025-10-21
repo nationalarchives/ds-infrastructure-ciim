@@ -1,18 +1,23 @@
 {
-  "#type": "merge",
-  "depth": -1,
-  "values": [
-    "$",
-    {
-      "results": {
-        "request": {
-          "query": {
-            "exists": {
-              "field": "multimedia.@admin.id"
+  "#type": "require",
+  "require": "$.original.query.digitised",
+  "value": {
+    "#type": "merge",
+    "depth": -1,
+    "values": [
+      "$",
+      {
+        "results": {
+          "request": {
+            "query": {
+              "exists": {
+                "field": "multimedia.@admin.id"
+              }
             }
           }
         }
       }
-    }
-  ]
+    ]
+  }
 }
+
