@@ -6,17 +6,19 @@
     {
       "#type": "require",
       "require": "$.original.query.digitised",
-      "results": {
-        "request": {
-          "query": {
-            "bool": {
-              "filter": [
-                {
-                  "exists": {
-                    "field": "multimedia.@admin.id"
+      "value": {
+        "results": {
+          "request": {
+            "query": {
+              "bool": {
+                "filter": [
+                  {
+                    "exists": {
+                      "field": "multimedia.@admin.id"
+                    }
                   }
-                }
-              ]
+                ]
+              }
             }
           }
         }
