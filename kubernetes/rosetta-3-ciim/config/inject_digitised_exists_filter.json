@@ -1,11 +1,11 @@
 {
   "#type": "require",
-  "require": "$.query.digitised",
+  "require": "$.original.query.digitised",
   "value": {
     "#type": "merge",
     "depth": -1,
     "values": [
-      "$",
+      "$.current",
       {
         "results": {
           "request": {
