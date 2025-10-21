@@ -254,13 +254,7 @@
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "separatedMaterials": {
                       "#type": "as_list",
-                      "values": {
-                        "description": "$.source.separated[*].description.value",
-                        "links": {
-                          "#type": "as_list",
-                          "values": "<a href=\"{$.source.separated[*].@admin.id}\">{$.source.separated[*].identifier[*].__reference_number}</a>"
-                        }
-                      }
+                      "values": "$.source.@template.details.separatedMaterials"
                     },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
