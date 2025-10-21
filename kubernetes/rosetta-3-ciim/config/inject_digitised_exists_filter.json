@@ -2,13 +2,19 @@
     "#type": "merge",
     "depth": -1,
     "values": [
-      "$",
+      "$.current",
       {
         "results": {
           "request": {
             "query": {
-              "exists": {
-                "field": "multimedia.@admin.id"
+              "bool": {
+                "filter": [
+                  {
+                  "exists": {
+                    "field": "multimedia.@admin.id"
+                  }
+                  }
+                ]
               }
             }
           }
