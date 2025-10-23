@@ -281,6 +281,7 @@ rosetta:
 
       - name: ciim/search/response
         type: proteus
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_search_response.json
