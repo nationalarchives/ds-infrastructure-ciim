@@ -49,7 +49,7 @@
                       "replacement": "[L]$1"
                     },
                     "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
-                    "cleanTitle": {
+                    "cleanTitleWithLimit": {
                       "#type": "chain",
                       "chain": [
                         {
