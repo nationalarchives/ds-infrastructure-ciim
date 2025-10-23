@@ -61,7 +61,7 @@
                           "#type": "fallback",
                           "strategies": [
                             {
-                              "#type": "truncate",
+                              "#type": "literal",
                               "value": "$",
                               "limit": "$.params.titleLimit"
                             },
@@ -92,7 +92,7 @@
                           "#type": "fallback",
                           "strategies": [
                             {
-                              "#type": "truncate",
+                              "#type": "literal",
                               "value": "$",
                               "limit": "$.params.descriptionLimit"
                             },
