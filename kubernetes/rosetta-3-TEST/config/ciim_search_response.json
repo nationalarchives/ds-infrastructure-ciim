@@ -48,7 +48,59 @@
                       "pattern": "<[^>]+>(.*?)</[^>]+>",
                       "replacement": "[L]$1"
                     },
+                    "cleanTitleWithLimit": {
+                      "#type": "chain",
+                      "chain": [
+                        {
+                          "#type": "regex_replace",
+                          "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
+                          "pattern": "<[^>]+>(.*?)</[^>]+>",
+                          "replacement": "[L]$1"
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "truncate",
+                              "value": "$",
+                              "limit": "$.params.titleLimit"
+                            },
+                            "$"
+                          ]
+                        }
+                      ]
+                    },
                     "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
+                    "cleanDescriptionWithLimit": {
+                      "#type": "chain",
+                      "chain": [
+                        {
+                          "#type": "regex_replace",
+                          "value": {
+                            "#type": "fallback",
+                            "strategies": [
+                              "[R]$.source.highlight['description.raw'][0]",
+                              "$.source.description[0].raw",
+                              "[R]$.source.highlight['description.value'][0]",
+                              "$.source.description[0].value"
+                            ]
+                          },
+                          "pattern": "<(?!/?mark\\b)[^>]+>",
+                          "replacement": ""
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "truncate",
+                              "value": "$",
+                              "limit": "$.params.descriptionLimit"
+                            },
+                            "$"
+                          ]
+                        }
+                      ]
+                    },
                     "cleanDescription": {
                       "#type": "regex_replace",
                       "value": {
@@ -63,6 +115,7 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
+
                     "description": {
                       "#type": "fallback",
                       "strategies": [
