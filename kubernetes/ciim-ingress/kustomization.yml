@@ -3,3 +3,4 @@ resources:
   - es_ingress.yml
   - ingress.yml
   - rewriteplugin.yml
+  - dev_ingress.yml

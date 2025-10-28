@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: etna-ingress
+  namespace: etna
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: request-transform-etna
+spec:
+  tls:
+    - hosts:
+        - rosetta-dev.k-int.com
+      secretName: tls-secret-rosetta-dev
+  rules:
+    - host: rosetta-dev.k-int.com
+      http:
+        paths:
+          - path: /tna/api/
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-service
+                port:
+                  name: api-port
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-service
+                port:
+                  name: rosetta-port
