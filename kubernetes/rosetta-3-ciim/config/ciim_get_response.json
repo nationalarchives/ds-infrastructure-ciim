@@ -96,7 +96,7 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": "^(.*?\\.(?:\\s|$))",
+                          "pattern": "^([^\\.]*\\.)",
                           "replacement": "[L]$1"
                         }
                       }
