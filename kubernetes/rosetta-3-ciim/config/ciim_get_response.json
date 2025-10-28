@@ -232,6 +232,7 @@
                         "replacement": "<unittitle type=\"$2\">$3</unittitle>"
                       },
                     "mapScale": "$.source.@template.details.mapScale",
+                    "nraReference": "$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value",
                     "note": "$.source.@template.details.note",
                     "parent": {
                       "#type": "scope",
