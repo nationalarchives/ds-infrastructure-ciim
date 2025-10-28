@@ -135,10 +135,10 @@
                       "value": {
                         "#type": "fallback",
                         "strategies": [
-                          "[R]$.source.highlight['description.raw'][0]",
-                          "$.source.description[0].raw",
                           "[R]$.source.highlight['description.value'][0]",
-                          "$.source.description[0].value"
+                          "$.source.description[0].value",
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw"
                         ]
                       },
                       "pattern": "<(?!/?mark\\b)[^>]+>",
