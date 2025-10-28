@@ -96,8 +96,8 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": ".*(Cabinet Office records).*",
-                          "replacement": "[L]$1"
+                          "pattern": "^(.{0,250}).*",
+                          "replacement": "[L]$1..."
                         }
                       }
                     },
