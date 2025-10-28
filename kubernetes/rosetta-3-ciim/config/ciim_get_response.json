@@ -265,7 +265,7 @@
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
-                    "reference": "$.source.manifestations[*].identifier[?(@.type='NRA reference')].value",
+                    "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
