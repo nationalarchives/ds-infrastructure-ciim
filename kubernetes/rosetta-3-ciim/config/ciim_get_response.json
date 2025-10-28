@@ -96,7 +96,7 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": "(?s)^(.{0,250}).*",
+                          "pattern": "^([\\\\s\\\\S]{0,250}).*",
                           "replacement": "[L]$1..."
                         }
                       }
