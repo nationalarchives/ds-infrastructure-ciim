@@ -133,20 +133,15 @@
                     "cleanDescription": {
                       "#type": "regex_replace",
                       "value": {
-                        "#type": "regex_replace",
-                        "value": {
-                          "#type": "fallback",
-                          "strategies": [
-                            "[R]$.source.highlight['description.raw'][0]",
-                            "$.source.description[0].raw",
-                            "[R]$.source.highlight['description.value'][0]",
-                            "$.source.description[0].value"
-                          ]
-                        },
-                        "pattern": "<(?!/?mark\\b)[^>]+>",
-                        "replacement": " "
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw",
+                          "[R]$.source.highlight['description.value'][0]",
+                          "$.source.description[0].value"
+                        ]
                       },
-                      "pattern": "  ",
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": " "
                     },
                     "description": {
