@@ -90,10 +90,7 @@
                         "replacement": ""
                       },
                       "short_trim": {
-                        "#type": "regex_replace",
-                        "value": "$.short",
-                        "pattern": "^(.{0,250}).*",
-                        "replacement": "$1"
+                        "value": "$.short"
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
