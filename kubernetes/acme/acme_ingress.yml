@@ -9,7 +9,7 @@ metadata:
 spec:
   tls:
     - hosts:
-        - rosetta-staging.k-int.com
+        - rosetta-dev.k-int.com
   rules:
     - host: rosetta-staging.k-int.com
       http:
