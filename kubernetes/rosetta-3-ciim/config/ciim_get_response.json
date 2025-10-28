@@ -78,8 +78,6 @@
                         "replacement": ""
                       },
                       "short": {
-                        "#type": "regex_replace",
-                        "value": {
                           "#type": "regex_replace",
                           "value": {
                             "#type": "fallback",
@@ -89,10 +87,7 @@
                             ]
                           },
                           "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
-                          "replacement": ""
-                        },
-                        "pattern": "(A).*",
-                        "replacement": "$1"
+                          "replacement": "$1"
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
