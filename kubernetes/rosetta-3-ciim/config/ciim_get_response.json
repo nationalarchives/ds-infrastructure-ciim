@@ -77,7 +77,6 @@
                         "pattern": "(?<=<head>)Scope and Content(?=</head>)",
                         "replacement": ""
                       },
-
                       "short": {
                         "#type": "declare",
                         "args": {
@@ -94,7 +93,12 @@
                             "replacement": ""
                           }
                         },
-                        "value":"&.cleanDesc"
+                        "value": {
+                          "#type": "regex_replace",
+                          "value": "&.cleanDesc",
+                          "pattern": "(Cabinet Office records)",
+                          "replacement": "$1"
+                        }
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
