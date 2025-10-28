@@ -142,7 +142,7 @@
                         ]
                       },
                       "pattern": "<(?!/?mark\\b)[^>]+>",
-                      "replacement": " "
+                      "replacement": ""
                     },
                     "description": {
                       "#type": "fallback",
