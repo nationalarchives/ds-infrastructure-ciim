@@ -80,19 +80,14 @@
                       "short": {
                         "#type": "regex_replace",
                         "value": {
-                          "#type": "regex_replace",
-                          "value": {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.source.description[0].raw",
-                              "$.source.description[0].value"
-                            ]
-                          },
-                          "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
-                          "replacement": ""
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].value"
+                          ]
                         },
-                        "pattern": "^(.{0,250}).*",
-                        "replacement": "$1"
+                        "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                        "replacement": ""
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
