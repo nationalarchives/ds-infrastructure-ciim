@@ -76,6 +76,18 @@
                         "value": "$.source.description[0].raw",
                         "pattern": "(?<=<head>)Scope and Content(?=</head>)",
                         "replacement": ""
+                      },
+                      "short": {
+                        "#type": "regex_replace",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].value"
+                          ]
+                        },
+                        "pattern": "<(?!/?mark\\b)[^>]+>",
+                        "replacement": ""
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
