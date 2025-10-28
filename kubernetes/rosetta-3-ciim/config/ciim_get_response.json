@@ -78,8 +78,6 @@
                         "replacement": ""
                       },
                       "short": {
-                        "#type": "regex_replace",
-                        "value": {
                           "#type": "regex_replace",
                           "value": {
                             "#type": "fallback",
@@ -90,10 +88,7 @@
                           },
                           "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
                           "replacement": ""
-                        },
-                        "pattern": "^.{0,250}",
-                        "replacement": "$0"
-                      }
+                        }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
                     "dimensions": "$.source.measurements.dimensions[*].value",
