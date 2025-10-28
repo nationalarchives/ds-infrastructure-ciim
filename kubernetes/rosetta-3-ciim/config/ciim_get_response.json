@@ -87,7 +87,7 @@
                             ]
                           },
                           "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
-                          "replacement": "[L]$1"
+                          "replacement": ""
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
