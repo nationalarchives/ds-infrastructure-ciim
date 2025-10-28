@@ -96,7 +96,7 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": ".*(Cabinet Office records).*",
+                          "pattern": "^(.{0,250}\\b).*",
                           "replacement": "[L]$1..."
                         }
                       }
