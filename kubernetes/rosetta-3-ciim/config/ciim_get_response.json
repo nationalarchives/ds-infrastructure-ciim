@@ -96,8 +96,11 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": "(?s)^(.{0,250}\\b).*",
-                          "replacement": ""
+                          "pattern": {
+                            "#type": "literal",
+                            "value": "^(.{0,250}\\b).*"
+                          },
+                          "replacement": "[L]$1..."
                         }
                       }
                     },
