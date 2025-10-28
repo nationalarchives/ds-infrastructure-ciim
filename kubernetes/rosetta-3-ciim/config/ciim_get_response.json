@@ -76,6 +76,29 @@
                         "value": "$.source.description[0].raw",
                         "pattern": "(?<=<head>)Scope and Content(?=</head>)",
                         "replacement": ""
+                      },
+                      "short": {
+                        "#type": "declare",
+                        "args": {
+                          "cleanDesc": {
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "$.source.description[0].raw",
+                                "$.source.description[0].value"
+                              ]
+                            },
+                            "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                            "replacement": ""
+                          }
+                        },
+                        "value": {
+                          "#type": "regex_replace",
+                          "value": "&.cleanDesc",
+                          "pattern": "^(.{0,250}\\b).*",
+                          "replacement": ""
+                        }
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
