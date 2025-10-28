@@ -94,12 +94,7 @@
                             "replacement": ""
                           }
                         },
-                        "value":{
-                          "#type": "regex_replace",
-                          "value": "&.cleanDesc",
-                          "pattern": "(.{0,250}).*",
-                          "replacement": "$1"
-                        }
+                        "value":"&.cleanDesc"
                       }
                     },
                     "rid": "$.source.multimedia[*].@admin.id",
