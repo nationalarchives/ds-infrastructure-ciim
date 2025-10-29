@@ -100,7 +100,7 @@
                             "#type": "literal",
                             "value": "^(.{0,250}\\b).*"
                           },
-                          "replacement": "[L]$1..."
+                          "replacement": "[L]$1"
                         }
                       }
                     },
