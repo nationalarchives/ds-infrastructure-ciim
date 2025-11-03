@@ -6,7 +6,6 @@
     {
       "results": {
         "request": {
-          "test": "$",
           "highlight": {
             "#type": "literal",
             "value": {
