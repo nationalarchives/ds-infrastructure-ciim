@@ -96,8 +96,11 @@
                         "value": {
                           "#type": "regex_replace",
                           "value": "&.cleanDesc",
-                          "pattern": "^(.{0,250}\\b).*",
-                          "replacement": ""
+                          "pattern": {
+                            "#type": "literal",
+                            "value": "^(.{0,250}\\b).*"
+                          },
+                          "replacement": "[L]$1"
                         }
                       }
                     },
@@ -229,6 +232,7 @@
                         "replacement": "<unittitle type=\"$2\">$3</unittitle>"
                       },
                     "mapScale": "$.source.@template.details.mapScale",
+                    "nraReference": "$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value",
                     "note": "$.source.@template.details.note",
                     "parent": {
                       "#type": "scope",
@@ -262,6 +266,7 @@
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
+                    "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
