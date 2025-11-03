@@ -18,27 +18,27 @@
               "number_of_fragments": 1,
               "fields": {
                 "name.value": {
-                  "fragment_size": "${params.name_size}",
+                  "fragment_size": "$.original.query.name_size",
                   "number_of_fragments": 1
                 },
                 "identifier.__reference_number": {
-                  "fragment_size": "${params.identifier_size}",
+                  "fragment_size": "$.original.query.identifier_size",
                   "number_of_fragments": 1
                 },
                 "title.value.keyword": {
-                  "fragment_size": "${params.title_size}",
+                  "fragment_size": "$.original.query.title_size",
                   "number_of_fragments": 1
                 },
                 "summary.title":{
-                  "fragment_size": "${params.summary_size}",
+                  "fragment_size": "$.original.query.summary_size",
                   "number_of_fragments": 1
                 },
                 "description.raw": {
-                  "fragment_size": "${params.description_raw_size}",
+                  "fragment_size": "$.original.query.description_raw_size",
                   "number_of_fragments": 1
                 },
                 "description.value": {
-                  "fragment_size": "${params.description_size}",
+                  "fragment_size": "$.original.query.description_size",
                   "number_of_fragments": 1
                 }
               }
