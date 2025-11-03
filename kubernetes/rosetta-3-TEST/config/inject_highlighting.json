@@ -19,21 +19,27 @@
               "number_of_fragments": 1,
               "fields": {
                 "name.value": {
+                  "fragment_size": "$.http_request.query.name_size",
                   "number_of_fragments": 1
                 },
                 "identifier.__reference_number": {
+                  "fragment_size": "$.http_request.query.identifier_size",
                   "number_of_fragments": 1
                 },
                 "title.value.keyword": {
+                  "fragment_size": "$.http_request.query.title_size",
                   "number_of_fragments": 1
                 },
                 "summary.title":{
+                  "fragment_size": "$.http_request.query.summary_size",
                   "number_of_fragments": 1
                 },
                 "description.raw": {
+                  "fragment_size": "$.http_request.description_raw_size",
                   "number_of_fragments": 1
                 },
                 "description.value": {
+                  "fragment_size": "$.http_request.description_size",
                   "number_of_fragments": 1
                 }
               }
