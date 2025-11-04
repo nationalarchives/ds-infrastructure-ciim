@@ -248,7 +248,7 @@ rosetta:
               size: 10000
             - name: longHeldBy
               size: 10000
-            - name: longCollections
+            - name: longCollection
               size: 10000
           search_config:
             search_fields:
