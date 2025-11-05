@@ -71,11 +71,16 @@
                     "description": {
                       "value": "$.source.description[0].value",
                       "schema": {
-                        "#type":"fallback",
-                        "strategies": [
-                          "$.source.description[0].schema.value",
-                          "$.source.@datatype.actual"
-                        ]
+                        "#type": "regex_replace",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].schema.value",
+                            "$.source.@datatype.actual"
+                          ]
+                        },
+                        "pattern": "medal card",
+                        "replacement": "medal"
                       },
                       "raw": {
                         "#type": "regex_replace",
