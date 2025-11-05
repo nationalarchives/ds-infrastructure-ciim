@@ -1,0 +1,28 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.original.query[?(@.digitised == 'true')]",
+      "value": {
+        "results": {
+          "request": {
+            "query": {
+              "bool": {
+                "filter": [
+                  {
+                    "exists": {
+                      "field": "multimedia.@admin.id"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "ids": {
+      "#type": "as_list",
+      "values": {
+        "#type": "require_throw",
+        "value": "$.query.id",
+        "message": "Identifier must be specified using 'id' query parameter",
+        "args": {
+          "type": "bad_request"
+        }
+      }
+    },
+    "size": {
+      "#type": "fallback",
+      "strategies": [
+        "$.query.size",
+        1
+      ]
+    },
+    "from": "$.query.from"
+  }
+}
