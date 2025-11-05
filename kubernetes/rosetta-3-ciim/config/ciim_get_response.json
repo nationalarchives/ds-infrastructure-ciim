@@ -70,18 +70,7 @@
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": {
                       "value": "$.source.description[0].value",
-                      "schema": {
-                        "#type": "regex_replace",
-                        "value": {
-                          "#type": "fallback",
-                          "strategies": [
-                            "$.source.description[0].schema.value",
-                            "$.source.@datatype.actual"
-                          ]
-                        },
-                        "pattern": "medal card",
-                        "replacement": "Medal"
-                      },
+                      "schema": "$.source.description[0].schema.value",
                       "raw": {
                         "#type": "regex_replace",
                         "value": "$.source.description[0].raw",
