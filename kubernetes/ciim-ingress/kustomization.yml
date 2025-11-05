@@ -5,3 +5,4 @@ resources:
   - rewriteplugin.yml
   - dev_ingress.yml
   - staging_ingress.yml
+  - prod_ingress.yml
