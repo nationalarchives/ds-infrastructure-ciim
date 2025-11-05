@@ -243,6 +243,7 @@ rosetta:
               longHeldBy: "repository.name.value.keyword"
               longCollection: "@hierarch.identifier.value"
               datatype: "@datatype.base"
+              schema: "@datatype.actual.value"
           aggregation_configs:
             - name: longSubject
               size: 10000
