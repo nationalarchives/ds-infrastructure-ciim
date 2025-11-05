@@ -80,7 +80,7 @@
                           ]
                         },
                         "pattern": "medal card",
-                        "replacement": "medal"
+                        "replacement": "Medal"
                       },
                       "raw": {
                         "#type": "regex_replace",
