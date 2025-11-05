@@ -4,3 +4,4 @@ resources:
   - ingress.yml
   - rewriteplugin.yml
   - dev_ingress.yml
+  - staging_ingress.yml
