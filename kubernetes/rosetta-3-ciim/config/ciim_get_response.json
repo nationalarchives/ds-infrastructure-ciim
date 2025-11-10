@@ -285,7 +285,7 @@
                       "#type": "as_list",
                       "values": {
                         "#type": "for_each",
-                        "values": "$.source.related[0].@link.note.value",
+                        "values": "$.source.related[*].@link.note.value",
                         "spec": {
                           "description": "$"
                         },
