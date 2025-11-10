@@ -284,7 +284,11 @@
                     "relatedMaterials": {
                       "#type": "as_list",
                       "values": {
-                        "description": "$.source.related[*].@link.note.value",
+                        "#type": "for_each",
+                        "values": "$.source.related.@link.note.value",
+                        "spec": {
+                          "description": "$"
+                        },
                         "links": {
                           "#type": "as_list",
                           "values": "<a href=\"{$.source.related[*].@admin.id}\">{$.source.related[*].identifier[*].__reference_number}</a>"
