@@ -283,17 +283,7 @@
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
                       "#type": "as_list",
-                      "values": {
-                        "#type": "for_each",
-                        "values": "$.source.related[*]",
-                        "spec": {
-                          "description": "$.@link.note.value",
-                          "links": {
-                            "#type": "as_list",
-                            "values": "<a href=\"{$.@admin.id}\">{$.identifier[*].__reference_number}</a>"
-                          }
-                        }
-                      }
+                      "values": "$.source.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "separatedMaterials": {
