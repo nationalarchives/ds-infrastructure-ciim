@@ -245,7 +245,7 @@ rosetta:
               datatype: "@datatype.base"
               schema: "@datatype.actual"
               descSchema: "description.schema.keyword",
-              dateCovering: "$.source.origination.date.value",
+              dateCovering: "$.source.origination.date.value"
           aggregation_configs:
             - name: longSubject
               size: 10000
