@@ -116,6 +116,7 @@
                         "replacement": ""
                       }
                     },
+                    "digitised": "$.source.@template.details.digitised",
                     "rid": "$.source.multimedia[*].@admin.id",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",

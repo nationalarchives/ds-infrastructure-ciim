@@ -70,13 +70,7 @@
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": {
                       "value": "$.source.description[0].value",
-                      "schema": {
-                        "#type":"fallback",
-                        "strategies": [
-                          "$.source.description[0].schema.value",
-                          "$.source.@datatype.actual"
-                        ]
-                      },
+                      "schema": "$.source.description[0].schema.value",
                       "raw": {
                         "#type": "regex_replace",
                         "value": "$.source.description[0].raw",
@@ -108,8 +102,21 @@
                           },
                           "replacement": "[L]$1"
                         }
+                      },
+                      "noHtml": {
+                        "#type": "regex_replace",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].value"
+                          ]
+                        },
+                        "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                        "replacement": ""
                       }
                     },
+                    "digitised": "$.source.@template.details.digitised",
                     "rid": "$.source.multimedia[*].@admin.id",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
@@ -231,12 +238,12 @@
                         }
                       }
                     },
-                   "mapDesignation": {
-                        "#type": "regex_replace",
-                        "value": "$.source.@template.details.mapDesignation",
-                        "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
-                        "replacement": "<unittitle type=\"$2\">$3</unittitle>"
-                      },
+                    "mapDesignation": {
+                      "#type": "regex_replace",
+                      "value": "$.source.@template.details.mapDesignation",
+                      "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
+                      "replacement": "<unittitle type=\"$2\">$3</unittitle>"
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
                     "nraReference": "$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value",
                     "note": "$.source.@template.details.note",
@@ -244,27 +251,27 @@
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
                       "value": {
-                          "@admin": {
-                            "id": "$.@admin.id"
-                          },
-                          "identifier": {
-                            "#type": "for_each",
-                            "values": "$.identifier",
-                            "spec": {
-                              "reference_number": "$.__reference_number"
-                            }
-                          },
-                          "level": {
-                            "code": "$.level.code"
-                          },
-                          "source": {
-                            "value": "$.source.value"
-                          },
-                          "summary": {
-                            "title": "$.summary.title"
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
                           }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
                         }
-                      },
+                      }
+                    },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
@@ -277,13 +284,7 @@
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
                       "#type": "as_list",
-                      "values": {
-                        "description": "$.source.related[*].@link.note.value",
-                        "links": {
-                          "#type": "as_list",
-                          "values": "<a href=\"{$.source.related[*].@admin.id}\">{$.source.related[*].identifier[*].__reference_number}</a>"
-                        }
-                      }
+                      "values": "$.source.@template.details.relatedMaterials"
                     },
                     "restrictionsOnUse": "$.source.availability.restrictions.value",
                     "separatedMaterials": {
