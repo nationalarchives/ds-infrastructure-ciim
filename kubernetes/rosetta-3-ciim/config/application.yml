@@ -244,7 +244,7 @@ rosetta:
               longCollection: "@hierarch.identifier.value"
               datatype: "@datatype.base"
               schema: "@datatype.actual"
-              descSchema: "description.schema.keyword",
+              descSchema: "description.schema.keyword"
               dateCovering: "origination.date.value"
           aggregation_configs:
             - name: longSubject
