@@ -1,0 +1,68 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "collisions": {
+    "array": {
+      "array": "last"
+    }
+  },
+  "values": [
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.data"
+          },
+          {
+            "#type": "literal",
+            "value": []
+          }
+        ]
+      },
+      "errors": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.errors"
+          },
+          {
+            "#type": "literal",
+            "value": []
+          }
+        ]
+      }
+    },
+    "$",
+    {
+      "aggregations": {
+        "#type": "for_each",
+        "values": "$.aggregations",
+        "spec": {
+          "#type": "merge",
+          "depth": -1,
+          "collisions": {
+            "array": {
+              "array": "last"
+            }
+          },
+          "values": [
+            "$",
+            {
+              "entries": {
+                "#type": "for_each",
+                "values": "$.entries",
+                "spec": {
+                  "value": "$.value",
+                  "doc_count": "$.count"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -8,6 +8,8 @@ bases:
   - ../../rosetta-3-ciim
   - ../../acme
   - ../../public-es-2
+  - ../../rosetta-3-ciim-staging
+  - ../../rosetta-3-ciim-prod
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
