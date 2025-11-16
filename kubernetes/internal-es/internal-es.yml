@@ -39,10 +39,10 @@ spec:
                   value: "-XX:MaxRAMPercentage=50.0 -Dlog4j2.formatMsgNoLookups=true"
               resources:
                 requests:
-                  memory: 8Gi
-                  cpu: 1
+                  memory: 16Gi
+                  cpu: 6
                 limits:
-                  memory: 8Gi
+                  memory: 16Gi
               volumeMounts:
                 - name: dictionaries-etna
                   mountPath: /usr/share/elasticsearch/config/dictionaries
