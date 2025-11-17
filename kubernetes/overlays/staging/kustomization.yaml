@@ -17,7 +17,6 @@ bases:
   - ../../ohos/acme
   - ../../public-es
   - ../../ingress
-  - ../../acme
   - ../../rosetta-3-TEST
 commonAnnotations:
   environment: dev
