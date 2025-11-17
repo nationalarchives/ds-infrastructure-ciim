@@ -297,7 +297,7 @@
                       "#type": "as_list",
                       "values": "$.source.subjects.subject[*].summary.title"
                     },
-                    "cleanSummaryTitle":{
+                    "cleanSummaryTitle": {
                       "#type": "declare",
                       "args": {
                         "rawTitle": "$.source.summary.title",
@@ -307,35 +307,24 @@
                         "#type": "fallback",
                         "strategies": [
                           {
-                            "#type": "require",
-                            "require": "&[?(!(@.rawTitle =~ /^<\\\\?xml/i",
-                            "value": "&.rawTitle"
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.rawTitle",
+                              "pattern": "<(?!/?mark\\b)[^>]+>",
+                              "replacement": ""
+                            }
                           },
                           {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.fallbackDesc",
+                              "pattern": "<(?!/?mark\\b)[^>]+>",
+                              "replacement": ""
+                            },
+                            "pattern": "^([^\\.]+\\.).*",
+                            "replacement": "[L]$1"
                           }
                         ]
                       }
@@ -350,20 +339,13 @@
                         "#type": "fallback",
                         "strategies": [
                           {
-                            "#type": "require",
-                            "require": "&[?(!(@.rawTitle =~ /^<\\\\?xml/i",
-                            "value": "&.rawTitle"
-                          },
-                          {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle",
-                                "require_convert": true
-                              },
-                              "$.span[0].@content"
-                            ]
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.rawTitle",
+                              "pattern": "<(?!/?mark\\b)[^>]+>",
+                              "replacement": ""
+                            }
                           },
                           {
                             "#type": "regex_replace",
