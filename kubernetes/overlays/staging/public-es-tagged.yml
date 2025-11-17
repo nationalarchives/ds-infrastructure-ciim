@@ -21,10 +21,10 @@ spec:
               name: elasticsearch
               resources:
                 requests:
-                  memory: 28Gi
-                  cpu: 3
+                  memory: 8Gi
+                  cpu: 1
                 limits:
-                  memory: 28Gi
+                  memory: 8Gi
               volumeMounts:
                 - mountPath: /usr/share/elasticsearch/config/dictionaries
                   name: esdictionaries
