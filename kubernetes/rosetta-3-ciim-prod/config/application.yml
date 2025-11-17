@@ -15,13 +15,13 @@ rosetta:
       enabled: true
       caches:
         - name: fast-cache
-          expire_after_write: 5m
-          maximum_size: 100
+          expire_after_write: 12h
+          maximum_size: 200000
           use_scheduler: true
 
         - name: slow-cache
-          expire_after_write: 1h
-          maximum_size: 100
+          expire_after_write: 24h
+          maximum_size: 200000
           use_scheduler: true
 
   cache:
