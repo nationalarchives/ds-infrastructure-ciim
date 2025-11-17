@@ -1,9 +1,7 @@
 bases:
   - ../../base
-  - ../../ciim-staging
   - ../../eks
   - ../../unmanaged-public-es
-  - ../../ciim-ui
   - ../../ohos/base
   - ../../ohos/eks
   - ../../ohos/kong
@@ -23,9 +21,6 @@ bases:
   - ../../rosetta-3
   - ../../api
   - ../../acme
-  - ../../rosetta-3-PROD
-  - ../../rosetta-3-iiif
-  - ../../cantaloupe
   - ../../rosetta-3-TEST
 commonAnnotations:
   environment: dev
