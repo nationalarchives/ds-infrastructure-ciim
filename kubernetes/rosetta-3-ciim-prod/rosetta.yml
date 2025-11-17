@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: rosetta-3-etna-prod
   revisionHistoryLimit: 1
-  replicas: 3
+  replicas: 1
   progressDeadlineSeconds: 600
   strategy:
     type: RollingUpdate
@@ -47,8 +47,8 @@ spec:
               value: "-Dspring.profiles.active=non-default-for-trace-logging -XX:MaxRAMPercentage=80.0 -XX:+PrintFlagsFinal -XX:+UseZGC"
           resources:
             requests:
-              memory: 8Gi
-              cpu: 2
+              memory: 14Gi
+              cpu: 4
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
