@@ -1,9 +1,7 @@
 bases:
   - ../../base
-  - ../../ciim-staging
   - ../../eks
   - ../../unmanaged-public-es
-  - ../../ciim-ui
   - ../../ohos/base
   - ../../ohos/eks
   - ../../ohos/kong
@@ -17,19 +15,10 @@ bases:
   - ../../ohos/rosetta-3
   - ../../ohos/rosetta-3-graphql
   - ../../ohos/acme
-  - ../../internal-es
   - ../../public-es
   - ../../ingress
-  - ../../rosetta-3
-  - ../../api
-  - ../../acme
-  - ../../rosetta-3-PROD
-  - ../../rosetta-3-iiif
-  - ../../cantaloupe
   - ../../rosetta-3-TEST
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
-  - ciim-tagged.yml
-  - database-tagged.yml
   - public-es-tagged.yml
