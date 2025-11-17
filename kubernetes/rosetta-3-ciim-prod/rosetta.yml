@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: rosetta-3-etna-prod
   revisionHistoryLimit: 1
-  replicas: 1
+  replicas: 3
   progressDeadlineSeconds: 600
   strategy:
     type: RollingUpdate
@@ -48,7 +48,7 @@ spec:
           resources:
             requests:
               memory: 12Gi
-              cpu: 3
+              cpu: 1
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
