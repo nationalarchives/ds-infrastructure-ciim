@@ -15,11 +15,8 @@ bases:
   - ../../ohos/rosetta-3
   - ../../ohos/rosetta-3-graphql
   - ../../ohos/acme
-  - ../../internal-es
   - ../../public-es
   - ../../ingress
-  - ../../rosetta-3
-  - ../../api
   - ../../acme
   - ../../rosetta-3-TEST
 commonAnnotations:
