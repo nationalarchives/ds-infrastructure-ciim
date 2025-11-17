@@ -25,5 +25,4 @@ bases:
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
-  - database-tagged.yml
   - public-es-tagged.yml
