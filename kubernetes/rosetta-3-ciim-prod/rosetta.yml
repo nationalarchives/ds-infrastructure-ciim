@@ -48,7 +48,7 @@ spec:
           resources:
             requests:
               memory: 14Gi
-              cpu: 4
+              cpu: 3
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
