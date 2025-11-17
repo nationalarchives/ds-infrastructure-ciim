@@ -304,26 +304,36 @@
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {
-                        "#type": "chain",
-                        "chain": [
+                        "#type": "fallback",
+                        "strategies": [
                           {
-                            "#type": "xml_to_json",
-                            "xml": "&.rawTitle"
+                            "#type": "require",
+                            "require": "&[?(!(@.rawTitle =~ /^<\\\\?xml/i",
+                            "value": "&.rawTitle"
                           },
                           {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.span[0].@content",
+                            "#type": "chain",
+                            "chain": [
                               {
-                                "#type": "regex_replace",
-                                "value": {
-                                  "#type": "regex_replace",
-                                  "value": "&.fallbackDesc",
-                                  "pattern": "<[^>]+>",
-                                  "replacement": ""
-                                },
-                                "pattern": "^([^\\.]+\\.).*",
-                                "replacement": "[L]$1"
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": {
+                                      "#type": "regex_replace",
+                                      "value": "&.fallbackDesc",
+                                      "pattern": "<[^>]+>",
+                                      "replacement": ""
+                                    },
+                                    "pattern": "^([^\\.]+\\.).*",
+                                    "replacement": "[L]$1"
+                                  }
+                                ]
                               }
                             ]
                           }
@@ -341,7 +351,7 @@
                         "strategies": [
                           {
                             "#type": "require",
-                            "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                            "require": "&[?(!(@.rawTitle =~ /^<\\\\?xml/i",
                             "value": "&.rawTitle"
                           },
                           {
@@ -396,39 +406,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": {
-                            "#type": "declare",
-                            "args": {
-                              "rawTitle": "$.hits.hits[0]._source.title[?(@.primary == true)].value",
-                              "fallbackDesc": "$.hits.hits[0]._source.description[0].value"
-                            },
-                            "value": {
-                              "#type": "chain",
-                              "chain": [
-                                {
-                                  "#type": "xml_to_json",
-                                  "xml": "&.rawTitle"
-                                },
-                                {
-                                  "#type": "fallback",
-                                  "strategies": [
-                                    "$.span[0].@content",
-                                    {
-                                      "#type": "regex_replace",
-                                      "value": {
-                                        "#type": "regex_replace",
-                                        "value": "&.fallbackDesc",
-                                        "pattern": "<[^>]+>",
-                                        "replacement": ""
-                                      },
-                                      "pattern": "^([^\\.]+\\.).*",
-                                      "replacement": "[L]$1"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
+                          "title": "$.hits.hits[0]._source.summary.title"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"
