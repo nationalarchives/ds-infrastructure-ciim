@@ -16,12 +16,12 @@ rosetta:
       caches:
         - name: fast-cache
           expire_after_write: 12h
-          maximum_size: 200000
+          maximum_size: 2000000
           use_scheduler: true
 
         - name: slow-cache
           expire_after_write: 24h
-          maximum_size: 200000
+          maximum_size: 2000000
           use_scheduler: true
 
   cache:
