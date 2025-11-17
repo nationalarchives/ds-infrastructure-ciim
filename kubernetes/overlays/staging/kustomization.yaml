@@ -25,6 +25,5 @@ bases:
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
-  - ciim-tagged.yml
   - database-tagged.yml
   - public-es-tagged.yml
