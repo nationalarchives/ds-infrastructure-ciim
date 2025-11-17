@@ -40,7 +40,7 @@
                               "strategies": [
                                 {
                                   "#type": "require",
-                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "require": "&[?(!(@.rawTitle =~ /^<\\?xml/i",
                                   "value": "&.rawTitle"
                                 },
                                 {
@@ -90,7 +90,7 @@
                               "strategies": [
                                 {
                                   "#type": "require",
-                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "require": "&[?(!(@.rawTitle =~ /^<\\?xml/i",
                                   "value": "&.rawTitle"
                                 },
                                 {
