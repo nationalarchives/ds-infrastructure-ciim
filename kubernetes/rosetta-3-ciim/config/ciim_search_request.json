@@ -6,22 +6,7 @@
       "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
-      "sort": "$.sort",
-      "_source:": {
-        "includes": [
-          "summary.title",
-          "title",
-          "description",
-          "identifier",
-          "origination.date.value",
-          "repository.name.value",
-          "@template.details.digitised",
-          "multimedia.@admin.id",
-          "subjects.subject.summary.title",
-          "level",
-          "@datatype.group"
-        ]
-      }
+      "sort": "$.sort"
     },
     "cache": {
       "name": "fast-cache"
