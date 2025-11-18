@@ -39,13 +39,20 @@
                               "#type": "fallback",
                               "strategies": [
                                 {
-                                  "#type": "regex_replace",
-                                  "value": {
-                                    "#type": "regex_replace",
-                                    "value": "&.rawTitle",
-                                    "pattern": "<(?!/?mark\\b)[^>]+>",
-                                    "replacement": ""
-                                  }
+                                  "#type": "require",
+                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "value": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "chain",
+                                  "chain": [
+                                    {
+                                      "#type": "xml_to_json",
+                                      "xml": "&.rawTitle",
+                                      "require_convert": true
+                                    },
+                                    "$.span[0].@content"
+                                  ]
                                 },
                                 {
                                   "#type": "regex_replace",
@@ -82,13 +89,20 @@
                               "#type": "fallback",
                               "strategies": [
                                 {
-                                  "#type": "regex_replace",
-                                  "value": {
-                                    "#type": "regex_replace",
-                                    "value": "&.rawTitle",
-                                    "pattern": "<(?!/?mark\\b)[^>]+>",
-                                    "replacement": ""
-                                  }
+                                  "#type": "require",
+                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "value": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "chain",
+                                  "chain": [
+                                    {
+                                      "#type": "xml_to_json",
+                                      "xml": "&.rawTitle",
+                                      "require_convert": true
+                                    },
+                                    "$.span[0].@content"
+                                  ]
                                 },
                                 {
                                   "#type": "regex_replace",
