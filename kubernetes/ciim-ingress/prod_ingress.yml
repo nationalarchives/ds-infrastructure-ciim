@@ -28,7 +28,7 @@ spec:
               service:
                 name: rosetta-3-service-prod-search
                 port:
-                  name: api-port
+                  name: rosetta-port
           - path: /
             pathType: Prefix
             backend:
