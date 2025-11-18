@@ -1,0 +1,85 @@
+{
+  "search_url":"http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es-2/_search",
+  "count_url":"http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es-2/_count",
+  "type_registry": {
+    "es_query": {
+      "#type": "http_request",
+      "url": "{%.search_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic  ZWxhc3RpYzo1MzI0M1VTOWVmSDhFMmNhMlh0ZUM3VlE="
+      },
+      "body": {
+        "query": {
+          "bool": {
+            "must": [
+              {
+                "term": {
+                  "parent.@admin.id": "&.parentId"
+                }
+              },
+              {
+                "range": {
+                  "sort": "&.rangeSort"
+                }
+              }
+            ]
+          }
+        },
+        "sort": [
+          {
+            "sort": {
+              "order": "{&.sortOrder}"
+            }
+          }
+        ],
+        "size": 1
+      },
+      "allow": 200,
+      "timeout": 10000,
+      "require_allowed": true,
+      "require_response": true
+    },
+    "es_count": {
+      "#type": "http_request",
+      "url": "{%.count_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ZWxhc3RpYzo1MzI0M1VTOWVmSDhFMmNhMlh0ZUM3VlE="
+      },
+      "body": {
+        "query": {
+          "term": {
+            "@hierarchy.@admin.id": "&.Id"
+          }
+        }
+      },
+      "allow": 200,
+      "timeout": 2000,
+      "require_allowed": true,
+      "require_response": true
+    },
+    "es_held_count": {
+      "#type": "http_request",
+      "url": "{%.count_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ZWxhc3RpYzo1MzI0M1VTOWVmSDhFMmNhMlh0ZUM3VlE="
+      },
+      "body": {
+        "query": {
+          "term": {
+            "repository.@admin.id": "&.Id"
+          }
+        }
+      },
+      "allow": 200,
+      "timeout": 2000,
+      "require_allowed": true,
+      "require_response": true
+    }
+  }
+}

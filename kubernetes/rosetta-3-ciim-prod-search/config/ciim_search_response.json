@@ -1,0 +1,245 @@
+{
+  "#type": "chain",
+  "chain": [
+    {
+      "#type": "merge",
+      "values": [
+        "$.results.datasets.elasticsearchEtna",
+        {
+          "stats": "$.results.stats"
+        }
+      ]
+    },
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "for_each",
+              "values": "$.data",
+              "spec": {
+                "@template": {
+                  "details": {
+                    "iaid": "$.source.identifier..__iaid",
+                    "cleanSummaryTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          {
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
+                            },
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.rawTitle",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  }
+                                },
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  "pattern": "^([^\\.]+\\.).*",
+                                  "replacement": "[L]$1"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
+                    "summaryTitle": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          {
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
+                            },
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.rawTitle",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  }
+                                },
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  "pattern": "^([^\\.]+\\.).*",
+                                  "replacement": "[L]$1"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
+                    "cleanTitle": {
+                      "#type": "regex_replace",
+                      "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
+                      "replacement": "[L]$1"
+                    },
+                    "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
+                    "cleanDescription": {
+                      "#type": "regex_replace",
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['description.value'][0]",
+                          "$.source.description[0].value",
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw"
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
+                    },
+                    "description": {
+                      "#type": "fallback",
+                      "strategies": [
+                        "[R]$.source.highlight['description.value']",
+                        "$.source.description[0].value"
+                      ]
+                    },
+                    "dateCovering": "$.source.origination.date.value",
+                    "digitised": "$.source.@template.details.digitised",
+                    "rid": "$.source.multimedia[*].@admin.id",
+                    "heldBy": "$.source.repository.name.value",
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "level": "$.source.level",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
+                    "groupArray": "$.source.@datatype.group"
+                  }
+                }
+              }
+            }
+          },
+          []
+        ]
+      },
+      "errors": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "flatten",
+              "values": [
+                "$$.results.errors",
+                "$$.aggs.errors",
+                "$$.results.datasets.elasticsearch.errors",
+                "$$.aggs.datasets.elasticsearch.errors"
+              ]
+            }
+          },
+          []
+        ]
+      },
+      "aggregations": {
+        "#type": "chain",
+        "chain": [
+          {
+            "#type": "group",
+            "values": "$.aggregations",
+            "by": "$.name",
+            "yield_group": {
+              "#type": "merge",
+              "values": "$"
+            }
+          },
+          {
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "for_each",
+                "values": {
+                  "#type": "entries",
+                  "map": "$"
+                },
+                "spec": "$.value"
+              },
+              []
+            ]
+          }
+        ]
+      },
+      "stats": {
+        "total": "$.stats.total",
+        "results": "$$.results.stats.results",
+        "providers": "$.stats.providers",
+        "latency": {
+          "#type": "chain",
+          "chain": [
+            {
+              "#type": "as_list",
+              "values": [
+                "$$.results.stats.latency",
+                "$$.aggs.stats.latency"
+              ]
+            },
+            "$.sum()"
+          ]
+        }
+      },
+      "found": "$.found",
+      "buckets": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": {
+              "#type": "flatten",
+              "values": [
+                "$$.aggs.datasets.elasticsearchEtna.aggregations"
+              ]
+            }
+          },
+          []
+        ]
+      }
+    }
+  ]
+}

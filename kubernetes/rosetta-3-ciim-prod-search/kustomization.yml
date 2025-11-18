@@ -2,7 +2,7 @@ namespace: etna
 resources:
   - rosetta.yml
 configMapGenerator:
-  - name: rosetta-3-etna-prod-search
+  - name: rosetta-3-config-prod
     files:
       - ./config/aggs_count_to_doc_count.json
       - ./config/application.yml

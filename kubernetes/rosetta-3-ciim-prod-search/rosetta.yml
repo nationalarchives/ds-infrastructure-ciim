@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rosetta-3-etna-prod-search
+  name: rosetta-3-etna-prod
   namespace: etna
 spec:
   selector:
     matchLabels:
-      app: rosetta-3-etna-prod-search
+      app: rosetta-3-etna-prod
   revisionHistoryLimit: 1
   replicas: 3
   progressDeadlineSeconds: 600
@@ -18,13 +18,13 @@ spec:
   template:
     metadata:
       labels:
-        app: rosetta-3-etna-prod-search
+        app: rosetta-3-etna-prod
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: rosetta-3-etna-prod-search
+        - name: rosetta-3-config-prod
           configMap:
-            name: rosetta-3-etna-prod-search
+            name: rosetta-3-config-prod
       initContainers:
         - name: set-rosetta-permissions
           image: registry.hub.docker.com/library/busybox:latest
@@ -40,7 +40,7 @@ spec:
               containerPort: 4923
               protocol: TCP
           volumeMounts:
-            - name: rosetta-3-etna-prod-search
+            - name: rosetta-3-config-prod
               mountPath: /rosetta/config
           env:
             - name: JAVA_OPTS
@@ -58,12 +58,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rosetta-3-service-prod-search
+  name: rosetta-3-service-prod
   namespace: etna
 spec:
   type: ClusterIP
   selector:
-    app: rosetta-3-etna-prod-search
+    app: rosetta-3-etna-prod
   ports:
     - protocol: TCP
       port: 4923

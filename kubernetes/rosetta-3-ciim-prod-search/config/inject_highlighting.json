@@ -1,0 +1,46 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$",
+    {
+      "results": {
+        "request": {
+          "highlight": {
+            "#type": "literal",
+            "value": {
+              "pre_tags": [
+                "<mark>"
+              ],
+              "post_tags": [
+                "</mark>"
+              ],
+              "fragment_size":250,
+              "number_of_fragments": 1,
+              "fields": {
+                "name.value": {
+                  "number_of_fragments": 1
+                },
+                "identifier.__reference_number": {
+                  "number_of_fragments": 1
+                },
+                "title.value.keyword": {
+                  "number_of_fragments": 1
+                },
+                "summary.title":{
+                  "number_of_fragments": 1
+                },
+                "description.raw": {
+                  "number_of_fragments": 1
+                },
+                "description.value": {
+                  "number_of_fragments": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
