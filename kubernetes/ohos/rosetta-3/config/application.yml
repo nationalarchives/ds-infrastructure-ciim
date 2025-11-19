@@ -327,7 +327,7 @@ rosetta:
         type: elasticsearch
         properties:
           host: a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com
-          pathPrefix: es-2
+          path_prefix: es-2
           protocol: https
           port: 9200
           index: ciim
