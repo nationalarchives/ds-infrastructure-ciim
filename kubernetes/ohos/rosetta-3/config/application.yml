@@ -326,7 +326,7 @@ rosetta:
       - name: elasticsearchEtna
         type: elasticsearch
         properties:
-          host: http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es-2
+          host: a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es-2
           port: 9200
           index: ciim
           username: elastic
