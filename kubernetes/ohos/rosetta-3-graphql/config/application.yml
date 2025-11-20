@@ -74,7 +74,6 @@ rosetta:
           username: elastic
           password: g19415GWedJc1Zbv4w87pw5K
           client_timeout: 60000
-          skip_ping: true
 
   transform:
     glyphs:
