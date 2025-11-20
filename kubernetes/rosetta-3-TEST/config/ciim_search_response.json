@@ -93,7 +93,11 @@
                         "[R]$.source.highlight['description.value']",
                         "$.source.description[0].value"
                       ]
-                    }
+                    },
+                    "dateCovering": "$.source.origination.date.value",
+                    "heldBy": "$.source.repository.name.value",
+                    "referenceNumber": "$.source.@template.details.referenceNumber",
+                    "subjects": "$.source.subjects.subject[*].summary.title"
                   }
                 }
               }
