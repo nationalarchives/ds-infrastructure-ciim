@@ -42,6 +42,12 @@
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
+                    "cleanTitleWithTest": {
+                      "#type": "regex_replace",
+                      "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
+                      "pattern": "<[^>]+>(.*?)</[^>]+>",
+                      "replacement": "[L]$1"
+                    },
                     "cleanTitle": {
                       "#type": "regex_replace",
                       "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
