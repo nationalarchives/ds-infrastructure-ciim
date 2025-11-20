@@ -1,0 +1,56 @@
+[
+  {
+    "_source": ["@admin.id"],
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "term": {
+              "parent.@admin.id": "{&.query}"
+            }
+          },
+          {
+            "range": {
+              "sort": {
+                "gt": "{&.query}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "sort": [
+      {
+        "sort": "asc"
+      }
+    ],
+    "size": 1
+  },
+  {
+    "_source": ["@admin.id"],
+    "query": {
+      "bool": {
+        "must": [
+          {
+            "term": {
+              "parent.@admin.id": "{&.query}"
+            }
+          },
+          {
+            "range": {
+              "sort": {
+                "lt": "{&.query}"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "sort": [
+      {
+        "sort": "desc"
+      }
+    ],
+    "size": 1
+  }
+]

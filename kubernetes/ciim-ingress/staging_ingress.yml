@@ -26,6 +26,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: rosetta-3-service
+                name: rosetta-3-service-staging
                 port:
                   name: rosetta-port
