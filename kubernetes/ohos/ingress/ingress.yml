@@ -22,6 +22,20 @@ spec:
                 name: rosetta-3-service
                 port:
                   name: rosetta-port
+          - path: /rosetta-3/graphql
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-graphql-service
+                port:
+                  name: rosetta-port
+          - path: /rosetta-3/graphiql
+            pathType: Prefix
+            backend:
+              service:
+                name: rosetta-3-graphql-service
+                port:
+                  name: rosetta-port
     - host: a08001c6c1d2e4c58bdf02589da33fca-0f850b505f873e8e.elb.eu-west-2.amazonaws.com
       http:
         paths:
