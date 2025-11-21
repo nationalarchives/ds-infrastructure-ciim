@@ -13,7 +13,7 @@ spring:
 rosetta:
   graphql:
     max_depth: 15
-    max_complexity: 64
+    max_complexity: 70
   view:
     views:
       - name: search

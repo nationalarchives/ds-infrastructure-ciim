@@ -30,7 +30,7 @@ spec:
         - name: regcred
       containers:
         - name: rosetta
-          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:graphql
+          image: registry.gitlab.com/knowledge-integration/ciim/rosetta:graphql-1.1
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
