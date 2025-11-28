@@ -23,6 +23,7 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
+                    "id": "$.source.@admin.id",
                     "cleanSummaryTitle": {
                       "#type": "regex_replace",
                       "value": {
