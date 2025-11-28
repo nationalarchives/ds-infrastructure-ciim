@@ -178,6 +178,7 @@
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
+                    "id": "$.source.@admin.id",
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
