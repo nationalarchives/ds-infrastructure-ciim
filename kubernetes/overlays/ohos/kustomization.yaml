@@ -4,7 +4,6 @@ bases:
   - ../../ohos/kong
   - ../../ohos/ingress
   - ../../ohos/ciim
-  - ../../ohos/mysql
   - ../../ohos/internal-es
   - ../../ohos/public-es
   - ../../ohos/ciim-ui
