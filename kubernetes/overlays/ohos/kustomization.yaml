@@ -10,6 +10,5 @@ bases:
   - ../../ohos/public-clean-es
   - ../../ohos/rosetta-3
   - ../../ohos/rosetta-3-graphql
-  - ../../ohos/acme
 commonAnnotations:
   environment: dev
