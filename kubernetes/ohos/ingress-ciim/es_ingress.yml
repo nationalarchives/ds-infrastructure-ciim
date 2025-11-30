@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ohos-ingress-es
+  namespace: tna-ohos
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  ingressClassName:  tna-ohos
+  rules:
+      http:
+        paths:
+          - path: /es
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-internal-tna-es-http
+                port:
+                  number: 9200
+          - path: /public
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-public-tna-es-http
+                port:
+                  number: 9200
+          - path: /clean
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-public-clean-tna-es-http
+                port:
+                  number: 9200
