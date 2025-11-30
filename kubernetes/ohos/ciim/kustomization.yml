@@ -1,6 +1,7 @@
 namespace: tna-ohos
 resources:
   - ciim.yml
+  - ciim-secrets.yml
 configMapGenerator:
   - name: ciim-config
     files:
