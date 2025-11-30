@@ -1,0 +1,16 @@
+bases:
+  - ../../ohos/base
+  - ../../ohos/eks
+  - ../../ohos/kong
+  - ../../ohos/ingress
+  - ../../ohos/ciim
+  - ../../ohos/mysql
+  - ../../ohos/internal-es
+  - ../../ohos/public-es
+  - ../../ohos/ciim-ui
+  - ../../ohos/public-clean-es
+  - ../../ohos/rosetta-3
+  - ../../ohos/rosetta-3-graphql
+  - ../../ohos/acme
+commonAnnotations:
+  environment: dev
