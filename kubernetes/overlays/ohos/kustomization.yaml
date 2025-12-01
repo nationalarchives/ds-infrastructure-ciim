@@ -2,6 +2,7 @@ bases:
   - ../../ohos/base
   - ../../ohos/eks
   - ../../ohos/kong
+  - ../../ohos/ingress-ciim
   - ../../ohos/ciim
   - ../../ohos/internal-es
   - ../../ohos/public-es
