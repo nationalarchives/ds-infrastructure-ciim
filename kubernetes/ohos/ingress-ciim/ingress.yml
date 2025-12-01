@@ -24,13 +24,6 @@ spec:
                 name: ciim-service-tna
                 port:
                   name: api-port
-          - path: /ciim/
-            pathType: Prefix
-            backend:
-              service:
-                name: ui-service
-                port:
-                  name: ui-port
           - path: /rosetta-3/graphql
             pathType: Prefix
             backend:
