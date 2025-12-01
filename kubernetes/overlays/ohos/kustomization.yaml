@@ -1,6 +1,7 @@
 bases:
   - ../../ohos/base
   - ../../ohos/eks
+  - ../../ohos/kong
   - ../../ohos/ciim
   - ../../ohos/internal-es
   - ../../ohos/public-es
