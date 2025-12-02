@@ -3,8 +3,8 @@ base_paths:
 
 logging:
   level:
-    com.k_int.proteus.component.core.HttpRequestSpec: trace
-    com.k_int.proteus.provider.http.client.OkHttpClientFacade: trace
+    com.k_int.proteus.component.core.HttpRequestSpec: warn
+    com.k_int.proteus.provider.http.client.OkHttpClientFacade: warn
 
 rosetta:
   admin:
@@ -15,14 +15,14 @@ rosetta:
       enabled: true
       caches:
         - name: fast-cache
-          expire_after_write: 5m
-          maximum_size: 100
-          use_scheduler: true
+          expire_after_write: 12h
+          maximum_size: 2000000
+          use_scheduler: false
 
         - name: slow-cache
-          expire_after_write: 1h
-          maximum_size: 100
-          use_scheduler: true
+          expire_after_write: 24h
+          maximum_size: 2000000
+          use_scheduler: false
 
   cache:
     enabled: true
@@ -47,6 +47,7 @@ rosetta:
               - elastic-modifications
               - ciim/search/request
               - inject-highlighting
+              - merge-advance-parameters
               - inject-exists_digitised-filter
           response:
             policy: list
@@ -134,7 +135,7 @@ rosetta:
           data: *global-data-transforms
 
   transform:
-    timeout: 60000
+    timeout: 5000
     glyphs:
       # Elastic search glyphs
       - name: to-generic-search
@@ -186,7 +187,7 @@ rosetta:
         type: elastic-generic-search
         properties:
           index: public-es
-          request_timeout: 60000
+          request_timeout: 5000
           date_range_format: "{from} - {to}"
           date_aggregations:
             - path: "origination.date.from"
@@ -332,7 +333,6 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
-
   provider:
     global_timeout: 900s
     timeout: 900s
