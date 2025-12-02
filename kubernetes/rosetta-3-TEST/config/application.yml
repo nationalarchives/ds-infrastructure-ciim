@@ -47,7 +47,6 @@ rosetta:
               - elastic-modifications
               - ciim/search/request
               - inject-highlighting
-              - merge-advance-parameters
               - inject-exists_digitised-filter
           response:
             policy: list
@@ -165,6 +164,7 @@ rosetta:
 
       - name: inject-highlighting
         type: proteus
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_highlighting.json
