@@ -21,7 +21,7 @@
                 "fragment_size": "$.original.query.summary_size"
               },
               "description.raw": {
-                "fragment_size": "$.original.query.rawdesc_size"
+                "fragment_size": "$.original.query.desc_size"
               },
               "description.value": {
                 "fragment_size": "$.original.query.desc_size"
