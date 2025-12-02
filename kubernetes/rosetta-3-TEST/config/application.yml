@@ -164,7 +164,6 @@ rosetta:
 
       - name: inject-highlighting
         type: proteus
-        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_highlighting.json

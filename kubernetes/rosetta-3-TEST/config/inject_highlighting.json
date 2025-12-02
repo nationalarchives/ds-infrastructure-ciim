@@ -2,7 +2,7 @@
   "#type": "merge",
   "depth": -1,
   "values": [
-    "$.current",
+    "$",
     {
       "results": {
         "request": {
@@ -19,27 +19,27 @@
               "number_of_fragments": 1,
               "fields": {
                 "name.value": {
-                  "fragment_size":"$.original.query.name_size",
+                  "fragment_size":"$.query.name_size",
                   "number_of_fragments": 1
                 },
                 "identifier.__reference_number": {
-                  "fragment_size": "$.original.query.refno_size",
+                  "fragment_size": "$.query.refno_size",
                   "number_of_fragments": 1
                 },
                 "title.value.keyword": {
-                  "fragment_size":"$.original.query.title_size",
+                  "fragment_size":"$.query.title_size",
                   "number_of_fragments": 1
                 },
                 "summary.title":{
-                  "fragment_size":"$.original.query.summary_size",
+                  "fragment_size":"$.query.summary_size",
                   "number_of_fragments": 1
                 },
                 "description.raw": {
-                  "fragment_size":"$.original.query.rawdesc_size",
+                  "fragment_size":"$.query.rawdesc_size",
                   "number_of_fragments": 1
                 },
                 "description.value": {
-                  "fragment_size":"$.original.query.desc_size",
+                  "fragment_size":"$.query.desc_size",
                   "number_of_fragments": 1
                 }
               }
