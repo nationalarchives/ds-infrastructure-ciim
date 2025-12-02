@@ -7,10 +7,29 @@
       "results": {
         "request": {
           "highlight": {
-              "fragment_size":"$.original.query.fragmentSize"
+            "fields": {
+              "name.value": {
+                "fragment_size": "$.original.query.name_size"
+              },
+              "identifier.__reference_number": {
+                "fragment_size": "$.original.query.refno_size"
+              },
+              "title.value.keyword": {
+                "fragment_size": "$.original.query.title_size"
+              },
+              "summary.title": {
+                "fragment_size": "$.original.query.summary_size"
+              },
+              "description.raw": {
+                "fragment_size": "$.original.query.rawdesc_size"
+              },
+              "description.value": {
+                "fragment_size": "$.original.query.desc_size"
+              }
             }
           }
         }
       }
+    }
   ]
 }

@@ -68,19 +68,81 @@
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
                     "deliveryOption": "$.source.availability.delivery.condition.value",
-                    "descriptionSchema": "$.source.description",
                     "description": {
                       "value": "$.source.description[0].value",
                       "schema": "$.source.description[0].schema.value",
-                      "raw": "$.source.description[0].raw"
+                      "raw": {
+                        "#type": "regex_replace",
+                        "value": "$.source.description[0].raw",
+                        "pattern": "(?<=<head>)Scope and Content(?=</head>)",
+                        "replacement": ""
+                      },
+                      "short": {
+                        "#type": "declare",
+                        "args": {
+                          "cleanDesc": {
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "$.source.description[0].raw",
+                                "$.source.description[0].value"
+                              ]
+                            },
+                            "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                            "replacement": ""
+                          }
+                        },
+                        "value": {
+                          "#type": "regex_replace",
+                          "value": "&.cleanDesc",
+                          "pattern": {
+                            "#type": "literal",
+                            "value": "^(.{0,250}\\b).*"
+                          },
+                          "replacement": "[L]$1"
+                        }
+                      },
+                      "noHtml": {
+                        "#type": "regex_replace",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].value"
+                          ]
+                        },
+                        "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                        "replacement": ""
+                      }
                     },
                     "digitised": "$.source.@template.details.digitised",
+                    "rid": "$.source.multimedia[*].@admin.id",
                     "dimensions": "$.source.measurements.dimensions[*].value",
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
                     "groupArray": "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
+                    "heldByCount":  {
+                      "#type": "require",
+                      "require": "$.source.repository.@admin.id",
+                      "value": {
+                        "#type": "scope",
+                        "scope": {
+                          "#type": "es_held_count",
+                          "Id": "$.source.repository.@admin.id"
+                        },
+                        "value": "$.count"
+                      }
+                    },
                     "@hierarchy": {
                       "#type": "for_each",
                       "values": "$.source.@hierarchy",
@@ -103,10 +165,20 @@
                         },
                         "summary": {
                           "title": "$.summary.title"
+                        },
+                        "count": {
+                          "#type": "scope",
+                          "scope": {
+                            "#type": "es_count",
+                            "Id": "$.@admin.id"
+                          },
+                          "value":"$.count"
+
                         }
                       }
                     },
                     "iaid": "$.source.identifier..__iaid",
+                    "id": "$.source.@admin.id",
                     "immediateSourceOfAcquisition": {
                       "#type": "fallback",
                       "strategies": [
@@ -167,39 +239,39 @@
                         }
                       }
                     },
-                   "mapDesignation": {
-                        "#type": "regex_replace",
-                        "value": "$.source.@template.details.mapDesignation",
-                        "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
-                        "replacement": "<unittitle type=\"$2\">$3</unittitle>"
-                      },
+                    "mapDesignation": {
+                      "#type": "regex_replace",
+                      "value": "$.source.@template.details.mapDesignation",
+                      "pattern": "<span class=\"(.*?)\" type=\"(.*?)\">(.*?)</span>",
+                      "replacement": "<unittitle type=\"$2\">$3</unittitle>"
+                    },
                     "mapScale": "$.source.@template.details.mapScale",
-                    "note": "$.source.@template.details.note",
+                    "nraReference": "{$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value} {$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (3rd part)')].value}",
                     "parent": {
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
                       "value": {
-                          "@admin": {
-                            "id": "$.@admin.id"
-                          },
-                          "identifier": {
-                            "#type": "for_each",
-                            "values": "$.identifier",
-                            "spec": {
-                              "reference_number": "$.__reference_number"
-                            }
-                          },
-                          "level": {
-                            "code": "$.level.code"
-                          },
-                          "source": {
-                            "value": "$.source.value"
-                          },
-                          "summary": {
-                            "title": "$.summary.title"
+                        "@admin": {
+                          "id": "$.@admin.id"
+                        },
+                        "identifier": {
+                          "#type": "for_each",
+                          "values": "$.identifier",
+                          "spec": {
+                            "reference_number": "$.__reference_number"
                           }
+                        },
+                        "level": {
+                          "code": "$.level.code"
+                        },
+                        "source": {
+                          "value": "$.source.value"
+                        },
+                        "summary": {
+                          "title": "$.summary.title"
                         }
-                      },
+                      }
+                    },
                     "physicalCondition": "$.source.condition.value",
                     "physicalDescription": "$.source.@template.details.physicalDescription",
                     "primaryIdentifier": "$.source.@admin.id",
@@ -207,6 +279,7 @@
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
+                    "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {
@@ -220,8 +293,11 @@
                     },
                     "source": "$.source.source.value",
                     "sourceUrl": "$.source.@template.details.sourceUrl",
-                    "subjects": "$.source.subjects.subject[*].summary.title",
-                    "summaryTitle":{
+                    "subjects": {
+                      "#type": "as_list",
+                      "values": "$.source.subjects.subject[*].summary.title"
+                    },
+                    "cleanSummaryTitle":{
                       "#type": "declare",
                       "args": {
                         "rawTitle": "$.source.summary.title",
@@ -250,6 +326,45 @@
                                 "replacement": "[L]$1"
                               }
                             ]
+                          }
+                        ]
+                      }
+                    },
+                    "summaryTitle": {
+                      "#type": "declare",
+                      "args": {
+                        "rawTitle": "$.source.summary.title",
+                        "fallbackDesc": "$.source.description[0].value"
+                      },
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          {
+                            "#type": "require",
+                            "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                            "value": "&.rawTitle"
+                          },
+                          {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle",
+                                "require_convert": true
+                              },
+                              "$.span[0].@content"
+                            ]
+                          },
+                          {
+                            "#type": "regex_replace",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.fallbackDesc",
+                              "pattern": "",
+                              "replacement": ""
+                            },
+                            "pattern": "^([^\\.]+\\.).*",
+                            "replacement": "[L]$1"
                           }
                         ]
                       }
@@ -342,39 +457,7 @@
                           "id": "$.hits.hits[0]._source.@admin.id"
                         },
                         "summary": {
-                          "title": {
-                            "#type": "declare",
-                            "args": {
-                              "rawTitle": "$.hits.hits[0]._source.title[?(@.primary == true)].value",
-                              "fallbackDesc": "$.hits.hits[0]._source.description[0].value"
-                            },
-                            "value": {
-                              "#type": "chain",
-                              "chain": [
-                                {
-                                  "#type": "xml_to_json",
-                                  "xml": "&.rawTitle"
-                                },
-                                {
-                                  "#type": "fallback",
-                                  "strategies": [
-                                    "$.span[0].@content",
-                                    {
-                                      "#type": "regex_replace",
-                                      "value": {
-                                        "#type": "regex_replace",
-                                        "value": "&.fallbackDesc",
-                                        "pattern": "<[^>]+>",
-                                        "replacement": ""
-                                      },
-                                      "pattern": "^([^\\.]+\\.).*",
-                                      "replacement": "[L]$1"
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          }
+                          "title": "$.hits.hits[0]._source.summary.title"
                         },
                         "level": {
                           "code": "$.hits.hits[0]._source.level.code"

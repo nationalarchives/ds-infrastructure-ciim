@@ -1,15 +1,16 @@
 {
   "search_url":"http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public/_search",
-  "type_registry":{
-    "es_query":{
-      "#type":"http_request",
-      "url":"{%.search_url}",
-      "method":"POST",
-      "headers":{
-        "Content-Type":"application/json",
+  "count_url":"http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public/_count",
+  "type_registry": {
+    "es_query": {
+      "#type": "http_request",
+      "url": "{%.search_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
         "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
       },
-      "body":{
+      "body": {
         "query": {
           "bool": {
             "must": [
@@ -35,10 +36,50 @@
         ],
         "size": 1
       },
-      "allow":200,
+      "allow": 200,
       "timeout": 4000,
-      "require_allowed":true,
-      "require_response":true
+      "require_allowed": true,
+      "require_response": true
+    },
+    "es_count": {
+      "#type": "http_request",
+      "url": "{%.count_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+      },
+      "body": {
+        "query": {
+          "term": {
+            "@hierarchy.@admin.id": "&.Id"
+          }
+        }
+      },
+      "allow": 200,
+      "timeout": 4000,
+      "require_allowed": true,
+      "require_response": true
+    },
+    "es_held_count": {
+      "#type": "http_request",
+      "url": "{%.count_url}",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+      },
+      "body": {
+        "query": {
+          "term": {
+            "repository.@admin.id": "&.Id"
+          }
+        }
+      },
+      "allow": 200,
+      "timeout": 4000,
+      "require_allowed": true,
+      "require_response": true
     }
   }
 }

@@ -48,13 +48,14 @@ rosetta:
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
+              - inject-exists_digitised-filter
           response:
             policy: list
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
 
-      - name: ciim/searchHighlight
+      - name: ciim/serachHighlight
         type: transform-only
         paths:
           - /ciim/search/highlight
@@ -70,8 +71,7 @@ rosetta:
             - elastic-modifications
             - ciim/search/request
             - inject-highlighting
-
-
+            - inject-exists_digitised-filter
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
@@ -109,10 +109,6 @@ rosetta:
 
   profile:
     profiles:
-      - name: default
-        profiles:
-          policy: all
-
       - name: elasticsearch
         providers:
           policy: list
@@ -169,10 +165,16 @@ rosetta:
 
       - name: inject-highlighting
         type: proteus
-        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_highlighting.json
+
+      - name: inject-exists_digitised-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
 
       - name: merge-advance-parameters
         type: proteus
@@ -235,23 +237,31 @@ rosetta:
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
               webReference: "web.identifier.value.lower"
-              subjects: "subjects.subject.summary.title.keyword"
+              subject: "subjects.subject.summary.title.keyword"
               title: "summary.title.keyword"
-              longSubjects: "subjects.subject.summary.title.keyword"
+              longSubject: "subjects.subject.summary.title.keyword"
               longHeldBy: "repository.name.value.keyword"
-              longCollections: "@hierarch.identifier.value"
+              longCollection: "@hierarch.identifier.value"
+              datatype: "@datatype.base"
+              schema: "@datatype.actual"
+              descSchema: "description.schema.keyword"
+              dateCovering: "origination.date.from"
           aggregation_configs:
-              - name: longSubjects
-                size: 10000
-              - name: longHeldBy
-                size: 10000
-              - name: longCollections
-                size: 10000
+            - name: longSubject
+              size: 10000
+            - name: longHeldBy
+              size: 10000
+            - name: longCollection
+              size: 10000
           search_config:
             search_fields:
               - field: "name.value"
                 boost: 4
               - field: "identifier.__reference_number"
+                boost: 4
+              - field: "identifier.__catalogue_id"
+                boost: 4
+              - field: "identifier.__iaid"
                 boost: 4
               - field: "agent.name.value"
                 boost: 3
@@ -273,6 +283,10 @@ rosetta:
                 boost: 2
               - field: "originals.description.value"
                 boost: 2
+              - field: "_generic_all_std"
+                boost: 0
+              - field: "_all"
+                boost: 0
 
       - name: ciim/search/request
         type: proteus
@@ -282,7 +296,6 @@ rosetta:
 
       - name: ciim/search/response
         type: proteus
-        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_search_response.json

@@ -3,42 +3,7 @@
     "request": {
       "track_total_hits": true,
       "query": "$.query",
-      "aggregations": {
-        "#type": "merge",
-        "values": {
-          "#type": "flatten",
-          "values": [
-            "$.aggregations",
-            {
-              "#type": "for_each",
-              "values": {
-                "#type": "chain",
-                "chain": [
-                  {
-                    "#type": "entries",
-                    "map": "$.aggregations"
-                  },
-                  "$[?(@.value.terms)]"
-                ]
-              },
-              "spec": {
-                "$.key": {
-                  "#type": "merge",
-                  "depth": -1,
-                  "values": [
-                    "$.value",
-                    {
-                      "terms": {
-                        "min_doc_count": 0
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      },
+      "aggregations": "$.aggregations",
       "from": "$.from",
       "size": "$.size",
       "sort": "$.sort"
@@ -58,8 +23,7 @@
         "group": {
           "terms": {
             "field": "@datatype.group.value",
-            "size": "50",
-            "min_doc_count": 0
+            "size": "50"
           }
         }
       },

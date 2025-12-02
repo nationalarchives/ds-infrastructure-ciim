@@ -23,30 +23,106 @@
                 "@template": {
                   "details": {
                     "iaid": "$.source.identifier..__iaid",
-                    "summaryTitles": {
-                      "#type": "fallback",
-                      "strategies": [
-                        "[R]$.source.highlight['summary.title']",
-                        "$.source.summary.title"
-                      ]
-                    },
+                    "id": "$.source.@admin.id",
                     "cleanSummaryTitle": {
                       "#type": "regex_replace",
                       "value": {
                         "#type": "fallback",
                         "strategies": [
                           "[R]$.source.highlight['summary.title']",
-                          "$.source.summary.title"
+                          {
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
+                            },
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "require",
+                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "value": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "chain",
+                                  "chain": [
+                                    {
+                                      "#type": "xml_to_json",
+                                      "xml": "&.rawTitle",
+                                      "require_convert": true
+                                    },
+                                    "$.span[0].@content"
+                                  ]
+                                },
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  "pattern": "^([^\\.]+\\.).*",
+                                  "replacement": "[L]$1"
+                                }
+                              ]
+                            }
+                          }
                         ]
                       },
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-                    "cleanTitleWithTest": {
+                    "summaryTitle": {
                       "#type": "regex_replace",
-                      "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
-                      "pattern": "<[^>]+>(.*?)</[^>]+>",
-                      "replacement": "[L]$1"
+                      "value": {
+                        "#type": "fallback",
+                        "strategies": [
+                          "[R]$.source.highlight['summary.title']",
+                          {
+                            "#type": "declare",
+                            "args": {
+                              "rawTitle": "$.source.summary.title",
+                              "fallbackDesc": "$.source.description[0].value"
+                            },
+                            "value": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "require",
+                                  "require": "&[?(!(@.rawTitle =~ /^<span.*/i))]",
+                                  "value": "&.rawTitle"
+                                },
+                                {
+                                  "#type": "chain",
+                                  "chain": [
+                                    {
+                                      "#type": "xml_to_json",
+                                      "xml": "&.rawTitle",
+                                      "require_convert": true
+                                    },
+                                    "$.span[0].@content"
+                                  ]
+                                },
+                                {
+                                  "#type": "regex_replace",
+                                  "value": {
+                                    "#type": "regex_replace",
+                                    "value": "&.fallbackDesc",
+                                    "pattern": "<(?!/?mark\\b)[^>]+>",
+                                    "replacement": ""
+                                  },
+                                  "pattern": "^([^\\.]+\\.).*",
+                                  "replacement": "[L]$1"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "pattern": "<(?!/?mark\\b)[^>]+>",
+                      "replacement": ""
                     },
                     "cleanTitle": {
                       "#type": "regex_replace",
@@ -55,38 +131,20 @@
                       "replacement": "[L]$1"
                     },
                     "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
-                    "cleanTitleWithLimit": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "#type": "regex_replace",
-                          "value": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
-                          "pattern": "<[^>]+>(.*?)</[^>]+>",
-                          "replacement": "[L]$1"
-                        },
-                        {
-                          "#type": "substring",
-                          "value": "$",
-                          "start": 0,
-                          "end": "$.params.titleLimit"
-                        }
-                      ]
-                    },
                     "cleanDescription": {
                       "#type": "regex_replace",
                       "value": {
                         "#type": "fallback",
                         "strategies": [
-                          "[R]$.source.highlight['description.raw'][0]",
-                          "$.source.description[0].raw",
                           "[R]$.source.highlight['description.value'][0]",
-                          "$.source.description[0].value"
+                          "$.source.description[0].value",
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw"
                         ]
                       },
                       "pattern": "<(?!/?mark\\b)[^>]+>",
                       "replacement": ""
                     },
-
                     "description": {
                       "#type": "fallback",
                       "strategies": [
@@ -95,9 +153,20 @@
                       ]
                     },
                     "dateCovering": "$.source.origination.date.value",
+                    "digitised": "$.source.@template.details.digitised",
+                    "rid": "$.source.multimedia[*].@admin.id",
                     "heldBy": "$.source.repository.name.value",
-                    "referenceNumber": "$.source.@template.details.referenceNumber",
-                    "subjects": "$.source.subjects.subject[*].summary.title"
+                    "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
+                    "subjects": "$.source.subjects.subject[*].summary.title",
+                    "level": "$.source.level",
+                    "group": {
+                      "#type":"fallback",
+                      "strategies": [
+                        "$.source.@datatype.group[1].value",
+                        "$.source.@datatype.group[0].value"
+                      ]
+                    },
+                    "groupArray": "$.source.@datatype.group"
                   }
                 }
               }

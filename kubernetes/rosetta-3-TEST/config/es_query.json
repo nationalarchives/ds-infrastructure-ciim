@@ -37,12 +37,6 @@
             }
           },
           {
-            "query_string": {
-              "query": "{&.query}",
-              "fields": "[parent.@admin.id]"
-            }
-          },
-          {
             "range": {
               "sort": {
                 "lt": "{&.query}"
