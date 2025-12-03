@@ -122,7 +122,7 @@
                     "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
                     "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
                     "group": {
-                      "#type":"fallback",
+                      "#type": "fallback",
                       "strategies": [
                         "$.source.@datatype.group[1].value",
                         "$.source.@datatype.group[0].value"
@@ -131,7 +131,7 @@
                     "groupArray": "$.source.@datatype.group",
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
-                    "heldByCount":  {
+                    "heldByCount": {
                       "#type": "require",
                       "require": "$.source.repository.@admin.id",
                       "value": {
@@ -172,8 +172,7 @@
                             "#type": "es_count",
                             "Id": "$.@admin.id"
                           },
-                          "value":"$.count"
-
+                          "value": "$.count"
                         }
                       }
                     },
@@ -297,36 +296,42 @@
                       "#type": "as_list",
                       "values": "$.source.subjects.subject[*].summary.title"
                     },
-                    "cleanSummaryTitle":{
+                    "cleanSummaryTitle": {
                       "#type": "declare",
                       "args": {
                         "rawTitle": "$.source.summary.title",
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {
-                        "#type": "chain",
-                        "chain": [
+                        "type": "fallback",
+                        "strategies": [
                           {
-                            "#type": "xml_to_json",
-                            "xml": "&.rawTitle"
-                          },
-                          {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.span[0].@content",
+                            "#type": "chain",
+                            "chain": [
                               {
-                                "#type": "regex_replace",
-                                "value": {
-                                  "#type": "regex_replace",
-                                  "value": "&.fallbackDesc",
-                                  "pattern": "<[^>]+>",
-                                  "replacement": ""
-                                },
-                                "pattern": "^([^\\.]+\\.).*",
-                                "replacement": "[L]$1"
+                                "#type": "xml_to_json",
+                                "xml": "&.rawTitle"
+                              },
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  "$.span[0].@content",
+                                  {
+                                    "#type": "regex_replace",
+                                    "value": {
+                                      "#type": "regex_replace",
+                                      "value": "&.fallbackDesc",
+                                      "pattern": "<[^>]+>",
+                                      "replacement": ""
+                                    },
+                                    "pattern": "^([^\\.]+\\.).*",
+                                    "replacement": "[L]$1"
+                                  }
+                                ]
                               }
                             ]
-                          }
+                          },
+                          "&.rawTitle"
                         ]
                       }
                     },
