@@ -310,8 +310,7 @@
                             "chain": [
                               {
                                 "#type": "xml_to_json",
-                                "xml": "&.rawTitle",
-                                "require_convert": true
+                                "xml": "&.rawTitle"
                               },
                               {
                                 "#type": "fallback",
