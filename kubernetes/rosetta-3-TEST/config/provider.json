@@ -128,21 +128,6 @@
                   }
                 },
                 {
-                  "#type": "fallback",
-                  "strategies": [
-                    {
-                      "#type": "for_each",
-                      "values": {
-                        "#type": "entries",
-                        "map": "$"
-                      },
-                      "spec": "$.value"
-                    },
-                    []
-                  ]
-                },
-
-                {
                   "#type": "for_each",
                   "values": "$[?(@.value.doc_count)]",
                   "spec": {
