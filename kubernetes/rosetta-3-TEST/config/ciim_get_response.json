@@ -303,7 +303,7 @@
                         "fallbackDesc": "$.source.description[0].value"
                       },
                       "value": {
-                        "type": "fallback",
+                        "#type": "fallback",
                         "strategies": [
                           {
                             "#type": "chain",
