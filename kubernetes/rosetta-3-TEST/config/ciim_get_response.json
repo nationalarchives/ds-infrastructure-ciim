@@ -306,30 +306,35 @@
                         "#type": "fallback",
                         "strategies": [
                           {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "#type": "xml_to_json",
-                                "xml": "&.rawTitle"
-                              },
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  "$.span[0].@content",
-                                  {
-                                    "#type": "regex_replace",
-                                    "value": {
+                            "#type": "require",
+                            "require": "&[?(@.rawTitle =~ /^<span/i)]",
+                            "value": {
+                              "#type": "chain",
+                              "chain": [
+                                {
+                                  "#type": "xml_to_json",
+                                  "xml": "&.rawTitle",
+                                  "require_convert": true
+                                },
+                                {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "$.span[0].@content",
+                                    {
                                       "#type": "regex_replace",
-                                      "value": "&.fallbackDesc",
-                                      "pattern": "<[^>]+>",
-                                      "replacement": ""
-                                    },
-                                    "pattern": "^([^\\.]+\\.).*",
-                                    "replacement": "[L]$1"
-                                  }
-                                ]
-                              }
-                            ]
+                                      "value": {
+                                        "#type": "regex_replace",
+                                        "value": "&.fallbackDesc",
+                                        "pattern": "<[^>]+>",
+                                        "replacement": ""
+                                      },
+                                      "pattern": "^([^\\.]+\\.).*",
+                                      "replacement": "[L]$1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
                           },
                           "&.rawTitle"
                         ]
