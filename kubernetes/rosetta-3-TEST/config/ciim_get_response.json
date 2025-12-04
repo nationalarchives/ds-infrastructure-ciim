@@ -429,7 +429,8 @@
                                       },
                                       "pattern": "^([^\\.]+\\.).*",
                                       "replacement": "[L]$1"
-                                    }
+                                    },
+                                    "&.rawTitle"
                                   ]
                                 }
                               ]
