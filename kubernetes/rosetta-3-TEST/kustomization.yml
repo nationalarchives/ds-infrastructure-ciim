@@ -19,4 +19,6 @@ configMapGenerator:
       - ./config/provider.json
       - ./config/merge_advance_parameters.json
       - ./config/inject_highlighting.json
+      - ./config/hierarchy_count_query.json
+      - ./config/heldby_count_query.json
       - ./config/inject_digitised_exists_filter.json
