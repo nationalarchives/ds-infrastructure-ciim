@@ -34,6 +34,10 @@ spec:
       containers:
         - name: rosetta
           image: public.ecr.aws/v3w7q3a1/rosetta:tna-etna-4.0
+          args:
+            - "/bin/sh"
+            - "-c"
+            - "/rosetta/bin/rosetta 2>/dev/null"
           imagePullPolicy: Always
           ports:
             - name: rosetta-port
