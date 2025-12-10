@@ -166,7 +166,10 @@
                         "$.source.@datatype.group[0].value"
                       ]
                     },
-                    "groupArray": "$.source.@datatype.group"
+                    "groupArray": {
+                      "#type": "as_list",
+                      "values": "$.source.@datatype.group"
+                    }
                   }
                 }
               }
