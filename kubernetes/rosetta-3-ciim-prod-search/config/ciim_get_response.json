@@ -128,7 +128,10 @@
                         "$.source.@datatype.group[0].value"
                       ]
                     },
-                    "groupArray": "$.source.@datatype.group",
+                    "groupArray": {
+                      "#type": "as_list",
+                      "values": "$.source.@datatype.group"
+                    },
                     "heldBy": "$.source.repository.name.value",
                     "heldById": "$.source.repository.@admin.id",
                     "heldByCount":  {
