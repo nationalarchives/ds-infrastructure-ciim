@@ -1,0 +1,15 @@
+{
+  "size": 20,
+  "query": {
+    "function_score": {
+      "query": {
+        "match_all": {}
+      },
+      "random_score": {},
+      "boost_mode": "multiply"
+    }
+  },
+  "_source": [
+    "@admin.id"
+  ]
+}

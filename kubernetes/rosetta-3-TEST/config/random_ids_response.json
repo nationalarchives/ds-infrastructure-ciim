@@ -1,0 +1,8 @@
+{
+  "#type": "as_list",
+  "values": {
+    "#type": "for_each",
+    "values": "$.data",
+    "spec": "$.source.@admin.id"
+  }
+}
