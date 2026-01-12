@@ -326,7 +326,7 @@ rosetta:
         type: proteus
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/ciim_ids_request.json
+          spec: ${base_paths.proteus}/random_ids_request.json
           include:
             - ./config/component_search.json
 
@@ -334,7 +334,7 @@ rosetta:
         type: proteus
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/ciim_ids_response.json
+          spec: ${base_paths.proteus}/random_ids_response.json
           include:
             - ./config/component_search.json
 
