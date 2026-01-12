@@ -113,8 +113,8 @@ rosetta:
         profile: generic-search
         transforms:
           request:
-             policy: list
-             names:
+            policy: list
+            names:
               - ciim/ids/request
           response:
             policy: list
