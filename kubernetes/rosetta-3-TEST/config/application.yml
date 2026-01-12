@@ -121,7 +121,6 @@ rosetta:
             names:
               - ciim/ids/response
 
-
   profile:
     profiles:
       - name: elasticsearch
