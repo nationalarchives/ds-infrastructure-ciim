@@ -111,7 +111,6 @@ rosetta:
         paths:
           - /rosetta/data/random-ids
         profile: generic-search
-        type: advanced-cache-multi
         transforms:
           request:
             policy: list
