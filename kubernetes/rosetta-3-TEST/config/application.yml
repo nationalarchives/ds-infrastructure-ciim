@@ -110,7 +110,7 @@ rosetta:
       - name: ciim/ids
         paths:
           - /rosetta/data/random-ids
-        profile: random-ids
+        profile: generic-search
         transforms:
           request:
              policy: list
@@ -123,18 +123,6 @@ rosetta:
 
   profile:
     profiles:
-      - name: random-ids
-        providers:
-          policy: list
-          names:
-            - elasticsearchEtna
-        transforms:
-          request:
-            - glyphs:
-                policy: list
-                names:
-                  - ciim/ids/request
-
       - name: elasticsearch
         providers:
           policy: list
@@ -214,24 +202,6 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/elastic_modifications.json
-
-      - name: ciim/ids/request
-        type: proteus
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/ciim_ids_request.json
-
-      - name: ciim/ids/response
-        type: proteus
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/ciim_ids_response.json
-
-      - name: ciim/get/request
-        type: proteus
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/ciim_get_request.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
