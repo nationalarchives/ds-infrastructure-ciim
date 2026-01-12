@@ -1,16 +1,16 @@
 {
-  "size": 20,
-  "query": {
-    "function_score": {
-      "query": {
-        "match_all": {}
-      },
-      "boost": "5",
-      "random_score": {},
-      "boost_mode": "multiply"
-    }
+  "#type": "declare",
+  "args": {
+    "size": 20
   },
-  "_source": [
-    "@admin.id"
-  ]
+  "value": {
+    "size": "&.size",
+    "query": {
+      "function_score": {
+        "query": { "match_all": {} },
+        "random_score": {}
+      }
+    },
+    "_source": ["@admin.id"]
+  }
 }
