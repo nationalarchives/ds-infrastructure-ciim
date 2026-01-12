@@ -110,15 +110,20 @@ rosetta:
       - name: ciim/ids
         paths:
           - /rosetta/data/random-ids
-        profile: random-ids
+        profile: elasticsearch
+        type: advanced-cache-multi
         transforms:
           request:
             policy: list
             names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
               - ciim/ids/request
           response:
             policy: list
             names:
+              - to-simple-data-response
               - ciim/ids/response
 
   profile:

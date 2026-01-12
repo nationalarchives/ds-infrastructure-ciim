@@ -3,6 +3,6 @@
   "values": {
     "#type": "for_each",
     "values": "$.data",
-    "spec": "$.source.@admin.id"
+    "spec": "$.@admin.id"
   }
 }
