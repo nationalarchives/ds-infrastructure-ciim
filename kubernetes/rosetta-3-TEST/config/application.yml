@@ -322,6 +322,22 @@ rosetta:
           include:
             - ./config/component_search.json
 
+      - name: ciim/ids/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_ids_request.json
+          include:
+            - ./config/component_search.json
+
+      - name: ciim/ids/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_ids_response.json
+          include:
+            - ./config/component_search.json
+
       - name: ciim/get/request
         type: proteus
         properties:
