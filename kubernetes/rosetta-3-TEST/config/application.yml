@@ -327,8 +327,6 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/random_ids_request.json
-          include:
-            - ./config/component_search.json
 
       - name: ciim/ids/response
         type: proteus
