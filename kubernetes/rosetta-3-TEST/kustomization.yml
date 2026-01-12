@@ -22,3 +22,5 @@ configMapGenerator:
       - ./config/hierarchy_count_query.json
       - ./config/heldby_count_query.json
       - ./config/inject_digitised_exists_filter.json
+      - ./config/random_ids_response.json
+      - ./config/random_ids_request.json
