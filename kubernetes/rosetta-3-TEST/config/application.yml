@@ -110,7 +110,7 @@ rosetta:
       - name: ciim/ids
         paths:
           - /rosetta/data/random-ids
-        profile: random-ids
+        profile: generic-search
         transforms:
           request:
              policy: list
@@ -123,17 +123,6 @@ rosetta:
 
   profile:
     profiles:
-      - name: random-ids
-        providers:
-          policy: list
-          names:
-            - elasticsearchEtna
-        transforms:
-          request:
-            - glyphs:
-                policy: list
-                names:
-                  - ciim/ids/request
       - name: elasticsearch
         providers:
           policy: list
