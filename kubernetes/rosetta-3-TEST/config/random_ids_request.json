@@ -5,7 +5,6 @@
       "query": {
         "match_all": {}
       },
-      "boost": "5",
       "random_score": {},
       "boost_mode": "multiply"
     }
