@@ -1,13 +1,19 @@
 {
-  "#type": "merge",
-  "value": {
-    "size": 20,
-    "query": {
-      "function_score": {
-        "query": { "match_all": {} },
-        "random_score": {}
-      }
-    },
-    "_source": ["@admin.id"]
+  "request": {
+    "#type": "literal",
+    "value": {
+      "size": 20,
+      "query": {
+        "function_score": {
+          "query": {
+            "match_all": {}
+          },
+          "random_score": {}
+        }
+      },
+      "_source": [
+        "@admin.id"
+      ]
+    }
   }
 }
