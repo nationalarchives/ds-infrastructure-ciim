@@ -6,3 +6,4 @@ resources:
   - dev_ingress.yml
   - staging_ingress.yml
   - prod_ingress.yml
+  - rate_limit.yml
