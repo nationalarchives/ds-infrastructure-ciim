@@ -6,7 +6,7 @@ metadata:
 plugin: serverless-functions
 config:
   access: |
-    local max_requests = 30  -- max requests per minute
+    local max_requests = 200 -- max requests per minute
     local ua = kong.request.get_header("User-Agent")
     if ua == "python-requests/2.32.5" then
       local key = kong.client.get_ip() or "unknown"
