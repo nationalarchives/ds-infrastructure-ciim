@@ -108,16 +108,21 @@ rosetta:
               - ciim/get/response
 
       - name: ciim/ids
-        routes:
-            - path: /rosetta/data/random-ids
-        request:
-          transforms:
-            - glyphs:
-                policy: list
-                names:
-                    - ciim/ids/request
-          profiles:
-            - random-ids
+        paths:
+          - /rosetta/data/random-ids
+        profile: random-ids
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/ids/request
+          response:
+            policy: list
+            names:
+              - to-simple-data-response
+              - ciim/ids/response
+
   profile:
     profiles:
       - name: random-ids
@@ -334,18 +339,8 @@ rosetta:
       - name: ciim/ids/request
         type: proteus
         properties:
-          type: request
-          spec:
-            literal:
-            value:
-            size: 20
-            query:
-              function_score:
-                query:
-                  match_all: { }
-                  random_score: { }
-              _source:
-                - "@admin.id"
+          mutable: true
+          spec: ${base_paths.proteus}/random_ids_request.json
 
       - name: ciim/ids/response
         type: proteus
