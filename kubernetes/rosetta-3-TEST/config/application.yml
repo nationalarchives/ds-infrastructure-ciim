@@ -116,7 +116,7 @@ rosetta:
           request:
             policy: list
             names:
-              - to-generic-search
+              - generic-to-elastic
               - ciim/ids/request
           response:
             policy: list
@@ -136,7 +136,7 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - to-generic-search
+                  - generic-to-elastic
                   - ciim/ids/request
       - name: elasticsearch
         providers:
