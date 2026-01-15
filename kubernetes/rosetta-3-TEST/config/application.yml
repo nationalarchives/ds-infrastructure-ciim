@@ -131,6 +131,12 @@ rosetta:
           policy: list
           names:
             - elasticsearchEtna
+        transforms:
+          request:
+            policy: list
+            names:
+              -generic-to-elastic
+
       - name: elasticsearch
         providers:
           policy: list
