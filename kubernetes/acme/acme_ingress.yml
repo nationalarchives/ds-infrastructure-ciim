@@ -7,8 +7,12 @@ metadata:
     kubernetes.io/ingress.class: kong
     konghq.com/protocols: "http"
 spec:
+  tls:
+    - hosts:
+        - rosetta-staging.k-int.com
   rules:
-    - http:
+    - host: rosetta-staging.k-int.com
+      http:
         paths:
           - path: /.well-known/acme-challenge
             pathType: Prefix
