@@ -339,8 +339,18 @@ rosetta:
       - name: ciim/ids/request
         type: proteus
         properties:
-          mutable: true
-          spec: ${base_paths.proteus}/random_ids_request.json
+          type: request
+          spec:
+            literal:
+            value:
+            size: 20
+            query:
+              function_score:
+                query:
+                  match_all: { }
+                  random_score: { }
+              _source:
+                - "@admin.id"
 
       - name: ciim/ids/response
         type: proteus
