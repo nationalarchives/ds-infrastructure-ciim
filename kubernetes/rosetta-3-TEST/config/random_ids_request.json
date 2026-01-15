@@ -1,19 +1,14 @@
 {
-  "request": {
-    "#type": "literal",
-    "value": {
-      "size": 20,
+  "size": 20,
+  "query": {
+    "function_score": {
       "query": {
-        "function_score": {
-          "query": {
-            "match_all": {}
-          },
-          "random_score": {}
-        }
+        "match_all": {}
       },
-      "_source": [
-        "@admin.id"
-      ]
+      "random_score": {}
     }
-  }
+  },
+  "_source": [
+    "@admin.id"
+  ]
 }
