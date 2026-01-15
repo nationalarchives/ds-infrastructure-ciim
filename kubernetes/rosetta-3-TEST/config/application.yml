@@ -116,6 +116,7 @@ rosetta:
           request:
             policy: list
             names:
+              - to-generic-search
               - ciim/ids/request
           response:
             policy: list
