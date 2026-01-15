@@ -133,10 +133,11 @@ rosetta:
             - elasticsearchEtna
         transforms:
           request:
-            policy: list
-            names:
-              - generic-to-elastic
-
+            - glyphs:
+                policy: list
+                names:
+                  - to-generic-search
+                  - ciim/ids/request
       - name: elasticsearch
         providers:
           policy: list
