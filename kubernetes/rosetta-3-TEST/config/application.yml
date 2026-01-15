@@ -135,6 +135,7 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
+                  - generic-to-elastic
                   - ciim/ids/request
       - name: elasticsearch
         providers:
