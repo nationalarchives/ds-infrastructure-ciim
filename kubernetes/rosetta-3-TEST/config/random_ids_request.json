@@ -8,7 +8,9 @@
           "query": {
             "match_all": {}
           },
-          "random_score": {}
+          "random_score": {
+            "seed": 10
+          }
         }
       },
       "_source": [
