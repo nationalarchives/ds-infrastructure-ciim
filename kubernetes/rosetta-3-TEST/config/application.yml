@@ -108,21 +108,16 @@ rosetta:
               - ciim/get/response
 
       - name: ciim/ids
-        paths:
-          - /rosetta/data/random-ids
-        profile: random-ids
-        type: advanced-cache-multi
-        transforms:
-          request:
-            policy: list
-            names:
-              - ciim/ids/request
-          response:
-            policy: list
-            names:
-              - to-simple-data-response
-              - ciim/ids/response
-
+        routes:
+            - path: /rosetta/data/random-ids
+        request:
+          transforms:
+            - glyphs:
+                policy: list
+                names:
+                    - ciim/ids/request
+          profiles:
+            - random-ids
   profile:
     profiles:
       - name: random-ids
