@@ -116,7 +116,6 @@ rosetta:
           request:
             policy: list
             names:
-              - generic-to-elastic
               - ciim/ids/request
           response:
             policy: list
