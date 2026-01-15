@@ -1,7 +1,7 @@
 {
-  "request": {
-    "#type": "literal",
-    "value": {
+  "#type": "literal",
+  "value": {
+    "request": {
       "size": 20,
       "query": {
         "function_score": {
