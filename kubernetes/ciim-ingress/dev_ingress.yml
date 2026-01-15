@@ -29,3 +29,10 @@ spec:
                 name: rosetta-3-service
                 port:
                   name: rosetta-port
+          - path: /.well-known/acme-challenge
+            pathType: Prefix
+            backend:
+              service:
+                name: acme-service
+                port:
+                  number: 80
