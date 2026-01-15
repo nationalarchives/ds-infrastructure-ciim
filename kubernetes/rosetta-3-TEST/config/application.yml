@@ -135,7 +135,7 @@ rosetta:
           request:
             policy: list
             names:
-              -generic-to-elastic
+              - generic-to-elastic
 
       - name: elasticsearch
         providers:
