@@ -1,20 +1,9 @@
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: python-requests-rate-limit
+  name: rosetta-rate-limit
   namespace: kong
-plugin: serverless-functions
+plugin: rate-limiting
 config:
-  access: |
-    local max_requests = 50 -- max requests per minute
-    local ua = kong.request.get_header("User-Agent")
-    if ua == "python-requests/2.32.5" then
-      local key = kong.client.get_ip() or "unknown"
-      local current = kong.shared.get(key) or 0
-
-      if current >= max_requests then
-        kong.response.exit(429, "Rate limit exceeded for python-requests")
-      else
-        kong.shared.set(key, current + 1, 60)  -- expire in 60 seconds
-      end
-    end
+  minute: 30       # max 30 requests per minute
+  policy: local    # per pod
