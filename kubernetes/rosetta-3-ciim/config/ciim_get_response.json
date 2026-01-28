@@ -73,7 +73,13 @@
                       "schema": "$.source.description[0].schema.value",
                       "raw": {
                         "#type": "regex_replace",
-                        "value": "$.source.description[0].raw",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].ephemera.value"
+                          ]
+                        },
                         "pattern": "(?<=<head>)Scope and Content(?=</head>)",
                         "replacement": ""
                       },
