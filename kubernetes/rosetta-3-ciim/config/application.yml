@@ -106,7 +106,21 @@ rosetta:
             policy: list
             names:
               - ciim/get/response
-
+              -
+      - name: ciim/ids
+        paths:
+          - /rosetta/data/random-ids
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/ids/request
+          response:
+            policy: list
+            names:
+              - to-simple-data-response
+              - ciim/ids/response
   profile:
     profiles:
       - name: elasticsearch
@@ -182,6 +196,20 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/merge_advance_parameters.json
+
+      - name: ciim/ids/request
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/random_ids_request.json
+
+      - name: ciim/ids/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/random_ids_response.json
+          include:
+            - ./config/component_search.json
 
       - name: generic-to-elastic
         type: elastic-generic-search

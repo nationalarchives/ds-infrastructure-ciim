@@ -1,0 +1,18 @@
+{
+  "#type": "literal",
+  "value": {
+    "request": {
+      "size": 20,
+      "query": {
+        "function_score": {
+          "random_score": {
+            "field": "_id"
+          }
+        }
+      },
+      "_source": [
+        "@admin.id"
+      ]
+    }
+  }
+}
