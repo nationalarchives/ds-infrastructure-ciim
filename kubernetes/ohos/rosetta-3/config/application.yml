@@ -320,7 +320,7 @@ rosetta:
           port: 9200
           index: ciim
           username: elastic
-          password: g19415GWedJc1Zbv4w87pw5K
+          password: D1pd3o60Yzci2K47518OUtUh
           client_timeout: 60000
           skip_ping: true
       - name: elasticsearchEtna
