@@ -10,7 +10,7 @@ spec:
   tls:
     - hosts:
         - tna.rosetta.k-int.com
-      secretName: tls-secret
+      secretName: tls-secret-rosetta-ohos
   rules:
     - host: tna.rosetta.k-int.com
       http:
