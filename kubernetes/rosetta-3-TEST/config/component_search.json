@@ -1,6 +1,6 @@
 {
-  "search_url":"http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public/_search",
-  "count_url":"http://afa13a7c0067b4f01991b0bad9e003a4-edf0e30af2b95f5f.elb.eu-west-2.amazonaws.com/public/_count",
+  "search_url":"http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es/_search",
+  "count_url":"http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es/_count",
   "type_registry": {
     "es_query": {
       "#type": "http_request",
@@ -8,7 +8,7 @@
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+        "Authorization": "Basic  ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI="
       },
       "body": {
         "query": {
@@ -47,7 +47,7 @@
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+        "Authorization": "Basic ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI="
       },
       "body": {
         "query": {
@@ -67,7 +67,7 @@
       "method": "POST",
       "headers": {
         "Content-Type": "application/json",
-        "Authorization": "Basic ZWxhc3RpYzpTdGk1NjVwcWpjOTlJOUNmeTRXODI0SWc="
+        "Authorization": "Basic ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI="
       },
       "body": {
         "query": {
