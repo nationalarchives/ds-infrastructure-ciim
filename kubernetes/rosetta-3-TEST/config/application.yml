@@ -134,13 +134,26 @@ rosetta:
           policy: list
           names:
             - elasticsearchEtna
-
+        transforms:
+          data: &global-data-transforms
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+                  - inject-date-hist
       - name: generic-search
         providers:
           policy: list
           names:
             - elasticsearchEtna
-            
+        transforms:
+          request:
+            - glyphs:
+                policy: list
+                names:
+                  - generic-to-elastic
+          data: *global-data-transforms
+
   transform:
     timeout: 5m
     glyphs:
