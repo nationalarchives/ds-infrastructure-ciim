@@ -139,7 +139,6 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - generic-to-elastic
                   - inject-date-hist
       - name: generic-search
         providers:
