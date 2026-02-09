@@ -44,7 +44,6 @@ rosetta:
               - generic-search-defaults
               - generic-search-modifications
               - generic-to-elastic
-              - elastic-modifications
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
@@ -68,7 +67,6 @@ rosetta:
             - generic-search-defaults
             - generic-search-modifications
             - generic-to-elastic
-            - elastic-modifications
             - ciim/search/request
             - inject-highlighting
             - inject-exists_digitised-filter
@@ -85,7 +83,6 @@ rosetta:
               - generic-search-defaults
               - generic-search-modifications
               - generic-to-elastic
-              - elastic-modifications
               - ciim/search/request
           response:
             policy: list
@@ -189,12 +186,6 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/merge_advance_parameters.json
-
-      - name: elastic-modifications
-        type: proteus
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/elastic_modifications.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
