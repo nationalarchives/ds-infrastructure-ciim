@@ -129,6 +129,7 @@ rosetta:
           policy: list
           names:
             - elasticsearchEtna
+
       - name: elasticsearch
         providers:
           policy: list
@@ -139,8 +140,8 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - generic-to-elastic
-                  - inject-date-hist
+                   - inject-date-hist
+
       - name: generic-search
         providers:
           policy: list
