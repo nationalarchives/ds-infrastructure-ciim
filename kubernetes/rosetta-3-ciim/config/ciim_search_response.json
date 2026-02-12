@@ -217,13 +217,7 @@
                   "#type": "entries",
                   "map": "$"
                 },
-                "spec": {
-                  "value": "$.value",
-                  "doc_count": "$.doc_count",
-                  "title": {
-                    "#type": "first",
-                    "value": "$.title.buckets[0].key"
-                  }}
+                "spec": "$.value"
               },
               []
             ]
