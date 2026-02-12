@@ -204,7 +204,7 @@ rosetta:
       - name: generic-to-elastic
         type: elastic-generic-search
         properties:
-          index: sree-test
+          index: public-estest
           request_timeout: 60000
           date_range_format: "{from} - {to}"
           date_aggregations:
@@ -378,7 +378,7 @@ rosetta:
             properties:
               elasticsearch:
                 url: http://a39d49540865649989abbc5d2f5c409b-4d2c93a40177d71e.elb.eu-west-2.amazonaws.com/es
-                auth_token: ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI=
+                auth_token: ZWxhc3RpYzpnNG03Tm05d2wwUjEwTk1ibjlEOU9OMjI=Test
 
   monitoring:
     log_stages: true
