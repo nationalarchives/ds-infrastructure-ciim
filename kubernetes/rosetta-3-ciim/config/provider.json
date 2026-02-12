@@ -80,8 +80,7 @@
                             "values": "$.value.buckets",
                             "spec": {
                               "value": "$.key",
-                              "count": "$.doc_count",
-                              "title": "$.title.buckets[*].key"
+                              "count": "$.doc_count"
                             }
                           },
                           {

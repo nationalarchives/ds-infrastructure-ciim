@@ -215,7 +215,8 @@
                 "#type": "for_each",
                 "values": {
                   "#type": "entries",
-                  "map": "$"
+                  "map": "$",
+                  "test": "test"
                 },
                 "spec": "$.value"
               },
