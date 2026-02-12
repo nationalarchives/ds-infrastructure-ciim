@@ -12,7 +12,7 @@
             "aggs": {
               "subjectId": {
                 "terms": {
-                  "field": "subjects.subject.@admin.id.keyword",
+                  "field": "subjects.subject.@admin.id",
                   "size": 10
                 },
                 "aggs": {
