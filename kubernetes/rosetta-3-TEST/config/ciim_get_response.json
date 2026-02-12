@@ -490,9 +490,8 @@
     },
     {
       "#type": "require_throw",
-      "require": "$.response.datasets.elasticsearchEtna.found",
-      "value": null,
-      "message": "No record found",
+      "value": "[C]&.{$$.current.@datatype.base}",
+      "message": "There are currently no valid formats for this type of data: {$$.current.@datatype.base}",
       "args": {
         "status": 404
       }
