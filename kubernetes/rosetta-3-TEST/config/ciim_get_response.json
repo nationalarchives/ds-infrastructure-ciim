@@ -492,7 +492,7 @@
       "#type": "require_throw",
       "require": "$.response.datasets.elasticsearchEtna.found",
       "value": null,
-      "message": "No record found for id: $.source.@admin.id",
+      "message": "No record found for id: {$$.request.id}",
       "args": {
         "status": 404
       }
