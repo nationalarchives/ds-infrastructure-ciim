@@ -24,3 +24,4 @@ configMapGenerator:
       - ./config/inject_digitised_exists_filter.json
       - ./config/random_ids_request.json
       - ./config/random_ids_response.json
+      - ./config/inject_subject_nested_agg.json

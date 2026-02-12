@@ -49,6 +49,7 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
+              - inject-subject_nested_agg
           response:
             policy: list
             names:
@@ -72,6 +73,7 @@ rosetta:
             - ciim/search/request
             - inject-highlighting
             - inject-exists_digitised-filter
+            - inject-subject_nested_agg
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
@@ -195,6 +197,13 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
 
+      - name: inject-subject_nested_agg
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_subject_nested_agg.json
+
       - name: merge-advance-parameters
         type: proteus
         input: full
@@ -269,8 +278,10 @@ rosetta:
               closure: "availability.closure.label.value.keyword"
               catalogueSource: "source.value"
               heldBy: "repository.name.value.keyword"
+              heldById: "repository.@admin.id"
               webReference: "web.identifier.value.lower"
               subject: "subjects.subject.summary.title.keyword"
+              subjectId: "subjects.subject.@admin.id"
               title: "summary.title.keyword"
               longSubject: "subjects.subject.summary.title.keyword"
               longHeldBy: "repository.name.value.keyword"

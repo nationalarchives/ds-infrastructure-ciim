@@ -1,0 +1,33 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.original.query[?(@.subjectId == 'true')]",
+      "value": {
+        "results": {
+          "request": {
+            "aggregations": {
+              "subjectId": {
+                "terms": {
+                  "field": "subjects.subject.@admin.id",
+                  "size": 10
+                },
+                "aggregations": {
+                  "title": {
+                    "terms": {
+                      "field": "subjects.subject.summary.title.keyword",
+                      "size": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
