@@ -9,13 +9,13 @@
       "value": {
         "results": {
           "request": {
-            "aggs": {
+            "aggregations": {
               "subjectId": {
                 "terms": {
                   "field": "subjects.subject.@admin.id",
                   "size": 10
                 },
-                "aggs": {
+                "aggregations": {
                   "title": {
                     "terms": {
                       "field": "subjects.subject.summary.title.keyword",
