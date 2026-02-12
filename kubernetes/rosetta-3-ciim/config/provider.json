@@ -81,7 +81,7 @@
                             "spec": {
                               "value": "$.key",
                               "count": "$.doc_count",
-                              "title": "$.title.buckets[*].key"
+                              "title": "$.title"
                             }
                           },
                           {
