@@ -490,10 +490,12 @@
     },
     {
       "#type": "require_throw",
-      "require": "$.data[0]",
-      "value": "$$",
-      "message": "Record not found",
-      "args": { "status": 404 }
+      "require": "$.response.datasets.elasticsearchEtna.found",
+      "value": null,
+      "message": "No record found",
+      "args": {
+        "status": 404
+      }
     }
   ]
 }
