@@ -204,7 +204,7 @@ rosetta:
       - name: generic-to-elastic
         type: elastic-generic-search
         properties:
-          index: public-es
+          index: public-estest
           request_timeout: 60000
           date_range_format: "{from} - {to}"
           date_aggregations:
