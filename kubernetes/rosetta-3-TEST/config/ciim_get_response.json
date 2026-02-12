@@ -8,7 +8,15 @@
       ]
     },
     {
-      "response": "$$",
+      "#type": "require_throw",
+      "require": "$.data[0]",
+      "value": "$$",
+      "message": "Record not found for id: {$$.request.id}",
+      "args": {
+        "status": 404
+      }
+    },
+    {
       "data": {
         "#type": "fallback",
         "strategies": [
@@ -486,15 +494,6 @@
           },
           []
         ]
-      }
-    },
-    {
-      "#type": "require_throw",
-      "require": "$.response.datasets.elasticsearchEtna.found",
-      "value": null,
-      "message": "No record found",
-      "args": {
-        "status": 404
       }
     }
   ]
