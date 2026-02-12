@@ -487,6 +487,15 @@
           []
         ]
       }
+    },
+    {
+      "#type": "require_throw",
+      "require": "$.response.datasets.elasticsearchEtna.found",
+      "value": null,
+      "message": "No record found for id: $.source.@admin.id",
+      "args": {
+        "status": 404
+      }
     }
   ]
 }
