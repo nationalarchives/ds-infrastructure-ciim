@@ -4,6 +4,5 @@
     "#type": "for_each",
     "values": "$.data",
     "spec": "$.@admin.id"
-  },
-  "response": "$"
+  }
 }

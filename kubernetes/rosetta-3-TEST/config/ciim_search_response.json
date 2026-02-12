@@ -11,6 +11,7 @@
       ]
     },
     {
+      "response": "$$",
       "data": {
         "#type": "fallback",
         "strategies": [
