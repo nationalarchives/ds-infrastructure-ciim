@@ -289,8 +289,8 @@
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
                     "placeDescription": {
-                      "raw": "$.place[*].description.value",
-                      "display": "$.place[*].description.label.value"
+                      "raw": "$.source.place[*].description.value",
+                      "display": "$.source.place[*].description.label.value"
                     },
                     "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
