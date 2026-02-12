@@ -215,10 +215,15 @@
                 "#type": "for_each",
                 "values": {
                   "#type": "entries",
-                  "map": "$",
-                  "test": "test"
+                  "map": "$"
                 },
-                "spec": "$.value"
+                "spec": {
+                  "value": "$.value",
+                  "doc_count": "$.doc_count",
+                  "title": {
+                    "#type": "first",
+                    "value": "$.title.buckets[0].key"
+                  }}
               },
               []
             ]
