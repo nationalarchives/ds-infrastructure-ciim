@@ -12,9 +12,10 @@
     },
     {
       "#type": "require_throw",
+      "require": "$.data[0]",
       "value": "$$",
-      "message": "There are currently no valid formats for this type of data: {$$.current.@datatype.base}",
-      "args": {
+      "message": "Record not found",
+      "args": { 
         "status": 404
       }
     },
