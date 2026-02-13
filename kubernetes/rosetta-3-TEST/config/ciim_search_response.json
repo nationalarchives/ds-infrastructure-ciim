@@ -4,20 +4,11 @@
     {
       "#type": "merge",
       "values": [
-        "$.results.datasets.elasticsearchEtna",
+        "$.resp.datasets.elasticsearchEtna",
         {
           "stats": "$.results.stats"
         }
       ]
-    },
-    {
-      "#type": "require_throw",
-      "require": "$.data[0]",
-      "value": "$$",
-      "message": "Record not found",
-      "args": { 
-        "status": 404
-      }
     },
     {
       "data": {
