@@ -12,7 +12,7 @@
     },
     {
       "#type": "require_throw",
-      "value": "[C]&.{$$.current.@datatype.base}",
+      "value": "$$",
       "message": "There are currently no valid formats for this type of data: {$$.current.@datatype.base}",
       "args": {
         "status": 404
