@@ -12,9 +12,9 @@
     },
     {
       "#type": "require_throw",
-      "require": "$.data[0]",
+      "require": "$.found",
       "value": "$$",
-      "message": "Record not found for id: {$$.request.id}",
+      "message": "Record not found",
       "args": {
         "status": 404
       }
