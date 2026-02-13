@@ -4,17 +4,16 @@
     {
       "#type": "merge",
       "values": [
-        "$.response.datasets.elasticsearchEtna",
+        "$.results.datasets.elasticsearchEtna",
         {
-          "stats": "$.response.stats"
+          "stats": "$.results.stats"
         }
       ]
     },
     {
       "#type": "require_throw",
-      "require": "$.found",
-      "value": "$$",
-      "message": "Record not found",
+      "value": "[C]&.{$$.current.@datatype.base}",
+      "message": "There are currently no valid formats for this type of data: {$$.current.@datatype.base}",
       "args": {
         "status": 404
       }
