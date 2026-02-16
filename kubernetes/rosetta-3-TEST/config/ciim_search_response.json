@@ -255,6 +255,15 @@
           []
         ]
       }
+    },
+    {
+      "#type": "require_throw",
+      "value": "$.data",
+      "message": "Record not found",
+      "args": {
+        "status": 404
+      }
     }
+
   ]
 }
