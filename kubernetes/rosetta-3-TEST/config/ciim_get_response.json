@@ -496,13 +496,13 @@
           {
             "#type": "scope",
             "scope": "$.provider_error",
-            "value": "$.error.root_cause.[0].reason"
+            "value": "$.error.root_cause[0].reason"
           },
           "Record not found"
         ]
       },
       "args": {
-        "status":{
+        "status": {
           "#type": "fallback",
           "strategies": [
             "$.provider_error.status",
