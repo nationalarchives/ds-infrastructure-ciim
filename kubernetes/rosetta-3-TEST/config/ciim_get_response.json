@@ -9,8 +9,8 @@
     },
     {
       "#type": "require_throw",
-      "value": "[C]&.{$$.current.@datatype.base}",
-      "message": "There are currently no valid formats for this type of data: {$$.current.@datatype.base}",
+      "value": "$.data[0]",
+      "message": "Record not found",
       "args": {
         "status": 404
       }
