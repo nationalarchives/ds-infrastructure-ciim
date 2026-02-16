@@ -497,9 +497,12 @@
             "#type": "scope",
             "scope": "$.provider_error",
             "value": {
-              "status": "$.status",
-              "error": "$.error.root_cause[0].reason",
-              "full_error": "$.error"
+              "#type": "fallback",
+              "strategies": [
+                "$.error.root_cause[0].reason",
+                "$.message",
+                "Record not found"
+              ]
             }
           },
           "Record not found"
@@ -509,12 +512,17 @@
         "status": {
           "#type": "fallback",
           "strategies": [
-            "$.provider_error.status",
+            {
+              "#type": "scope",
+              "scope": "$.provider_error",
+              "value": "$.status"
+            },
             404
           ]
         }
       }
     }
+
 
   ]
 }
