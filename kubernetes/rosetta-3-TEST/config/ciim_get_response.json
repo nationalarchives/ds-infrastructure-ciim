@@ -7,7 +7,7 @@
         "$.datasets.elasticsearchEtna"
       ]
     },
-      {
+    {
       "data": {
         "#type": "fallback",
         "strategies": [
@@ -490,9 +490,25 @@
     {
       "#type": "require_throw",
       "value": "$.data[0]",
-      "message": "Record not found",
+      "message": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "scope",
+            "scope": "$.provider_error",
+            "value": "$.error.root_cause.[0].reason"
+          },
+          "Record not found"
+        ]
+      },
       "args": {
-        "status": 404
+        "status":{
+          "#type": "fallback",
+          "strategies": [
+            "$.provider_error.status",
+            404
+          ]
+        }
       }
     }
   ]
