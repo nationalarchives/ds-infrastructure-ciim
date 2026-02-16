@@ -521,7 +521,7 @@
           "#type": "fallback",
           "strategies": [
             "$.provider_error.status",
-            404
+            500
           ]
         }
       }
