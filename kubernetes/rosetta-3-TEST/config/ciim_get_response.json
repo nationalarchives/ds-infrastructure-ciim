@@ -494,24 +494,13 @@
         "#type": "fallback",
         "strategies": [
           {
-            "#type": "chain",
-            "chain": [
-              {
-                "#type": "scope",
-                "scope": "$.provider_error",
-                "value": "$"
-              },
-              {
-                "#type": "string_join",
-                "values": [
-                  "Elasticsearch error: ",
-                  {
-                    "#type": "json_stringify",
-                    "value": "$"
-                  }
-                ]
-              }
-            ]
+            "#type": "scope",
+            "scope": "$.provider_error",
+            "value": {
+              "status": "$.status",
+              "error": "$.error.root_cause[0].reason",
+              "full": "$.error"
+            }
           },
           "Record not found"
         ]
