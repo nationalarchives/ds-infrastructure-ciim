@@ -499,7 +499,7 @@
             "value": {
               "status": "$.status",
               "error": "$.error.root_cause[0].reason",
-              "full": "$.error"
+              "full_error": "$.error"
             }
           },
           "Record not found"
@@ -510,7 +510,7 @@
           "#type": "fallback",
           "strategies": [
             "$.provider_error.status",
-            500
+            404
           ]
         }
       }
