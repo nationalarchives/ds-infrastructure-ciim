@@ -488,6 +488,18 @@
       }
     },
     {
+      "es_error": {
+        "#type": "scope",
+        "scope": "$.provider_error",
+        "value": {
+          "status": "$.status",
+          "reason": "$.error.root_cause[0].reason",
+          "type": "$.error.root_cause[0].type",
+          "url": "$.url"
+        }
+      }
+    },
+    {
       "#type": "require_throw",
       "value": "$.data[0]",
       "message": {
