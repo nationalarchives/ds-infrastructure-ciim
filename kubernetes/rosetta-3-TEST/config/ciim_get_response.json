@@ -493,48 +493,24 @@
         "scope": "$.provider_error",
         "value": {
           "status": "$.status",
-          "reason": "$.error.root_cause[0].reason",
-          "type": "$.error.root_cause[0].type",
-          "url": "$.url"
+          "error": "$.error",
+          "root_cause": "$.error.root_cause"
         }
       }
     },
     {
       "#type": "require_throw",
       "value": "$.data[0]",
-      "message": {
-        "#type": "fallback",
-        "strategies": [
-          {
-            "#type": "scope",
-            "scope": "$.provider_error",
-            "value": {
-              "#type": "fallback",
-              "strategies": [
-                "$.error.root_cause[0].reason",
-                "$.message",
-                "Record not found"
-              ]
-            }
-          },
-          "Record not found"
-        ]
-      },
+      "message": "Record not found",
       "args": {
         "status": {
           "#type": "fallback",
           "strategies": [
-            {
-              "#type": "scope",
-              "scope": "$.provider_error",
-              "value": "$.status"
-            },
+            "$.provider_error.status",
             404
           ]
         }
       }
     }
-
-
   ]
 }
