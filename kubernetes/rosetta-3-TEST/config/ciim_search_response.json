@@ -255,20 +255,6 @@
           []
         ]
       }
-    },
-    {
-      "#type": "require_throw",
-      "value": "$.data[0]",
-      "message": "Record not found",
-      "args": {
-        "status": {
-          "#type": "fallback",
-          "strategies": [
-            "$.provider_error.status",
-            404
-          ]
-        }
-      }
     }
   ]
 }
