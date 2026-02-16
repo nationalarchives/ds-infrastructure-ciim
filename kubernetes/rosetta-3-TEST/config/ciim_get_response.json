@@ -488,17 +488,6 @@
       }
     },
     {
-      "es_error": {
-        "#type": "scope",
-        "scope": "$.provider_error",
-        "value": {
-          "status": "$.status",
-          "error": "$.error",
-          "root_cause": "$.error.root_cause"
-        }
-      }
-    },
-    {
       "#type": "require_throw",
       "value": "$.data[0]",
       "message": "Record not found",
