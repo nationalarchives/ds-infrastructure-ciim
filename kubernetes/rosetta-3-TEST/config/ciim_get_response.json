@@ -2,6 +2,37 @@
   "#type": "chain",
   "chain": [
     {
+      "#type": "require_throw",
+      "require": "$.datasets.elasticsearchEtna.provider_error",
+      "message": "Elasticsearch error",
+      "args": {
+        "status": {
+          "#type": "fallback",
+          "strategies": [
+            "$.datasets.elasticsearchEtna.provider_error.status",
+            {
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "string_to_json",
+                  "value": "$.datasets.elasticsearchEtna.provider_error"
+                },
+                "$.status"
+              ]
+            },
+
+            {
+              "#type": "regex_replace",
+              "value": "$.datasets.elasticsearchEtna.provider_error",
+              "pattern": ".*\"status\"\\s*:\\s*(\\d+).*",
+              "replacement": "[L]$1"
+            },
+            500
+          ]
+        }
+      }
+    },
+    {
       "#type": "merge",
       "values": [
         "$.datasets.elasticsearchEtna"
@@ -492,13 +523,7 @@
       "value": "$.data[0]",
       "message": "Record not found",
       "args": {
-        "status": {
-          "#type": "fallback",
-          "strategies": [
-            "$.provider_error.status",
-            404
-          ]
-        }
+        "status": 404
       }
     }
   ]
