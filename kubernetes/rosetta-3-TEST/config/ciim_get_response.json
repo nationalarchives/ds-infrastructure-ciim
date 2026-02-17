@@ -2,14 +2,6 @@
   "#type": "chain",
   "chain": [
     {
-      "#type": "require_throw",
-      "require": "$.datasets.elasticsearchEtna.provider_error.status",
-      "message": "Elasticsearch error",
-      "args": {
-        "status": "$.datasets.elasticsearchEtna.provider_error.status"
-      }
-    },
-    {
       "#type": "merge",
       "values": [
         "$.datasets.elasticsearchEtna"
