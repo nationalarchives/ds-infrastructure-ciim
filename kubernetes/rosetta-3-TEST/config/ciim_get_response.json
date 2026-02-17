@@ -3,30 +3,28 @@
   "chain": [
     {
       "#type": "require_throw",
-      "require": "$.datasets.elasticsearchEtna.provider_error",
+      "require": {
+        "#type": "fallback",
+        "strategies": [
+          "$.datasets.elasticsearchEtna.provider_error.status",
+          {
+            "#type": "chain",
+            "chain": [
+              {
+                "#type": "string_to_json",
+                "value": "$.datasets.elasticsearchEtna.provider_error"
+              },
+              "$.status"
+            ]
+          }
+        ]
+      },
       "message": "Elasticsearch error",
       "args": {
         "status": {
           "#type": "fallback",
           "strategies": [
             "$.datasets.elasticsearchEtna.provider_error.status",
-            {
-              "#type": "chain",
-              "chain": [
-                {
-                  "#type": "string_to_json",
-                  "value": "$.datasets.elasticsearchEtna.provider_error"
-                },
-                "$.status"
-              ]
-            },
-
-            {
-              "#type": "regex_replace",
-              "value": "$.datasets.elasticsearchEtna.provider_error",
-              "pattern": ".*\"status\"\\s*:\\s*(\\d+).*",
-              "replacement": "[L]$1"
-            },
             500
           ]
         }
