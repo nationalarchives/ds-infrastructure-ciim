@@ -14,14 +14,11 @@
           }
         },
         {
-          "#type": "chain",
-          "chain": [
-            {
-              "#type": "merge",
-              "values": [
-                "$.datasets.elasticsearchEtna"
-              ]
-            },
+          "#type": "merge",
+          "values": [
+            "$.datasets.elasticsearchEtna"
+          ]
+        },
             {
               "data": {
                 "#type": "fallback",
@@ -506,5 +503,3 @@
         }
       ]
     }
-  ]
-}
