@@ -2,6 +2,21 @@
   "#type": "chain",
   "chain": [
     {
+      "#type": "fallback",
+      "strategies": [
+        {
+          "#type": "scope",
+          "scope": "$.datasets.elasticsearchEtna.provider_error",
+          "value": {
+            "status": "$.status",
+            "type": "$.error.type",
+            "reason": "$.error.reason"
+          }
+        },
+        {
+          "#type": "chain",
+          "chain": [
+            {
       "#type": "merge",
       "values": [
         "$.datasets.elasticsearchEtna"
