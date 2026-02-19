@@ -19,103 +19,80 @@
             "$.datasets.elasticsearchEtna"
           ]
         },
-            {
-              "data": {
-                "#type": "fallback",
-                "strategies": [
-                  {
-                    "#type": "as_list",
-                    "values": {
-                      "#type": "for_each",
-                      "values": "$.data",
-                      "spec": {
-                        "@template": {
-                          "details": {
-                            "accessCondition": "$.source.availability.access.condition.value",
-                            "accruals": "$.source.accruals.value",
-                            "accumulationDates": "$.source.accruals.date.value",
-                            "accumulationDate": {
-                              "values": {
-                                "#type": "for_each",
-                                "values": "$.source.accruals.date.accumulationDates",
-                                "spec": {
-                                  "#type": "string_join",
-                                  "values": [
-                                    "$.source.accruals.date.accumulationDates",
-                                    "$.source.accruals.date.value"
-                                  ]
-                                }
-                              }
-                            },
-                            "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background raw')].value",
-                            "agentBirthLocation": {
-                              "#type": "as_list",
-                              "values": "$.source.agent[0].@birth.location.name.value"
-                            },
-                            "agentDateOfBirth": {
-                              "#type": "as_list",
-                              "values": "$.source.agent[0].@birth.date.value"
-                            },
-                            "agentName": {
-                              "#type": "as_list",
-                              "values": "$.source.agent[0].name.value"
-                            },
-                            "agentServiceNumber": {
-                              "#type": "as_list",
-                              "values": "$.source.agent[0].service.identifier.value"
-                            },
-                            "appraisalInformation": "$.source.appraisal.value",
-                            "arrangement": "$.source.arrangement.raw",
-                            "catalogueContext": {
-                              "#type": "as_list",
-                              "values": "$.source.@template.details.catalogueContext"
-                            },
-                            "closureStatus": "$.source.availability.closure.label.value",
-                            "copiesInformation": "$.source.copies[0].value",
-                            "creator": {
-                              "#type": "as_list",
-                              "values": "$.source.@template.details.creator"
-                            },
-                            "custodialHistory": "$.source.custodial[*].description.value",
-                            "closureCriterion": "$.source.closureCriterion.value",
-                            "dateCovering": "$.source.origination.date.value",
-                            "deliveryOption": "$.source.availability.delivery.condition.value",
-                            "description": {
-                              "value": "$.source.description[0].value",
-                              "schema": "$.source.description[0].schema.value",
-                              "raw": {
-                                "#type": "regex_replace",
-                                "value": "$.source.description[0].raw",
-                                "pattern": "(?<=<head>)Scope and Content(?=</head>)",
-                                "replacement": ""
-                              },
-                              "short": {
-                                "#type": "declare",
-                                "args": {
-                                  "cleanDesc": {
-                                    "#type": "regex_replace",
-                                    "value": {
-                                      "#type": "fallback",
-                                      "strategies": [
-                                        "$.source.description[0].raw",
-                                        "$.source.description[0].value"
-                                      ]
-                                    },
-                                    "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
-                                    "replacement": ""
-                                  }
-                                },
-                                "value": {
-                                  "#type": "regex_replace",
-                                  "value": "&.cleanDesc",
-                                  "pattern": {
-                                    "#type": "literal",
-                                    "value": "^(.{0,250}\\b).*"
-                                  },
-                                  "replacement": "[L]$1"
-                                }
-                              },
-                              "noHtml": {
+        {
+          "data": {
+            "#type": "fallback",
+            "strategies": [
+              {
+                "#type": "as_list",
+                "values": {
+                  "#type": "for_each",
+                  "values": "$.data",
+                  "spec": {
+                    "@template": {
+                      "details": {
+                        "accessCondition": "$.source.availability.access.condition.value",
+                        "accruals": "$.source.accruals.value",
+                        "accumulationDates": "$.source.accruals.date.value",
+                        "accumulationDate": {
+                          "values": {
+                            "#type": "for_each",
+                            "values": "$.source.accruals.date.accumulationDates",
+                            "spec": {
+                              "#type": "string_join",
+                              "values": [
+                                "$.source.accruals.date.accumulationDates",
+                                "$.source.accruals.date.value"
+                              ]
+                            }
+                          }
+                        },
+                        "administrativeBackground": "$.source.origination.description[?(@.type == 'administrative background raw')].value",
+                        "agentBirthLocation": {
+                          "#type": "as_list",
+                          "values": "$.source.agent[0].@birth.location.name.value"
+                        },
+                        "agentDateOfBirth": {
+                          "#type": "as_list",
+                          "values": "$.source.agent[0].@birth.date.value"
+                        },
+                        "agentName": {
+                          "#type": "as_list",
+                          "values": "$.source.agent[0].name.value"
+                        },
+                        "agentServiceNumber": {
+                          "#type": "as_list",
+                          "values": "$.source.agent[0].service.identifier.value"
+                        },
+                        "appraisalInformation": "$.source.appraisal.value",
+                        "arrangement": "$.source.arrangement.raw",
+                        "catalogueContext": {
+                          "#type": "as_list",
+                          "values": "$.source.@template.details.catalogueContext"
+                        },
+                        "closureStatus": "$.source.availability.closure.label.value",
+                        "copiesInformation": "$.source.copies[0].value",
+                        "creator": {
+                          "#type": "as_list",
+                          "values": "$.source.@template.details.creator"
+                        },
+                        "custodialHistory": "$.source.custodial[*].description.value",
+                        "closureCriterion": "$.source.closureCriterion.value",
+                        "dateCovering": "$.source.origination.date.value",
+                        "deliveryOption": "$.source.availability.delivery.condition.value",
+                        "description": {
+                          "value": "$.source.description[0].value",
+                          "schema": "$.source.description[0].schema.value",
+                          "raw": {
+                            "#type": "regex_replace",
+                            "value": "$.source.description[0].raw",
+                            "pattern": "(?<=<head>)Scope and Content(?=</head>)",
+                            "replacement": ""
+                          },
+                          "short": {
+                            "#type": "declare",
+                            "args": {
+                              "cleanDesc": {
                                 "#type": "regex_replace",
                                 "value": {
                                   "#type": "fallback",
@@ -128,21 +105,41 @@
                                 "replacement": ""
                               }
                             },
-                            "digitised": "$.source.@template.details.digitised",
-                            "rid": "$.source.multimedia[*].@admin.id",
-                            "dimensions": "$.source.measurements.dimensions[*].value",
-                            "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
-                            "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
-                            "group": {
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "&.cleanDesc",
+                              "pattern": "^(.{0,250}\\b).*",
+                              "replacement": "[L]$1"
+                            }
+                          },
+                          "noHtml": {
+                            "#type": "regex_replace",
+                            "value": {
                               "#type": "fallback",
                               "strategies": [
-                                "$.source.@datatype.group[1].value",
-                                "$.source.@datatype.group[0].value"
+                                "$.source.description[0].raw",
+                                "$.source.description[0].value"
                               ]
                             },
-                            "groupArray": "$.source.@datatype.group",
-                            "heldBy": "$.source.repository.name.value",
-                            "heldById": "$.source.repository.@admin.id",
+                            "pattern": "(?<=<head>)Scope and Content(?=</head>)|<(?!/?mark\\b)[^>]+>",
+                            "replacement": ""
+                          }
+                        },
+                        "digitised": "$.source.@template.details.digitised",
+                        "rid": "$.source.multimedia[*].@admin.id",
+                        "dimensions": "$.source.measurements.dimensions[*].value",
+                        "formerDepartmentReference": "$.source.identifier[?(@.type == 'former reference (Department)')].value",
+                        "formerProReference": "$.source.identifier[?(@.type == 'former reference (PRO)')].value",
+                        "group": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.@datatype.group[1].value",
+                            "$.source.@datatype.group[0].value"
+                          ]
+                        },
+                        "groupArray": "$.source.@datatype.group",
+                        "heldBy": "$.source.repository.name.value",
+                        "heldById": "$.source.repository.@admin.id",
                             "heldByCount": {
                               "#type": "require",
                               "require": "$.source.repository.@admin.id",
