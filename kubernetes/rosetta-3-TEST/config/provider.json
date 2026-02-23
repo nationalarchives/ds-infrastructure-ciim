@@ -34,12 +34,46 @@
         },
         "body": "$",
         "require_response": true,
-        "require_allowed": true
+        "captureErrors": true
       },
       {
         "#type": "require",
-        "require": "$.hits",
-        "message": "Invalid ES response"
+        "require": "$.status >= 200 && $.status < 300",
+        "value": "$",
+        "message": {
+          "#type": "switch",
+          "switch": "$.status",
+          "cases": {
+            "401": {
+              "#type": "literal",
+              "value": {
+                "message": "Unauthorized - check Elasticsearch credentials",
+                "status": 401
+              }
+            },
+            "403": {
+              "#type": "literal",
+              "value": {
+                "message": "Forbidden - Elasticsearch credentials not allowed",
+                "status": 403
+              }
+            },
+            "500": {
+              "#type": "literal",
+              "value": {
+                "message": "Internal Server Error from Elasticsearch",
+                "status": 500
+              }
+            },
+            "default": {
+              "#type": "literal",
+              "value": {
+                "message": "Unexpected HTTP error",
+                "status": "[L]$.status"
+              }
+            }
+          }
+        }
       },
       {
         "results": {
@@ -90,8 +124,7 @@
                           },
                           {
                             "#type": "literal",
-                            "value": [
-                            ]
+                            "value": []
                           }
                         ]
                       },
@@ -146,6 +179,14 @@
         },
         "stats": {
           "total": "$.hits.total.value"
+        }
+      },
+      {
+        "#type": "require_throw",
+        "require": "$.hits.hits[0]",
+        "message": "Record not found",
+        "args": {
+          "status": 404
         }
       }
     ]
