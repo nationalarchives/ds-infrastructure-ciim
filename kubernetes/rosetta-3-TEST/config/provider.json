@@ -37,6 +37,11 @@
         "require_allowed": true
       },
       {
+        "#type": "require",
+        "require": "$.hits",
+        "message": "Invalid ES response"
+      },
+      {
         "results": {
           "#type": "as_list",
           "values": {
