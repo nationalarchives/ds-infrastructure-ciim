@@ -18,10 +18,17 @@
           }
         },
         {
-          "#type": "merge",
-          "values": [
-            "$.datasets.elasticsearchEtna"
-          ]
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.data[0]",
+          "value": {
+            "#type": "merge",
+            "values": [
+              "$.datasets.elasticsearchEtna.data[0]"
+            ]
+          }
+        },
+        {
+          "found": false
         },
         {
           "data": {
