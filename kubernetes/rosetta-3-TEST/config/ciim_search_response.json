@@ -255,20 +255,6 @@
           []
         ]
       }
-    },
-    {
-      "#type": "require_throw",
-      "require": {
-        "#type": "and",
-        "conditions": [
-          "$.datasets.elasticsearchEtna.providers_error",
-          "$.datasets.elasticsearchEtna.providers_error.status"
-        ]
-      },
-      "message": "Elasticsearch error",
-      "args": {
-        "status": "$.datasets.elasticsearchEtna.providers_error.status"
-      }
     }
   ]
 }
