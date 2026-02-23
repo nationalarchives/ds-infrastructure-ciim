@@ -1,22 +1,18 @@
 {
-  "#type": "fallback",
-  "strategies": [
+  "#type": "chain",
+  "chain": [
     {
-      "#type": "scope",
-      "scope": "$.datasets.elasticsearchEtna.provider_error",
-      "value": {
-        "#type": "http_status",
-        "status": "$.status",
-        "body": {
-          "status": "$.status",
-          "type": "$.error.type",
-          "reason": "$.error.reason"
-        }
-      }
-    },
-    {
-      "#type": "chain",
-      "chain": [
+      "#type": "fallback",
+      "strategies": [
+        {
+          "#type": "scope",
+          "scope": "$.datasets.elasticsearchEtna.provider_error",
+          "value": {
+            "status": "$.status",
+            "type": "$.error.type",
+            "reason": "$.error.reason"
+          }
+        },
         {
           "#type": "merge",
           "values": [
