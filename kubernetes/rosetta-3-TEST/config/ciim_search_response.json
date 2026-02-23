@@ -11,6 +11,7 @@
       ]
     },
     {
+      "response": "$$",
       "data": {
         "#type": "fallback",
         "strategies": [
@@ -254,6 +255,15 @@
           },
           []
         ]
+      }
+    },
+    {
+      "#type": "require_throw",
+      "require": "$.response.datasets.elasticsearchEtna.found",
+      "value": null,
+      "message": "No record found",
+      "args": {
+        "status": 404
       }
     }
   ]
