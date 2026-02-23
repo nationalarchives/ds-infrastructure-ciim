@@ -18,35 +18,7 @@
           "values": [
             "$.datasets.elasticsearchEtna"
           ]
-        }
-      ]
-    },
-    {
-      "#type": "require_throw",
-      "require": "$.status",
-      "value": {
-        "status": "$.status",
-        "message": "$.error.reason"
-      },
-      "condition": {
-        "#type": "eq",
-        "left": "$.status",
-        "right": 401
-      }
-    },
-    {
-      "#type": "require_throw",
-      "require": "$.found",
-      "value": {
-        "status": 500,
-        "message": "Record not found"
-      },
-      "condition": {
-        "#type": "eq",
-        "left": "$.found",
-        "right": false
-      }
-    },
+        },
         {
           "data": {
             "#type": "fallback",
@@ -529,3 +501,5 @@
         }
       ]
     }
+  ]
+}
