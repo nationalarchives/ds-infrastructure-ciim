@@ -1,155 +1,192 @@
 {
-  "#type": "chain",
-  "chain": [
-    {
-      "#type": "http_request",
-      "url": "{[R]%.elasticsearch.url}/_search",
-      "method": "POST",
-      "headers": {
-        "Content-Type": "application/json",
-        "Authorization": "Basic {%.elasticsearch.auth_token}"
+  "#type": "declare",
+  "args": {
+    "aggsType": {
+      "#type": "for_each",
+      "values": {
+        "#type": "entries",
+        "map": "$.aggregations"
       },
-      "body": "$",
-      "require_response": true,
-      "require_allowed": true,
-      "capture_errors": true
-    },
-    {
-      "#type": "chain",
-      "chain": [
-        {
-          "#type": "require_throw",
-          "value": "$.http_response.status_code",
-          "message": {
-            "#type": "fallback",
-            "strategies": [
+      "spec": {
+        "$.key": {
+          "#type": "chain",
+          "chain": [
+            {
+              "#type": "entries",
+              "map": "$.value"
+            },
+            "$[0].key"
+          ]
+        }
+      }
+    }
+  },
+  "value": {
+    "#type": "chain",
+    "chain": [
+      {
+        "#type": "http_request",
+        "url": "{[R]%.elasticsearch.url}/_search",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Basic {%.elasticsearch.auth_token}"
+        },
+        "body": "$",
+        "require_response": false
+      },
+      {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "chain",
+            "chain": [
+              "$",
               {
-                "#type": "switch",
-                "cases": [
-                  { "condition": "$ == 401", "then": "Unauthorized: Invalid credentials" },
-                  { "condition": "$ == 403", "then": "Forbidden: Access denied" },
-                  { "condition": "$ == 500", "then": "Internal Server Error from ES" }
-                ],
-                "default": "Elasticsearch request failed"
+                "data": {
+                  "#type": "as_list",
+                  "values": {
+                    "#type": "for_each",
+                    "values": "$.hits.hits",
+                    "spec": {
+                      "#type": "merge",
+                      "values": [
+                        "$._source",
+                        {
+                          "highlight": "$.highlight"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "aggregations": {
+                  "#type": "chain",
+                  "chain": [
+                    "$.aggregations",
+                    {
+                      "#type": "entries",
+                      "map": "$"
+                    },
+                    {
+                      "#type": "merge",
+                      "values": [
+                        {
+                          "#type": "for_each",
+                          "values": "$",
+                          "spec": {
+                            "#type": "require",
+                            "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
+                            "value": {
+                              "name": "$.key",
+                              "entries": {
+                                "#type": "fallback",
+                                "strategies": [
+                                  {
+                                    "#type": "for_each",
+                                    "values": "$.value.buckets",
+                                    "spec": {
+                                      "value": "$.key",
+                                      "count": "$.doc_count"
+                                    }
+                                  },
+                                  {
+                                    "#type": "literal",
+                                    "value": []
+                                  }
+                                ]
+                              },
+                              "total": {
+                                "#type": "chain",
+                                "chain": [
+                                  {
+                                    "counts": {
+                                      "#type": "as_list",
+                                      "values": "$.value.buckets[*].doc_count"
+                                    },
+                                    "other": "$.value.sum_other_doc_count"
+                                  },
+                                  {
+                                    "total_in_buckets": {
+                                      "#type": "fallback",
+                                      "strategies": [
+                                        "$.counts.sum()",
+                                        0
+                                      ]
+                                    },
+                                    "other": "$.other"
+                                  },
+                                  {
+                                    "#type": "maths",
+                                    "expression": {
+                                      "#type": "fallback",
+                                      "strategies": [
+                                        "{$.total_in_buckets} + {$.other}",
+                                        "{$.total_in_buckets}"
+                                      ]
+                                    },
+                                    "output_type": "long"
+                                  }
+                                ]
+                              },
+                              "other": "$.value.sum_other_doc_count"
+                            }
+                          }
+                        },
+                        {
+                          "#type": "for_each",
+                          "values": "$[?(@.value.doc_count)]",
+                          "spec": {
+                            "name": "$.key",
+                            "total": "$.value.doc_count"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "stats": {
+                  "total": "$.hits.total.value",
+                  "results": "$.hits.hits.length",
+                  "providers": 1,
+                  "latency": "$.took"
+                },
+                "errors": {
+                  "#type": "fallback",
+                  "strategies": [
+                    {
+                      "#type": "for_each",
+                      "values": "$.error",
+                      "spec": {
+                        "message": "$.reason",
+                        "status": "$.status"
+                      }
+                    },
+                    []
+                  ]
+                }
               }
             ]
           },
-          "args": {
-            "#type": "fallback",
-            "strategies": [
-              {
-                "#type": "switch",
-                "cases": [
-                  { "condition": "$ == 401", "then": 401 },
-                  { "condition": "$ == 403", "then": 403 },
-                  { "condition": "$ == 500", "then": 500 }
-                ],
-                "default": 400
-              }
-            ]
-          }
-        },
-        {
-          "results": {
-            "#type": "as_list",
-            "values": {
-              "#type": "for_each",
-              "values": "$.hits.hits",
-              "spec": {
-                "#type": "merge",
-                "values": [
-                  "$._source",
-                  { "highlight": "$.highlight" }
-                ]
+          {
+            "#type": "literal",
+            "value": {
+              "data": [],
+              "errors": [
+                {
+                  "message": "No response from Elasticsearch",
+                  "status": 500
+                }
+              ],
+              "stats": {
+                "total": 0,
+                "results": 0,
+                "providers": 0,
+                "latency": 0
               }
             }
           }
-        },
-        {
-          "aggregations": {
-            "#type": "chain",
-            "chain": [
-              "$.aggregations",
-              {
-                "#type": "entries",
-                "map": "$"
-              },
-              {
-                "#type": "merge",
-                "values": [
-                  {
-                    "#type": "for_each",
-                    "values": "$",
-                    "spec": {
-                      "#type": "require",
-                      "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
-                      "value": {
-                        "name": "$.key",
-                        "entries": {
-                          "#type": "fallback",
-                          "strategies": [
-                            {
-                              "#type": "for_each",
-                              "values": "$.value.buckets",
-                              "spec": {
-                                "value": "$.key",
-                                "count": "$.doc_count"
-                              }
-                            },
-                            { "#type": "literal", "value": [] }
-                          ]
-                        },
-                        "total": {
-                          "#type": "chain",
-                          "chain": [
-                            {
-                              "counts": { "#type": "as_list", "values": "$.value.buckets[*].doc_count" },
-                              "other": "$.value.sum_other_doc_count"
-                            },
-                            {
-                              "total_in_buckets": {
-                                "#type": "fallback",
-                                "strategies": ["$.counts.sum()", 0]
-                              },
-                              "other": "$.other"
-                            },
-                            {
-                              "#type": "maths",
-                              "expression": {
-                                "#type": "fallback",
-                                "strategies": ["{$.total_in_buckets} + {$.other}", "{$.total_in_buckets}"]
-                              },
-                              "output_type": "long"
-                            }
-                          ]
-                        },
-                        "other": "$.value.sum_other_doc_count"
-                      }
-                    }
-                  },
-                  {
-                    "#type": "for_each",
-                    "values": "$[?(@.value.doc_count)]",
-                    "spec": {
-                      "name": "$.key",
-                      "total": "$.value.doc_count"
-                    }
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "stats": { "total": "$.hits.total.value" }
-        },
-        {
-          "#type": "require_throw",
-          "value": "$.hits.hits[0]",
-          "message": "No records found",
-          "args": { "status": 404 }
-        }
-      ]
-    }
-  ]
+        ]
+      }
+    ]
+  }
 }
