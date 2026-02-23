@@ -28,7 +28,12 @@
           }
         },
         {
-          "found": false
+          "#type": "require_throw",
+          "value": null,
+          "args": {
+            "status": 404,
+            "message": "Record not found"
+          }
         },
         {
           "data": {
