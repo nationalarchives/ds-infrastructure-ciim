@@ -5,12 +5,16 @@
       "#type": "fallback",
       "strategies": [
         {
-          "#type": "scope",
-          "scope": "$.datasets.elasticsearchEtna.provider_error",
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.provider_error.status",
           "value": {
-            "status": "$.status",
-            "type": "$.error.type",
-            "reason": "$.error.reason"
+            "#type": "require_throw",
+            "value": null,
+            "args": {
+              "status": "$.datasets.elasticsearchEtna.provider_error.status",
+              "type": "$.datasets.elasticsearchEtna.provider_error.error.type",
+              "reason": "$.datasets.elasticsearchEtna.provider_error.error.reason"
+            }
           }
         },
         {
