@@ -12,7 +12,7 @@
             "chain": [
               {
                 "#type": "regex_replace",
-                "value": "$.original.datasets.elasticsearch.errors.[0].message",
+                "value": "$.datasets.elasticsearchEtna.provider_error.[0].message",
                 "pattern": ".*status=(.*)}",
                 "replacement": "[L]$1"
               },
