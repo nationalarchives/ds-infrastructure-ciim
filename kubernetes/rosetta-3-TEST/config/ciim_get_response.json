@@ -1,70 +1,56 @@
 {
-  "#type": "chain",
-  "chain": [
-
+  "#type": "fallback",
+  "strategies": [
     {
-      "#type": "fallback",
-      "strategies": [
-        {
-          "#type": "require",
-          "require": "$.original.datasets.elasticsearch.errors[0].message",
-          "value": {
-            "#type": "chain",
-            "chain": [
+      "#type": "require",
+      "require": "$.original.datasets.elasticsearchEtna.scroll.errors[0].message",
+      "value": {
+        "#type": "chain",
+        "chain": [
+          {
+            "#type": "regex_replace",
+            "value": "$.original.datasets.elasticsearchEtna.scroll.errors[0].message",
+            "pattern": ".*status=(\\d+).*",
+            "replacement": "[L]$1"
+          },
+          {
+            "#type": "fallback",
+            "strategies": [
               {
-                "#type": "regex_replace",
-                "value": "$.original.datasets.elasticsearch.errors[0].message",
-                "pattern": ".*status=(\\d+).*",
-                "replacement": "[L]$1"
+                "#type": "maths",
+                "expression": "$",
+                "output_type": "integer"
               },
-              {
-                "#type": "fallback",
-                "strategies": [
-                  {
-                    "#type": "maths",
-                    "expression": "$",
-                    "output_type": "integer"
-                  },
-                  500
-                ]
-              },
-              {
-                "#type": "require_throw",
-                "value": null,
-                "args": {
-                  "status": "$"
-                }
-              }
+              500
             ]
-          }
-        },
-
-        {
-          "#type": "require",
-          "require": "$.original.datasets.elasticsearch.found",
-          "value": {
-            "#type": "require",
-            "require": "&[?(@ == false)]",
-            "value": {
-              "#type": "require_throw",
-              "value": null,
-              "args": {
-                "status": 404
-              }
+          },
+          {
+            "#type": "require_throw",
+            "value": null,
+            "args": {
+              "status": "$"
             }
           }
-        },
-        "$"
-      ]
+        ]
+      }
     },
-
+    {
+      "#type": "require",
+      "require": "&[?(@.found == false)]",
+      "value": {
+        "#type": "require_throw",
+        "value": null,
+        "args": {
+          "status": 404
+        }
+      }
+    },
     {
       "#type": "merge",
       "values": [
-        "$.datasets.elasticsearchEtna"
+        "$.datasets.elasticsearchEtna.scroll"
       ]
     },
-
     {
           "data": {
             "#type": "fallback",
