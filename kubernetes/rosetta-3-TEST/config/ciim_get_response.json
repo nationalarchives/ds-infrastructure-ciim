@@ -6,46 +6,35 @@
       "strategies": [
         {
           "#type": "scope",
-          "scope": "$.datasets.elasticsearchEtna.provider_error",
+          "scope": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
-            "#type": "declare",
-            "args": {
-              "statusCode": {
-                "#type": "chain",
-                "chain": [
-                  {
-                    "#type": "regex_replace",
-                    "value": "$.original.datasets.elasticsearch.errors.[0].message",
-                    "pattern": ".*status=(\\d+).*",
-                    "replacement": "[L]$1"
-                  },
-                  {
-                    "#type": "maths",
-                    "expression": "$",
-                    "output_type": "integer"
-                  }
-                ]
-              }
-            },
-            "value": {
-              "#type": "require",
-              "require": "&.statusCode[?(@ == 400 || @ == 500)]",
-              "value": {
+            "#type": "chain",
+            "chain": [
+              {
+                "#type": "regex_replace",
+                "pattern": ".*status=(\\d+).*",
+                "replacement": "[L]$1"
+              },
+              {
+                "#type": "maths",
+                "expression": "$",
+                "output_type": "integer"
+              },
+              {
                 "#type": "require_throw",
-                "value": "$$.original.datasets.data[0]",
+                "value": {},
                 "args": {
-                  "status": "&.statusCode"
+                  "status": "$"
                 }
               }
-            }
+            ]
           }
         },
         {
-          "#type": "scope",
-          "scope": "$",
+          "#type": "require",
+          "require": "$.stats.total[?(@ == 0)]",
           "value": {
             "#type": "require_throw",
-            "require": "$[?(@.found == false)]",
             "value": {},
             "args": {
               "status": 404
