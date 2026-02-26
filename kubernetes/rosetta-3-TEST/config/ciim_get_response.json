@@ -42,7 +42,7 @@
         },
         {
           "#type": "require",
-          "require": "$.found[?(@ == false)]",
+          "require": "$[?(@.found == false)]",
           "value": {
             "#type": "require_throw",
             "value": {},
