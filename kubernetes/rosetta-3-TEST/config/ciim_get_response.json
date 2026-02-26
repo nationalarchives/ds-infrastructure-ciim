@@ -1,57 +1,41 @@
 {
-  "#type": "fallback",
-  "strategies": [
+  "#type": "chain",
+  "chain": [
     {
-      "#type": "require",
-      "require": "$.original.datasets.elasticsearchEtna.scroll.errors[0].message",
-      "value": {
-        "#type": "chain",
-        "chain": [
-          {
-            "#type": "regex_replace",
-            "value": "$.original.datasets.elasticsearchEtna.scroll.errors[0].message",
-            "pattern": ".*status=(\\d+).*",
-            "replacement": "[L]$1"
-          },
-          {
-            "#type": "fallback",
-            "strategies": [
-              {
-                "#type": "maths",
-                "expression": "$",
-                "output_type": "integer"
-              },
-              500
-            ]
-          },
-          {
+      "#type": "fallback",
+      "strategies": [
+        {
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.provider_error.status",
+          "value": {
             "#type": "require_throw",
             "value": null,
             "args": {
-              "status": "$"
+              "status": "$.datasets.elasticsearchEtna.provider_error.status",
+              "type": "$.datasets.elasticsearchEtna.provider_error.error.type",
+              "reason": "$.datasets.elasticsearchEtna.provider_error.error.reason"
             }
           }
-        ]
-      }
-    },
-    {
-      "#type": "require",
-      "require": "&[?(@.found == false)]",
-      "value": {
-        "#type": "require_throw",
-        "value": null,
-        "args": {
-          "status": 404
-        }
-      }
-    },
-    {
-      "#type": "merge",
-      "values": [
-        "$.datasets.elasticsearchEtna.scroll"
-      ]
-    },
-    {
+        },
+        {
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.data[0]",
+          "value": {
+            "#type": "merge",
+            "values": [
+              "$.datasets.elasticsearchEtna.data[0]"
+            ]
+          }
+        },
+        {
+          "#type": "require_throw",
+          "value": null,
+          "args": {
+            "status": 404,
+            "message": "Record not found"
+          }
+        },
+        {
           "data": {
             "#type": "fallback",
             "strategies": [
@@ -533,3 +517,5 @@
         }
       ]
     }
+  ]
+}
