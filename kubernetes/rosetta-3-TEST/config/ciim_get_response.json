@@ -33,13 +33,40 @@
           }
         },
         {
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.data[0]",
+          "value": {
+            "data": {
+              "#type": "fallback",
+              "strategies": [
+                {
+                  "#type": "as_list",
+                  "values": {
+                    "#type": "for_each",
+                    "values": "$.datasets.elasticsearchEtna.data",
+                    "spec": {
+                      "@template": {
+                        "details": { }
+                      }
+                    }
+                  }
+                },
+                []
+              ]
+            }
+          }
+        },
+        {
           "#type": "require_throw",
           "value": null,
           "args": {
             "status": 404,
             "message": "Record not found"
           }
-        },
+        }
+
+      ]
+    },
     {
       "data": {
         "#type": "fallback",
@@ -521,6 +548,4 @@
       }
     }
   ]
-}
-]
 }
