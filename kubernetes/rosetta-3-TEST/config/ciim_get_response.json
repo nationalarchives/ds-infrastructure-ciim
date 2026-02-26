@@ -1,29 +1,36 @@
 {
   "#type": "chain",
   "chain": [
+
     {
       "#type": "fallback",
       "strategies": [
         {
-          "#type": "scope",
-          "scope": "$.datasets.elasticsearchEtna.provider_error",
+          "#type": "require",
+          "require": "$.original.datasets.elasticsearch.errors[0].message",
           "value": {
             "#type": "chain",
             "chain": [
               {
                 "#type": "regex_replace",
-                "value": "$.original.datasets.elasticsearch.errors.[0].message",
-                "pattern": ".*status=(.*)}",
+                "value": "$.original.datasets.elasticsearch.errors[0].message",
+                "pattern": ".*status=(\\d+).*",
                 "replacement": "[L]$1"
               },
               {
-                "#type": "maths",
-                "expression": "$",
-                "output_type": "integer"
+                "#type": "fallback",
+                "strategies": [
+                  {
+                    "#type": "maths",
+                    "expression": "$",
+                    "output_type": "integer"
+                  },
+                  500
+                ]
               },
               {
                 "#type": "require_throw",
-                "value": "$$.original.datasets.data[0]",
+                "value": null,
                 "args": {
                   "status": "$"
                 }
@@ -31,13 +38,34 @@
             ]
           }
         },
+
         {
-          "#type": "merge",
-          "values": [
-            "$.datasets.elasticsearchEtna"
-          ]
+          "#type": "require",
+          "require": "$.original.datasets.elasticsearch.found",
+          "value": {
+            "#type": "require",
+            "require": "&[?(@ == false)]",
+            "value": {
+              "#type": "require_throw",
+              "value": null,
+              "args": {
+                "status": 404
+              }
+            }
+          }
         },
-        {
+        "$"
+      ]
+    },
+
+    {
+      "#type": "merge",
+      "values": [
+        "$.datasets.elasticsearchEtna"
+      ]
+    },
+
+    {
           "data": {
             "#type": "fallback",
             "strategies": [
