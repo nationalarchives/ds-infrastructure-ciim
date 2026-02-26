@@ -5,35 +5,37 @@
       "#type": "fallback",
       "strategies": [
         {
-          "#type": "require",
-          "require": "$.datasets.elasticsearchEtna.provider_error.status",
+          "#type": "scope",
+          "scope": "$.datasets.elasticsearchEtna.provider_error",
           "value": {
-            "#type": "require_throw",
-            "value": null,
-            "args": {
-              "status": "$.datasets.elasticsearchEtna.provider_error.status",
-              "type": "$.datasets.elasticsearchEtna.provider_error.error.type",
-              "reason": "$.datasets.elasticsearchEtna.provider_error.error.reason"
-            }
-          }
-        },
-        {
-          "#type": "require",
-          "require": "$.datasets.elasticsearchEtna.data[0]",
-          "value": {
-            "#type": "merge",
-            "values": [
-              "$.datasets.elasticsearchEtna.data[0]"
+            "#type": "chain",
+            "chain": [
+              {
+                "#type": "regex_replace",
+                "value": "$.original.datasets.elasticsearch.errors.[0].message",
+                "pattern": ".*status=(.*)}",
+                "replacement": "[L]$1"
+              },
+              {
+                "#type": "maths",
+                "expression": "$",
+                "output_type": "integer"
+              },
+              {
+                "#type": "require_throw",
+                "value": "$$.original.datasets.data[0]",
+                "args": {
+                  "status": "$"
+                }
+              }
             ]
           }
         },
         {
-          "#type": "require_throw",
-          "value": null,
-          "args": {
-            "status": 404,
-            "message": "Record not found"
-          }
+          "#type": "merge",
+          "values": [
+            "$.datasets.elasticsearchEtna"
+          ]
         },
         {
           "data": {
