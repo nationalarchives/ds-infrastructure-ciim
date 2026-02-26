@@ -41,10 +41,11 @@
           }
         },
         {
-          "#type": "require",
-          "require": "$[?(@.found == false)]",
+          "#type": "scope",
+          "scope": "$",
           "value": {
             "#type": "require_throw",
+            "require": "$[?(@.found == false)]",
             "value": {},
             "args": {
               "status": 404
