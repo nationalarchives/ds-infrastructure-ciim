@@ -8,9 +8,27 @@
           "#type": "scope",
           "scope": "$.datasets.elasticsearchEtna.provider_error",
           "value": {
-            "status": "$.status",
-            "type": "$.error.type",
-            "reason": "$.error.reason"
+            "#type": "chain",
+            "chain": [
+              {
+                "#type": "regex_replace",
+                "value": "$.original.datasets.elasticsearch.errors.[0].message",
+                "pattern": ".*status=(.*)}",
+                "replacement": "[L]$1"
+              },
+              {
+                "#type": "maths",
+                "expression": "$",
+                "output_type": "integer"
+              },
+              {
+                "#type": "require_throw",
+                "value": "$$.original.datasets.data[0]",
+                "args": {
+                  "status": "$"
+                }
+              }
+            ]
           }
         },
         {
