@@ -39,9 +39,7 @@
             "status": 404,
             "message": "Record not found"
           }
-        }
-      ]
-    },
+        },
     {
       "data": {
         "#type": "fallback",
