@@ -8,33 +8,26 @@
           "#type": "scope",
           "scope": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
-            "#type": "declare",
-            "args": {
-              "statusCode": {
-                "#type": "regex_replace",
-                "pattern": ".*status[=:\\s]+(\\d+).*",
-                "replacement": "[L]$1"
-              },
-              "errorReason": {
-                "#type": "regex_replace",
-                "pattern": ".*reason=([^,}]+).*",
-                "replacement": "[L]$1"
-              }
-            },
-            "value": {
+            "#type": "chain",
+            "chain": {
               "#type": "chain",
               "chain": [
                 {
+                  "#type": "regex_replace",
+                  "value": "$.original.datasets.elasticsearch.errors.[0].message",
+                  "pattern": ".*status=(.*)}",
+                  "replacement": "[L]$1"
+                },
+                {
                   "#type": "maths",
-                  "expression": "&.statusCode",
+                  "expression": "$",
                   "output_type": "integer"
                 },
                 {
                   "#type": "require_throw",
-                  "value": {},
+                  "value": "$$.original.datasets.data[0]",
                   "args": {
-                    "status": "$",
-                    "message": "&.errorReason"
+                    "status": "$"
                   }
                 }
               ]
