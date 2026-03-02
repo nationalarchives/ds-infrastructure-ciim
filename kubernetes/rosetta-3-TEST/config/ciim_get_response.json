@@ -6,7 +6,7 @@
       "strategies": [
         {
           "#type": "scope",
-          "scope": "$.datasets.elasticsearchEtna.errors[0].message",
+          "scope": "$.errors[0].message",
           "value": {
             "#type": "chain",
             "chain": [
