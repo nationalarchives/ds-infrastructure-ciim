@@ -8,36 +8,36 @@
           "#type": "scope",
           "scope": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
-            "#type": "chain",
-            "chain": [
-              {
+            "#type": "declare",
+            "args": {
+              "statusCode": {
                 "#type": "regex_replace",
-                "pattern": ".*status=(\\d+).*",
+                "pattern": ".*status[=:\\s]+(\\d+).*",
                 "replacement": "[L]$1"
               },
-              {
-                "#type": "maths",
-                "expression": "$",
-                "output_type": "integer"
-              },
-              {
-                "#type": "require_throw",
-                "value": {},
-                "args": {
-                  "status": "$"
-                }
+              "errorReason": {
+                "#type": "regex_replace",
+                "pattern": ".*reason=([^,}]+).*",
+                "replacement": "[L]$1"
               }
-            ]
-          }
-        },
-        {
-          "#type": "require",
-          "require": "$.stats.total[?(@ == 0)]",
-          "value": {
-            "#type": "require_throw",
-            "value": {},
-            "args": {
-              "status": 404
+            },
+            "value": {
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "maths",
+                  "expression": "&.statusCode",
+                  "output_type": "integer"
+                },
+                {
+                  "#type": "require_throw",
+                  "value": {},
+                  "args": {
+                    "status": "$",
+                    "message": "&.errorReason"
+                  }
+                }
+              ]
             }
           }
         },
