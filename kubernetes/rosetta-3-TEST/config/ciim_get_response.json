@@ -44,13 +44,14 @@
         },
         {
           "#type": "require",
-          "require": "$.datasets.elasticsearchEtna.stats.total[?(@ == 0)]",
+          "require": {
+            "#type": "maths",
+            "expression": "$.datasets.elasticsearchEtna.stats.total == 0"
+          },
           "value": {
             "#type": "require_throw",
             "value": {},
-            "args": {
-              "status": 404
-            }
+            "args": { "status": 404 }
           }
         },
         {
