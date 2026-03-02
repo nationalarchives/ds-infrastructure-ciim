@@ -52,6 +52,7 @@
         {
           "#type": "merge",
           "values": [
+            "&&",
             "$.datasets.elasticsearchEtna"
           ]
         },
