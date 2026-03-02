@@ -9,28 +9,43 @@
           "scope": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
             "#type": "chain",
-            "chain": {
-              "#type": "chain",
-              "chain": [
-                {
-                  "#type": "regex_replace",
-                  "value": "$.original.datasets.elasticsearch.errors.[0].message",
-                  "pattern": ".*status=(.*)}",
-                  "replacement": "[L]$1"
-                },
-                {
-                  "#type": "maths",
-                  "expression": "$",
-                  "output_type": "integer"
-                },
-                {
-                  "#type": "require_throw",
-                  "value": "$$.original.datasets.data[0]",
-                  "args": {
-                    "status": "$"
-                  }
+            "chain": [
+              {
+                "#type": "regex_replace",
+                "value": "$",
+                "pattern": ".*status[=:\\s]+(\\d+).*",
+                "replacement": "[L]$1"
+              },
+              {
+                "#type": "fallback",
+                "strategies": [
+                  "$",
+                  500
+                ]
+              },
+              {
+                "#type": "maths",
+                "expression": "$",
+                "output_type": "integer"
+              },
+              {
+                "#type": "require_throw",
+                "value": {},
+                "args": {
+                  "status": "$"
                 }
-              ]
+              }
+            ]
+          }
+        },
+        {
+          "#type": "require",
+          "require": "$.datasets.elasticsearchEtna.stats.total[?(@ == 0)]",
+          "value": {
+            "#type": "require_throw",
+            "value": {},
+            "args": {
+              "status": 404
             }
           }
         },
