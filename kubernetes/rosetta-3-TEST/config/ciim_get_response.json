@@ -13,10 +13,11 @@
               "#type": "require",
               "require": "$.stats[?(@.errors == 0)]",
               "value": {
-                "#type": "require_throw",
+                "#type": "require",
+                "require": "$.stats.total",
                 "value": {
                   "#type": "require",
-                  "require": "$.stats[?(@.total != 0)]",
+                  "require": "$.stats.total",
                   "value": {
                     "#type": "merge",
                     "values": [
