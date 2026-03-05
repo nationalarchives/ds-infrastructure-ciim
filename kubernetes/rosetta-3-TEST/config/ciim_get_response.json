@@ -6,7 +6,7 @@
       "strategies": [
         {
           "#type": "require",
-          "require": "$.datasets.elasticsearchEtna.errors[0]",
+          "require": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
             "#type": "require_throw",
             "value": {
@@ -34,7 +34,7 @@
               "chain": [
                 {
                   "#type": "regex_replace",
-                  "value": "$.datasets.elasticsearch.errors.[0].message",
+                  "value": "$.datasets.elasticsearchEtna.errors[0].message",
                   "pattern": ".*status=(.*)}",
                   "replacement": "[L]$1"
                 },
@@ -45,7 +45,7 @@
                 },
                 {
                   "#type": "require_throw",
-                  "message": "$.datasets.elasticsearch.errors.[0].message",
+                  "message": "$.datasets.elasticsearchEtna.errors[0].message",
                   "args": {
                     "status": "$"
                   }
