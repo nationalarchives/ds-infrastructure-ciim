@@ -2,6 +2,9 @@
   "#type": "chain",
   "chain": [
     {
+      "#type": "fallback",
+      "strategies": [
+        {
           "#type": "require",
           "require": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
@@ -539,3 +542,5 @@
         }
       ]
     }
+  ]
+}
