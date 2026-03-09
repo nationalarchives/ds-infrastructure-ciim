@@ -13,15 +13,14 @@
               "#type": "require",
               "require": "$.stats[?(@.errors == 0)]",
               "value": {
-                "#type": "require",
-                "require": "$.stats.total",
+                "#type": "require_throw",
                 "value": {
                   "#type": "require",
-                  "require": "$.stats.total",
+                  "require": "$.stats[?(@.total != 0)]",
                   "value": {
                     "#type": "merge",
                     "values": [
-                      "$.datasets.elasticsearchEtna"
+                      "$.datasets.elasticsearch"
                     ]
                   }
                 },
@@ -35,7 +34,7 @@
               "chain": [
                 {
                   "#type": "regex_replace",
-                  "value": "$.datasets.elasticsearchEtna.errors[0].message",
+                  "value": "$.datasets.elasticsearch.errors.[0].message",
                   "pattern": ".*status=(.*)}",
                   "replacement": "[L]$1"
                 },
@@ -46,7 +45,7 @@
                 },
                 {
                   "#type": "require_throw",
-                  "message": "$.datasets.elasticsearchEtna.errors[0].message",
+                  "message": "$.datasets.elasticsearch.errors.[0].message",
                   "args": {
                     "status": "$"
                   }
