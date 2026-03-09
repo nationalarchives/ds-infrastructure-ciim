@@ -8,50 +8,53 @@
           "#type": "require",
           "require": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
-            "#type": "chain",
-            "chain": [
-              {
-                "#type": "regex_replace",
-                "value": "$.datasets.elasticsearchEtna.errors[0].message",
-                "pattern": ".*status=(.*)}",
-                "replacement": "[L]$1"
-              },
-              {
-                "#type": "maths",
-                "expression": "$",
-                "output_type": "integer"
-              },
-              {
-                "#type": "require_throw",
-                "message": "$.datasets.elasticsearchEtna.errors[0].message",
+            "#type": "require_throw",
+            "value": {
+              "#type": "require",
+              "require": "$.stats[?(@.errors == 0)]",
+              "value": {
+                "#type": "require",
+                "require": "$.stats.total",
+                "value": {
+                  "#type": "require",
+                  "require": "$.stats.total",
+                  "value": {
+                    "#type": "merge",
+                    "values": [
+                      "$.datasets.elasticsearchEtna"
+                    ]
+                  }
+                },
                 "args": {
-                  "status": "$"
+                  "status": 404
                 }
               }
-            ]
+            },
+            "args": {
+              "#type": "chain",
+              "chain": [
+                {
+                  "#type": "regex_replace",
+                  "value": "$.datasets.elasticsearchEtna.errors[0].message",
+                  "pattern": ".*status=(.*)}",
+                  "replacement": "[L]$1"
+                },
+                {
+                  "#type": "maths",
+                  "expression": "$",
+                  "output_type": "integer"
+                },
+                {
+                  "#type": "require_throw",
+                  "message": "$.datasets.elasticsearchEtna.errors[0].message",
+                  "args": {
+                    "status": "$"
+                  }
+                }
+              ]
+            }
           }
         },
-
-        {
-          "#type": "require",
-          "require": "$.stats.total",
-          "value": {
-            "#type": "merge",
-            "values": [
-              "$.datasets.elasticsearchEtna"
-            ]
-          }
-        },
-
-        {
-          "#type": "require_throw",
-          "args": {
-            "status": 404
-          }
-        }
-
-      ]
-    },
         {
           "#type": "merge",
           "values": [
@@ -540,3 +543,5 @@
         }
       ]
     }
+  ]
+}
