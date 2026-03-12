@@ -4,53 +4,49 @@
     {
       "#type": "fallback",
       "strategies": [
-        {
-          "#type": "require",
-          "require": "$.datasets.elasticsearchEtna.errors[0].message",
-            "value": {
-              "#type": "require",
-              "require": "$.stats[?(@.errors == 0)]",
+        {{
+          "#type": "fallback",
+          "strategies": [
+            {
+              "#type": "require_throw",
               "value": {
-                "#type": "require_throw",
+                "#type": "require",
+                "require": "$.stats.total[?(@ != 0)]",
                 "value": {
-                  "#type": "require",
-                  "require": "$.stats[?(@.total != 0)]",
-                  "value": {
-                    "#type": "merge",
-                    "values": [
-                      "$.datasets.elasticsearchEtna"
-                    ]
-                  }
-                },
-                "args": {
-                  "status": 404
+                  "#type": "merge",
+                  "values": [
+                    "$.datasets.elasticsearchEtna"
+                  ]
                 }
+              },
+              "args": {
+                "status": 404
               }
             },
-            "args": {
-              "#type": "chain",
-              "chain": [
-                {
+            {
+              "#type": "require_throw",
+              "value": {
+                "#type": "maths",
+                "expression": {
                   "#type": "regex_replace",
                   "value": "$.datasets.elasticsearch.errors.[0].message",
                   "pattern": ".*status=(\\d+).*",
                   "replacement": "[L]$1"
                 },
-                {
-                  "#type": "maths",
-                  "expression": "$",
-                  "output_type": "integer"
-                },
-                {
-                  "#type": "require_throw",
-                  "message": "$.datasets.elasticsearch.errors.[0].message",
-                  "args": {
-                    "status": "$"
-                  }
+                "output_type": "integer"
+              },
+              "message": "$.datasets.elasticsearch.errors.[0].message",
+              "args": {
+                "status": {
+                  "#type": "fallback",
+                  "strategies": [
+                    "$"
+                  ]
                 }
-              ]
+              }
             }
-          },
+          ]
+        },
         {
           "#type": "merge",
           "values": [
