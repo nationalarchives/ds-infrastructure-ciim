@@ -40,7 +40,8 @@
                 "status": {
                   "#type": "fallback",
                   "strategies": [
-                    "$"
+                    "$",
+                    500  
                   ]
                 }
               }
