@@ -18,7 +18,7 @@
                   "value": {
                     "#type": "merge",
                     "values": [
-                      "$.datasets.elasticsearch"
+                      "$.datasets.elasticsearchEtna"
                     ]
                   }
                 },
