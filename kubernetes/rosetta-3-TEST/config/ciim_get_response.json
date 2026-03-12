@@ -35,7 +35,7 @@
                 {
                   "#type": "regex_replace",
                   "value": "$.datasets.elasticsearch.errors.[0].message",
-                  "pattern": ".*status=(.*)}",
+                  "pattern": ".*status=(\\d+).*",
                   "replacement": "[L]$1"
                 },
                 {
