@@ -157,7 +157,7 @@
                     "rid": "$.source.multimedia[*].@admin.id",
                     "heldBy": "$.source.repository.name.value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
-                    "recordOpeningDate": "$.source.origination.date.from",
+                    "recordOpeningDate": "$.source.origination.date",
                     "subjects": "$.source.subjects.subject[*].summary.title",
                     "level": "$.source.level",
                     "group": {
