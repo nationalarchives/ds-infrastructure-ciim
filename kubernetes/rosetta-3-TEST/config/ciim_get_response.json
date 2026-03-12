@@ -5,39 +5,10 @@
       "#type": "fallback",
       "strategies": [
         {
-          "#type": "require_throw",
-          "value": {
-            "#type": "require",
-            "require": "$.stats.total",
-            "value": "$.datasets.elasticsearchEtna"
-          },
-          "args": {
-            "status": {
-              "#type": "declare",
-              "args": { "total": "$.stats.total" },
-              "value": {
-                "#type": "literal",
-                "value": {
-                  "#type": "fallback",
-                  "strategies": [
-                    {
-                      "#type": "literal",
-                      "value": 404
-                    },
-                    {
-                      "#type": "literal",
-                      "value": 200
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
           "#type": "require",
           "require": "$.datasets.elasticsearchEtna.errors[0].message",
-          "value": {
+          "value": [
+            {
             "#type": "require_throw",
             "value": {
               "#type": "chain",
@@ -62,7 +33,28 @@
                 }
               ]
             }
-          }
+          },
+            {
+              "#type": "require",
+              "require": "$.stats[?(@.errors == 0)]",
+              "value": {
+                "#type": "require_throw",
+                "value": {
+                  "#type": "require",
+                  "require": "$.stats[?(@.total != 0)]",
+                  "value": {
+                    "#type": "merge",
+                    "values": [
+                      "$.datasets.elasticsearchEtna"
+                    ]
+                  }
+                },
+                "args": {
+                  "status": 404
+                }
+              }
+            }
+          ]
         },
         {
           "#type": "merge",
