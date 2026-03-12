@@ -5,6 +5,32 @@
       "#type": "fallback",
       "strategies": [
         {
+          "#type": "require_throw",
+          "value": {
+            "#type": "require",
+            "require": "$.stats.total",
+            "value": {
+              "#type": "merge",
+              "values": ["$.datasets.elasticsearchEtna"]
+            }
+          },
+          "args": {
+            "status": {
+              "#type": "fallback",
+              "strategies": [
+                {
+                  "#type": "declare",
+                  "args": { "total": "$.stats.total" },
+                  "value": {
+                    "#type": "literal",
+                    "value": 404
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
           "#type": "require",
           "require": "$.datasets.elasticsearchEtna.errors[0].message",
           "value": {
@@ -31,33 +57,7 @@
                   }
                 }
               ]
-            },
-        {
-          "#type": "require_throw",
-          "value": {
-            "#type": "require",
-            "require": "$.stats.total",
-            "value": {
-              "#type": "merge",
-              "values": ["$.datasets.elasticsearchEtna"]
             }
-          },
-          "args": {
-            "status": {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "declare",
-                  "args": { "total": "$.stats.total" },
-                  "value": {
-                    "#type": "literal",
-                    "value": 404
-                  }
-                }
-              ]
-            }
-          }
-        },
           }
         },
         {
