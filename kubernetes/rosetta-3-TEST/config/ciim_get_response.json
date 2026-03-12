@@ -9,24 +9,28 @@
           "value": {
             "#type": "require",
             "require": "$.stats.total",
-            "value": {
-              "#type": "merge",
-              "values": ["$.datasets.elasticsearchEtna"]
-            }
+            "value": "$.datasets.elasticsearchEtna"
           },
           "args": {
             "status": {
-              "#type": "fallback",
-              "strategies": [
-                {
-                  "#type": "declare",
-                  "args": { "total": "$.stats.total" },
-                  "value": {
-                    "#type": "literal",
-                    "value": 404
-                  }
+              "#type": "declare",
+              "args": { "total": "$.stats.total" },
+              "value": {
+                "#type": "literal",
+                "value": {
+                  "#type": "fallback",
+                  "strategies": [
+                    {
+                      "#type": "literal",
+                      "value": 404
+                    },
+                    {
+                      "#type": "literal",
+                      "value": 200
+                    }
+                  ]
                 }
-              ]
+              }
             }
           }
         },
