@@ -4,23 +4,18 @@
     "#type": "require",
     "require": "$.stats[?(@.total != 0)]",
     "value": {
-      "#type": "require_throw",
-      "value": {
-        "#type": "require",
-        "require": "$.results.stats[?(@.total != 0)]",
-        "value": {
-          "#type": "chain",
-          "chain": [
+      "#type": "chain",
+      "chain": [
+        {
+          "#type": "merge",
+          "values": [
+            "$.results.datasets.elasticsearchEtna",
             {
-              "#type": "merge",
-              "values": [
-                "$.results.datasets.elasticsearchEtna",
-                {
-                  "stats": "$.results.stats"
-                }
-              ]
-            },
-            {
+              "stats": "$.results.stats"
+            }
+          ]
+        },
+        {
               "data": {
                 "#type": "fallback",
                 "strategies": [
@@ -214,8 +209,6 @@
         "args": {
           "status": 404
         }
-      }
-    }
   },
   "args": {
     "status": {
