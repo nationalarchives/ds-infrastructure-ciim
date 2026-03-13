@@ -2,7 +2,7 @@
   "#type": "require_throw",
   "value": {
     "#type": "require",
-    "require": "$.stats.total",
+    "require": "$.stats[?(@.total != 0)]",
     "value": {
       "#type": "chain",
       "chain": [
