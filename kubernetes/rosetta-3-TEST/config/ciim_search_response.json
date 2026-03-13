@@ -2,7 +2,7 @@
   "#type": "require_throw",
   "value": {
     "#type": "require",
-    "require": "$.results.stats[?(@.errors == 0)]",
+    "require": "$.stats[?(@.total != 0)]",
     "value": {
       "#type": "require_throw",
       "value": {
