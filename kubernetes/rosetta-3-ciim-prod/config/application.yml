@@ -21,7 +21,7 @@ rosetta:
 
         - name: slow-cache
           expire_after_write: 24h
-          maximum_size: 100000
+          maximum_size: 10000
           use_scheduler: true
 
   cache:
