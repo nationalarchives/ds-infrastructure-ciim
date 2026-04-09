@@ -73,7 +73,13 @@
                       "schema": "$.source.description[0].schema.value",
                       "raw": {
                         "#type": "regex_replace",
-                        "value": "$.source.description[0].raw",
+                        "value": {
+                          "#type": "fallback",
+                          "strategies": [
+                            "$.source.description[0].raw",
+                            "$.source.description[0].ephemera.value"
+                          ]
+                        },
                         "pattern": "(?<=<head>)Scope and Content(?=</head>)",
                         "replacement": ""
                       },
@@ -249,8 +255,7 @@
                       "replacement": "<unittitle type=\"$2\">$3</unittitle>"
                     },
                     "mapScale": "$.source.@template.details.mapScale",
-                    "nraReference": "$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value",
-                    "note": "$.source.@template.details.note",
+                    "nraReference": "{$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value} {$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (3rd part)')].value}",
                     "parent": {
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
@@ -282,6 +287,10 @@
                     "publicationNote": {
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'publication note')].value"
+                    },
+                    "placeDescription": {
+                      "raw": "$.source.place[*].description.value",
+                      "display": "$.source.place[*].description.label.value"
                     },
                     "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
