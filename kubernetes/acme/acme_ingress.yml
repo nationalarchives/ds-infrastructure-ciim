@@ -9,9 +9,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - rosetta-staging.k-int.com
+        - tls-secret-rosetta-dev
   rules:
-    - host: rosetta-staging.k-int.com
+    - host: tls-secret-rosetta-dev
       http:
         paths:
           - path: /.well-known/acme-challenge
