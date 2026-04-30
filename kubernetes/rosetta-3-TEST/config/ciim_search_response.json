@@ -22,7 +22,6 @@
               "spec": {
                 "@template": {
                   "details": {
-                    "temp": "$",
                     "iaid": "$.source.identifier..__iaid",
                     "id": "$.source.@admin.id",
                     "cleanSummaryTitle": {
