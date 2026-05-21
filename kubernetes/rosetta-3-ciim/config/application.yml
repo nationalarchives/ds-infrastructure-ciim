@@ -70,7 +70,7 @@ rosetta:
               - generic-search-modifications
               - generic-to-elastic
               - elastic-modifications
-              - ciim/TESTDescription/search/request
+              - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
@@ -78,7 +78,7 @@ rosetta:
           response:
             policy: list
             names:
-              - ciim/search/response
+              - ciim/TESTDescription/search/response
               - aggs-count-to-doc-count
 
       - name: ciim/serachHighlight
@@ -128,11 +128,11 @@ rosetta:
           request:
             policy: list
             names:
-              - ciim/TESTDescription/get/request
+              - ciim/get/request
           response:
             policy: list
             names:
-              - ciim/get/response
+              - ciim/TESTDescription/get/response
 
       - name: ciim/get
         paths:
