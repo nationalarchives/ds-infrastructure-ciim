@@ -122,7 +122,7 @@ rosetta:
 
       - name: ciim/TESTDescription/get
         paths:
-          - /rosetta/test/description/search
+          - /rosetta/test/description/get
         profile: generic-search
         transforms:
           request:
