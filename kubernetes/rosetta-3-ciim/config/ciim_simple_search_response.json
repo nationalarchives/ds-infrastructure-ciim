@@ -136,7 +136,8 @@
                       "value": {
                         "#type": "fallback",
                         "strategies": [
-                          "[R]$.source.highlight['description.raw']",
+                          "[R]$.source.highlight['description.raw'][0]",
+                          "$.source.description[0].raw",
                           "$.source.description[0].ephemera.value"
                         ]
                       }
