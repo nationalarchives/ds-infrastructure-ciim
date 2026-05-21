@@ -56,6 +56,31 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
+      - name: ciim/TESTDescription/search
+        paths:
+          - /rosetta/test/description/search
+        profile: elasticsearch
+        type: advanced-cache-multi
+        transforms:
+          request:
+            policy: list
+            names:
+              - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
+              - generic-to-elastic
+              - elastic-modifications
+              - ciim/TESTDescription/search/request
+              - inject-highlighting
+              - merge-advance-parameters
+              - inject-exists_digitised-filter
+              - inject-subject_nested_agg
+          response:
+            policy: list
+            names:
+              - ciim/search/response
+              - aggs-count-to-doc-count
+
       - name: ciim/serachHighlight
         type: transform-only
         paths:
@@ -95,6 +120,20 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
 
+      - name: ciim/TESTDescription/get
+        paths:
+          - /rosetta/test/description/search
+        profile: generic-search
+        transforms:
+          request:
+            policy: list
+            names:
+              - ciim/TESTDescription/get/request
+          response:
+            policy: list
+            names:
+              - ciim/get/response
+
       - name: ciim/get
         paths:
           - /rosetta/data/get
@@ -108,7 +147,7 @@ rosetta:
             policy: list
             names:
               - ciim/get/response
-              -
+
       - name: ciim/ids
         paths:
           - /rosetta/data/random-ids
@@ -346,11 +385,27 @@ rosetta:
           include:
             - ./config/component_search.json
 
+      - name: ciim/TESTDescription/search/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_simple_search_response.json
+          include:
+            - ./config/component_search.json
+
       - name: ciim/get/request
         type: proteus
         properties:
           mutable: true
           spec: ${base_paths.proteus}/ciim_get_request.json
+
+      - name: ciim/TESTDescription/get/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/ciim_simple_get_response.json
+          include:
+            - ./config/component_search.json
 
       - name: ciim/get/response
         type: proteus
