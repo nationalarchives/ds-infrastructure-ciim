@@ -70,7 +70,7 @@
                     "deliveryOption": "$.source.availability.delivery.condition.value",
                     "description": {
                       "schema": "$.source.description[0].schema.value",
-                      "value": {
+                      "raw": {
                         "#type": "fallback",
                         "strategies": [
                           "$.source.description[0].raw",

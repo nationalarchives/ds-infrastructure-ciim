@@ -133,7 +133,7 @@
                     "title": "$.source.title[?(@.primary == true && !(@.value =~ /^<span\\s+class=[\"']unittitle[\"']\\s+type=[\"']Title[\"']\\s*\\/?>$/i))].value",
                     "description": {
                       "schema": "$.source.description[0].schema.value",
-                      "value": {
+                      "raw": {
                         "#type": "fallback",
                         "strategies": [
                           "[R]$.source.highlight['description.raw']",
