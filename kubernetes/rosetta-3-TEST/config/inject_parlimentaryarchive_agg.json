@@ -1,0 +1,26 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
+      "value": {
+        "results": {
+          "request": {
+            "aggregations": {
+              "parlimentaryarchive": {
+                "terms": {
+                  "field": "@hierarch.identifier.__reference_number.keyword",
+                  "include": "Y.*",
+                  "size": 1000
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
