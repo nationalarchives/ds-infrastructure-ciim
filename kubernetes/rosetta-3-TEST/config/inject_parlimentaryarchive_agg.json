@@ -10,11 +10,20 @@
         "results": {
           "request": {
             "aggregations": {
-              "parlimentaryarchive": {
-                "terms": {
-                  "field": "@hierarch.identifier.__reference_number.keyword",
-                  "include": "Y.*",
-                  "size": 1000
+              "parliamentaryarchive": {
+                "filter": {
+                  "query_string": {
+                    "query": "@hierarch.source.value:\"UNKNOWN\" AND @hierarch.level.code:1"
+                  }
+                },
+                "aggregations": {
+                  "parliamentary_series": {
+                    "terms": {
+                      "field": "@hierarch.identifier.__reference_number.keyword",
+                      "include": "Y.*",
+                      "size": 500
+                    }
+                  }
                 }
               }
             }
