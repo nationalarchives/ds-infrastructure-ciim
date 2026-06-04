@@ -129,32 +129,7 @@
                 },
                 {
                   "#type": "for_each",
-                  "values": "$[?(@.value.doc_count && @.value.parliamentary_series)]",
-                  "spec": {
-                    "name": "$.key",
-                    "total": "$.value.doc_count",
-                    "entries": {
-                      "#type": "fallback",
-                      "strategies": [
-                        {
-                          "#type": "for_each",
-                          "values": "$.value.parliamentary_series.buckets",
-                          "spec": {
-                            "value": "$.key",
-                            "count": "$.doc_count"
-                          }
-                        },
-                        {
-                          "#type": "literal",
-                          "value": []
-                        }
-                      ]
-                    }
-                  }
-                },
-                {
-                  "#type": "for_each",
-                  "values": "$[?(@.value.doc_count && !@.value.parliamentary_series)]",
+                  "values": "$[?(@.value.doc_count)]",
                   "spec": {
                     "name": "$.key",
                     "total": "$.value.doc_count"
