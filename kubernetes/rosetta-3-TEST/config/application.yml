@@ -164,7 +164,7 @@ rosetta:
           types:
             - query
 
-      - name: inject-inject-parlimentaryarchive-agg
+      - name: inject-parlimentaryarchive-agg
         type: proteus
         input: full
         properties:
