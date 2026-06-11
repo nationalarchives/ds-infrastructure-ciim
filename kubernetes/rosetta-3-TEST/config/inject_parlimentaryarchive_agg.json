@@ -21,7 +21,7 @@
                       },
                       {
                         "prefix": {
-                          "identifier.__reference_number.keyword": "Y"
+                          "@hierarch.identifier.value.keyword": "Y"
                         }
                       }
                     ]
@@ -30,9 +30,7 @@
                 "aggregations": {
                   "parliamentary_series": {
                     "terms": {
-                      "script": {
-                        "source": "String ref = doc['identifier.__reference_number.keyword'].value; int idx = ref.indexOf('/'); return idx > -1 ? ref.substring(0, idx) : ref;"
-                      },
+                      "field": "@hierarch.identifier.value.keyword",
                       "size": 500
                     }
                   }
