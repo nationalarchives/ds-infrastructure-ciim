@@ -31,6 +31,7 @@
                   "parliamentary_series": {
                     "terms": {
                       "field": "@hierarch.identifier.value.keyword",
+                      "include": "^Y[^/]*$",
                       "size": 500
                     }
                   }
