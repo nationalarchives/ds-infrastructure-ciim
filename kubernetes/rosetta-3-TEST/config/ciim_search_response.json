@@ -215,7 +215,15 @@
                   "#type": "entries",
                   "map": "$"
                 },
-                "spec": "$.value"
+                "spec": {
+                  "#type": "merge",
+                  "values": [
+                    "$.value",
+                    {
+                      "entries": "$.value.entries[?(@.value =~ /^Y[^/]*$/)]"
+                    }
+                  ]
+                }
               },
               []
             ]
