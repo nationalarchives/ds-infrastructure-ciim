@@ -5,12 +5,12 @@
     "$.current",
     {
       "#type": "require",
-      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
+      "require": "$.original.query[?(@.parliamentaryArchive == 'true')]",
       "value": {
         "results": {
           "request": {
             "aggregations": {
-              "parlimentaryarchive": {
+              "parliamentaryArchive": {
                 "filter": {
                   "bool": {
                     "must": [
