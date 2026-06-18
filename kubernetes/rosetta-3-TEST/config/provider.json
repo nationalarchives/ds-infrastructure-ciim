@@ -134,8 +134,8 @@
                     "name": "$.key",
                     "total": "$.value.doc_count",
                     "entries": {
-                      "#type": "fallback",
-                      "strategies": [
+                      "#type": "chain",
+                      "chain": [
                         {
                           "#type": "for_each",
                           "values": "$.value.parliamentary_series.buckets",
@@ -150,8 +150,25 @@
                           }
                         },
                         {
-                          "#type": "literal",
-                          "value": []
+                          "#type": "group",
+                          "values": "$",
+                          "by": "$.value",
+                          "yield_group": {
+                            "value": "$.key",
+                            "count": {
+                              "#type": "sum",
+                              "values": "$.value[*].count",
+                              "output_type": "long"
+                            }
+                          }
+                        },
+                        {
+                          "#type": "for_each",
+                          "values": {
+                            "#type": "entries",
+                            "map": "$"
+                          },
+                          "spec": "$.value"
                         }
                       ]
                     }
