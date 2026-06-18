@@ -140,7 +140,12 @@
                           "#type": "for_each",
                           "values": "$.value.parliamentary_series.buckets",
                           "spec": {
-                            "value": "$.key",
+                            "value": {
+                              "#type": "regex_replace",
+                              "value": "$.key",
+                              "pattern": "^([^/]+).*$",
+                              "replacement": "$1"
+                            },
                             "count": "$.doc_count"
                           }
                         },
