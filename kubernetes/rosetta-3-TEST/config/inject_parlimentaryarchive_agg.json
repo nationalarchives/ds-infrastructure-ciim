@@ -5,7 +5,7 @@
     "$.current",
     {
       "#type": "require",
-      "require": "$.original.query[?(@.parliamentaryArchive == 'true')]",
+      "require": "$.original.query[?(@.parliamentaryarchive == 'true')]",
       "value": {
         "results": {
           "request": {
