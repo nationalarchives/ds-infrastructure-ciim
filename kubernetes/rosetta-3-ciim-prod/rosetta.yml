@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: rosetta-3-etna-prod-search
   revisionHistoryLimit: 1
-  replicas: 3
+  replicas: 2
   progressDeadlineSeconds: 600
   strategy:
     type: RollingUpdate
