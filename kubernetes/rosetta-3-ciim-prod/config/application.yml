@@ -135,7 +135,7 @@ rosetta:
           data: *global-data-transforms
 
   transform:
-    timeout: 5000
+    timeout: 30000
     glyphs:
       # Elastic search glyphs
       - name: to-generic-search
@@ -187,7 +187,7 @@ rosetta:
         type: elastic-generic-search
         properties:
           index: public-es
-          request_timeout: 5000
+          request_timeout: 30000
           date_range_format: "{from} - {to}"
           date_aggregations:
             - path: "origination.date.from"
@@ -335,8 +335,8 @@ rosetta:
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
 
   provider:
-    global_timeout: 5s
-    timeout: 5s
+    global_timeout: 20s
+    timeout: 20s
     providers:
       - name: elasticsearchEtna
         type: proteus-simple
