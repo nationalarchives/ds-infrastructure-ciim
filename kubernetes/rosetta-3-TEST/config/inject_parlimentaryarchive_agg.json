@@ -5,22 +5,32 @@
     "$.current",
     {
       "#type": "require",
-      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
+      "require": "$.original.query[?(@.parliamentaryarchive == 'true')]",
       "value": {
         "results": {
           "request": {
             "aggregations": {
               "parliamentaryarchive": {
                 "filter": {
-                  "query_string": {
-                    "query": "@hierarch.source.value:\"UNKNOWN\" AND @hierarch.level.code:1"
+                  "bool": {
+                    "must": [
+                      {
+                        "query_string": {
+                          "query": "source.value:UNKNOWN"
+                        }
+                      },
+                      {
+                        "prefix": {
+                          "@hierarch.identifier.value.keyword": "Y"
+                        }
+                      }
+                    ]
                   }
                 },
                 "aggregations": {
                   "parliamentary_series": {
                     "terms": {
-                      "field": "@hierarch.identifier.__reference_number.keyword",
-                      "include": "Y.*",
+                      "field": "@hierarch.identifier.value.keyword",
                       "size": 500
                     }
                   }
