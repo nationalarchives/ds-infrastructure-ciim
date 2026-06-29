@@ -10,65 +10,17 @@
         "results": {
           "request": {
             "aggregations": {
-              "parlimentaryarchive": {
+              "parliamentaryarchive": {
                 "filter": {
-                  "bool": {
-                    "must": [
-                      {
-                        "query_string": {
-                          "query": "source.value:UNKNOWN"
-                        }
-                      },
-                      {
-                        "prefix": {
-                          "@hierarch.identifier.value.keyword": "Y"
-                        }
-                      }
-                    ]
+                  "query_string": {
+                    "query": "@hierarch.source.value:\"UNKNOWN\" AND @hierarch.level.code:1"
                   }
                 },
                 "aggregations": {
                   "parliamentary_series": {
                     "terms": {
-                      "field": "@hierarch.identifier.value.keyword",
-                      "size": 500
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "#type": "require",
-      "require": "$.original.query[?(@.parliamentaryarchive == 'true')]",
-      "value": {
-        "results": {
-          "request": {
-            "aggregations": {
-              "parlimentaryarchive": {
-                "filter": {
-                  "bool": {
-                    "must": [
-                      {
-                        "query_string": {
-                          "query": "source.value:UNKNOWN"
-                        }
-                      },
-                      {
-                        "prefix": {
-                          "@hierarch.identifier.value.keyword": "Y"
-                        }
-                      }
-                    ]
-                  }
-                },
-                "aggregations": {
-                  "parliamentary_series": {
-                    "terms": {
-                      "field": "@hierarch.identifier.value.keyword",
+                      "field": "@hierarch.identifier.__reference_number.keyword",
+                      "include": "Y.*",
                       "size": 500
                     }
                   }
