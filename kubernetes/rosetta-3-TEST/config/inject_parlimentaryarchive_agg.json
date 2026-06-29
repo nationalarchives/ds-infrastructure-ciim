@@ -40,44 +40,6 @@
           }
         }
       }
-    },
-    {
-      "#type": "require",
-      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
-      "value": {
-        "results": {
-          "request": {
-            "aggregations": {
-              "parlimentaryarchive": {
-                "filter": {
-                  "bool": {
-                    "must": [
-                      {
-                        "query_string": {
-                          "query": "source.value:UNKNOWN"
-                        }
-                      },
-                      {
-                        "prefix": {
-                          "@hierarch.identifier.value.keyword": "Y"
-                        }
-                      }
-                    ]
-                  }
-                },
-                "aggregations": {
-                  "parliamentary_series": {
-                    "terms": {
-                      "field": "@hierarch.identifier.value.keyword",
-                      "size": 500
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   ]
 }
