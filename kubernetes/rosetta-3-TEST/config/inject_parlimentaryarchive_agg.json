@@ -1,45 +1,27 @@
 {
-  "#type": "merge",
-  "depth": -1,
-  "values": [
-    "$.current",
-    {
-      "#type": "require",
-      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
-      "value": {
-        "results": {
-          "request": {
-            "aggregations": {
-              "parlimentaryarchive": {
-                "filter": {
-                  "bool": {
-                    "must": [
-                      {
-                        "query_string": {
-                          "query": "source.value:UNKNOWN"
-                        }
-                      },
-                      {
-                        "prefix": {
-                          "@hierarch.identifier.value.keyword": "Y"
-                        }
-                      }
-                    ]
-                  }
-                },
-                "aggregations": {
-                  "parliamentary_series": {
-                    "terms": {
-                      "field": "@hierarch.identifier.value.keyword",
-                      "size": 500
-                    }
-                  }
-                }
-              }
-            }
+  "size": 0,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+            "query": "source.value:UNKNOWN"
+          }
+        },
+        {
+          "prefix": {
+            "identifier.__reference_number.keyword": "Y"
           }
         }
+      ]
+    }
+  },
+  "aggs": {
+    "parlimentaryarchive": {
+      "terms": {
+        "field": "identifier.__reference_number.keyword",
+        "size": 500
       }
     }
-  ]
+  }
 }
