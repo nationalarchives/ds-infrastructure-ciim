@@ -21,7 +21,7 @@
                       },
                       {
                         "prefix": {
-                          "@hierarch.identifier.value": "Y"
+                          "@hierarch.identifier.value.keyword": "Y"
                         }
                       }
                     ]
@@ -30,7 +30,7 @@
                 "aggregations": {
                   "parliamentary_series": {
                     "terms": {
-                      "field": "@hierarch.identifier.value",
+                      "field": "@hierarch.identifier.value.keyword",
                       "size": 500
                     }
                   }
@@ -43,4 +43,3 @@
     }
   ]
 }
-
