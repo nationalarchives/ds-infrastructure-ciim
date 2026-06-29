@@ -43,7 +43,7 @@
     },
     {
       "#type": "require",
-      "require": "$.original.query[?(@.parliamentaryarchive == 'true')]",
+      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
       "value": {
         "results": {
           "request": {
