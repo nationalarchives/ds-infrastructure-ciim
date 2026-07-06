@@ -1,182 +1,88 @@
 {
-  "#type": "declare",
-  "args": {
-    "parliamentaryAgg": {
-      "#type": "fallback",
-      "strategies": [
-        "$.aggregations[?(@.name == 'parlimentaryarchive')][0]",
-        {
-          "#type": "literal",
-          "value": null
-        }
-      ]
+  "#type": "merge",
+  "depth": -1,
+  "collisions": {
+    "array": {
+      "array": "last"
     }
   },
-  "value": {
-    "#type": "merge",
-    "depth": -1,
-    "collisions": {
-      "array": {
-        "array": "last"
+  "values": [
+    {
+      "data": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.data"
+          },
+          {
+            "#type": "literal",
+            "value": []
+          }
+        ]
+      },
+      "errors": {
+        "#type": "fallback",
+        "strategies": [
+          {
+            "#type": "as_list",
+            "values": "$.errors"
+          },
+          {
+            "#type": "literal",
+            "value": []
+          }
+        ]
       }
     },
-    "values": [
-      {
-        "data": {
-          "#type": "fallback",
-          "strategies": [
-            {
-              "#type": "as_list",
-              "values": "$.data"
-            },
-            {
-              "#type": "literal",
-              "value": []
+    "$",
+    {
+      "aggregations": {
+        "#type": "for_each",
+        "values": "$.aggregations[?(@.name != 'parlimentaryarchive')]",
+        "spec": {
+          "#type": "merge",
+          "depth": -1,
+          "collisions": {
+            "array": {
+              "array": "last"
             }
-          ]
-        },
-        "errors": {
-          "#type": "fallback",
-          "strategies": [
+          },
+          "values": [
+            "$",
             {
-              "#type": "as_list",
-              "values": "$.errors"
-            },
-            {
-              "#type": "literal",
-              "value": []
-            }
-          ]
-        }
-      },
-      "$",
-      {
-        "aggregations": {
-          "#type": "for_each",
-          "values": "$.aggregations[?(@.name != 'parlimentaryarchive')]",
-          "spec": {
-            "#type": "merge",
-            "depth": -1,
-            "collisions": {
-              "array": {
-                "array": "last"
-              }
-            },
-            "values": [
-              "$",
-              {
-                "entries": {
-                  "#type": "fallback",
-                  "strategies": [
+              "entries": {
+                "#type": "for_each",
+                "values": "$.entries",
+                "spec": {
+                  "#type": "merge",
+                  "depth": -1,
+                  "values": [
                     {
-                      "#type": "require",
-                      "require": "&[?(@.name == 'collection')]",
-                      "value": {
-                        "#type": "chain",
-                        "chain": [
-                          {
-                            "nonParliamentaryEntries": {
-                              "#type": "for_each",
-                              "values": "$.entries[?(!(@.value =~ /^Y/))]",
-                              "spec": {
-                                "value": "$.value",
-                                "doc_count": "$.count"
-                              }
-                            },
-                            "ukParliamentEntry": {
-                              "#type": "fallback",
-                              "strategies": [
-                                {
-                                  "#type": "require",
-                                  "require": "[C]&.parliamentaryAgg[?(@.total > 0)]",
-                                  "value": {
-                                    "value": "Y - UK Parliament",
-                                    "doc_count": "[C]&.parliamentaryAgg.total",
-                                    "entries": {
-                                      "#type": "chain",
-                                      "chain": [
-                                        {
-                                          "#type": "for_each",
-                                          "values": "[C]&.parliamentaryAgg.entries",
-                                          "spec": {
-                                            "value": {
-                                              "#type": "regex_replace",
-                                              "value": "$.value",
-                                              "pattern": "^([^/]+).*$",
-                                              "replacement": "$1"
-                                            },
-                                            "count": "$.count"
-                                          }
-                                        },
-                                        {
-                                          "#type": "group",
-                                          "values": "$",
-                                          "by": "$.value",
-                                          "yield_group": {
-                                            "value": "$.key",
-                                            "doc_count": {
-                                              "#type": "sum",
-                                              "values": "$.value[*].count",
-                                              "output_type": "long"
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "#type": "for_each",
-                                          "values": {
-                                            "#type": "entries",
-                                            "map": "$"
-                                          },
-                                          "spec": "$.value"
-                                        }
-                                      ]
-                                    }
-                                  }
-                                },
-                                {
-                                  "#type": "literal",
-                                  "value": null
-                                }
-                              ]
-                            }
-                          },
-                          {
-                            "#type": "flatten",
-                            "values": [
-                              "$.nonParliamentaryEntries",
-                              {
-                                "#type": "fallback",
-                                "strategies": [
-                                  {
-                                    "#type": "as_list",
-                                    "values": "$.ukParliamentEntry"
-                                  },
-                                  {
-                                    "#type": "literal",
-                                    "value": []
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
+                      "value": "$.value",
+                      "doc_count": "$.count"
                     },
                     {
-                      "#type": "for_each",
-                      "values": "$.entries",
-                      "spec": {
-                        "value": "$.value",
-                        "doc_count": "$.count"
+                      "#type": "require",
+                      "require": "&.entries[0]",
+                      "value": {
+                        "entries": {
+                          "#type": "for_each",
+                          "values": "$.entries",
+                          "spec": {
+                            "value": "$.value",
+                            "doc_count": "$.count"
+                          }
+                        }
                       }
                     }
                   ]
                 }
               }
-            ]
-          }
+            }
+          ]
         }
       }
-    ]
-  }
+    }
+  ]
 }
