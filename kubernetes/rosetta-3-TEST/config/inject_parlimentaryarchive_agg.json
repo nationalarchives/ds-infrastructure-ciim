@@ -4,24 +4,20 @@
   "values": [
     "$.current",
     {
-      "#type": "require",
-      "require": "$.original.query[?(@.parlimentaryarchive == 'true')]",
-      "value": {
-        "results": {
-          "request": {
-            "aggregations": {
-              "parlimentaryarchive": {
-                "filter": {
-                  "prefix": {
-                    "identifier.__reference_number.keyword": "Y"
-                  }
-                },
-                "aggregations": {
-                  "parliamentary_series": {
-                    "terms": {
-                      "field": "identifier.__reference_number.keyword",
-                      "size": 500
-                    }
+      "results": {
+        "request": {
+          "aggregations": {
+            "parlimentaryarchive": {
+              "filter": {
+                "prefix": {
+                  "identifier.__reference_number.keyword": "Y"
+                }
+              },
+              "aggregations": {
+                "parliamentary_series": {
+                  "terms": {
+                    "field": "identifier.__reference_number.keyword",
+                    "size": 500
                   }
                 }
               }

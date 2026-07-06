@@ -1,68 +1,182 @@
 {
-  "#type": "merge",
-  "depth": -1,
-  "collisions": {
-    "array": {
-      "array": "last"
+  "#type": "declare",
+  "args": {
+    "parliamentaryAgg": {
+      "#type": "fallback",
+      "strategies": [
+        "$.aggregations[?(@.name == 'parlimentaryarchive')][0]",
+        {
+          "#type": "literal",
+          "value": null
+        }
+      ]
     }
   },
-  "values": [
-    {
-      "data": {
-        "#type": "fallback",
-        "strategies": [
-          {
-            "#type": "as_list",
-            "values": "$.data"
-          },
-          {
-            "#type": "literal",
-            "value": []
-          }
-        ]
-      },
-      "errors": {
-        "#type": "fallback",
-        "strategies": [
-          {
-            "#type": "as_list",
-            "values": "$.errors"
-          },
-          {
-            "#type": "literal",
-            "value": []
-          }
-        ]
+  "value": {
+    "#type": "merge",
+    "depth": -1,
+    "collisions": {
+      "array": {
+        "array": "last"
       }
     },
-    "$",
-    {
-      "aggregations": {
-        "#type": "for_each",
-        "values": "$.aggregations",
-        "spec": {
-          "#type": "merge",
-          "depth": -1,
-          "collisions": {
-            "array": {
-              "array": "last"
-            }
-          },
-          "values": [
-            "$",
+    "values": [
+      {
+        "data": {
+          "#type": "fallback",
+          "strategies": [
             {
-              "entries": {
-                "#type": "for_each",
-                "values": "$.entries",
-                "spec": {
-                  "value": "$.value",
-                  "doc_count": "$.count"
-                }
-              }
+              "#type": "as_list",
+              "values": "$.data"
+            },
+            {
+              "#type": "literal",
+              "value": []
+            }
+          ]
+        },
+        "errors": {
+          "#type": "fallback",
+          "strategies": [
+            {
+              "#type": "as_list",
+              "values": "$.errors"
+            },
+            {
+              "#type": "literal",
+              "value": []
             }
           ]
         }
+      },
+      "$",
+      {
+        "aggregations": {
+          "#type": "for_each",
+          "values": "$.aggregations[?(@.name != 'parlimentaryarchive')]",
+          "spec": {
+            "#type": "merge",
+            "depth": -1,
+            "collisions": {
+              "array": {
+                "array": "last"
+              }
+            },
+            "values": [
+              "$",
+              {
+                "entries": {
+                  "#type": "fallback",
+                  "strategies": [
+                    {
+                      "#type": "require",
+                      "require": "&[?(@.name == 'collection')]",
+                      "value": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "nonParliamentaryEntries": {
+                              "#type": "for_each",
+                              "values": "$.entries[?(!(@.value =~ /^Y/))]",
+                              "spec": {
+                                "value": "$.value",
+                                "doc_count": "$.count"
+                              }
+                            },
+                            "ukParliamentEntry": {
+                              "#type": "fallback",
+                              "strategies": [
+                                {
+                                  "#type": "require",
+                                  "require": "[C]&.parliamentaryAgg[?(@.total > 0)]",
+                                  "value": {
+                                    "value": "Y - UK Parliament",
+                                    "doc_count": "[C]&.parliamentaryAgg.total",
+                                    "entries": {
+                                      "#type": "chain",
+                                      "chain": [
+                                        {
+                                          "#type": "for_each",
+                                          "values": "[C]&.parliamentaryAgg.entries",
+                                          "spec": {
+                                            "value": {
+                                              "#type": "regex_replace",
+                                              "value": "$.value",
+                                              "pattern": "^([^/]+).*$",
+                                              "replacement": "$1"
+                                            },
+                                            "count": "$.count"
+                                          }
+                                        },
+                                        {
+                                          "#type": "group",
+                                          "values": "$",
+                                          "by": "$.value",
+                                          "yield_group": {
+                                            "value": "$.key",
+                                            "doc_count": {
+                                              "#type": "sum",
+                                              "values": "$.value[*].count",
+                                              "output_type": "long"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "#type": "for_each",
+                                          "values": {
+                                            "#type": "entries",
+                                            "map": "$"
+                                          },
+                                          "spec": "$.value"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "#type": "literal",
+                                  "value": null
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "#type": "flatten",
+                            "values": [
+                              "$.nonParliamentaryEntries",
+                              {
+                                "#type": "fallback",
+                                "strategies": [
+                                  {
+                                    "#type": "as_list",
+                                    "values": "$.ukParliamentEntry"
+                                  },
+                                  {
+                                    "#type": "literal",
+                                    "value": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "#type": "for_each",
+                      "values": "$.entries",
+                      "spec": {
+                        "value": "$.value",
+                        "doc_count": "$.count"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
       }
-    }
-  ]
+    ]
+  }
 }
