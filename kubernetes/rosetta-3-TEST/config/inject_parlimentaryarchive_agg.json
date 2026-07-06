@@ -12,8 +12,19 @@
             "aggregations": {
               "parlimentaryarchive": {
                 "filter": {
-                  "prefix": {
-                    "identifier.__reference_number.keyword": "Y"
+                  "bool": {
+                    "must": [
+                      {
+                        "query_string": {
+                          "query": "source.value:UNKNOWN"
+                        }
+                      },
+                      {
+                        "prefix": {
+                          "identifier.__reference_number.keyword": "Y"
+                        }
+                      }
+                    ]
                   }
                 },
                 "aggregations": {
