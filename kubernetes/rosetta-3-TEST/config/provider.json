@@ -23,7 +23,7 @@
     "parliamentaryAgg": {
       "#type": "fallback",
       "strategies": [
-        "$.aggregations.parlimentaryarchive",
+        "$.aggregations.parliamentaryArchive",
         {
           "#type": "literal",
           "value": null
