@@ -82,7 +82,7 @@
                     "strategies": [
                       {
                         "#type": "require",
-                        "require": "[C]&.aggsType[?(@.{$.key}=='terms')] && &[?(@.key == 'collection')]",
+                        "require": "&[?(@.key == 'collection')]",
                         "value": {
                           "name": "$.key",
                           "entries": {
@@ -316,3 +316,4 @@
     ]
   }
 }
+
