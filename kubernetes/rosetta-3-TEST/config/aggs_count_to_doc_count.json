@@ -39,7 +39,7 @@
     {
       "aggregations": {
         "#type": "for_each",
-        "values": "$.aggregations[?(@.name != 'parliamentaryArchive')]",
+        "values": "$.aggregations",
         "spec": {
           "#type": "merge",
           "depth": -1,
@@ -55,28 +55,8 @@
                 "#type": "for_each",
                 "values": "$.entries",
                 "spec": {
-                  "#type": "merge",
-                  "depth": -1,
-                  "values": [
-                    {
-                      "value": "$.value",
-                      "doc_count": "$.count"
-                    },
-                    {
-                      "#type": "require",
-                      "require": "&.entries[0]",
-                      "value": {
-                        "entries": {
-                          "#type": "for_each",
-                          "values": "$.entries",
-                          "spec": {
-                            "value": "$.value",
-                            "doc_count": "$.count"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "value": "$.value",
+                  "doc_count": "$.count"
                 }
               }
             }
