@@ -44,7 +44,7 @@ spec:
                 limits:
                   memory: 12Gi
               volumeMounts:
-                - name: esdictionaries-etna
+                - name: esdictionaries-etna-dev
                   mountPath: /usr/share/elasticsearch/config/dictionaries
           # For production workloads, it is strongly recommended to increase the kernel setting
           # vm.max_map_count to 262144 and leave node.store.allow_mmap unset.
