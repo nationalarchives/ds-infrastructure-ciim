@@ -45,3 +45,10 @@ spec:
                 name: ciim-public-etna-dev-es-http
                 port:
                   number: 9200
+          - path: /ciimdev
+            pathType: Prefix
+            backend:
+              service:
+                name: ciim-service-dev
+                port:
+                  name: api-port
