@@ -20,7 +20,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       volumes:
-        - name: ciim-logging-data-dev-dev
+        - name: ciim-logging-data-dev
           persistentVolumeClaim:
             claimName: ciim-logging-data-dev-pvc
         - name: ciim-batch-data-dev
