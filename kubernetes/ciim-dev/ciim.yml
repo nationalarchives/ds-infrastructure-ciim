@@ -94,7 +94,7 @@ spec:
             - secretRef:
                 name: ciim-encryption-key
             - secretRef:
-                name: internal-es-pass
+                name: internal-es-pass-dev
             - secretRef:
                 name: public-es-pass
           env:
