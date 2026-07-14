@@ -1,0 +1,213 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ciim-tna-dev
+  namespace: etna
+spec:
+  selector:
+    matchLabels:
+      app: ciim-tna-dev
+  revisionHistoryLimit: 2
+  # CIIM cannot be replicated, this should NEVER be greater than 1
+  replicas: 1
+  progressDeadlineSeconds: 600
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ciim-tna-dev
+    spec:
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: ciim-logging-data-dev-dev
+          persistentVolumeClaim:
+            claimName: ciim-logging-data-dev-pvc
+        - name: ciim-batch-data-dev
+          persistentVolumeClaim:
+            claimName: ciim-batch-data-dev-pvc
+        - name: ciim-temp-data-dev
+          persistentVolumeClaim:
+            claimName: ciim-temp-data-dev-pvc
+        - name: ciim-media-data-dev
+          persistentVolumeClaim:
+            claimName: ciim-media-data-dev-pvc
+        - name: ciim-persistence-data-dev
+          persistentVolumeClaim:
+            claimName: ciim-persistence-data-dev-pvc
+        - name: ciim-config-dev
+          configMap:
+            name: ciim-config-dev
+      initContainers:
+        - name: set-ciim-permissions
+          image: registry.hub.docker.com/library/busybox:latest
+          imagePullPolicy: IfNotPresent
+          command: ['/bin/sh']
+          args:
+            - -c
+            - >-
+              chmod 777 /ciim &&
+              chmod 777 /ciim/ciim-batches &&
+              chmod 777 /ciim/ciim-media &&
+              chmod 777 /ciim/ciim-persistence &&
+              chmod 777 /ciim/ciim-temp &&
+              chmod -R 777 /ciim/tomcat/logs
+          volumeMounts:
+            - name: ciim-logging-data-dev
+              mountPath: /ciim/tomcat/logs
+            - name: ciim-batch-data-dev
+              mountPath: /ciim/ciim-batches
+            - name: ciim-temp-data-dev
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data-dev
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data-dev
+              mountPath: /ciim/ciim-persistence
+      containers:
+        - name: ciim
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:3.0.15
+          imagePullPolicy: Always
+          ports:
+            - name: api-port
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: ciim-logging-data-dev
+              mountPath: /ciim/tomcat/logs
+            - name: ciim-batch-data-dev
+              mountPath: /ciim/ciim-batches
+            - name: ciim-config-dev
+              mountPath: /ciim/ciim-config
+            - name: ciim-temp-data-dev
+              mountPath: /ciim/ciim-temp
+            - name: ciim-media-data-dev
+              mountPath: /ciim/ciim-media
+            - name: ciim-persistence-data-dev
+              mountPath: /ciim/ciim-persistence
+          envFrom:
+            - secretRef:
+                name: ciim-mysql-creds
+            - secretRef:
+                name: mongodb-connection-url
+            - secretRef:
+                name: wagtail-es-password
+            - secretRef:
+                name: ciim-encryption-key
+            - secretRef:
+                name: internal-es-pass
+            - secretRef:
+                name: public-es-pass
+          env:
+            - name: ciim.properties.path
+              value: /ciim/ciim-config
+            - name: ciim.deployment.environment
+              value: dev
+            - name: JAVA_OPTS
+              value: "-Xms6g -Xmx6g"
+            - name: media.replica.s3.access_key
+              valueFrom:
+                secretKeyRef:
+                  name: ds-live-digital-files
+                  key: accessKey
+            - name: processors.iadata.batchUpdate.s3.accessKey
+              valueFrom:
+                secretKeyRef:
+                  name: aws-key
+                  key: aws-key
+            - name: processors.iadata.batchUpdate.s3.secretAccessKey
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: aws-secret
+            - name: media.replica.s3.secret_access_key
+              valueFrom:
+                secretKeyRef:
+                  name: ds-live-digital-files
+                  key: secretAccessKey
+            - name: elasticsearch.auth.user
+              value: elastic
+            - name: publication.es.auth.username
+              value: elastic
+          resources:
+            requests:
+              memory: 6Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-batch-data-dev-pvc
+  namespace: etna
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2000Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-logging-data-dev-pvc
+  namespace: etna
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-media-data-dev-pvc
+  namespace: etna
+spec:
+  storageClassName: ebs-sc-media
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-temp-data-dev-pvc
+  namespace: etna
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ciim-persistence-data-dev-pvc
+  namespace: etna
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ciim-service-dev
+  namespace: etna
+spec:
+  type: ClusterIP
+  selector:
+    app: ciim-tna-dev
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      name: api-port

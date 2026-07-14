@@ -1,0 +1,197 @@
+{
+	"index": {
+		"mapping": {
+			"total_fields": {
+				"limit": 3500
+			}
+		},
+		"max_result_window": 10000
+	},
+	"analysis": {
+		"char_filter": {
+			"first_letter_filter": {
+				"type": "pattern_replace",
+				"pattern": "(^.{0,1})(.*)",
+				"replacement": "$1"
+			},
+			"symbol_normalisation_filter": {
+				"type": "pattern_replace",
+				"pattern": "(\\w)([\\[?\\]]+)",
+				"replacement": "$1"
+			}
+		},
+		"filter": {
+			"autocomplete_filter": {
+				"type": "edge_ngram",
+				"min_gram": 2,
+				"max_gram": 15
+			},
+			"min_stem_en_filter": {
+				"type": "stemmer",
+				"name": "minimal_english"
+			},
+			"snowball_stem_en_filter": {
+				"type": "snowball",
+				"language": "English"
+			},
+			"synonym": {
+				"type": "synonym",
+				"synonyms_path": "dictionaries/synonym.txt"
+			}
+		},
+		"normalizer": {
+			"lower_normaliser": {
+				"type": "custom",
+				"char_filter": [],
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			},
+			"lower_normaliser_folding": {
+				"type": "custom",
+				"char_filter": [],
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			},
+			"lower_normaliser_only": {
+				"type": "custom",
+				"char_filter": [],
+				"filter": [
+					"lowercase"
+				]
+			},
+			"first_letter_normaliser": {
+				"type": "custom",
+				"char_filter": "first_letter_filter",
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				]
+			}
+		},
+		"analyzer": {
+			"text-analyser": {
+				"tokenizer": "standard",
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				]
+			},
+			"minimal_stem_en": {
+				"tokenizer": "standard",
+				"filter": [
+					"min_stem_en_filter",
+					"lowercase",
+					"asciifolding"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				],
+				"stopwords": "_none_"
+			},
+			"snowball_stem_en": {
+				"tokenizer": "standard",
+				"filter": [
+					"snowball_stem_en_filter",
+					"lowercase",
+					"asciifolding"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				],
+				"stopwords": "_none_"
+			},
+			"synonym": {
+				"tokenizer": "whitespace",
+				"filter": [
+					"synonym",
+					"lowercase",
+					"asciifolding"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				]
+			},
+			"edge_ngram": {
+				"tokenizer": "edge_ngram",
+				"filter": [
+					"lowercase"
+				]
+			},
+			"lower_term": {
+				"tokenizer": "keyword",
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"lower_whitespace": {
+				"tokenizer": "whitespace",
+				"filter": [
+					"lowercase"
+				],
+				"stopwords": "_none_"
+			},
+			"autocomplete": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"filter": [
+					"lowercase",
+					"autocomplete_filter"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				]
+			},
+			"autocomplete_unicode": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"filter": [
+					"lowercase",
+					"asciifolding",
+					"autocomplete_filter"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				]
+			},
+			"standard_unicode": {
+				"type": "custom",
+				"tokenizer": "standard",
+				"filter": [
+					"lowercase",
+					"asciifolding"
+				],
+				"char_filter": [
+					"html_strip",
+					"symbol_normalisation_filter"
+				]
+			}
+		},
+		"tokenizer": {
+			"edge_ngram": {
+				"type": "edge_ngram",
+				"min_gram": "2",
+				"max_gram": "15",
+				"token_chars": []
+			},
+			"first_letter": {
+				"pattern": "(^.{0,1})(.*)",
+				"group": 1,
+				"type": "pattern"
+			}
+		}
+	}
+}
