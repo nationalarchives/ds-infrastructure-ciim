@@ -102,7 +102,7 @@
                                   "strategies": [
                                     {
                                       "#type": "require",
-                                      "require": "[C]&.parliamentaryAgg[?(@.doc_count > 0)]",
+                                      "require": "[C]&.parliamentaryAgg.parliamentary_series.buckets[0]",
                                       "value": {
                                         "value": "Parliamentary Archives",
                                         "count": "[C]&.parliamentaryAgg.doc_count",
