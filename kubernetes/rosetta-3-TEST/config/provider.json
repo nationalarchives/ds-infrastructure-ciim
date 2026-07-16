@@ -19,6 +19,16 @@
           ]
         }
       }
+    },
+    "parliamentaryAgg": {
+      "#type": "fallback",
+      "strategies": [
+        "$.aggregations.parliamentaryArchive",
+        {
+          "#type": "literal",
+          "value": null
+        }
+      ]
     }
   },
   "value": {
@@ -68,68 +78,228 @@
                   "#type": "for_each",
                   "values": "$",
                   "spec": {
-                    "#type": "require",
-                    "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
-                    "value": {
-                      "name": "$.key",
-                      "entries": {
-                        "#type": "fallback",
-                        "strategies": [
-                          {
-                            "#type": "for_each",
-                            "values": "$.value.buckets",
-                            "spec": {
-                              "value": "$.key",
-                              "count": "$.doc_count"
-                            }
-                          },
-                          {
-                            "#type": "literal",
-                            "value": [
+                    "#type": "fallback",
+                    "strategies": [
+                      {
+                        "#type": "require",
+                        "require": "&[?(@.key == 'collection')]",
+                        "value": {
+                          "name": "$.key",
+                          "entries": {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "nonParliamentaryEntries": {
+                                  "#type": "for_each",
+                                  "values": "$.value.buckets[?(!(@.key =~ /^Y/))]",
+                                  "spec": {
+                                    "value": "$.key",
+                                    "count": "$.doc_count"
+                                  }
+                                },
+                                "ukParliamentEntry": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    {
+                                      "#type": "require",
+                                      "require": "[C]&.parliamentaryAgg[?(@.doc_count > 0)]",
+                                      "value": {
+                                        "value": "Y - UK Parliament",
+                                        "count": "[C]&.parliamentaryAgg.doc_count",
+                                        "entries": {
+                                          "#type": "chain",
+                                          "chain": [
+                                            {
+                                              "#type": "for_each",
+                                              "values": "[C]&.parliamentaryAgg.parliamentary_series.buckets",
+                                              "spec": {
+                                                "value": {
+                                                  "#type": "regex_replace",
+                                                  "value": "$.key",
+                                                  "pattern": "^([^/]+).*$",
+                                                  "replacement": "$1"
+                                                },
+                                                "count": "$.doc_count"
+                                              }
+                                            },
+                                            {
+                                              "#type": "group",
+                                              "values": "$",
+                                              "by": "$.value",
+                                              "yield_group": {
+                                                "value": "$.key",
+                                                "count": {
+                                                  "#type": "sum",
+                                                  "values": "$.value[*].count",
+                                                  "output_type": "long"
+                                                }
+                                              }
+                                            },
+                                            {
+                                              "#type": "for_each",
+                                              "values": {
+                                                "#type": "entries",
+                                                "map": "$"
+                                              },
+                                              "spec": "$.value"
+                                            }
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "#type": "literal",
+                                      "value": null
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "#type": "flatten",
+                                "values": [
+                                  "$.nonParliamentaryEntries",
+                                  {
+                                    "#type": "fallback",
+                                    "strategies": [
+                                      {
+                                        "#type": "as_list",
+                                        "values": "$.ukParliamentEntry"
+                                      },
+                                      {
+                                        "#type": "literal",
+                                        "value": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
                             ]
-                          }
-                        ]
-                      },
-                      "total": {
-                        "#type": "chain",
-                        "chain": [
-                          {
-                            "counts": {
-                              "#type": "as_list",
-                              "values": "$.value.buckets[*].doc_count"
-                            },
-                            "other": "$.value.sum_other_doc_count"
                           },
-                          {
-                            "total_in_buckets": {
-                              "#type": "fallback",
-                              "strategies": [
-                                "$.counts.sum()",
-                                0
-                              ]
-                            },
-                            "other": "$.other"
+                          "total": {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "counts": {
+                                  "#type": "as_list",
+                                  "values": "$.value.buckets[*].doc_count"
+                                },
+                                "other": "$.value.sum_other_doc_count"
+                              },
+                              {
+                                "total_in_buckets": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "$.counts.sum()",
+                                    0
+                                  ]
+                                },
+                                "other": "$.other"
+                              },
+                              {
+                                "#type": "maths",
+                                "expression": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "{$.total_in_buckets} + {$.other}",
+                                    "{$.total_in_buckets}"
+                                  ]
+                                },
+                                "output_type": "long"
+                              }
+                            ]
                           },
-                          {
-                            "#type": "maths",
-                            "expression": {
-                              "#type": "fallback",
-                              "strategies": [
-                                "{$.total_in_buckets} + {$.other}",
-                                "{$.total_in_buckets}"
-                              ]
-                            },
-                            "output_type": "long"
-                          }
-                        ]
+                          "other": "$.value.sum_other_doc_count"
+                        }
                       },
-                      "other": "$.value.sum_other_doc_count"
+                      {
+                        "#type": "require",
+                        "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
+                        "value": {
+                          "name": "$.key",
+                          "entries": {
+                            "#type": "fallback",
+                            "strategies": [
+                              {
+                                "#type": "for_each",
+                                "values": "$.value.buckets",
+                                "spec": {
+                                  "value": "$.key",
+                                  "count": "$.doc_count"
+                                }
+                              },
+                              {
+                                "#type": "literal",
+                                "value": []
+                              }
+                            ]
+                          },
+                          "total": {
+                            "#type": "chain",
+                            "chain": [
+                              {
+                                "counts": {
+                                  "#type": "as_list",
+                                  "values": "$.value.buckets[*].doc_count"
+                                },
+                                "other": "$.value.sum_other_doc_count"
+                              },
+                              {
+                                "total_in_buckets": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "$.counts.sum()",
+                                    0
+                                  ]
+                                },
+                                "other": "$.other"
+                              },
+                              {
+                                "#type": "maths",
+                                "expression": {
+                                  "#type": "fallback",
+                                  "strategies": [
+                                    "{$.total_in_buckets} + {$.other}",
+                                    "{$.total_in_buckets}"
+                                  ]
+                                },
+                                "output_type": "long"
+                              }
+                            ]
+                          },
+                          "other": "$.value.sum_other_doc_count"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "#type": "for_each",
+                  "values": "$[?(@.value.doc_count && @.value.parliamentary_series)]",
+                  "spec": {
+                    "name": "$.key",
+                    "total": "$.value.doc_count",
+                    "entries": {
+                      "#type": "fallback",
+                      "strategies": [
+                        {
+                          "#type": "for_each",
+                          "values": "$.value.parliamentary_series.buckets",
+                          "spec": {
+                            "value": "$.key",
+                            "count": "$.doc_count"
+                          }
+                        },
+                        {
+                          "#type": "literal",
+                          "value": []
+                        }
+                      ]
                     }
                   }
                 },
                 {
                   "#type": "for_each",
-                  "values": "$[?(@.value.doc_count)]",
+                  "values": "$[?(@.value.doc_count && !@.value.parliamentary_series)]",
                   "spec": {
                     "name": "$.key",
                     "total": "$.value.doc_count"
