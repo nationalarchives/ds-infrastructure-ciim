@@ -39,7 +39,7 @@
     {
       "aggregations": {
         "#type": "for_each",
-        "values": "$.aggregations[?(@.name != 'parliamentaryArchive')]",
+        "values": "$.aggregations",
         "spec": {
           "#type": "merge",
           "depth": -1,
@@ -86,3 +86,4 @@
     }
   ]
 }
+

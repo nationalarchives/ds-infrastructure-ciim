@@ -19,16 +19,6 @@
           ]
         }
       }
-    },
-    "parliamentaryAgg": {
-      "#type": "fallback",
-      "strategies": [
-        "$.aggregations.parliamentaryArchive",
-        {
-          "#type": "literal",
-          "value": null
-        }
-      ]
     }
   },
   "value": {
@@ -76,169 +66,64 @@
               "values": [
                 {
                   "#type": "for_each",
-                  "values": "$[?(@.key == 'collection')]",
+                  "values": "$",
                   "spec": {
-                    "name": "$.key",
-                    "entries": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "nonParliamentaryEntries": {
+                    "#type": "require",
+                    "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
+                    "value": {
+                      "name": "$.key",
+                      "entries": {
+                        "#type": "fallback",
+                        "strategies": [
+                          {
                             "#type": "for_each",
-                            "values": "$.value.buckets[?(!(@.key =~ /^Y/))]",
+                            "values": "$.value.buckets",
                             "spec": {
                               "value": "$.key",
                               "count": "$.doc_count"
                             }
                           },
-                          "ukParliamentEntry": {
-                            "#type": "fallback",
-                            "strategies": [
-                              {
-                                "#type": "require",
-                                "require": "[C]&.parliamentaryAgg.parliamentary_series.buckets[0]",
-                                "value": {
-                                  "value": "Parliamentary Archives",
-                                  "count": "[C]&.parliamentaryAgg.doc_count",
-                                  "entries": {
-                                    "#type": "for_each",
-                                    "values": "[C]&.parliamentaryAgg.parliamentary_series.buckets",
-                                    "spec": {
-                                      "value": "$.key",
-                                      "count": "$.doc_count"
-                                    }
-                                  }
-                                }
-                              },
-                              {
-                                "#type": "literal",
-                                "value": null
-                              }
-                            ]
+                          {
+                            "#type": "literal",
+                            "value": []
                           }
-                        },
-                        {
-                          "#type": "flatten",
-                          "values": [
-                            "$.nonParliamentaryEntries",
-                            {
+                        ]
+                      },
+                      "total": {
+                        "#type": "chain",
+                        "chain": [
+                          {
+                            "counts": {
+                              "#type": "as_list",
+                              "values": "$.value.buckets[*].doc_count"
+                            },
+                            "other": "$.value.sum_other_doc_count"
+                          },
+                          {
+                            "total_in_buckets": {
                               "#type": "fallback",
                               "strategies": [
-                                {
-                                  "#type": "as_list",
-                                  "values": "$.ukParliamentEntry"
-                                },
-                                {
-                                  "#type": "literal",
-                                  "value": []
-                                }
+                                "$.counts.sum()",
+                                0
                               ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    "total": {
-                      "#type": "chain",
-                      "chain": [
-                        {
-                          "counts": {
-                            "#type": "as_list",
-                            "values": "$.value.buckets[*].doc_count"
+                            },
+                            "other": "$.other"
                           },
-                          "other": "$.value.sum_other_doc_count"
-                        },
-                        {
-                          "total_in_buckets": {
-                            "#type": "fallback",
-                            "strategies": [
-                              "$.counts.sum()",
-                              0
-                            ]
-                          },
-                          "other": "$.other"
-                        },
-                        {
-                          "#type": "maths",
-                          "expression": {
-                            "#type": "fallback",
-                            "strategies": [
-                              "{$.total_in_buckets} + {$.other}",
-                              "{$.total_in_buckets}"
-                            ]
-                          },
-                          "output_type": "long"
-                        }
-                      ]
-                    },
-                    "other": "$.value.sum_other_doc_count"
-                  }
-                },
-                {
-                  "#type": "for_each",
-                  "values": "$[?(@.key != 'collection')]",
-                  "spec": {
-                    "#type": "fallback",
-                    "strategies": [
-                      {
-                        "#type": "require",
-                        "require": "[C]&.aggsType[?(@.{$.key}=='terms')]",
-                        "value": {
-                          "name": "$.key",
-                          "entries": {
-                            "#type": "fallback",
-                            "strategies": [
-                              {
-                                "#type": "for_each",
-                                "values": "$.value.buckets",
-                                "spec": {
-                                  "value": "$.key",
-                                  "count": "$.doc_count"
-                                }
-                              },
-                              {
-                                "#type": "literal",
-                                "value": []
-                              }
-                            ]
-                          },
-                          "total": {
-                            "#type": "chain",
-                            "chain": [
-                              {
-                                "counts": {
-                                  "#type": "as_list",
-                                  "values": "$.value.buckets[*].doc_count"
-                                },
-                                "other": "$.value.sum_other_doc_count"
-                              },
-                              {
-                                "total_in_buckets": {
-                                  "#type": "fallback",
-                                  "strategies": [
-                                    "$.counts.sum()",
-                                    0
-                                  ]
-                                },
-                                "other": "$.other"
-                              },
-                              {
-                                "#type": "maths",
-                                "expression": {
-                                  "#type": "fallback",
-                                  "strategies": [
-                                    "{$.total_in_buckets} + {$.other}",
-                                    "{$.total_in_buckets}"
-                                  ]
-                                },
-                                "output_type": "long"
-                              }
-                            ]
-                          },
-                          "other": "$.value.sum_other_doc_count"
-                        }
-                      }
-                    ]
+                          {
+                            "#type": "maths",
+                            "expression": {
+                              "#type": "fallback",
+                              "strategies": [
+                                "{$.total_in_buckets} + {$.other}",
+                                "{$.total_in_buckets}"
+                              ]
+                            },
+                            "output_type": "long"
+                          }
+                        ]
+                      },
+                      "other": "$.value.sum_other_doc_count"
+                    }
                   }
                 },
                 {
@@ -285,4 +170,3 @@
     ]
   }
 }
-
