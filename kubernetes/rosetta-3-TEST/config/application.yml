@@ -54,6 +54,7 @@ rosetta:
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
+              - merge-parliamentaryarchive-into-collection
 
       - name: ciim/serachHighlight
         type: transform-only
@@ -90,6 +91,7 @@ rosetta:
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
+              - merge-parliamentaryarchive-into-collection
 
       - name: ciim/get
         paths:
@@ -166,7 +168,6 @@ rosetta:
 
       - name: inject-parlimentaryarchive-agg
         type: proteus
-        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
@@ -369,11 +370,19 @@ rosetta:
       - name: to-simple-data-response
         type: to-simple-data-response
 
+      
+
       - name: aggs-count-to-doc-count
         type: proteus
         properties:
           mutable: true
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+      - name: merge-parliamentaryarchive-into-collection
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_parliamentaryarchive_into_collection.json
   provider:
     global_timeout: 900s
     timeout: 900s

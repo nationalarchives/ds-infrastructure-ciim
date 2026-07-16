@@ -1,0 +1,31 @@
+{
+  "#type": "merge",
+  "values": [
+    {
+      "#type": "select",
+      "value": "$",
+      "keys": "aggregations",
+      "policy": "exclude"
+    },
+    {
+      "aggregations": {
+        "#type": "as_list",
+        "values": {
+          "#type": "flatten",
+          "values": [
+            "$.aggregations[?(@.name nin ['collection', 'parliamentaryArchive'])]",
+            {
+              "#type": "merge",
+              "values": [
+                "$.aggregations[?(@.name == 'collection')]",
+                {
+                  "parliamentaryArchive": "$.aggregations[?(@.name == 'parliamentaryArchive')]"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
