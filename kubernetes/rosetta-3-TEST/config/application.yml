@@ -168,6 +168,7 @@ rosetta:
 
       - name: inject-parlimentaryarchive-agg
         type: proteus
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
