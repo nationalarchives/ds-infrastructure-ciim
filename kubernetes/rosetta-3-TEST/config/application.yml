@@ -45,6 +45,7 @@ rosetta:
               - generic-search-modifications
               - generic-to-elastic
               - ciim/search/request
+              - inject-parlimentaryarchive-agg
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
@@ -194,13 +195,18 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
-
       - name: merge-advance-parameters
         type: proteus
         input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/merge_advance_parameters.json
+
+      - name: inject-parlimentaryarchive-agg
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
@@ -383,4 +389,8 @@ rosetta:
 
   monitoring:
     log_stages: true
+
+
+
+
 
