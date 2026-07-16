@@ -45,10 +45,10 @@ rosetta:
               - generic-search-modifications
               - generic-to-elastic
               - ciim/search/request
-              - inject-parlimentaryarchive-agg
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
+              - inject-parlimentaryarchive-agg
           response:
             policy: list
             names:
@@ -138,7 +138,7 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                   - inject-date-hist
+                  - inject-date-hist
 
       - name: generic-search
         providers:
@@ -163,6 +163,13 @@ rosetta:
         properties:
           types:
             - query
+
+      - name: inject-parlimentaryarchive-agg
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
 
       - name: inject-date-hist
         type: proteus
@@ -195,18 +202,13 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
+
       - name: merge-advance-parameters
         type: proteus
         input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/merge_advance_parameters.json
-
-      - name: inject-parlimentaryarchive-agg
-        type: proteus
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
 
       - name: generic-to-elastic
         type: elastic-generic-search
@@ -389,8 +391,3 @@ rosetta:
 
   monitoring:
     log_stages: true
-
-
-
-
-
