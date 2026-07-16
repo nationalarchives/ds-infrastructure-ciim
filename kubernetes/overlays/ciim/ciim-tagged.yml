@@ -15,5 +15,6 @@ spec:
           resources:
             requests:
               memory: 28Gi
+              cpu: 7
             limits:
               memory: 28Gi
