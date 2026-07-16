@@ -104,46 +104,15 @@
                                       "#type": "require",
                                       "require": "[C]&.parliamentaryAgg[?(@.doc_count > 0)]",
                                       "value": {
-                                        "value": "Y - UK Parliament",
+                                        "value": "Parliamentary Archives",
                                         "count": "[C]&.parliamentaryAgg.doc_count",
                                         "entries": {
-                                          "#type": "chain",
-                                          "chain": [
-                                            {
-                                              "#type": "for_each",
-                                              "values": "[C]&.parliamentaryAgg.parliamentary_series.buckets",
-                                              "spec": {
-                                                "value": {
-                                                  "#type": "regex_replace",
-                                                  "value": "$.key",
-                                                  "pattern": "^([^/]+).*$",
-                                                  "replacement": "$1"
-                                                },
-                                                "count": "$.doc_count"
-                                              }
-                                            },
-                                            {
-                                              "#type": "group",
-                                              "values": "$",
-                                              "by": "$.value",
-                                              "yield_group": {
-                                                "value": "$.key",
-                                                "count": {
-                                                  "#type": "sum",
-                                                  "values": "$.value[*].count",
-                                                  "output_type": "long"
-                                                }
-                                              }
-                                            },
-                                            {
-                                              "#type": "for_each",
-                                              "values": {
-                                                "#type": "entries",
-                                                "map": "$"
-                                              },
-                                              "spec": "$.value"
-                                            }
-                                          ]
+                                          "#type": "for_each",
+                                          "values": "[C]&.parliamentaryAgg.parliamentary_series.buckets",
+                                          "spec": {
+                                            "value": "$.key",
+                                            "count": "$.doc_count"
+                                          }
                                         }
                                       }
                                     },
@@ -316,3 +285,4 @@
     ]
   }
 }
+
