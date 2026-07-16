@@ -371,8 +371,6 @@ rosetta:
       - name: to-simple-data-response
         type: to-simple-data-response
 
-      
-
       - name: aggs-count-to-doc-count
         type: proteus
         properties:
@@ -384,6 +382,7 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/merge_parliamentaryarchive_into_collection.json
+
   provider:
     global_timeout: 900s
     timeout: 900s

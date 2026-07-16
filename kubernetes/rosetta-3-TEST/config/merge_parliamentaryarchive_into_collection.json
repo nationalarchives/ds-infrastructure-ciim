@@ -15,13 +15,61 @@
           "values": [
             "$.aggregations[?(@.name nin ['collection', 'parliamentaryArchive'])]",
             {
-              "#type": "merge",
-              "values": [
-                "$.aggregations[?(@.name == 'collection')]",
-                {
-                  "parliamentaryArchive": "$.aggregations[?(@.name == 'parliamentaryArchive')]"
-                }
-              ]
+              "#type": "for_each",
+              "values": "$.aggregations[?(@.name == 'collection')]",
+              "spec": {
+                "#type": "merge",
+                "values": [
+                  "$",
+                  {
+                    "entries": {
+                      "#type": "flatten",
+                      "values": [
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "as_list",
+                              "values": "$.entries"
+                            },
+                            {
+                              "#type": "literal",
+                              "value": []
+                            }
+                          ]
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "as_list",
+                              "values": {
+                                "#type": "declare",
+                                "args": {
+                                  "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
+                                },
+                                "value": {
+                                  "#type": "require",
+                                  "require": "&.parliamentaryArchive.total",
+                                  "value": {
+                                    "value": "Parliamentary Archives",
+                                    "doc_count": "&.parliamentaryArchive.total"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "#type": "literal",
+                              "value": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
+                  }
+                ]
+              }
             }
           ]
         }
