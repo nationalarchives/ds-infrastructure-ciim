@@ -18,7 +18,16 @@
             "$[0].key"
           ]
         }
-      }
+      },
+    "parliamentaryAgg": {
+      "#type": "fallback",
+      "strategies": [
+        "$.aggregations.parliamentaryArchive",
+        {
+          "#type": "literal",
+          "value": null
+        }
+      ]
     }
   },
   "value": {
