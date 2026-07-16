@@ -27,7 +27,7 @@
               "aggregations": {
                 "parliamentary_series": {
                   "terms": {
-                    "field": "@hierarch.identifier.value",
+                    "field": "identifier.__reference_number.keyword",
                     "size": 500
                   }
                 }
