@@ -49,6 +49,7 @@ rosetta:
               - merge-advance-parameters
               - inject-exists_digitised-filter
               - inject-parlimentaryarchive-agg
+              - inject-parlimentaryarchive-filter
           response:
             policy: list
             names:
@@ -172,6 +173,13 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
+
+      - name: inject-parlimentaryarchive-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parlimentaryarchive_filter.json
 
       - name: inject-date-hist
         type: proteus

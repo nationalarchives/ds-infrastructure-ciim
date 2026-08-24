@@ -1,0 +1,33 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.orginal.query[?(@.filter == 'parlimentaryArchive')]",
+      "value": {
+        "results": {
+          "query": {
+            "bool": {
+              "filter":[
+                {
+                  "bool": {
+                    "must": {
+                      "query_string": {
+                        "query": "source.value.UNKNOWN"
+                      }
+                    },
+                    "prefix": {
+                      "@hierarch.identifier.value": "Y"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
