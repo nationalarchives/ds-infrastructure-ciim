@@ -385,11 +385,11 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
 
-      - name: merge-parliamentaryarchive-into-collection
+      - name: merge-parlimentaryarchive-into-collection
         type: proteus
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/merge_parliamentaryarchive_into_collection.json
+          spec: ${base_paths.proteus}/merge_parlimentaryarchive_into_collection.json
 
   provider:
     global_timeout: 900s
