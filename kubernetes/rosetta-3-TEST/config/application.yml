@@ -48,8 +48,8 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
-              - inject-parlimentaryarchive-agg
-              - inject-parlimentaryarchive-filter
+              - inject-parliamentaryarchive-agg
+              - inject-parliamentaryarchive-filter
           response:
             policy: list
             names:
@@ -167,19 +167,19 @@ rosetta:
           types:
             - query
 
-      - name: inject-parlimentaryarchive-agg
+      - name: inject-parliamentaryarchive-agg
         type: proteus
         input: full
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/inject_parlimentaryarchive_agg.json
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
 
-      - name: inject-parlimentaryarchive-filter
+      - name: inject-parliamentaryarchive-filter
         type: proteus
         input: full
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/inject_parlimentaryarchive_filter.json
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_filter.json
 
       - name: inject-date-hist
         type: proteus

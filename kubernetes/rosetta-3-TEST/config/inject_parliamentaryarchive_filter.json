@@ -5,7 +5,7 @@
     "$.current",
     {
       "#type": "require",
-      "require": "$.original.query[?(@.filter == 'parlimentaryArchive')]",
+      "require": "$.original.query[?(@.filter == 'parliamentaryArchive')]",
       "value": {
         "results": {
           "query": {
