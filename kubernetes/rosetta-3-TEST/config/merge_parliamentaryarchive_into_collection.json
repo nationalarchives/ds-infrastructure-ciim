@@ -48,12 +48,13 @@
                                 "args": {
                                   "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
                                 },
+
                                 "value": {
                                   "#type": "require",
                                   "require": "&.parliamentaryArchive.total",
                                   "value": {
                                     "value": "Parliamentary Archives",
-                                    "doc_count": "&.parliamentaryArchive.total"
+                                    "doc_count": "&.parliamentaryArchive[0].total"
                                   }
                                 }
                               }
@@ -66,7 +67,7 @@
                         }
                       ]
                     },
-                    "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
+                    "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')][0]"
                   }
                 ]
               }
