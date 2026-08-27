@@ -26,4 +26,3 @@ configMapGenerator:
       - ./config/random_ids_response.json
       - ./config/inject_parliamentaryarchive_agg.json
       - ./config/merge_parliamentaryarchive_into_collection.json
-      - ./config/inject_parliamentaryarchive_filter.json

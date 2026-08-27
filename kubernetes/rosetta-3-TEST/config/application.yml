@@ -174,13 +174,6 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
 
-      - name: inject-parliamentaryarchive-filter
-        type: proteus
-        input: full
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/inject_parliamentaryarchive_filter.json
-
       - name: inject-date-hist
         type: proteus
         input: full
