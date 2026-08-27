@@ -6,32 +6,22 @@
     {
       "results": {
         "request": {
-          "aggregations": {
-            "parliamentaryArchive": {
-              "filter": {
-                "bool": {
-                  "must": [
-                    {
+          "query": {
+            "bool": {
+              "filter": [
+                {
+                  "bool": {
+                    "must": {
                       "query_string": {
                         "query": "source.value:UNKNOWN"
                       }
                     },
-                    {
-                      "prefix": {
-                        "@hierarch.identifier.value": "Y"
-                      }
+                    "prefix": {
+                      "@hierarch.identifier.value": "Y"
                     }
-                  ]
-                }
-              },
-              "aggregations": {
-                "parliamentary_series": {
-                  "terms": {
-                    "field": "identifier.__reference_number.keyword",
-                    "size": 500
                   }
                 }
-              }
+              ]
             }
           }
         }
