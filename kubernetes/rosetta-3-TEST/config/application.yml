@@ -49,7 +49,7 @@ rosetta:
               - merge-advance-parameters
               - inject-exists_digitised-filter
               - inject-parliamentaryarchive-agg
-              - inject-parliamentaryarchive-filter
+
           response:
             policy: list
             names:
