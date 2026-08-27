@@ -52,7 +52,7 @@
                                   "#type": "require",
                                   "require": "&.parliamentaryArchive.total",
                                   "value": {
-                                    "value": "parliamentaryArchives",
+                                    "value": "Parliamentary Archives",
                                     "doc_count": "&.parliamentaryArchive.total"
                                   }
                                 }
