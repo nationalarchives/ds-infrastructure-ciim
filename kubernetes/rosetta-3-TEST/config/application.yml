@@ -48,6 +48,7 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
+              - inject-parliamentaryarchive-filter
               - inject-parliamentaryarchive-agg
 
           response:
@@ -173,6 +174,13 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
+
+      - name: inject-parliamentaryarchive-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_filter.json
 
       - name: inject-date-hist
         type: proteus
