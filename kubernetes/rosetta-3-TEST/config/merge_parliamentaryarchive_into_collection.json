@@ -13,7 +13,7 @@
         "values": {
           "#type": "flatten",
           "values": [
-            "$.aggregations[?(@.name != 'collection')]",
+            "$.aggregations[?(@.name nin ['collection', 'parliamentaryArchive'])]",
             {
               "#type": "for_each",
               "values": "$.aggregations[?(@.name == 'collection')]",
@@ -48,13 +48,12 @@
                                 "args": {
                                   "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
                                 },
-
                                 "value": {
                                   "#type": "require",
                                   "require": "&.parliamentaryArchive.total",
                                   "value": {
                                     "value": "Parliamentary Archives",
-                                    "doc_count": "&.parliamentaryArchive[0].total"
+                                    "doc_count": "&.parliamentaryArchive.total"
                                   }
                                 }
                               }
@@ -67,7 +66,7 @@
                         }
                       ]
                     },
-                    "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')][0]"
+                    "parliamentaryArchive": "$$.aggregations[?(@.name == 'parliamentaryArchive')]"
                   }
                 ]
               }
