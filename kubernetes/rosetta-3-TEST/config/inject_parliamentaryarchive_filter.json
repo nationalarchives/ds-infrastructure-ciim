@@ -8,22 +8,28 @@
       "require": "$.original.query[?(@.filter == 'parliamentaryArchive')]",
       "value": {
         "results": {
-          "query": {
-            "bool": {
-              "filter":[
-                {
-                  "bool": {
-                    "must": {
-                      "query_string": {
-                        "query": "source.value:UNKNOWN"
-                      }
-                    },
-                    "prefix": {
-                      "@hierarch.identifier.value": "Y"
+          "request": {
+            "query": {
+              "bool": {
+                "filter": [
+                  {
+                    "bool": {
+                      "must": [
+                        {
+                          "query_string": {
+                            "query": "source.value:UNKNOWN"
+                          }
+                        },
+                        {
+                          "prefix": {
+                            "@hierarch.identifier.value": "Y"
+                          }
+                        }
+                      ]
                     }
                   }
-                }
-              ]
+                ]
+              }
             }
           }
         }
