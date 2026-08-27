@@ -13,7 +13,7 @@
         "values": {
           "#type": "flatten",
           "values": [
-            "$.aggregations[?(@.name != 'collection']",
+            "$.aggregations[?(@.name != 'collection')]",
             {
               "#type": "for_each",
               "values": "$.aggregations[?(@.name == 'collection')]",
