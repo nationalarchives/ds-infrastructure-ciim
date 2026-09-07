@@ -1,10 +1,1 @@
-{
-  "debugMarker": {
-    "#type": "literal",
-    "value": "PARLIAMENTARY_DEBUG_V2"
-  },
-  "original": "$.original",
-  "current": "$.current",
-  "originalQuery": "$.original.query",
-  "filterValue": "$.original.query.filter"
-}
+"$"
