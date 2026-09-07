@@ -74,6 +74,7 @@ rosetta:
             - ciim/search/request
             - inject-highlighting
             - inject-exists_digitised-filter
+            - inject-parliamentaryarchive-filter
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
