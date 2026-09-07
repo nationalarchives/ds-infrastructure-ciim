@@ -1,1 +1,39 @@
-"$"
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "#type": "require",
+      "require": "$.original.query.filter",
+      "value": {
+        "results": {
+          "request": {
+            "query": {
+              "bool": {
+                "filter": [
+                  {
+                    "bool": {
+                      "must": [
+                        {
+                          "query_string": {
+                            "query": "source.value:UNKNOWN"
+                          }
+                        },
+                        {
+                          "prefix": {
+                            "@hierarch.identifier.value": "Y"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
