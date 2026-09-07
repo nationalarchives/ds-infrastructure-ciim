@@ -1,1 +1,6 @@
-"$"
+{
+  "original": "$.original",
+  "current": "$.current",
+  "originalQuery": "$.original.query",
+  "filterValue": "$.original.query.filter"
+}
