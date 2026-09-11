@@ -18,6 +18,7 @@ spec:
       labels:
         app: ciim-tna
     spec:
+      serviceAccountName: etna-irsa
       terminationGracePeriodSeconds: 60
       volumes:
         - name: ciim-logging-data
