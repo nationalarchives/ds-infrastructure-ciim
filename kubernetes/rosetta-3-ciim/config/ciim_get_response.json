@@ -56,7 +56,7 @@
                     "arrangement": "$.source.arrangement.raw",
                     "availability": {
                       "closure":{
-                        "type":"$.source.availability.closure.label.type",
+                        "type":"$.source.availability.closure.type",
                         "status": "$.source.availability.closure.status"
                       }
                     },
