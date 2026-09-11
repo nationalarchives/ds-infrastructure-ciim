@@ -54,11 +54,17 @@
                     },
                     "appraisalInformation": "$.source.appraisal.value",
                     "arrangement": "$.source.arrangement.raw",
+                    "availability": {
+                      "closure":{
+                        "type":"$.source.availability.closure.type"
+                      },
+                      "status": "$.source.availability.status"
+                    },
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
                     },
-                    "catalogueId": "$.source.identifier[?(@.type == 'catalogue id')].value",
+                    "catalogueId": ",$.source.identifier[?(@.type == 'catalogue id')].value",
                     "closureStatus": "$.source.availability.closure.label.value",
                     "copiesInformation": "$.source.copies[0].value",
                     "creator": {
