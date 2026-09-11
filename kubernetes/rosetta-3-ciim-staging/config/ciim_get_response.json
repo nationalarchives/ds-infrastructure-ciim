@@ -56,9 +56,9 @@
                     "arrangement": "$.source.arrangement.raw",
                     "availability": {
                       "closure":{
-                        "type":"$.source.availability.closure.type"
-                      },
-                      "status": "$.source.availability.status"
+                        "type":"$.source.availability.closure.label.type",
+                        "status": "$.source.availability.closure.status"
+                      }
                     },
                     "catalogueContext": {
                       "#type": "as_list",
