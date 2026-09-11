@@ -54,6 +54,12 @@
                     },
                     "appraisalInformation": "$.source.appraisal.value",
                     "arrangement": "$.source.arrangement.raw",
+                    "availability": {
+                      "closure":{
+                        "type":"$.source.availability.closure.type"
+                      },
+                      "status": "$.source.availability.status"
+                    },
                     "catalogueContext": {
                       "#type": "as_list",
                       "values": "$.source.@template.details.catalogueContext"
