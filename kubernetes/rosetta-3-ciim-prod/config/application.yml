@@ -246,6 +246,8 @@ rosetta:
               schema: "@datatype.actual"
               descSchema: "description.schema.keyword"
               dateCovering: "origination.date.from"
+              hierarchy: "@hierarchy.@admin.id"
+              referenceNumber: "identifier.__reference_number.keyword"
           aggregation_configs:
             - name: longSubject
               size: 10000
