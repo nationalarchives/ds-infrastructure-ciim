@@ -11,7 +11,6 @@ bases:
   - ../../rosetta-3-ciim-staging
   - ../../rosetta-3-ciim-prod
   - ../../rosetta-3-TEST
-  - ../../ciim-dev
   - ../../internal-es-dev
   - ../../public-es-dev
 commonAnnotations:
