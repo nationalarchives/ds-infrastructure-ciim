@@ -57,6 +57,7 @@ rosetta:
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
+              - merge-parliamentaryarchive-into-collection
 
       - name: ciim/TESTDescription/search
         paths:
