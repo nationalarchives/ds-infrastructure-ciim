@@ -27,3 +27,6 @@ configMapGenerator:
       - ./config/inject_subject_nested_agg.json
       - ./config/ciim_simple_get_response.json
       - ./config/ciim_simple_search_response.json
+      - ./config/inject_parliamentaryarchive_agg.json
+      - ./config/merge_parliamentaryarchive_into_collection.json
+      - ./config/inject_parliamentaryarchive_filter.json
