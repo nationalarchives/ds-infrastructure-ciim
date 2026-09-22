@@ -5,7 +5,6 @@ logging:
   level:
     com.k_int.proteus.component.core.HttpRequestSpec: trace
     com.k_int.proteus.provider.http.client.OkHttpClientFacade: trace
-
 rosetta:
   admin:
     enabled: true
@@ -50,6 +49,9 @@ rosetta:
               - merge-advance-parameters
               - inject-exists_digitised-filter
               - inject-subject_nested_agg
+              - inject-parliamentaryarchive-filter
+              - inject-parliamentaryarchive-agg
+
           response:
             policy: list
             names:
@@ -96,6 +98,7 @@ rosetta:
             - generic-to-elastic
             - elastic-modifications
             - ciim/search/request
+            - merge-advance-parameters
             - inject-highlighting
             - inject-exists_digitised-filter
             - inject-subject_nested_agg
@@ -162,6 +165,7 @@ rosetta:
             names:
               - to-simple-data-response
               - ciim/ids/response
+
   profile:
     profiles:
       - name: random-ids
@@ -169,6 +173,7 @@ rosetta:
           policy: list
           names:
             - elasticsearchEtna
+
       - name: elasticsearch
         providers:
           policy: list
@@ -181,6 +186,7 @@ rosetta:
                 names:
                   - generic-to-elastic
                   - inject-date-hist
+
       - name: generic-search
         providers:
           policy: list
@@ -193,6 +199,7 @@ rosetta:
                 names:
                   - generic-to-elastic
           data: *global-data-transforms
+        captureErrors: true
 
   transform:
     timeout: 60000
@@ -203,6 +210,20 @@ rosetta:
         properties:
           types:
             - query
+
+      - name: inject-parliamentaryarchive-agg
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
+
+      - name: inject-parliamentaryarchive-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_filter.json
 
       - name: inject-date-hist
         type: proteus
@@ -387,11 +408,17 @@ rosetta:
           include:
             - ./config/component_search.json
 
-      - name: ciim/TESTDescription/search/response
+      - name: ciim/ids/request
         type: proteus
         properties:
           mutable: true
-          spec: ${base_paths.proteus}/ciim_simple_search_response.json
+          spec: ${base_paths.proteus}/random_ids_request.json
+
+      - name: ciim/ids/response
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/random_ids_response.json
           include:
             - ./config/component_search.json
 
@@ -434,6 +461,12 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/aggs_count_to_doc_count.json
+
+      - name: merge-parliamentaryarchive-into-collection
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_parliamentaryarchive_into_collection.json
 
   provider:
     global_timeout: 900s
