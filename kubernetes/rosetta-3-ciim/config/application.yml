@@ -43,12 +43,10 @@ rosetta:
               - generic-search-defaults
               - generic-search-modifications
               - generic-to-elastic
-              - elastic-modifications
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
-              - inject-subject_nested_agg
               - inject-parliamentaryarchive-filter
               - inject-parliamentaryarchive-agg
 
@@ -77,7 +75,6 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
-              - inject-subject_nested_agg
           response:
             policy: list
             names:
@@ -102,7 +99,6 @@ rosetta:
             - merge-advance-parameters
             - inject-highlighting
             - inject-exists_digitised-filter
-            - inject-subject_nested_agg
       - name: ciim/searchTest
         paths:
           - /rosetta/data/searchTest
@@ -258,12 +254,6 @@ rosetta:
           mutable: true
           spec: ${base_paths.proteus}/inject_digitised_exists_filter.json
 
-      - name: inject-subject_nested_agg
-        type: proteus
-        input: full
-        properties:
-          mutable: true
-          spec: ${base_paths.proteus}/inject_subject_nested_agg.json
 
       - name: merge-advance-parameters
         type: proteus
