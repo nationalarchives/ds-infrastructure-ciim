@@ -10,8 +10,32 @@ spec:
   tls:
     - hosts:
         - rosetta-prod.k-int.com
+        - rosetta-dev.k-int.com
+        - rosetta-staging.k-int.com
   rules:
     - host: rosetta-prod.k-int.com
+      http:
+        paths:
+          - path: /.well-known/acme-challenge
+            pathType: Prefix
+            backend:
+              service:
+                name: acme-service
+                port:
+                  number: 80
+
+    - host: rosetta-dev.k-int.com
+      http:
+        paths:
+          - path: /.well-known/acme-challenge
+            pathType: Prefix
+            backend:
+              service:
+                name: acme-service
+                port:
+                  number: 80
+
+    - host: rosetta-staging.k-int.com
       http:
         paths:
           - path: /.well-known/acme-challenge
