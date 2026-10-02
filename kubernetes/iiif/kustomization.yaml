@@ -1,0 +1,11 @@
+namespace: etna
+
+resources:
+  - gateway/deployment.yaml
+  - gateway/service-account.yaml
+  - gateway/ingress.yaml
+
+configMapGenerator:
+  - name: iiif-gateway-config
+    files:
+      - gateway/config.yaml
