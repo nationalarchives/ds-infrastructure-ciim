@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: ciim-service
+                name: iiif-gateway-service
                 port:
-                  name: api-port
+                  name: gateway-port
