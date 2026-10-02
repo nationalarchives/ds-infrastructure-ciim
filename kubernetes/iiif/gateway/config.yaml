@@ -24,7 +24,7 @@ identifier_resolver:
   type: filepath
 
 buckets:
-  jpg: ds-staging-ptif-images
+  jpg: ds-staging-digital-files
   ptif: ds-staging-ptif-images
   cache: ds-staging-iiif-cache
   cache_forbidden_is_miss: true #TODO, app doesn't have listObject permission atm so misses return as 403
