@@ -65,7 +65,7 @@ spec:
               mountPath: /ciim/ciim-persistence
       containers:
         - name: ciim
-          image: public.ecr.aws/v3w7q3a1/tna-ciim:3.0.15
+          image: public.ecr.aws/v3w7q3a1/tna-ciim:staging-0.1
           imagePullPolicy: Always
           ports:
             - name: api-port
@@ -88,7 +88,7 @@ spec:
             - secretRef:
                 name: ciim-mysql-creds
             - secretRef:
-                name: mongodb-connection-url
+                name: mongodb-staging-url
             - secretRef:
                 name: wagtail-es-password
             - secretRef:
