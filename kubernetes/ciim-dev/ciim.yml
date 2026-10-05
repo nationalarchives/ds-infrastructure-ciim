@@ -102,6 +102,8 @@ spec:
               value: /ciim/ciim-config
             - name: ciim.deployment.environment
               value: dev
+            - name: SPRING_PROFILES_ACTIVE
+              value: "yaml_config"
             - name: JAVA_OPTS
               value: "-Xms6g -Xmx6g"
             - name: media.replica.s3.access_key
