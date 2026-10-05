@@ -1,0 +1,146 @@
+- code: "public-ecosystem"
+  name: "Public Ecosystem"
+  active: true
+  endpoints:
+    - code: "public-s3"
+      name: "Public S3 Bucket"
+      ecosystemCode: "public-ecosystem"
+      clientDescription:
+        code: "pub-s3-client"
+        name: "Publication S3 Client"
+        parameters:
+          bucket: "test"
+          region: "eu-west-2"
+          roleArn: "arn:aws:iam::968803923593:role/discovery-data-read-role"
+          sessionName: "ciim-preview-upload"
+          type: "s3"
+        isDefault: false
+        clientIsReusable: true
+        purpose: "Media retrieval"
+        id: 2
+        type: "s3"
+      type: "media s3"
+      converterClass: "com.k_int.ciim.tna.publication.S3MediaBuilder"
+      publishAllStatuses: false
+      linkExpansion: false
+      mainIndexNameOverride: null
+      active: false
+      timeoutInMinutes: 30
+      publishesMediaMetadata: false
+    - code: "public-es"
+      name: "Public Elasticsearch"
+      ecosystemCode: "public-ecosystem"
+      clientDescription:
+        code: "ciim-public-es-client"
+        name: "ES Public Client"
+        parameters:
+          clientConfig:
+            clusterName: "ciim-public-2"
+            hostName: "ciim-public-2-etna-es-http.etna"
+            port: 9200
+            protocol: "http"
+            pingTimeoutInMillis: 10000
+            pathPrefix: null
+            credentials:
+              keyField:
+                plainText: elastic
+              valueField:
+                plainText: ${publication.es.auth.password}
+            compressionEnabled: false
+            additionalClusterSettings: null
+            hasClusterAdminRights: true
+            clientType: "REST"
+          clusterManagementConfig:
+            allowIndexDeletion: true
+            indexingUseUuid: false
+            indexConfig:
+              ciim:
+                name: "ciim"
+                shards: 2
+                maxFieldCount: 3500
+                replicas: 0
+                mappings:
+                  fileLocation: "/ciim/ciim-config/GenericEsMapping6plus.json"
+                settings:
+                  fileLocation: "/ciim/ciim-config/GenericIndexConfig6plus.json"
+                allowDeletion: true
+          type: "elasticsearch"
+          reloadMappingsOnStartup: false
+        isDefault: false
+        clientIsReusable: true
+        id: 3
+        type: "elasticsearch"
+      converterClass: "com.k_int.ciim.tna.publication.PublicEsConverter"
+      indexNameConfig:
+        - ciimIndexName: "$main"
+          endpointIndexName: null
+      publishAllStatuses: false
+      linkExpansion: true
+      threadCount: 20
+      useUnavailableIndex: false
+      useUgcIndex: false
+      compatibility: false
+      type: "elasticsearch"
+      active: true
+      threaded: true
+      timeoutInMinutes: 30
+      publishesMediaMetadata: false
+    - code: "media-metadata"
+      name: "Media Metadata"
+      ecosystemCode: "public-ecosystem"
+      clientDescription:
+        code: "media-metadata-client"
+        name: "Media Metadata Client"
+        parameters:
+          clientConfig:
+            clusterName: "ciim-public-2"
+            hostName: "ciim-public-2-etna-es-http.etna"
+            port: 9200
+            protocol: "http"
+            pingTimeoutInMillis: 10000
+            pathPrefix: null
+            credentials:
+              keyField:
+                plainText: elastic
+              valueField:
+                plainText: ${publication.es.auth.password}
+            compressionEnabled: false
+            additionalClusterSettings: null
+            hasClusterAdminRights: true
+            clientType: "REST"
+          clusterManagementConfig:
+            allowIndexDeletion: true
+            indexingUseUuid: false
+            indexConfig:
+              ciim:
+                name: "ciim"
+                shards: 2
+                maxFieldCount: 3500
+                replicas: 0
+                mappings:
+                  fileLocation: "/ciim/ciim-config/GenericEsMapping6plus.json"
+                settings:
+                  fileLocation: "/ciim/ciim-config/GenericIndexConfig6plus.json"
+                allowDeletion: true
+          type: "elasticsearch"
+          reloadMappingsOnStartup: false
+        isDefault: false
+        clientIsReusable: true
+        id: 4
+        type: "elasticsearch"
+      converterClass: "com.k_int.ciim.tna.publication.MediaMetadataBuilder"
+      indexNameConfig:
+        - ciimIndexName: "$main"
+          endpointIndexName: "media"
+      publishAllStatuses: false
+      linkExpansion: false
+      threadCount: 20
+      useUnavailableIndex: true
+      useUgcIndex: false
+      compatibility: false
+      type: "elasticsearch"
+      active: true
+      threaded: true
+      timeoutInMinutes: 30
+      publishesMediaMetadata: true
+  priority: 0
