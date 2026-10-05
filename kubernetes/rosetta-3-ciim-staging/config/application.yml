@@ -248,7 +248,7 @@ rosetta:
               dateCovering: "origination.date.from"
               hierarchy: "@hierarchy.@admin.id"
               referenceNumber: "identifier.__reference_number.keyword"
-              actualDatatype: "@datatype.actual.keyword"
+              creator: "origination.agent.@admin.id"
           aggregation_configs:
             - name: longSubject
               size: 10000
