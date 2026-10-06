@@ -6,6 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: kong
     konghq.com/strip-path: "true"
+    konghq.com/plugins: ip-restriction-iiif
 spec:
   tls:
     - hosts:
