@@ -23,14 +23,6 @@
                     }
                   ]
                 }
-              },
-              "aggregations": {
-                "parliamentary_series": {
-                  "terms": {
-                    "field": "identifier.__reference_number.keyword",
-                    "size": 500
-                  }
-                }
               }
             }
           }
