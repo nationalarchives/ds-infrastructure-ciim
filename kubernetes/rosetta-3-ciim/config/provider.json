@@ -150,14 +150,6 @@
                       ]
                     }
                   }
-                },
-                {
-                  "#type": "for_each",
-                  "values": "$[?(@.value.doc_count && !@.value.parliamentary_series)]",
-                  "spec": {
-                    "name": "$.key",
-                    "total": "$.value.doc_count"
-                  }
                 }
               ]
             }
