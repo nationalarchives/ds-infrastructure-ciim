@@ -192,6 +192,7 @@ rosetta:
 
       - name: exclude-collection-filter
         type: proteus
+        input: current
         properties:
           mutable: true
           spec: ${base_paths.proteus}/excludecollection.json
