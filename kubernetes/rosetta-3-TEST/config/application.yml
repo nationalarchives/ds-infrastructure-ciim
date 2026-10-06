@@ -197,14 +197,14 @@ rosetta:
 
       - name: exclude-collection-filter
         type: proteus
-        input: full
+        input: current
         properties:
           mutable: true
           spec: ${base_paths.proteus}/excludecollection.json
 
       - name: inject-collection-filter
         type: proteus
-        input: current
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/injectcollectionfilter.json
