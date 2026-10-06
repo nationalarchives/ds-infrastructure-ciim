@@ -11,6 +11,39 @@
       "#type": "string_split",
       "value": "$.collection",
       "delimiter": ","
+    },
+    {
+      "#type": "for_each",
+      "values": "$",
+      "spec": {
+        "#type": "switch",
+        "value": "$",
+        "cases": {
+          "PA": {
+            "bool": {
+              "must": [
+                {
+                  "query_string": {
+                    "query": "source.value:UNKNOWN"
+                  }
+                },
+                {
+                  "prefix": {
+                    "@hierarch.identifier.value": "Y"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "default": {
+          "term": {
+            "@hierarch.identifier.value": {
+              "value": "$"
+            }
+          }
+        }
+      }
     }
   ]
 }
