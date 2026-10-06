@@ -50,6 +50,7 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
+              - inject-parliamentaryarchive-agg
 
           response:
             policy: list
@@ -78,6 +79,7 @@ rosetta:
             - inject-highlighting
             - merge-advance-parameters
             - inject-exists_digitised-filter
+            - inject-parliamentaryarchive-agg
 
       - name: ciim/serachHighlight
         type: transform-only
