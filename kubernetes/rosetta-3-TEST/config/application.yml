@@ -41,6 +41,8 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
               - ciim/search/request
           response:
             policy: list
@@ -146,8 +148,6 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - generic-search-defaults
-                  - generic-search-modifications
                   - exclude-collection-filter
                   - generic-to-elastic
                   - inject-highlighting
