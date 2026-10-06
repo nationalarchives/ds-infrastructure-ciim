@@ -61,12 +61,11 @@ rosetta:
       - name: ciim/search/test
         paths:
           - /rosetta/test/search
-        profile: elasticsearch
-        type: transform-only
-        transforms:
-          request:
-            policy: list
-            names:
+        methods:
+          - GET
+        glyphs:
+          policy: list
+          names:
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
