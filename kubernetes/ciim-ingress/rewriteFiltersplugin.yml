@@ -1,9 +1,9 @@
 apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
-  name: request-transform-etna
+  name: request-transform-filters
   namespace: etna
-plugin: request-transformer-filters
+plugin: request-transformer
 config:
   remove:
     querystring:
