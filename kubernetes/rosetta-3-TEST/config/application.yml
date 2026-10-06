@@ -43,7 +43,9 @@ rosetta:
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
+              - exclude-collection-filter
               - generic-to-elastic
+              - inject-collection-filter
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
