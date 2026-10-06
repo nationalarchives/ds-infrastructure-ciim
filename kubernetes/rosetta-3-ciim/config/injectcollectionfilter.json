@@ -8,7 +8,7 @@
       "require": {
         "#type": "regex_groups",
         "value": "$.original.query.filter",
-        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
+        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?=;|$)",
         "requireMatch": false
       },
       "value": {
@@ -24,13 +24,29 @@
                       {
                         "#type": "regex_groups",
                         "value": "$.original.query.filter",
-                        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
+                        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?=;|$)",
                         "requireMatch": true
                       },
                       {
-                        "#type": "string_split",
-                        "value": "$.collection",
-                        "delimiter": ","
+                        "#type": "as_list",
+                        "values": "$"
+                      },
+                      {
+                        "#type": "for_each",
+                        "values": "$",
+                        "spec": {
+                          "#type": "string_split",
+                          "value": "$.collection",
+                          "delimiter": ","
+                        }
+                      },
+                      {
+                        "#type": "flatten",
+                        "values": "$"
+                      },
+                      {
+                        "#type": "as_list",
+                        "values": "$"
                       },
                       {
                         "#type": "for_each",
