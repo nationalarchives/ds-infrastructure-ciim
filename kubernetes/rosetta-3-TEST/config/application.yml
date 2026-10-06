@@ -69,6 +69,7 @@ rosetta:
           names:
               - to-generic-search
               - generic-search-defaults
+              - generic-search-modifications
 
       - name: ciim/serachHighlight
         type: transform-only
