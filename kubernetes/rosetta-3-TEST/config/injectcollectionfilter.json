@@ -4,64 +4,73 @@
   "values": [
     "$.current",
     {
-      "query": {
-        "bool": {
-          "filter": [
-            {
-              "bool": {
-                "minimum_should_match": 1,
-                "should": {
-                  "#type": "chain",
-                  "chain": [
-                    {
-                      "#type": "regex_groups",
-                      "value": "$.original.query.filter",
-                      "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
-                      "requireMatch": true
-                    },
-                    {
-                      "#type": "string_split",
-                      "value": "$.collection",
-                      "delimiter": ","
-                    },
-                    {
-                      "#type": "for_each",
-                      "values": "$",
-                      "spec": {
-                        "#type": "switch",
-                        "value": "$",
-                        "cases": {
-                          "PA": {
-                            "bool": {
-                              "must": [
-                                {
-                                  "query_string": {
-                                    "query": "source.value:UNKNOWN"
+      "#type": "require",
+      "require": {
+        "#type": "regex_groups",
+        "value": "$.original.query.filter",
+        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
+        "requireMatch": false
+      },
+      "value": {
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "bool": {
+                  "minimum_should_match": 1,
+                  "should": {
+                    "#type": "chain",
+                    "chain": [
+                      {
+                        "#type": "regex_groups",
+                        "value": "$.original.query.filter",
+                        "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
+                        "requireMatch": true
+                      },
+                      {
+                        "#type": "string_split",
+                        "value": "$.collection",
+                        "delimiter": ","
+                      },
+                      {
+                        "#type": "for_each",
+                        "values": "$",
+                        "spec": {
+                          "#type": "switch",
+                          "value": "$",
+                          "cases": {
+                            "PA": {
+                              "bool": {
+                                "must": [
+                                  {
+                                    "query_string": {
+                                      "query": "source.value:UNKNOWN"
+                                    }
+                                  },
+                                  {
+                                    "prefix": {
+                                      "@hierarch.identifier.value": "Y"
+                                    }
                                   }
-                                },
-                                {
-                                  "prefix": {
-                                    "@hierarch.identifier.value": "Y"
-                                  }
-                                }
-                              ]
+                                ]
+                              }
                             }
-                          }
-                        },
-                        "default": {
-                          "term": {
-                            "@hierarch.identifier.value": {
-                              "value": "$"
+                          },
+                          "default": {
+                            "term": {
+                              "@hierarch.identifier.value": {
+                                "value": "$"
+                              }
                             }
                           }
                         }
                       }
-                    }
-                  ]
+                    ]
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         }
       }
     }
