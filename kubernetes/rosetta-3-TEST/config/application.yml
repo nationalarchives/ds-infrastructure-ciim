@@ -70,9 +70,6 @@ rosetta:
             - to-generic-search
             - generic-search-defaults
             - generic-search-modifications
-            - exclude-collection-filter
-            - generic-to-elastic
-            - inject-highlighting
             - ciim/search/request
 
       - name: ciim/serachHighlight
