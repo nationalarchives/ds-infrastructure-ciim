@@ -60,6 +60,7 @@ rosetta:
 
       - name: ciim/search/test
         type: transform-only
+        profile: generic-search
         paths:
           - /rosetta/test/search
         methods:
@@ -68,11 +69,6 @@ rosetta:
           policy: list
           names:
               - to-generic-search
-              - generic-search-defaults
-              - generic-search-modifications
-              - exclude-collection-filter
-              - generic-to-elastic
-              - inject-collection-filter
 
       - name: ciim/serachHighlight
         type: transform-only
@@ -171,7 +167,11 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
+                  - generic-search-defaults
+                  - generic-search-modifications
+                  - exclude-collection-filter
                   - generic-to-elastic
+                  - inject-collection-filter
           data: *global-data-transforms
         captureErrors: true
 
