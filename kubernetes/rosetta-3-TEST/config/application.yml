@@ -74,6 +74,7 @@ rosetta:
             - generic-search-modifications
             - exclude-collection-filter
             - generic-to-elastic
+            - inject-collection-filter
 
       - name: ciim/serachHighlight
         type: transform-only
