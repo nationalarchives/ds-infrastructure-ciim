@@ -1,11 +1,11 @@
 {
   "#type": "merge",
   "values": [
-    "$",
+    "$.current",
     {
       "filters": {
         "#type": "select",
-        "value": "$.filters",
+        "value": "$.current.filters",
         "policy": "exclude",
         "keys": "collection"
       }
