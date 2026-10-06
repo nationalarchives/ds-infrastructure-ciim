@@ -7,7 +7,7 @@
       "results": {
         "request": {
           "aggregations": {
-            "parliamentaryArchive": {
+            "PA": {
               "filter": {
                 "bool": {
                   "must": [
