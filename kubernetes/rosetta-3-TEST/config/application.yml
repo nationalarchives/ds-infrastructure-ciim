@@ -41,6 +41,8 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
           response:
             policy: list
             names:
