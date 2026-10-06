@@ -73,8 +73,7 @@ rosetta:
             - generic-search-defaults
             - generic-search-modifications
             - exclude-collection-filter
-            - generic-to-elastic
-            - inject-collection-filter
+
 
       - name: ciim/serachHighlight
         type: transform-only
@@ -197,7 +196,7 @@ rosetta:
 
       - name: exclude-collection-filter
         type: proteus
-        input: current
+        input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/excludecollection.json
