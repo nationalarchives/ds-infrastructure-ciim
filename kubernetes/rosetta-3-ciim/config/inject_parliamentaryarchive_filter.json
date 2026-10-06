@@ -19,11 +19,6 @@
                           "query_string": {
                             "query": "source.value:UNKNOWN"
                           }
-                        },
-                        {
-                          "prefix": {
-                            "@hierarch.identifier.value": "Y"
-                          }
                         }
                       ]
                     }
