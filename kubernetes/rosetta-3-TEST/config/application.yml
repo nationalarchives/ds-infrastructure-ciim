@@ -40,6 +40,7 @@ rosetta:
           request:
             policy: list
             names:
+              - exclude-collection-filter
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
@@ -67,6 +68,7 @@ rosetta:
           request:
             policy: list
             names:
+              - exclude-collection-filter
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
@@ -75,7 +77,6 @@ rosetta:
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
-              - inject-parliamentaryarchive-filter
               - inject-parliamentaryarchive-agg
 
           response:
@@ -202,6 +203,13 @@ rosetta:
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
+
+      - name: exclude-collection-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/excludecollection.json
 
       - name: inject-parliamentaryarchive-filter
         type: proteus

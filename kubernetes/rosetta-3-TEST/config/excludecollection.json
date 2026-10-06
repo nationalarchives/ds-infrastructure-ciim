@@ -1,0 +1,14 @@
+{
+  "#type": "merge",
+  "values": [
+    "$",
+    {
+      "filters": {
+        "#type": "select",
+        "value": "$.filters",
+        "policy": "exclude",
+        "keys": "collection"
+      }
+    }
+  ]
+}
