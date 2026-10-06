@@ -68,6 +68,7 @@ rosetta:
           policy: list
           names:
               - to-generic-search
+              - generic-search-defaults
 
       - name: ciim/serachHighlight
         type: transform-only
