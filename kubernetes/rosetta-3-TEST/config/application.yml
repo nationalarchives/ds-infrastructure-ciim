@@ -40,16 +40,15 @@ rosetta:
           request:
             policy: list
             names:
-              - exclude-collection-filter
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
+              - exclude-collection-filter
               - generic-to-elastic
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
-              - inject-parliamentaryarchive-filter
               - inject-parliamentaryarchive-agg
 
           response:
