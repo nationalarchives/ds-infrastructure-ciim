@@ -56,3 +56,6 @@ spec:
     - name: gateway-port
       port: 8080
       targetPort: 8080
+    - name: gateway-metrics
+      port: 9090
+      targetPort: 9090
