@@ -4,6 +4,7 @@ resources:
   - gateway/deployment.yaml
   - gateway/service-account.yaml
   - gateway/ingress.yaml
+  - gateway/ip-restriction.yaml
 
 configMapGenerator:
   - name: iiif-gateway-config
