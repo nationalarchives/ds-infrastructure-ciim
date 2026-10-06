@@ -14,15 +14,21 @@
                 "filter": [
                   {
                     "bool": {
-                      "must": [
+                      "should": [
                         {
-                          "query_string": {
-                            "query": "source.value:UNKNOWN"
-                          }
-                        },
-                        {
-                          "prefix": {
-                            "@hierarch.identifier.value": "Y"
+                          "bool": {
+                            "must": [
+                              {
+                                "query_string": {
+                                  "query": "source.value:UNKNOWN"
+                                }
+                              },
+                              {
+                                "prefix": {
+                                  "@hierarch.identifier.value": "Y"
+                                }
+                              }
+                            ]
                           }
                         }
                       ]
