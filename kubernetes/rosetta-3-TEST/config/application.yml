@@ -40,8 +40,8 @@ rosetta:
           request:
             policy: list
             names:
-              - to-generic-search
               - exclude-collection-filter
+              - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
               - generic-to-elastic
