@@ -41,6 +41,8 @@ rosetta:
             policy: list
             names:
               - to-generic-search
+              - generic-search-defaults
+              - generic-search-modifications
           response:
             policy: list
             names:
@@ -50,7 +52,7 @@ rosetta:
 
       - name: ciim/search/test
         type: transform-only
-        profile: generic-search
+        profile: elasticsearch
         paths:
           - /rosetta/test/search
         methods:
@@ -145,8 +147,6 @@ rosetta:
             - glyphs:
                 policy: list
                 names:
-                  - generic-search-defaults
-                  - generic-search-modifications
                   - exclude-collection-filter
                   - generic-to-elastic
                   - ciim/search/request
