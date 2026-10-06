@@ -59,6 +59,7 @@ rosetta:
               - merge-parliamentaryarchive-into-collection
 
       - name: ciim/search/test
+        type: transform-only
         paths:
           - /rosetta/test/search
         methods:
