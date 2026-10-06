@@ -204,12 +204,10 @@ rosetta:
 
       - name: inject-collection-filter
         type: proteus
-        input: full
+        input: current
         properties:
           mutable: true
           spec: ${base_paths.proteus}/injectcollectionfilter.json
-
-
 
       - name: inject-parliamentaryarchive-filter
         type: proteus

@@ -3,29 +3,13 @@
   "values": [
     "$",
     {
-      "original": {
-        "#type": "merge",
-        "values": [
-          "$.original",
-          {
-            "collectionFilter": "$.current.filters.collection"
-          }
-        ]
+      "filters": {
+        "#type": "select",
+        "value": "$.filters",
+        "policy": "exclude",
+        "keys": "collection"
       },
-      "current": {
-        "#type": "merge",
-        "values": [
-          "$.current",
-          {
-            "filters": {
-              "#type": "select",
-              "value": "$.current.filters",
-              "policy": "exclude",
-              "keys": "collection"
-            }
-          }
-        ]
-      }
+      "collectionFilter": "$.filters.collection"
     }
   ]
 }

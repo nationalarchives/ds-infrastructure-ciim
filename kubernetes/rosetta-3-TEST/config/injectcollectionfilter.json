@@ -1,1 +1,6 @@
-"$"
+{
+  "#type": "regex_groups",
+  "value": "$.original.query.filter",
+  "pattern": "(?:^|;)collection:\\(?(?<collection>[^;)]+)\\)?(?:;|$)",
+  "requireMatch": false
+}
