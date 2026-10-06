@@ -8,7 +8,8 @@
         "value": "$.filters",
         "policy": "exclude",
         "keys": "collection"
-      }
+      },
+      "collectionFilter": "$.filters.collection"
     }
   ]
 }
