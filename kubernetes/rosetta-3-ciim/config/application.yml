@@ -58,7 +58,7 @@ rosetta:
               - ciim/search/response
               - aggs-count-to-doc-count
               - merge-parliamentaryarchive-into-collection
-
+              - merge-parliamentaryarchive-into-long-collection
       - name: ciim/search/test
         type: transform-only
         profile: elasticsearch
@@ -193,12 +193,19 @@ rosetta:
           types:
             - query
 
+
       - name: inject-parliamentaryarchive-agg
         type: proteus
         input: full
         properties:
           mutable: true
           spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
+
+      - name: merge-parliamentaryarchive-into-long-collection
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_ParliamentaryArchive_Into_LongCollections.json
 
       - name: exclude-collection-filter
         type: proteus

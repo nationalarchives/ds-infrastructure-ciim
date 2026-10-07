@@ -32,3 +32,4 @@ configMapGenerator:
       - ./config/inject_parliamentaryarchive_filter.json
       - ./config/excludecollection.json
       - ./config/injectcollectionfilter.json
+      - ./config/merge_ParliamentaryArchive_Into_LongCollections.json
