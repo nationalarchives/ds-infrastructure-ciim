@@ -9,6 +9,8 @@ deployment:
   envFrom:
     - secretRef:
         name: mongodb-staging-url
+    - secretRef:
+        name: wagtail-es-password
 
 encryptionKey:
   existingSecret:
@@ -18,6 +20,10 @@ encryptionKey:
 config:
   persisted:
     object:
+      wagtail.es.hostname: es.master-7rqtwti-tvehemlvvjb4k.uk-1.platformsh.site
+      wagtail.es.scheme: https
+      wagtail.es.port: 443
+      wagtail.es.user: elastic
       media.replica.main.s3.bucket_name: ds-live-digital-files
       flags.manual_add_processed_media_artifacts: false
       flags.remove_ambiguous_dates: true
