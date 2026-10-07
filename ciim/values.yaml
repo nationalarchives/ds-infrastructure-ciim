@@ -1,3 +1,7 @@
+global:
+  ciim:
+    appName: staging-etna
+
 deployment:
   replicas: 1
   image:
