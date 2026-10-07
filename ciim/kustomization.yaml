@@ -2,7 +2,7 @@ namespace: staging
 
 helmCharts:
   - releaseName: staging-ciim
-    name: ciim
+    name: ciim-7
     repo: http://chartmuseum.admin:8080
     version: 1.6.0
     namespace: staging
