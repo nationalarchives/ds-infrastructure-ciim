@@ -13,10 +13,10 @@
         "values": {
           "#type": "flatten",
           "values": [
-            "$.aggregations[?(@.name nin ['collection', 'Y'])]",
+            "$.aggregations[?(@.name nin ['collection', 'longCollection', 'Y'])]",
             {
               "#type": "for_each",
-              "values": "$.aggregations[?(@.name == 'collection')]",
+              "values": "$.aggregations[?(@.name in ['collection', 'longCollection'])]",
               "spec": {
                 "#type": "merge",
                 "values": [
