@@ -1,4 +1,4 @@
 resources:
-  - /namespace
-  - /storage
-  - /chartmuseum
+  - namespace
+  - storage
+  - chartmuseum
