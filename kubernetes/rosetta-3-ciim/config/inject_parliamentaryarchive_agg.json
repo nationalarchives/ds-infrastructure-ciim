@@ -7,7 +7,7 @@
       "results": {
         "request": {
           "aggregations": {
-            "PA": {
+            "Y": {
               "filter": {
                 "bool": {
                   "must": [

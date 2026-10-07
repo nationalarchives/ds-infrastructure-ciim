@@ -13,7 +13,7 @@
         "values": {
           "#type": "flatten",
           "values": [
-            "$.aggregations[?(@.name nin ['collection', 'PA'])]",
+            "$.aggregations[?(@.name nin ['collection', 'Y'])]",
             {
               "#type": "for_each",
               "values": "$.aggregations[?(@.name == 'collection')]",
@@ -46,14 +46,14 @@
                               "values": {
                                 "#type": "declare",
                                 "args": {
-                                  "PA": "$$.aggregations[?(@.name == 'PA')]"
+                                  "Y": "$$.aggregations[?(@.name == 'Y')]"
                                 },
                                 "value": {
                                   "#type": "require",
-                                  "require": "&.PA.total",
+                                  "require": "&.Y.total",
                                   "value": {
-                                    "value": "PA",
-                                    "doc_count": "&.PA.total"
+                                    "value": "Y",
+                                    "doc_count": "&.Y.total"
                                   }
                                 }
                               }
@@ -66,7 +66,7 @@
                         }
                       ]
                     },
-                    "PA": "$$.aggregations[?(@.name == 'PA')]"
+                    "Y": "$$.aggregations[?(@.name == 'Y')]"
                   }
                 ]
               }
