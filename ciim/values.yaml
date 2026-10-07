@@ -21,29 +21,24 @@ config:
       flags.add_prefabricated_taxonomies: false
   transient:
     object:
-      ciim.db.url: jdbc:mysql://ciim-db-service.etna/etna-staging?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
-      ciim.db.dialect: org.hibernate.dialect.MySQL8Dialect
-      ciim.db.driver: com.mysql.cj.jdbc.Driver
-      ciim.db.poolSize: 100
-
-      ciim.vault.db.url: jdbc:mysql://ciim-db-service.etna/etna-staging-archive?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
-      ciim.vault.db.username: ciim
-      ciim.vault.db.dialect: org.hibernate.dialect.MySQL8Dialect
-      ciim.vault.db.driver: com.mysql.cj.jdbc.Driver
-      ciim.vault.db.poolSize: 5
-
-      ciim.archive.db.url: jdbc:mysql://ciim-db-service.etna/etna-staging-vault?autoReconnect=true&maxReconnects=3&initialTimeout=10
-      ciim.archive.db.username: ciim
-      ciim.archive.db.dialect: org.hibernate.dialect.MySQL8Dialect
-      ciim.archive.db.driver: com.mysql.cj.jdbc.Driver
-      ciim.archive.db.poolSize: 5
-
       processing.default.validator: com.k_int.ciim.core.tna.Validator
       processing.default.stream: tna|tna|TNA Default Stream|com.k_int.ciim.core.tna.Validator
       processing.default.idgenerator: com.k_int.ciim.commons.id.BasicIdGenerator
 
       media.process.files: true
       media.zoom.processing.enabled: false
+
+externalDatabase:
+  host: ciim-db-service.etna
+  schemas:
+    main: etna-staging
+    vault: etna-staging-vault
+    archive: etna-staging-archive
+  urlParams: autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+  existingSecret:
+    name: db-secret
+    key: password
+
 database:
   enabled: false
 

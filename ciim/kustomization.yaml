@@ -4,7 +4,7 @@ helmCharts:
   - releaseName: staging-ciim
     name: ciim
     repo: http://chartmuseum.admin:8080
-    version: 1.5.2
+    version: 1.6.0
     namespace: staging
     valuesFile: values.yaml
     includeCRDs: true
