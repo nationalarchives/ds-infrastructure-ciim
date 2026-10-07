@@ -1,0 +1,79 @@
+{
+  "#type": "merge",
+  "values": [
+    {
+      "#type": "select",
+      "value": "$",
+      "keys": "aggregations",
+      "policy": "exclude"
+    },
+    {
+      "aggregations": {
+        "#type": "as_list",
+        "values": {
+          "#type": "flatten",
+          "values": [
+            "$.aggregations[?(@.name nin ['longCollection', 'Y'])]",
+            {
+              "#type": "for_each",
+              "values": "$.aggregations[?(@.name == 'longCollection')]",
+              "spec": {
+                "#type": "merge",
+                "values": [
+                  "$",
+                  {
+                    "entries": {
+                      "#type": "flatten",
+                      "values": [
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "as_list",
+                              "values": "$.entries"
+                            },
+                            {
+                              "#type": "literal",
+                              "value": []
+                            }
+                          ]
+                        },
+                        {
+                          "#type": "fallback",
+                          "strategies": [
+                            {
+                              "#type": "as_list",
+                              "values": {
+                                "#type": "declare",
+                                "args": {
+                                  "Y": "$$.aggregations[?(@.name == 'Y')]"
+                                },
+                                "value": {
+                                  "#type": "require",
+                                  "require": "&.Y.total",
+                                  "value": {
+                                    "value": "Y",
+                                    "doc_count": "&.Y.total"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "#type": "literal",
+                              "value": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "Y": "$$.aggregations[?(@.name == 'Y')]"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
