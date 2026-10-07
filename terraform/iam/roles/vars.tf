@@ -1,3 +1,0 @@
-variable "principal" {}
-
-variable "tags" {}

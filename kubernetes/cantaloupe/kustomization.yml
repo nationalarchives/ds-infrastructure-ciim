@@ -1,7 +1,0 @@
-namespace: etna
-resources:
-  - cantaloupe.yml
-configMapGenerator:
-  - name: cantaloupe-config
-    files:
-      - ./properties/cantaloupe.properties

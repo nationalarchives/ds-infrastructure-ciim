@@ -1,6 +1,0 @@
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: httpbin-auth
-  namespace: etna
-plugin: key-auth

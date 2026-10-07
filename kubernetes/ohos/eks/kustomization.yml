@@ -1,4 +1,0 @@
-namespace: tna-ohos
-resources:
-  - consumer.yaml
-  - cors.yaml

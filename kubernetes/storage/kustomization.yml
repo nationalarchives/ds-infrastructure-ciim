@@ -1,3 +1,0 @@
-namespace: etna
-resources:
-  - ebs-storageclass.yml

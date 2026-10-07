@@ -1,5 +1,0 @@
-namespace: etna
-resources:
-  - consumer.yaml
-  - cors.yaml
-  - ebs-storageclass.yml

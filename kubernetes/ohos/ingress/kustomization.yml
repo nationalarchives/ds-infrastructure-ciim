@@ -1,5 +1,0 @@
-namespace: tna-ohos
-resources:
-  - ingress.yml
-  - es_ingress.yml
-  - rosetta_3_ingress.yml

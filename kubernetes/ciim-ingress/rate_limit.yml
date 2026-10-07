@@ -1,9 +1,0 @@
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: rosetta-rate-limit
-  namespace: kong
-plugin: rate-limiting
-config:
-  minute: 30       # max 30 requests per minute
-  policy: local    # per pod
