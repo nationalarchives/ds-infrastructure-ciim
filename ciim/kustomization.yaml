@@ -1,0 +1,10 @@
+namespace: staging
+
+helmCharts:
+  - releaseName: staging-ciim
+    name: ciim-7
+    repo: http://chartmuseum.admin:8080
+    version: 1.5.2
+    namespace: staging
+    valuesFile: values.yaml
+    includeCRDs: true
