@@ -33,7 +33,6 @@ encryptionKey:
 config:
   persisted:
     object:
-      processors.replicadata.maxRecords: 10
       processors.iadata.batchUpdate.s3.bucket: ds-live-ciim-update
       processors.iadata.batchUpdate.s3.region: eu-west-2
       wagtail.es.hostname: es.master-7rqtwti-tvehemlvvjb4k.uk-1.platformsh.site
