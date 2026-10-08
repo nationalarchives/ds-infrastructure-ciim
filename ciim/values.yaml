@@ -22,7 +22,9 @@ deployment:
         name: mongodb-staging-url
     - secretRef:
         name: wagtail-es-password
-
+  podTemplateSpec:
+    nodeSelector:
+      kubernetes.io/hostname: ip-10-100-10-192.eu-west-2.compute.internal
 encryptionKey:
   existingSecret:
     name: ciim-encryption-key
