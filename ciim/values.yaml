@@ -1,6 +1,6 @@
 global:
   ciim:
-    appName: staging-etna
+    appName: tna
 
 deployment:
   replicas: 1
