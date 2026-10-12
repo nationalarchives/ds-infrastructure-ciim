@@ -35,6 +35,10 @@ encryptionKey:
     name: ciim-encryption-key
     key: ciim.encryption_key
 
+storage:
+  main:
+    size: 50Gi
+
 config:
   persisted:
     object:
