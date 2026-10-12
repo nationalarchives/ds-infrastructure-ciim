@@ -6,6 +6,11 @@ deployment:
   replicas: 1
   image:
     repository: public.ecr.aws/v3w7q3a1/tna-ciim:staging-0.1
+  resources:
+    requests:
+      memory: 4Gi
+    limits:
+      memory: 8Gi
   env:
     - name: processors.iadata.batchUpdate.s3.accessKey
       valueFrom:
