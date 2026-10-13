@@ -1,5 +1,5 @@
 helmCharts:
-  - releaseName: iiif
+  - releaseName: iiif-rosetta
     namespace: staging
     name: rosetta
     repo: http://chartmuseum.admin:8080
