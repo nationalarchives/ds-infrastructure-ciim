@@ -12,10 +12,10 @@ access_tiers:
     max_width: 2000
     max_height: 2000
     redirect_ttl: 5m
-  download:
-    prefix: /download/iiif/3/
-    public_base_url: https://rosetta-staging.k-int.com/gateway/download/iiif/3
-    redirect_ttl: 10m
+  #download:
+  #  prefix: /download/iiif/3/
+  #  public_base_url: https://rosetta-staging.k-int.com/gateway/download/iiif/3
+  #  redirect_ttl: 10m
 
 manifests:
   prefix: /iiif/3/manifest/
