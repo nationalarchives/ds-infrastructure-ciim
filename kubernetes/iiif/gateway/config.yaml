@@ -33,7 +33,7 @@ buckets:
 
 derivative_generator:
   http:
-     url: http://iiif-server:8080/render
+     url: http://iiif-server-service:8080/render
   lambda:
     function_name: iiif-image-server
 
