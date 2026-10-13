@@ -23,7 +23,7 @@ spec:
             name: iiif-gateway-config
       containers:
         - name: iiif-gateway
-          image: public.ecr.aws/v3w7q3a1/iiif-gateway:latest
+          image: public.ecr.aws/v3w7q3a1/iiif-gateway:1.0
           imagePullPolicy: Always
           ports:
             - name: gateway-port

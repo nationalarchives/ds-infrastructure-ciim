@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iiif-server
+  namespace: etna
+spec:
+  selector:
+    matchLabels:
+      app: iiif-server
+  replicas: 1
+  template:
+    metadata:
+      name: iiif-server
+      namespace: etna
+      labels:
+        app:
+          iiif-server
+    spec:
+      serviceAccountName: gateway-sa
+      containers:
+        - name: iiif-server
+          image: public.ecr.aws/v3w7q3a1/iiif-gateway:server-1.0
+          imagePullPolicy: Always
+          ports:
+            - name: server-port
+              containerPort: 8080
+          env:
+            - name: MAX_CONCURRENT_RENDERS
+              value: 8
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 512Mi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iiif-server-service
+  namespace: etna
+  labels:
+    app: iiif-server
+spec:
+  type: ClusterIP
+  selector:
+    app: iiif-server
+  ports:
+    - name: server-port
+      port: 8080
+      targetPort: 8080
