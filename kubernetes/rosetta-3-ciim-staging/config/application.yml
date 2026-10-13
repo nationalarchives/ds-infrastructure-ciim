@@ -225,6 +225,10 @@ rosetta:
               agg_name: "coveringFromDate"
             - path: "origination.date.to"
               agg_name: "coveringToDate"
+            - path: "start.date.to"
+              agg_name: "startDate"
+            - path: "end.date.to"
+              agg_name: "endDate"
           path_config:
             paths:
               topic: "topic.summary.title.keyword"
