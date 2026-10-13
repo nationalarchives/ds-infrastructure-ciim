@@ -169,7 +169,9 @@
                     "groupArray": {
                       "#type": "as_list",
                       "values": "$.source.@datatype.group"
-                    }
+                    },
+                    "startDate": "$.source.start.date.value",
+                    "endDate": "$.source.end.date.value"
                   }
                 }
               }
