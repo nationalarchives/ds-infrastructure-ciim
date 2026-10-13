@@ -40,7 +40,8 @@ derivative_generator:
 ptif_source:
   mode: convert
   converter:
-    function_name: ptif-generator
+    lambda:
+      function_name: ptif-generator
 
 memory_caches:
   ptifs:
