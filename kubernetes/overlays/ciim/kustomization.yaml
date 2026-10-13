@@ -14,6 +14,7 @@ bases:
   - ../../iiif
   - ../../public-es-prod
   - ../../internal-es-prod
+  - ../../ciim-prod
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
