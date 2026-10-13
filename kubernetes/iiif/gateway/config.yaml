@@ -31,7 +31,9 @@ buckets:
   ptif: ds-staging-ptif-images
   cache: ds-staging-iiif-cache
 
-image_server:
+derivative_generator:
+  http:
+     url: http://iiif-server:8080/render
   lambda:
     function_name: iiif-image-server
 
@@ -41,9 +43,6 @@ ptif_source:
     function_name: ptif-generator
 
 memory_caches:
-  identifiers:
-    size: 10000
-    ttl: 5m
   ptifs:
     size: 100000
     ttl: 5m
