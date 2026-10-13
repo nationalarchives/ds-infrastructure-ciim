@@ -31,18 +31,18 @@ spec:
                 name: ciim-public-2-etna-es-http
                 port:
                   number: 9200
-          - path: /internal-dev
+          - path: /internal-prod
             pathType: Prefix
             backend:
               service:
-                name: ciim-internal-etna-dev-es-http
+                name: ciim-internal-etna-prod-es-http
                 port:
                   number: 9200
-          - path: /public-dev
+          - path: /public-prod
             pathType: Prefix
             backend:
               service:
-                name: ciim-public-etna-dev-es-http
+                name: ciim-public-etna-prod-es-http
                 port:
                   number: 9200
           - path: /ciimdev
