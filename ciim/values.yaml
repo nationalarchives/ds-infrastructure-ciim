@@ -39,6 +39,10 @@ storage:
   main:
     size: 50Gi
 
+index:
+  storage:
+    size: 30Gi
+
 config:
   persisted:
     object:
