@@ -12,6 +12,8 @@ bases:
   - ../../rosetta-3-ciim-prod
   - ../../rosetta-3-TEST
   - ../../iiif
+  - ../../public-es-prod
+  - ../../internal-es-prod
 commonAnnotations:
   environment: dev
 patchesStrategicMerge:
