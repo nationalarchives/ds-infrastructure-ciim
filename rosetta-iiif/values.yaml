@@ -1,0 +1,18 @@
+deployment:
+  annotations:
+  image:
+    repository: public.ecr.aws/v3w7q3a1/rosetta
+    tag: tna-iiif-0.1
+    pullPolicy: Always
+  resources:
+    requests:
+      memory: 1Gi
+    limits:
+      memory: 1Gi
+  replicas: 1
+
+config:
+  enabled: false
+
+ingress:
+  enabled: false

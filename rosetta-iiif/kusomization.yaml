@@ -1,0 +1,7 @@
+helmCharts:
+  - releaseName: iiif
+    namespace: staging
+    name: rosetta
+    repo: http://chartmuseum.admin:8080
+    version: 1.4.2
+    valuesFile: values.yaml
