@@ -21,7 +21,7 @@ manifests:
   prefix: /iiif/3/manifest/
   redirect_ttl: 5m
   source:
-    base_url: http://test-iiif-rosetta:4923/iiif/3/manifest/  #TODO update when iiif rosetta deployed
+    base_url: http://iiif-rosetta.staging.svc.cluster.local:4923/iiif/3/manifest/
 
 identifier_resolver:
   type: filepath
