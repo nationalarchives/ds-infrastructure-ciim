@@ -1,0 +1,994 @@
+{
+	"dynamic_templates": [
+		{
+			"admin_uid_path": {
+				"path_match": "*@admin.uid",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"admin_uuid_path": {
+				"path_match": "*@admin.uuid",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"admin_id_path": {
+				"path_match": "*@admin.id",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"admin_string_path": {
+				"path_match": "*@admin*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"admin_long_path": {
+				"path_match": "*@admin*",
+				"match_mapping_type": "long",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"admin_double_path": {
+				"path_match": "*@admin*",
+				"match_mapping_type": "double",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"aspect_value_path": {
+				"path_match": "*aspect.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					],
+					"fields": {
+						"keyword": {
+							"type": "keyword"
+						},
+						"auto": {
+							"type": "text",
+							"analyzer": "autocomplete_unicode",
+							"search_analyzer": "standard_unicode"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser"
+						}
+					}
+				}
+			}
+		},
+		{
+			"component_value_path": {
+				"path_match": "*component.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					],
+					"fields": {
+						"keyword": {
+							"type": "keyword"
+						},
+						"auto": {
+							"type": "text",
+							"analyzer": "autocomplete_unicode",
+							"search_analyzer": "standard_unicode"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser"
+						}
+					}
+				}
+			}
+		},
+		{
+			"date_value_path": {
+				"path_match": "*date.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"date_earliest_from_path": {
+				"path_match": "*date.*from",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "date",
+					"format": "date_optional_time"
+				}
+			}
+		},
+		{
+			"date_earliest_to_path": {
+				"path_match": "*date.*to",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "date",
+					"format": "date_optional_time"
+				}
+			}
+		},
+		{
+			"description_value_path": {
+				"path_match": "*description.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"dimensions_value_path": {
+				"path_match": "*dimensions.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"from_value_path": {
+				"path_match": "*.from.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text"
+				}
+			}
+		},
+		{
+			"identifier_value_path": {
+				"path_match": "*identifier.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					],
+					"fields": {
+						"ngram": {
+							"type": "text",
+							"analyzer": "edge_ngram",
+							"search_analyzer": "lower_term"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser_only"
+						}
+					}
+				}
+			}
+		},
+		{
+			"inscriptions_value_path": {
+				"path_match": "*inscription.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"level_value_path": {
+				"path_match": "*level.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"media_processed_path": {
+				"path_match": "*@processed*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"media_location_path": {
+				"path_match": "*@location*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"media_embedded_path": {
+				"path_match": "*@embedded*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"source_content_path": {
+				"path_match": "*source.content",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser"
+				}
+			}
+		},
+		{
+			"media_source_path": {
+				"path_match": "*source*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"media_additional_path": {
+				"path_match": "*additional*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"multimedia_links_path": {
+				"path_match": "*multimedia*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"name_value_path": {
+				"path_match": "*name.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"search_analyzer": "synonym",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					],
+					"fields": {
+						"keyword": {
+							"type": "keyword"
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						},
+						"auto": {
+							"type": "text",
+							"analyzer": "autocomplete_unicode",
+							"search_analyzer": "standard_unicode"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser"
+						}
+					}
+				}
+			}
+		},
+		{
+			"note_value_path": {
+				"path_match": "*note.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"relationship_value_path": {
+				"path_match": "*relationship.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"role_value_path": {
+				"path_match": "*role.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"summary_title_path": {
+				"path_match": "*summary.title",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					],
+					"fields": {
+						"keyword": {
+							"type": "keyword"
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						},
+						"auto": {
+							"type": "text",
+							"analyzer": "autocomplete_unicode",
+							"search_analyzer": "standard_unicode"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser"
+						}
+					}
+				}
+			}
+		},
+		{
+			"to_value_path": {
+				"path_match": "*.to.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text"
+				}
+			}
+		},
+		{
+			"title_value_path": {
+				"path_match": "*title.value",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"fields": {
+						"keyword": {
+							"type": "keyword"
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"datatype_path": {
+				"path_match": "*@datatype*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"reference_number": {
+				"match": "reference_number",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword",
+					"fields": {
+						"ngram": {
+							"type": "text",
+							"analyzer": "edge_ngram",
+							"search_analyzer": "lower_term"
+						},
+						"lower": {
+							"type": "keyword",
+							"normalizer": "lower_normaliser_only"
+						}
+					}
+				}
+			}
+		},
+		{
+			"credit_line": {
+				"match": "credit_line",
+				"mapping": {
+					"type": "text",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"display": {
+				"match": "display",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"dimension": {
+				"match": "dimension",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"gender": {
+				"match": "gender",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"language": {
+				"match": "language",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"method": {
+				"match": "method",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"modified": {
+				"match": "modified",
+				"mapping": {
+					"type": "date",
+					"format": "epoch_millis"
+				}
+			}
+		},
+		{
+			"primary": {
+				"match": "primary",
+				"mapping": {
+					"type": "boolean"
+				}
+			}
+		},
+		{
+			"relation": {
+				"match": "relation",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"rotated": {
+				"match": "rotated",
+				"mapping": {
+					"type": "boolean"
+				}
+			}
+		},
+		{
+			"sort": {
+				"match": "sort",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"source": {
+				"match": "source",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"status_long": {
+				"match": "status",
+				"match_mapping_type": "long",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"status_string": {
+				"match": "status",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"status_double": {
+				"match": "status",
+				"match_mapping_type": "double",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"summary_title_first": {
+				"match": "summary.title_first",
+				"match_mapping_type": "*",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"type_long": {
+				"match": "type",
+				"match_mapping_type": "long",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"type_string": {
+				"match": "type",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"type_double": {
+				"match": "type",
+				"match_mapping_type": "double",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"units": {
+				"match": "units",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"wildcard_inscriptions_path": {
+				"path_match": "*.inscription.*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"wildcard_rights_path": {
+				"path_match": "*.rights.*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "text"
+				}
+			}
+		},
+		{
+			"wildcard_link_strings_path": {
+				"path_match": "*.@link.*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "keyword"
+				}
+			}
+		},
+		{
+			"wildcard_value_date_path": {
+				"path_match": "*.value",
+				"match_mapping_type": "date",
+				"mapping": {
+					"type": "text",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"wildcard_value_long_path": {
+				"path_match": "*.value",
+				"match_mapping_type": "long",
+				"mapping": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"wildcard_value_string_path": {
+				"path_match": "*.value",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						},
+						"min": {
+							"type": "text",
+							"analyzer": "minimal_stem_en"
+						},
+						"sball": {
+							"type": "text",
+							"analyzer": "snowball_stem_en"
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"wildcard_value_double_path": {
+				"path_match": "*.value",
+				"match_mapping_type": "double",
+				"mapping": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"wildcard_string": {
+				"match": "*",
+				"path_unmatch": "@template.*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						}
+					},
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				}
+			}
+		},
+		{
+			"template_wildcard_string": {
+				"path_match": "@template.*",
+				"match_mapping_type": "string",
+				"mapping": {
+					"type": "text",
+					"analyzer": "text-analyser"
+				}
+			}
+		},
+		{
+			"wildcard_long": {
+				"match": "*",
+				"match_mapping_type": "long",
+				"mapping": {
+					"type": "text",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						}
+					}
+				}
+			}
+		},
+		{
+			"wildcard_double": {
+				"match": "*",
+				"match_mapping_type": "double",
+				"mapping": {
+					"type": "text",
+					"fields": {
+						"keyword": {
+							"type": "keyword",
+							"ignore_above": 256
+						}
+					}
+				}
+			}
+		}
+	],
+	"properties": {
+		"_generic_all_std": {
+			"type": "text",
+			"analyzer": "minimal_stem_en"
+		},
+		"_generic_all_sball": {
+			"type": "text",
+			"analyzer": "snowball_stem_en"
+		},
+		"@admin": {
+			"properties": {
+				"added": {
+					"type": "date"
+				},
+				"available": {
+					"type": "boolean"
+				},
+				"ciim_data_id": {
+					"type": "integer"
+				},
+				"complete": {
+					"type": "boolean"
+				},
+				"conformance": {
+					"type": "keyword"
+				},
+				"created": {
+					"type": "date",
+					"format": "epoch_millis"
+				},
+				"expires": {
+					"type": "date"
+				},
+				"error": {
+					"properties": {
+						"message": {
+							"type": "keyword"
+						},
+						"description": {
+							"type": "keyword"
+						},
+						"date": {
+							"type": "date"
+						}
+					}
+				},
+				"history": {
+					"properties": {
+						"processed": {
+							"type": "date",
+							"format": "epoch_millis"
+						},
+						"modified": {
+							"type": "date",
+							"format": "epoch_millis"
+						}
+					}
+				},
+				"id": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				},
+				"information": {
+					"properties": {
+						"message": {
+							"type": "keyword"
+						},
+						"description": {
+							"type": "keyword"
+						},
+						"date": {
+							"type": "date"
+						}
+					}
+				},
+				"modified": {
+					"type": "date",
+					"format": "epoch_millis"
+				},
+				"pkey": {
+					"type": "keyword"
+				},
+				"privacy": {
+					"properties": {
+						"message": {
+							"type": "keyword"
+						},
+						"description": {
+							"type": "keyword"
+						},
+						"date": {
+							"type": "date"
+						}
+					}
+				},
+				"process": {
+					"type": "keyword"
+				},
+				"processed": {
+					"type": "date",
+					"format": "epoch_millis"
+				},
+				"primary": {
+					"type": "boolean"
+				},
+				"published": {
+					"type": "boolean"
+				},
+				"sequence": {
+					"type": "integer"
+				},
+				"source": {
+					"type": "keyword"
+				},
+				"status": {
+					"type": "keyword"
+				},
+				"stream": {
+					"type": "keyword"
+				},
+				"uid": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				},
+				"uuid": {
+					"type": "keyword",
+					"copy_to": [
+						"_generic_all_std",
+						"_generic_all_sball"
+					]
+				},
+				"valid": {
+					"type": "boolean"
+				},
+				"version": {
+					"type": "integer"
+				},
+				"warning": {
+					"properties": {
+						"message": {
+							"type": "keyword"
+						},
+						"description": {
+							"type": "keyword"
+						},
+						"date": {
+							"type": "date"
+						}
+					}
+				}
+			}
+		}
+	},
+	"date_detection": false
+}
