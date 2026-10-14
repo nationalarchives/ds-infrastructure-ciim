@@ -6,7 +6,7 @@ extraEnvs:
     valueFrom:
       secretKeyRef:
         name: clickhouse-creds
-        key: password
+        key: CLICKHOUSE_PASSWORD
 config:
   receivers:
     otlp:
