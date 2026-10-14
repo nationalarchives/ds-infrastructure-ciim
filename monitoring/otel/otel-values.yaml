@@ -1,0 +1,26 @@
+mode: deployment
+image:
+  repository: ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib
+
+config:
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+
+  exporters:
+    clickhouse/default:
+      endpoint: "tcp://clickhouse-service:9000"
+      ttl: 72h
+      username: default
+      create_schema: true
+      sending_queue:
+        queue_size: 1000
+
+  service:
+    pipelines:
+      traces/services:
+        receivers: [ otlp ]
+        processors: [ batch ]
+        exporters: [ clickhouse/default ]

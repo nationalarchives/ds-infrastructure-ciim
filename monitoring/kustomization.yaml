@@ -1,0 +1,13 @@
+helmCharts:
+  - releaseName: admin
+    namespace: monitoring
+    name: opentelemetry-collector
+    repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+    version: 0.165.0
+    valuesFile: ./otel/otel-values.yaml
+
+
+resources:
+  - ./clickhouse/ch-deployment.yaml
+  - ./clickhouse/ch-service.yaml
+  - ./clickhouse/ch-pvc.yaml
