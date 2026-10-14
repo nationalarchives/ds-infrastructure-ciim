@@ -490,7 +490,9 @@
                           }
                         }
                       }
-                    }
+                    },
+                    "startDate": "$.source.start.date[*].value",
+                    "endDate": "$.source.end.date[*].value"
                   }
                 }
               }
