@@ -34,6 +34,8 @@ spec:
           env:
             - name: GATEWAY_CONFIG
               value: /config/config.yaml
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://admin-opentelemetry-collector.monitoring.svc.cluster.local:4317"
           resources:
             requests:
               memory: 64Mi
