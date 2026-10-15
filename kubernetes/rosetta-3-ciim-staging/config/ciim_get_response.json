@@ -495,8 +495,7 @@
                     "endDate": "$.source.end.date[*].value",
                     "legal":{
                       "status": "$.source.legal.status"
-                    },
-                    "arrangement": "$.source.arrangement.value"
+                    }
                   }
                 }
               }
