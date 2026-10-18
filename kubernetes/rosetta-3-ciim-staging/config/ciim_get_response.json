@@ -492,7 +492,8 @@
                       }
                     },
                     "startDate": "$.source.start.date[*].value",
-                    "endDate": "$.source.end.date[*].value"
+                    "endDate": "$.source.end.date[*].value",
+                    "arrangement": "$.source.arrangement.value"
                   }
                 }
               }
