@@ -106,7 +106,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: "yaml_config"
             - name: JAVA_OPTS
-              value: "-Xms6g -Xmx6g"
+              value: "-Xms6g -Xmx11g"
             - name: media.replica.s3.access_key
               valueFrom:
                 secretKeyRef:
