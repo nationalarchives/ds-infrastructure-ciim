@@ -7,20 +7,23 @@ tenant:
 
 access_tiers:
   viewer:
-    prefix: /viewer/iiif/3/
-    public_base_url: https://rosetta-staging.k-int.com/gateway/viewer/iiif/3
+    prefix: /iiif/3/
+    public_base_url: https://rosetta-staging.k-int.com/gateway/iiif/3
     max_resolution: 2000
     redirect_ttl: 5m
+    manifests: true
   mid:
     prefix: /mid/iiif/3/
     public_base_url: https://rosetta-staging.k-int.com/gateway/mid/iiif/3
     max_resolution: 1000
     redirect_ttl: 5m
+    manifests: true
   low:
     prefix: /low/iiif/3/
     public_base_url: https://rosetta-staging.k-int.com/gateway/low/iiif/3
     max_resolution: 500
     redirect_ttl: 5m
+    manifests: true
   #download:
   #  prefix: /download/iiif/3/
   #  public_base_url: https://rosetta-staging.k-int.com/gateway/download/iiif/3
