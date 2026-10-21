@@ -263,6 +263,7 @@
                     },
                     "mapScale": "$.source.@template.details.mapScale",
                     "nraReference": "{$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (2nd part)')].value} {$.source.manifestations[*].identifier[?(@.type == 'NRA catalogue reference (3rd part)')].value}",
+                    "name": "$.source.name",
                     "parent": {
                       "#type": "scope",
                       "scope": "$.source.parent[0]",
@@ -295,11 +296,14 @@
                       "#type": "as_list",
                       "values": "$.source.note[?(@.type == 'publication note')].value"
                     },
+                    "place": "$.source.place[*].name.value",
                     "placeDescription": {
                       "raw": "$.source.place[*].description.value",
                       "display": "$.source.place[*].description.label.value"
                     },
                     "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
+                    "authorityReference": "$.source.manifestations[*].identifier[?(@.type == 'name authority reference')].value",
+                    "formerAuthorityReference": "$.source.manifestations[*].identifier[?(@.type == 'former name authority reference')].value",
                     "recordOpening": "$.source.availability.access.opening.label.value",
                     "referenceNumber": "$.source.@template.details.referenceNumber",
                     "relatedMaterials": {

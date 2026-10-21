@@ -156,6 +156,7 @@
                     "digitised": "$.source.@template.details.digitised",
                     "rid": "$.source.multimedia[*].@admin.id",
                     "heldBy": "$.source.repository.name.value",
+                    "reference": "$.source.manifestations[*].identifier[?(@.type == 'NRA reference')].value",
                     "referenceNumber": "$.source.identifier[?(@.type == 'reference number')].value",
                     "subjects": "$.source.subjects.subject[*].summary.title",
                     "level": "$.source.level",
