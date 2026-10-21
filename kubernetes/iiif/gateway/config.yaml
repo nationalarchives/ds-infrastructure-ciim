@@ -17,8 +17,8 @@ access_tiers:
     max_resolution: 1000
     redirect_ttl: 5m
   low:
-    prefix: /Customize Toolbar…/iiif/3/
-    public_base_url: https://rosetta-staging.k-int.com/gateway/mid/iiif/3
+    prefix: /low/iiif/3/
+    public_base_url: https://rosetta-staging.k-int.com/gateway/low/iiif/3
     max_resolution: 500
     redirect_ttl: 5m
   #download:
