@@ -19,7 +19,7 @@ spec:
       serviceAccountName: gateway-sa
       containers:
         - name: iiif-server
-          image: public.ecr.aws/v3w7q3a1/iiif-gateway:server-1.0
+          image: public.ecr.aws/v3w7q3a1/iiif-gateway:server-1.1
           imagePullPolicy: Always
           ports:
             - name: server-port
