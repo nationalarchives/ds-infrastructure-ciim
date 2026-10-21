@@ -9,8 +9,12 @@ access_tiers:
   viewer:
     prefix: /viewer/iiif/3/
     public_base_url: https://rosetta-staging.k-int.com/gateway/viewer/iiif/3
-    max_width: 2000
-    max_height: 2000
+    max_resolution: 2000
+    redirect_ttl: 5m
+  test:
+    prefix: /test/iiif/3/
+    public_base_url: https://rosetta-staging.k-int.com/gateway/test/iiif/3
+    max_resolution: 1000
     redirect_ttl: 5m
   #download:
   #  prefix: /download/iiif/3/
