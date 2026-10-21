@@ -26,7 +26,7 @@ spec:
               containerPort: 8080
           env:
             - name: MAX_CONCURRENT_RENDERS
-              value: "8"
+              value: "16"
           resources:
             requests:
               memory: 256Mi
