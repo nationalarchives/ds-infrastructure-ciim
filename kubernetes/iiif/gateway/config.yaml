@@ -11,10 +11,15 @@ access_tiers:
     public_base_url: https://rosetta-staging.k-int.com/gateway/viewer/iiif/3
     max_resolution: 2000
     redirect_ttl: 5m
-  test:
-    prefix: /test/iiif/3/
-    public_base_url: https://rosetta-staging.k-int.com/gateway/test/iiif/3
+  mid:
+    prefix: /mid/iiif/3/
+    public_base_url: https://rosetta-staging.k-int.com/gateway/mid/iiif/3
     max_resolution: 1000
+    redirect_ttl: 5m
+  low:
+    prefix: /Customize Toolbar…/iiif/3/
+    public_base_url: https://rosetta-staging.k-int.com/gateway/mid/iiif/3
+    max_resolution: 500
     redirect_ttl: 5m
   #download:
   #  prefix: /download/iiif/3/
@@ -22,7 +27,7 @@ access_tiers:
   #  redirect_ttl: 10m
 
 manifests:
-  prefix: /iiif/3/manifest/
+  generator_base_url: https://rosetta-staging.k-int.com/gateway/viewer/
   redirect_ttl: 5m
   source:
     base_url: http://iiif-rosetta.staging.svc.cluster.local:4923/iiif/3/manifest/
