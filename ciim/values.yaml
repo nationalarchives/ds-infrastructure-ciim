@@ -32,7 +32,7 @@ storage:
 
 index:
   elasticsearch:
-    version: 9.5.5
+    version: 8.19.23
   storage:
     size: 30Gi
 
