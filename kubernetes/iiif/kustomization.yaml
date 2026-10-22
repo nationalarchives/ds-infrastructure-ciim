@@ -5,6 +5,7 @@ resources:
   - gateway/service-account.yaml
   - gateway/ingress.yaml
   - gateway/service-monitor.yaml
+  - gateway/rate-limit.yaml
   - image-server/deployment.yaml
 
 configMapGenerator:
