@@ -11,12 +11,16 @@ deployment:
       memory: 8Gi
     limits:
       memory: 8Gi
+  javaOpts: >-
+    -XX:InitialRAMPercentage=65 -XX:MaxRAMPercentage=65
+    -XX:+PrintFlagsFinal
+    -XX:+UseStringDeduplication
   envFrom:
     - secretRef:
         name: mongodb-staging-url
   podTemplateSpec:
     nodeSelector:
-      kubernetes.io/hostname: ip-10-100-10-192.eu-west-2.compute.internal
+      kubernetes.io/hostname: ip-10-100-20-160.eu-west-2.compute.internal
 encryptionKey:
   existingSecret:
     name: ciim-encryption-key
