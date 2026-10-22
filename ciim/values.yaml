@@ -43,7 +43,7 @@ externalDatabase:
     main: etna-staging
     vault: etna-staging-vault
     archive: etna-staging-archive
-  urlParams: autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+  urlParams: autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&useInformationSchema=false
   existingSecret:
     name: db-secret
     key: password
