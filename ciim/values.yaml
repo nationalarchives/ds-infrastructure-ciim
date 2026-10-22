@@ -5,7 +5,8 @@ global:
 deployment:
   replicas: 1
   image:
-    repository: public.ecr.aws/v3w7q3a1/tna-ciim:staging-0.2
+    repository: public.ecr.aws/v3w7q3a1/tna-ciim
+    tag: staging-0.2
   resources:
     requests:
       memory: 8Gi
