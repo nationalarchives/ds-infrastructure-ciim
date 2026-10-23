@@ -9,11 +9,11 @@ deployment:
     tag: staging-0.2
   resources:
     requests:
-      memory: 8Gi
+      memory: 10Gi
     limits:
-      memory: 8Gi
+      memory: 10Gi
   javaOpts: >-
-    -server -Xms6g -Xmx6g
+    -server -Xms8g -Xmx8g
     -XX:+PrintFlagsFinal
     -XX:+UseStringDeduplication
     -XX:InitiatingHeapOccupancyPercent=20
