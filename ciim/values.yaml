@@ -13,9 +13,13 @@ deployment:
     limits:
       memory: 8Gi
   javaOpts: >-
-    -XX:InitialRAMPercentage=65 -XX:MaxRAMPercentage=65
+    -server -Xms6g -Xmx6g
     -XX:+PrintFlagsFinal
     -XX:+UseStringDeduplication
+    -XX:InitiatingHeapOccupancyPercent=20
+    -XX:+UnlockExperimentalVMOptions
+    -XX:G1HeapWastePercent=5
+    -XX:G1MixedGCLiveThresholdPercent=50
   envFrom:
     - secretRef:
         name: mongodb-staging-url
