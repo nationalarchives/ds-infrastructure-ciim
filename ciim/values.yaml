@@ -33,7 +33,7 @@ encryptionKey:
 
 storage:
   main:
-    size: 50Gi
+    size: 100Gi
 
 index:
   elasticsearch:
