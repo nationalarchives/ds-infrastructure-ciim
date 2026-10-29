@@ -39,7 +39,7 @@ index:
   elasticsearch:
     version: 8.19.23
   storage:
-    size: 30Gi
+    size: 150Gi
 
 externalDatabase:
   host: ciim-db-service.etna
