@@ -1,0 +1,33 @@
+{
+  "#type": "merge",
+  "depth": -1,
+  "values": [
+    "$.current",
+    {
+      "results": {
+        "request": {
+          "aggregations": {
+            "Y": {
+              "filter": {
+                "bool": {
+                  "must": [
+                    {
+                      "query_string": {
+                        "query": "source.value:UNKNOWN"
+                      }
+                    },
+                    {
+                      "prefix": {
+                        "@hierarch.identifier.value": "Y"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
