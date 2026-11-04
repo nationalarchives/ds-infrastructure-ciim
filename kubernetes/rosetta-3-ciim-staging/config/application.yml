@@ -43,17 +43,20 @@ rosetta:
               - to-generic-search
               - generic-search-defaults
               - generic-search-modifications
+              - exclude-collection-filter
               - generic-to-elastic
-              - elastic-modifications
+              - inject-collection-filter
               - ciim/search/request
               - inject-highlighting
               - merge-advance-parameters
               - inject-exists_digitised-filter
+              - inject-parliamentaryarchive-agg
           response:
             policy: list
             names:
               - ciim/search/response
               - aggs-count-to-doc-count
+              - merge-parliamentaryarchive-into-collection
 
       - name: ciim/serachHighlight
         type: transform-only
@@ -143,6 +146,33 @@ rosetta:
         properties:
           types:
             - query
+
+      - name: merge-parliamentaryarchive-into-collection
+        type: proteus
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/merge_parliamentaryarchive_into_collection.json
+
+      - name: inject-parliamentaryarchive-agg
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/inject_parliamentaryarchive_agg.json
+
+      - name: exclude-collection-filter
+        type: proteus
+        input: current
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/excludecollection.json
+
+      - name: inject-collection-filter
+        type: proteus
+        input: full
+        properties:
+          mutable: true
+          spec: ${base_paths.proteus}/injectcollectionfilter.json
 
       - name: inject-date-hist
         type: proteus

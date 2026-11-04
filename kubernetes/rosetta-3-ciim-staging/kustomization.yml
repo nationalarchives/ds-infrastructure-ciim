@@ -22,3 +22,7 @@ configMapGenerator:
       - ./config/hierarchy_count_query.json
       - ./config/heldby_count_query.json
       - ./config/inject_digitised_exists_filter.json
+      - ./config/inject_parliamentaryarchive_agg.json
+      - ./config/merge_parliamentaryarchive_into_collection.json
+      - ./config/excludecollection.json
+      - ./config/injectcollectionfilter.json
