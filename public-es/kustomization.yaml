@@ -5,3 +5,12 @@ helmCharts:
     version: 1.3.1
     namespace: staging
     valuesFile: values.yaml
+
+namespace: staging
+configMapGenerator:
+  - name: es-synonyms
+    files:
+      - ./synonym.txt
+
+generatorOptions:
+  disableNameSuffixHash: true
