@@ -2,3 +2,4 @@ resources:
   - namespace
   - ciim
   - rosetta-iiif
+  - public-es
