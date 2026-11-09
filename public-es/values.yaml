@@ -1,5 +1,8 @@
 elasticsearch:
   version: 8.19.23
+  volumeMounts:
+    - name: es-synonyms
+      mountPath: /usr/share/elasticsearch/config/dictionaries
   podTemplateSpec:
     volumes:
       - name: es-synonyms

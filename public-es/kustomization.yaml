@@ -2,7 +2,7 @@ helmCharts:
   - releaseName: staging-ciim
     name: ciim-elasticsearch
     repo: http://chartmuseum.admin:8080
-    version: 1.3.1
+    version: 1.3.2
     namespace: staging
     valuesFile: values.yaml
 
