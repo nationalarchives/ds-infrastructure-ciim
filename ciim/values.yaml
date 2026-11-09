@@ -44,6 +44,7 @@ storage:
 index:
   elasticsearch:
     version: 8.19.23
+    memory: 4Gi
   storage:
     size: 200Gi
 
