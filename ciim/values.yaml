@@ -23,6 +23,12 @@ deployment:
   envFrom:
     - secretRef:
         name: mongodb-staging-url
+  env:
+    - name: PUBLIC_ELASTIC_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: staging-ciim-es-elastic-user
+          key: elastic
   podTemplateSpec:
     nodeSelector:
       kubernetes.io/hostname: ip-10-100-20-160.eu-west-2.compute.internal
