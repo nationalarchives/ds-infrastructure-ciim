@@ -6,7 +6,7 @@ deployment:
   replicas: 1
   image:
     repository: public.ecr.aws/v3w7q3a1/tna-ciim
-    tag: staging-0.2
+    tag: staging-0.3
   resources:
     requests:
       memory: 10Gi
