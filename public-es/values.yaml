@@ -9,3 +9,6 @@ elasticsearch:
         configMap:
           name: es-synonyms
 
+storage:
+  size: 50Gi
+
