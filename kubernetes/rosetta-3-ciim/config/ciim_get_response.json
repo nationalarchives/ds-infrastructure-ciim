@@ -71,6 +71,7 @@
                       "#type": "as_list",
                       "values": "$.source.@template.details.creator"
                     },
+                    "chargeType": "$.source.chargetype",
                     "custodialHistory": "$.source.custodial[*].description.value",
                     "closureCriterion": "$.source.closureCriterion.value",
                     "dateCovering": "$.source.origination.date.value",
