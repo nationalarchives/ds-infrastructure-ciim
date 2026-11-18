@@ -107,6 +107,8 @@ spec:
               value: "yaml_config"
             - name: JAVA_OPTS
               value: "-Xms6g -Xmx11g"
+            - name: JAVA_TOOL_OPTIONS
+              value: "-XX:-UseBASE64Intrinsics"
             - name: media.replica.s3.access_key
               valueFrom:
                 secretKeyRef:
