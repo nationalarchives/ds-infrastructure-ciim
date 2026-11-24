@@ -291,6 +291,8 @@ rosetta:
               size: 10000
             - name: longCollection
               size: 10000
+            - name: parish
+              size: 10000
           search_config:
             search_fields:
               - field: "name.value"
